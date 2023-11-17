@@ -1,0 +1,115 @@
+# mac
+.DS_Store
+
+# code profiling
+.prof
+
+#setuptools_scm
+cityseer/_version.py
+
+# temporary working directories
+**/temp/**
+
+# pdm
+.pdm-python
+__pypackages__/
+
+# Dev
+.idea/
+build/
+
+# Jupyter notebooks
+.ipynb_checkpoints
+**/.ipynb_checkpoints/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# general cache
+cache
+
+# node modules and gridsome are nested into the docs directory
+**/logs
+**/*.log
+**/yarn.lock
+**/yarn-debug.log*
+**/yarn-error.log*
+**/node_modules/
+**/.cache
+**/.temp
+**/dist
+
+# firebase
+**/.firebase*
+
+# Distribution / packaging
+.Python
+_skbuild/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+pip-selfcheck.json
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# maturin
+/target
+.venv/
+bin/
+include/
+man/
+
