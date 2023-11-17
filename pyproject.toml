@@ -6,7 +6,7 @@ authors = [
     {name = "Gareth Simons", email = "info@benchmarkurbanism.com"},
 ]
 dependencies = [
-    "cityseer>=4.4.0",
+    "cityseer>=4.5.0",
     "pyproj>=3.6.1",
     "shapely>=2.0.2",
     "geopandas>=0.14.1",
