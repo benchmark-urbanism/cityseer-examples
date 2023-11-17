@@ -13,48 +13,47 @@ The following `Jupyter` notebooks provide some examples of how this package can 
 
 The `Getting Started` guide from the [intro](https://cityseer.benchmarkurbanism.com/intro).
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/getting_started.ipynb" target="_blank">Github: getting_started.ipynb</a>
+[getting_started](/notebooks/getting_started.ipynb)
 
 ### Graph Corrections Guide
 
 `Graph Corrections` guide.
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/graph_corrections.ipynb" target="_blank">Github: graph_corrections.ipynb</a>
+[graph_corrections](/notebooks/graph_corrections.ipynb)
 
 ### Graph Cleaning Guide
 
 `Graph Cleaning` guide.
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/graph_cleaning.ipynb" target="_blank">Github: graph_cleaning.ipynb</a>
+[graph_cleaning](/notebooks/graph_cleaning.ipynb)
 
 ### Importing OSM data
 
-Examples showing how to import OSM data as discussed in [OSM and NetworkX](/guide#osm-and-networkx).
+Examples showing how to import OSM data as discussed in [OSM and NetworkX](https://cityseer.benchmarkurbanism.com/guide).
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/osm_to_cityseer.ipynb" target="_blank">Github: osm_to_cityseer.ipynb</a>
+[osm_to_cityseer](/notebooks/osm_to_cityseer.ipynb)
 
 ### Importing GeoPandas LineString data
 
 Example showing how to import `GeoPandas` LineString data. This approach is demonstrated for ingesting a `momepy` network which can then be used for centrality and landuse accessibility analysis.
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/momepy_to_cityseer.ipynb" target="_blank">Github: momepy_to_cityseer.ipynb</a>
+[momepy_to_cityseer](/notebooks/momepy_to_cityseer.ipynb)
 
 ### Centralities for London
 
 Computing network centralities for London with OS Open data.
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/london_centralities.ipynb" target="_blank">Github: london_centralities.ipynb</a>
+[london_centralities](/notebooks/london_centralities.ipynb)
 
 ### Landuse Accessibilities for London
 
 Computing landuse acccessibilities to pubs and restaurants in London.
 
-<a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/london_amenities.ipynb" target="_blank">Github: london_amenities.ipynb</a>
+[london amenities](/notebooks/london_amenities.ipynb)
 
 ### Street Network continuity
 
 Computing street network continuities for street names, route identifiers, and highway types:
 
-- OS Open data: <a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/continuity/continuity_os_open.ipynb" target="_blank">Github: open_roads_continuity.ipynb</a>
-
-- OSM data: <a href="https://github.com/benchmark-urbanism/cityseer-api/blob/master/demos/continuity/continuity_osm.ipynb" target="_blank">Github: osm_continuity.ipynb</a>
+- OS Open data: [continuity_os_open](/notebooks/continuity/continuity_os_open.ipynb)
+- OSM data: [continuity_osm](/notebooks/continuity/continuity_osm.ipynb)

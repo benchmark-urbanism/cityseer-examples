@@ -1,0 +1,23 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Gareth Simons", email = "info@benchmarkurbanism.com"},
+]
+dependencies = [
+    "cityseer>=4.4.0",
+    "pyproj>=3.6.1",
+    "shapely>=2.0.2",
+    "geopandas>=0.14.1",
+    "matplotlib>=3.8.1",
+    "networkx>=3.2.1",
+    "utm>=0.7.0",
+    "osmnx>=1.7.1",
+    "momepy>=0.6.0",
+    "ipykernel>=6.26.0",
+]
+requires-python = ">=3.10, <3.12"
+readme = "README.md"
+license = {text = "AGPL-3.0"}
+
