@@ -2,8 +2,8 @@
 
 This repository contains examples for the `cityseer-api` package.
 
-- [Main repository](https://github.com/benchmark-urbanism/cityseer-api)
-- [Documentation](https://cityseer.benchmarkurbanism.com/)
+- [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
+- [cityseer documentation](https://cityseer.benchmarkurbanism.com/)
 
 ## Notebooks
 
