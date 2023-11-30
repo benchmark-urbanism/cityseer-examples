@@ -3,10 +3,9 @@
 
 [metadata]
 groups = ["default"]
-cross_platform = true
-static_urls = false
-lock_version = "4.3"
-content_hash = "sha256:a2ed1753f8554fcf50cda418e37be2668a0345067fc4d7bcba241096e6e98cc3"
+strategy = ["cross_platform"]
+lock_version = "4.4"
+content_hash = "sha256:226d2aacfbb52011249e298843c46e02566d2395665d01f6b27ea6605255f27f"
 
 [[package]]
 name = "appnope"
@@ -138,7 +137,7 @@ files = [
 
 [[package]]
 name = "cityseer"
-version = "4.5.0"
+version = "4.5.7"
 requires_python = ">=3.10, <3.12"
 summary = "Computational tools for network-based pedestrian-scale urban analysis"
 dependencies = [
@@ -154,33 +153,33 @@ dependencies = [
     "utm>=0.7.0",
 ]
 files = [
-    {file = "cityseer-4.5.0-cp310-cp310-macosx_10_7_x86_64.whl", hash = "sha256:a9b942f8befb01a5c97bbb69a8baccf623bb4c65b112198c355217cfa3099016"},
-    {file = "cityseer-4.5.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:38883b69508c550371dfe8300584c3d45de0512293a798c3710ed994e534b865"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:1949f1db0e103259869cf6e622b5ca86b852caf90534692878ce0a717a39474b"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4f4a741d8cd840d946d5672376e4259bcd8aaf2b63a0cf151ed7a26d1ec74baa"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ed8a3126687a3b3f105356d2d0520e9b54d2f828d27156e675384ab9032d5a81"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:48fcda20354843a24302a7e4b76dab257c3c8fbb2d997e1ff1c29aff7575e75f"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:1184810a1e0e2eb633fb294ebb2c129fb55c2d429c6807be5fabc48e28fa278b"},
-    {file = "cityseer-4.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f77c4732d3f00d2a4e5daca70620854e2094cbe48055eb8751a39c9cd32791c6"},
-    {file = "cityseer-4.5.0-cp310-none-win32.whl", hash = "sha256:c4e39c5830cf415b70f1199bb79ddc71aeb4aca2f7730e9688db9c5afd27deeb"},
-    {file = "cityseer-4.5.0-cp310-none-win_amd64.whl", hash = "sha256:f3417ee1ca6cfd01693c6cedefed0ab2928a1141bc1a5786b06c67281888d511"},
-    {file = "cityseer-4.5.0-cp311-cp311-macosx_10_7_x86_64.whl", hash = "sha256:499abfe5c1d93d768f9785627988d33cbf9b39e39ee6b5f67bf411f5c1ba0a45"},
-    {file = "cityseer-4.5.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:6cfbccd713d5128887ed24ce3d8ffb0b1efe2c65d8013b5f2d20d6a2151baaaf"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:e03760cb29872e8bcf76cfd6b2e0a700cbc40e6325ecca554e85e2911a71cc74"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:eec6176de95b1c710009b6d59bd487118015a18754ee375d6cfc03f6e77fa310"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:7f9c5a3462aba5ebfc61f3980418206881bc5aa14184561b5824535072d0866a"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:3dc4b183ecc24669c83fa13ca8ebb295ae23ffaec6ae8ddfa718760edb64a002"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:dae3b99b48320ae0eab8f9d7721cda5a55e4424953d7b0f18b9a5dd309323014"},
-    {file = "cityseer-4.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:76b6c023ab3894abe185bc0dc7cd0a9bf408603dfd386ff097d945579363cc5c"},
-    {file = "cityseer-4.5.0-cp311-none-win32.whl", hash = "sha256:c2a64d7b9b60520264c183f6b97fef10c263938128dc24ca4096025fc0a2cd27"},
-    {file = "cityseer-4.5.0-cp311-none-win_amd64.whl", hash = "sha256:bed8520c906e835fcfb176254b6b04b47df73d8a132664ac56af725cec2dcecd"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:b6609e3837cdb594ecf56379e4aa1136a0aa0d9dad383db434293bcdc9b74f9d"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0985344b62fe53516d75902a6c55d9a329869e9b1897ee343aa50033d0639a93"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1e46da699b1b9e25400237587f05bbca4776fcbd5f09e469418c902666737dbc"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:a2144da0c82989dda4bd6bc6d010f6b130e175f82f05e1c24fb5b8b8cf87c913"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:ba4079147212ae20582092380f0b573171206752cbfc0a0d0caed128c08e8271"},
-    {file = "cityseer-4.5.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:77ece40f24234e9a8bb086e96a0995769e9c1aa1da67904b7a6545b4bfcf1169"},
-    {file = "cityseer-4.5.0.tar.gz", hash = "sha256:5cdae90d7302217b363723b1b621b9a28a82b0ecab1797a62c433d0300245c9e"},
+    {file = "cityseer-4.5.7-cp310-cp310-macosx_10_7_x86_64.whl", hash = "sha256:981f9c174de144945cfc2102370a30789fd930e9cf7f099275a72b8a07d3b38d"},
+    {file = "cityseer-4.5.7-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:cb911b7b0bd6d953cae90acd4e6c7eaa95a9678cbbbd9098598e29d09dcd82b4"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:f2553d0513766b6f864cbf62494984da2a00535fb6f9551ee41b26a22243d80c"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ba0f3dcfdd0f1a7fe2007167669667f84206e43c2e30df5896b114a145bddfeb"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:c2f5e0a1cd947f142398b4719793f741b58ffbff95a4c6903865bd79cda2aaca"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:b9e1094f1af42dd5befe0359c6fcb943847e6d049e466c8d51b2ace7232831ec"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:ae7e363cc85b736759d3c89e2c8b0e075c3450f2ba1cda8041e60cd03695c2c9"},
+    {file = "cityseer-4.5.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:acfdd54c97b83ad2384bc43e5cb28605bb75c6ccdbd752feaeb1d6fc8a2262ad"},
+    {file = "cityseer-4.5.7-cp310-none-win32.whl", hash = "sha256:31e09eedd1cfc152c1cf1d6758b90e271681227d9b2b0200fe188f3efa9e74bb"},
+    {file = "cityseer-4.5.7-cp310-none-win_amd64.whl", hash = "sha256:888055e1260b14acfe4f387c58720afe48b5146bb93358aaeea35de5fa9fa106"},
+    {file = "cityseer-4.5.7-cp311-cp311-macosx_10_7_x86_64.whl", hash = "sha256:35e6a66b7634cec13306bff3ee330aef0a1f5425be8fa2961d3e8560819f172e"},
+    {file = "cityseer-4.5.7-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:af5a9a6805148b7bf21754e8d41dd570d7c4a45df23b5bec0b9970eb5971f8b1"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:caa2b1605af08d6980320570ea8038a9d373fe677746193aa6a596ee2ed3e6c2"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:07b1c4c0a9a15c742e8ad128755b8dc22d3403762665fe0ee38b87f60113dbc5"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ba6f856c6e09f06d7a825e7703923805e03e47832f4f9775c2e2016ebfe0f54c"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:21139ab32f4aa6734cecad2fb4130dd597d43d9264e7db096d1cd5c7ed29b847"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:8dbfc6028850cc4d4544521ac4769623d94df8294e5ee5a319bf034dd6275e67"},
+    {file = "cityseer-4.5.7-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:240becafde758ccc2398e003316457983604af028a1fdd53c2941deeea7ad44f"},
+    {file = "cityseer-4.5.7-cp311-none-win32.whl", hash = "sha256:09aff4574ffa4f4e7668d715c6b9a712bd37af901be1804288b3c4dc8cbbf38e"},
+    {file = "cityseer-4.5.7-cp311-none-win_amd64.whl", hash = "sha256:2eb0f3a9532a7417ae41033c35d31229b0babbd28b30322f5dc3524f226fc806"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:43e8a372a8b0561189cc70f8f24e98f21337d93d36329c05f7f4ad932fe42033"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:5e0121652d57b77b4ec9ecae6c86d4b9e9ae4b4ad677392f9c6294e88ecb4085"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:87280bafc00c9101e9316b2d674f8f630e924045e729ab1fbbf89c0fb4f3ad29"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e09c5968d9e5ee45ac7688d5533e1be509cd8d67ea626ff7101c949108ffcfc9"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:b8e62dd68add8fe32e81a1c299f0a5c5cc47ec290deb501a198d9eb61024bc8d"},
+    {file = "cityseer-4.5.7-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2e4a3921e3a3fecf3f6e62a2e4fa86432dec25972983e1906b8afa4299588db9"},
+    {file = "cityseer-4.5.7.tar.gz", hash = "sha256:3f6fa24ed82a36999f2b809bfb209c5d1cb0a9810f5bce2ed296b551dc1622e3"},
 ]
 
 [[package]]
@@ -418,7 +417,7 @@ files = [
 
 [[package]]
 name = "ipykernel"
-version = "6.26.0"
+version = "6.27.1"
 requires_python = ">=3.8"
 summary = "IPython Kernel for Jupyter"
 dependencies = [
@@ -437,8 +436,8 @@ dependencies = [
     "traitlets>=5.4.0",
 ]
 files = [
-    {file = "ipykernel-6.26.0-py3-none-any.whl", hash = "sha256:3ba3dc97424b87b31bb46586b5167b3161b32d7820b9201a9e698c71e271602c"},
-    {file = "ipykernel-6.26.0.tar.gz", hash = "sha256:553856658eb8430bbe9653ea041a41bff63e9606fc4628873fc92a6cf3abd404"},
+    {file = "ipykernel-6.27.1-py3-none-any.whl", hash = "sha256:dab88b47f112f9f7df62236511023c9bdeef67abc73af7c652e4ce4441601686"},
+    {file = "ipykernel-6.27.1.tar.gz", hash = "sha256:7d5d594b6690654b4d299edba5e872dc17bb7396a8d0609c97cb7b8a1c605de6"},
 ]
 
 [[package]]
@@ -596,7 +595,7 @@ files = [
 
 [[package]]
 name = "matplotlib"
-version = "3.8.1"
+version = "3.8.2"
 requires_python = ">=3.9"
 summary = "Python plotting package"
 dependencies = [
@@ -611,22 +610,22 @@ dependencies = [
     "python-dateutil>=2.7",
 ]
 files = [
-    {file = "matplotlib-3.8.1-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:e11ab864323fa73ac1b7849688d9671c47a2665242e899785b4db1a375b547e1"},
-    {file = "matplotlib-3.8.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:43a9d40feb63c9e31a0b8b069dcbd74a912f59bdc0095d187126694cd26977e4"},
-    {file = "matplotlib-3.8.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:608ea2951838d391e45dec2e644888db6899c752d3c29e157af9dcefb3d7d8d5"},
-    {file = "matplotlib-3.8.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:82ec95b02e894561c21e066bd0c716e4b410df141ce9441aa5af6cd937e4ade2"},
-    {file = "matplotlib-3.8.1-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:e3ad1759ad4a5245172c6d32b8ada603a6020d03211524c39d78d25c9a7dc0d2"},
-    {file = "matplotlib-3.8.1-cp310-cp310-win_amd64.whl", hash = "sha256:20a0fdfd3ee836179047f3782be060057b878ad37f5abe29edf006a1ff3ecd73"},
-    {file = "matplotlib-3.8.1-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:7658b7073c1d6a2922ecc0ed41602410fae88586cb8a54f7a2063d537b6beaf7"},
-    {file = "matplotlib-3.8.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:bf6889643d4560fcc56f9f0941f078e4df0d72a6c3e4ca548841fc13c5642664"},
-    {file = "matplotlib-3.8.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ff842e27bc6a80de08c40e0bfdce460bd08080e8a94af131162b6a1b8948f2cc"},
-    {file = "matplotlib-3.8.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7f99d07c0e753717775be7be39ab383453b4d8b629c9fa174596b970c6555890"},
-    {file = "matplotlib-3.8.1-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:f34b46dbb1db1f09bfa937cd5853e5f2af232caeeff509c3ab6e43fd33780eae"},
-    {file = "matplotlib-3.8.1-cp311-cp311-win_amd64.whl", hash = "sha256:1fcb49b6baf0375281979cbf26695ec10bd1cada1e311893e89533b3b70143e7"},
-    {file = "matplotlib-3.8.1-pp39-pypy39_pp73-macosx_10_12_x86_64.whl", hash = "sha256:ca84deaa38cb64b7dd160ca2046b45f7b5dbff2b0179642e1339fadc337446c9"},
-    {file = "matplotlib-3.8.1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ed3b29f54f6bbf3eaca4cbd23bc260155153ace63b7f597c474fa6fc6f386530"},
-    {file = "matplotlib-3.8.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:0d24c47a1bb47e392fbcd26fe322e4ff3431653ac1e8718e4e147d450ae97a44"},
-    {file = "matplotlib-3.8.1.tar.gz", hash = "sha256:044df81c1f6f3a8e52d70c4cfcb44e77ea9632a10929932870dfaa90de94365d"},
+    {file = "matplotlib-3.8.2-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:09796f89fb71a0c0e1e2f4bdaf63fb2cefc84446bb963ecdeb40dfee7dfa98c7"},
+    {file = "matplotlib-3.8.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:6f9c6976748a25e8b9be51ea028df49b8e561eed7809146da7a47dbecebab367"},
+    {file = "matplotlib-3.8.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b78e4f2cedf303869b782071b55fdde5987fda3038e9d09e58c91cc261b5ad18"},
+    {file = "matplotlib-3.8.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4e208f46cf6576a7624195aa047cb344a7f802e113bb1a06cfd4bee431de5e31"},
+    {file = "matplotlib-3.8.2-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:46a569130ff53798ea5f50afce7406e91fdc471ca1e0e26ba976a8c734c9427a"},
+    {file = "matplotlib-3.8.2-cp310-cp310-win_amd64.whl", hash = "sha256:830f00640c965c5b7f6bc32f0d4ce0c36dfe0379f7dd65b07a00c801713ec40a"},
+    {file = "matplotlib-3.8.2-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:d86593ccf546223eb75a39b44c32788e6f6440d13cfc4750c1c15d0fcb850b63"},
+    {file = "matplotlib-3.8.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:9a5430836811b7652991939012f43d2808a2db9b64ee240387e8c43e2e5578c8"},
+    {file = "matplotlib-3.8.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b9576723858a78751d5aacd2497b8aef29ffea6d1c95981505877f7ac28215c6"},
+    {file = "matplotlib-3.8.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5ba9cbd8ac6cf422f3102622b20f8552d601bf8837e49a3afed188d560152788"},
+    {file = "matplotlib-3.8.2-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:03f9d160a29e0b65c0790bb07f4f45d6a181b1ac33eb1bb0dd225986450148f0"},
+    {file = "matplotlib-3.8.2-cp311-cp311-win_amd64.whl", hash = "sha256:3773002da767f0a9323ba1a9b9b5d00d6257dbd2a93107233167cfb581f64717"},
+    {file = "matplotlib-3.8.2-pp39-pypy39_pp73-macosx_10_12_x86_64.whl", hash = "sha256:aa11b3c6928a1e496c1a79917d51d4cd5d04f8a2e75f21df4949eeefdf697f4b"},
+    {file = "matplotlib-3.8.2-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d1095fecf99eeb7384dabad4bf44b965f929a5f6079654b681193edf7169ec20"},
+    {file = "matplotlib-3.8.2-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:bddfb1db89bfaa855912261c805bd0e10218923cc262b9159a49c29a7a1c1afa"},
+    {file = "matplotlib-3.8.2.tar.gz", hash = "sha256:01a978b871b881ee76017152f1f1a0cbf6bd5f7b8ff8c96df0df1bd57d8755a1"},
 ]
 
 [[package]]
@@ -644,21 +643,21 @@ files = [
 
 [[package]]
 name = "momepy"
-version = "0.6.0"
-requires_python = ">=3.8"
+version = "0.7.0"
+requires_python = ">=3.10"
 summary = "Urban Morphology Measuring Toolkit"
 dependencies = [
-    "geopandas>=0.8.0",
+    "geopandas>=0.12.0",
     "libpysal>=4.6.0",
-    "networkx>=2.3",
+    "networkx>=2.7",
     "packaging",
     "pandas!=1.5.0",
     "shapely>=2",
-    "tqdm>=4.27.0",
+    "tqdm>=4.63.0",
 ]
 files = [
-    {file = "momepy-0.6.0-py3-none-any.whl", hash = "sha256:41f98fa9d452605514bd2a68791efbafde550e5b0f4b07f7250b90598f53da43"},
-    {file = "momepy-0.6.0.tar.gz", hash = "sha256:b52cb4e957c0407bd28d7ef260da0288a0c1666e206726eafd12d5976156d42b"},
+    {file = "momepy-0.7.0-py3-none-any.whl", hash = "sha256:64e86db0f7a5512ac3f26e3c36a4f85a882e995f6e5a2819e3e5ce91d0a722bd"},
+    {file = "momepy-0.7.0.tar.gz", hash = "sha256:413ed9221dc4b2190621f8cb37789f09ea882f7e81dfbffd5731a22da6e61bab"},
 ]
 
 [[package]]
@@ -711,7 +710,7 @@ files = [
 
 [[package]]
 name = "osmnx"
-version = "1.7.1"
+version = "1.8.0"
 requires_python = ">=3.8"
 summary = "Download, model, analyze, and visualize street networks and other geospatial features from OpenStreetMap"
 dependencies = [
@@ -723,8 +722,8 @@ dependencies = [
     "shapely>=2.0",
 ]
 files = [
-    {file = "osmnx-1.7.1-py3-none-any.whl", hash = "sha256:bb421239b2334d77663524345aa29c1dd9ea28ce45a74c0a54c7237982f7c194"},
-    {file = "osmnx-1.7.1.tar.gz", hash = "sha256:8b64403eda8766bab13859ba6239f890d9a34cfad91f5303c4c063eb0ed459b5"},
+    {file = "osmnx-1.8.0-py3-none-any.whl", hash = "sha256:b1a7c29feb8a4360f7e0b5044798f3b186879ac0a0e4b9f0ad9cff97cfd01dac"},
+    {file = "osmnx-1.8.0.tar.gz", hash = "sha256:1d6ec9c1114cce2572c4b88e7b2dfb8d0ca5c6591b08e45301dc7f32967c76cf"},
 ]
 
 [[package]]
