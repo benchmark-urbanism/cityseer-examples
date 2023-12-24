@@ -12,6 +12,8 @@ from shapely import geometry
 
 
 def local_analysis(line_geom: geometry.LineString, location_key: str) -> None:
+    """ """
+    print(f"Processing {location_key}")
     # build the network
     # buffer by 5000 for centrality
     extent = line_geom.buffer(50)
@@ -28,6 +30,9 @@ def local_analysis(line_geom: geometry.LineString, location_key: str) -> None:
         G_decomp, crs=27700
     )
     nodes_gdf = networks.node_centrality_shortest(
+        network_structure, nodes_gdf, distances=[500, 1000, 2500, 5000]
+    )
+    nodes_gdf = networks.node_centrality_simplest(
         network_structure, nodes_gdf, distances=[500, 1000, 2500, 5000]
     )
 
@@ -248,19 +253,22 @@ def local_analysis(line_geom: geometry.LineString, location_key: str) -> None:
         list(SCHEMA.keys()),
         nodes_gdf,
         network_structure,
-        distances=[100, 250, 500, 1000, 2000],
+        distances=[100, 200, 500],
     )
     #
     nodes_gdf.loc[nodes_gdf.live].to_file(f"../temp/{location_key}.gpkg")
 
 
 # %%
-# chatsworth road
-chats_geom = geometry.LineString([[535624.84, 185731.75], [535719.70, 185457.11]])
+oxford_street_geom = geometry.LineString([[528680, 181151], [528983, 181222]])
+local_analysis(oxford_street_geom, "oxford_street")
+hackney_walk_geom = geometry.LineString([[535225, 184951], [535354, 184952]])
+local_analysis(hackney_walk_geom, "hackney_walk")
+chats_geom = geometry.LineString([[535624, 185731], [535719, 185457]])
 local_analysis(chats_geom, "chatsworth_road")
-olympic_geom = geometry.LineString([[537870.23, 184912.04], [538170.95, 185185.70]])
+olympic_geom = geometry.LineString([[537870, 184912], [538170, 185185]])
 local_analysis(olympic_geom, "olympic_village")
-howland_geom = geometry.LineString([[529204.06, 181854.19], [529421.77, 182014.34]])
+howland_geom = geometry.LineString([[529204, 181854], [529421, 182014]])
 local_analysis(howland_geom, "howland road")
-goodge_geom = geometry.LineString([[529356.08, 181640.86], [529573.17, 181784.75]])
+goodge_geom = geometry.LineString([[529356, 181640], [529573, 181784]])
 local_analysis(goodge_geom, "goodge_street")
