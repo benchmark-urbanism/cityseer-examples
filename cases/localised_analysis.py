@@ -19,7 +19,7 @@ def local_analysis(line_geom: geometry.LineString, location_key: str) -> None:
     extent = line_geom.buffer(50)
     extent_buff = extent.buffer(5000)
     G_multigraph = io.osm_graph_from_poly(
-        extent_buff, poly_epsg_code=27700, to_epsg_code=27700, simplify=True
+        extent_buff, poly_crs_code=27700, to_crs_code=27700, simplify=True
     )
     G_decomp = graphs.nx_decompose(G_multigraph, 10)
     for node_key, node_data in G_decomp.nodes(data=True):
