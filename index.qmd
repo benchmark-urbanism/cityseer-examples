@@ -3,7 +3,7 @@
 This repository contains examples for the `cityseer-api` package.
 
 - [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
-- [cityseer documentation](https://cityseer.benchmarkurbanism.com/)
+- [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
 
 Use the navigation menu to explore examples.
 
