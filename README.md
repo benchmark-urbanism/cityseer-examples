@@ -1,6 +1,6 @@
 # Cityseer Examples
 
-Published to: [Github Pages](https://benchmark-urbanism/cityseer-examples/)
+Published to: [Cityseer Examples](https://benchmark-urbanism.github.io/cityseer-examples/)
 
 This repository contains examples for the `cityseer-api` package.
 
