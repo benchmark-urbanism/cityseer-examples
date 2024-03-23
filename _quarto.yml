@@ -1,0 +1,49 @@
+project:
+  title: "cityseer-examples"
+  output-dir: ./output
+  type: website
+website:
+  title: Cityseer Guide
+  description: A guide and some examples of how to use cityseer.
+  page-navigation: true
+  repo-url: https://github.com/benchmark-urbanism/cityseer-examples
+  navbar:
+    search: true
+  search:
+    location: navbar
+    type: overlay
+  sidebar:
+    logo: ./assets/round_logo.png
+    style: "docked"
+    collapse-level: 2
+    contents:
+      - href: index.qmd
+        text: Home
+      - guide.qmd
+      - section: Preparation
+        contents:
+          - examples/graph_cleaning.ipynb
+          - examples/graph_corrections.ipynb
+      - section: Conversion
+        contents:
+          - examples/momepy_to_cityseer.ipynb
+          - examples/osm_to_cityseer.ipynb
+      - section: Networks
+        contents:
+          - examples/london_centralities.ipynb
+      - section: Accessibility
+        contents:
+          - examples/london_amenities.ipynb
+      - section: Continuity
+        contents:
+          - examples/continuity/continuity_os_open.ipynb
+          - examples/continuity/continuity_osm.ipynb
+
+format:
+  html:
+    theme: simplex
+    toc: true
+    mermaid:
+      theme: dark
+    highlight-style: breezedark
+    css: ./custom-style.css

@@ -1,0 +1,8 @@
+# Cityseer Examples
+
+This repository contains examples for the `cityseer-api` package.
+
+- [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
+- [cityseer documentation](https://cityseer.benchmarkurbanism.com/)
+
+Use the navigation menu to explore examples or go straight to the [Getting Started Guide](guide.qmd).

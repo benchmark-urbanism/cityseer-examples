@@ -1,0 +1,31 @@
+div.cell-output {
+  border-left: 2px solid #d32333;
+  padding: 3px;
+  margin-bottom: 10px;
+  background-color: #f9f7f7;
+  font-size: 0.8rem;
+  font-weight: light;
+}
+
+code {
+  font-size: 0.8rem;
+}
+
+div.sourceCode {
+  font-size: 0.9rem;
+}
+
+.sidebar-header {
+  width: 100%;
+}
+
+.sidebar-logo {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+body {
+  font-size: 0.85rem;
+  font-weight: light;
+}

@@ -1,6 +1,10 @@
 # mac
 .DS_Store
 
+# Quarto
+/output/
+.quarto/
+
 # code profiling
 .prof
 
@@ -113,3 +117,5 @@ bin/
 include/
 man/
 
+
+/.quarto/
