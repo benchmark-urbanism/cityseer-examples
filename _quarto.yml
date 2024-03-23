@@ -19,7 +19,6 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - guide.qmd
       - section: Preparation
         contents:
           - examples/graph_cleaning.ipynb
