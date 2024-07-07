@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cityseer Guide - OSM - cityseer</title>
+<title>OSM - cityseer – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,11 +124,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../examples/momepy_to_cityseer.html">Conversion</a></li><li class="breadcrumb-item"><a href="../examples/osm_to_cityseer.html">OSM - cityseer</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -152,9 +152,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Preparation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -175,9 +175,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Conversion</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -198,9 +198,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Networks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -215,9 +215,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Accessibility</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -232,9 +232,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Continuity</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 23, 2024</p>
+      <p class="date-modified">July 7, 2024</p>
     </div>
   </div>
     
@@ -363,10 +363,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>simple_plot(multi_graph_cons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting OSMnx MultiDiGraph to cityseer MultiGraph.
-100%|██████████| 6036/6036 [00:00&lt;00:00, 6949.74it/s]
+100%|██████████| 6036/6036 [00:01&lt;00:00, 5798.37it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 3595/3595 [00:00&lt;00:00, 24093.22it/s]</code></pre>
+100%|██████████| 3595/3595 [00:00&lt;00:00, 23873.61it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -386,7 +386,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>G_raw <span class="op">=</span> io.nx_from_osm_nx(multi_di_graph_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting OSMnx MultiDiGraph to cityseer MultiGraph.
-100%|██████████| 30898/30898 [00:05&lt;00:00, 6051.42it/s]</code></pre>
+100%|██████████| 30898/30898 [00:06&lt;00:00, 4746.43it/s]</code></pre>
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
@@ -397,17 +397,17 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 15843/15843 [00:00&lt;00:00, 534915.06it/s]
+100%|██████████| 15843/15843 [00:00&lt;00:00, 452646.78it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 18245/18245 [00:02&lt;00:00, 7650.99it/s]
+100%|██████████| 18245/18245 [00:02&lt;00:00, 6805.06it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 18245/18245 [00:00&lt;00:00, 82363.50it/s]
+100%|██████████| 18245/18245 [00:00&lt;00:00, 42166.85it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 15843/15843 [00:01&lt;00:00, 8366.39it/s] 
+100%|██████████| 15843/15843 [00:02&lt;00:00, 6536.31it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 5475/5475 [00:00&lt;00:00, 308189.48it/s]
+100%|██████████| 5475/5475 [00:00&lt;00:00, 156393.03it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4989/4989 [00:00&lt;00:00, 66268.22it/s]</code></pre>
+100%|██████████| 4989/4989 [00:00&lt;00:00, 41835.45it/s]</code></pre>
 </div>
 </div>
 <div id="cell-10" class="cell" data-execution_count="6">
@@ -419,36 +419,37 @@ INFO:cityseer.tools.graphs:Removing filler nodes.
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>simple_plot(G5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4759/4759 [00:00&lt;00:00, 63996.89it/s]
+  0%|          | 0/4759 [00:00&lt;?, ?it/s]100%|██████████| 4759/4759 [00:00&lt;00:00, 53191.63it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4759/4759 [00:01&lt;00:00, 2614.08it/s]
+100%|██████████| 4759/4759 [00:02&lt;00:00, 1776.24it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2592/2592 [00:00&lt;00:00, 108947.33it/s]
+100%|██████████| 2592/2592 [00:00&lt;00:00, 136751.86it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4542/4542 [00:00&lt;00:00, 6858.53it/s]
+100%|██████████| 4542/4542 [00:00&lt;00:00, 8408.74it/s] 
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3955/3955 [00:00&lt;00:00, 813758.76it/s]
+100%|██████████| 3955/3955 [00:00&lt;00:00, 445926.68it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2556/2556 [00:01&lt;00:00, 1912.38it/s]
+100%|██████████| 2556/2556 [00:00&lt;00:00, 2675.87it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4305/4305 [00:00&lt;00:00, 190738.79it/s]
+100%|██████████| 4207/4207 [00:00&lt;00:00, 10774.22it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2906/2906 [00:00&lt;00:00, 82582.83it/s]
+100%|██████████| 2556/2556 [00:00&lt;00:00, 75759.96it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2906/2906 [00:00&lt;00:00, 5210.13it/s]
+100%|██████████| 2556/2556 [00:00&lt;00:00, 8149.37it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2510/2510 [00:00&lt;00:00, 64027.39it/s]
+100%|██████████| 2517/2517 [00:00&lt;00:00, 36548.73it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3966/3966 [00:00&lt;00:00, 16591.44it/s]
+100%|██████████| 3545/3545 [00:00&lt;00:00, 78880.87it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2372/2372 [00:00&lt;00:00, 166726.25it/s]
+100%|██████████| 2320/2320 [00:00&lt;00:00, 266794.21it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 3614/3614 [00:01&lt;00:00, 3553.69it/s]
+100%|██████████| 3507/3507 [00:00&lt;00:00, 4683.29it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 3614/3614 [00:00&lt;00:00, 154549.50it/s]
+100%|██████████| 3507/3507 [00:00&lt;00:00, 171372.60it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 3613/3613 [00:00&lt;00:00, 18899.81it/s]</code></pre>
+100%|██████████| 3507/3507 [00:00&lt;00:00, 16124.67it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -471,68 +472,143 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 12102/12102 [00:00&lt;00:00, 524347.58it/s]
+100%|██████████| 12392/12392 [00:00&lt;00:00, 414090.53it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 13412/13412 [00:00&lt;00:00, 1090764.65it/s]
+100%|██████████| 13740/13740 [00:00&lt;00:00, 819465.59it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 13412/13412 [00:00&lt;00:00, 81558.28it/s]
+100%|██████████| 13740/13740 [00:00&lt;00:00, 67192.27it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 12102/12102 [00:01&lt;00:00, 8530.22it/s]
+100%|██████████| 12392/12392 [00:01&lt;00:00, 6950.56it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 4092/4092 [00:00&lt;00:00, 199406.21it/s]
+100%|██████████| 4154/4154 [00:00&lt;00:00, 187031.85it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3298/3298 [00:00&lt;00:00, 32669.64it/s]
-INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2946/2946 [00:00&lt;00:00, 80991.71it/s]
-INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2946/2946 [00:00&lt;00:00, 3238.10it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1983/1983 [00:00&lt;00:00, 188695.15it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 3168/3168 [00:00&lt;00:00, 15352.64it/s]
+100%|██████████| 3354/3354 [00:00&lt;00:00, 25296.42it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 2910/2910 [00:00&lt;00:00, 709246.59it/s]
+100%|██████████| 4430/4430 [00:00&lt;00:00, 356972.33it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 1958/1958 [00:00&lt;00:00, 2411.41it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 3016/3016 [00:00&lt;00:00, 248580.65it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 114226.08it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 4430/4430 [00:00&lt;00:00, 116053.63it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2064/2064 [00:00&lt;00:00, 82490.46it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 76871.76it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2064/2064 [00:00&lt;00:00, 5613.18it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 158938.82it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1793/1793 [00:00&lt;00:00, 69206.44it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2747/2747 [00:00&lt;00:00, 18983.50it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 613556.73it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 4430/4430 [00:00&lt;00:00, 137569.07it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1710/1710 [00:00&lt;00:00, 112705.81it/s]
-INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2544/2544 [00:00&lt;00:00, 3672.95it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2544/2544 [00:00&lt;00:00, 189539.39it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 553874.32it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 2544/2544 [00:00&lt;00:00, 828118.69it/s]
+100%|██████████| 4430/4430 [00:00&lt;00:00, 498866.10it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 1675/1675 [00:00&lt;00:00, 3702.42it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2550/2550 [00:00&lt;00:00, 168719.64it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 114266.44it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4430/4430 [00:00&lt;00:00, 120919.72it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 1681/1681 [00:00&lt;00:00, 71973.06it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 71202.27it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 1681/1681 [00:00&lt;00:00, 10384.43it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 139926.47it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1663/1663 [00:00&lt;00:00, 410712.33it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2523/2523 [00:00&lt;00:00, 110463.99it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 577696.60it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4430/4430 [00:00&lt;00:00, 121071.79it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1659/1659 [00:00&lt;00:00, 396396.85it/s]
+100%|██████████| 3007/3007 [00:00&lt;00:00, 473025.25it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 4430/4430 [00:00&lt;00:00, 485593.95it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 3007/3007 [00:00&lt;00:00, 5101.05it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4601/4601 [00:00&lt;00:00, 32214.92it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 3007/3007 [00:00&lt;00:00, 79164.63it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 3007/3007 [00:00&lt;00:00, 8528.42it/s] 
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2694/2694 [00:00&lt;00:00, 288163.19it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4002/4002 [00:00&lt;00:00, 34398.63it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2680/2680 [00:00&lt;00:00, 311153.59it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3955/3955 [00:00&lt;00:00, 12902.49it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2670/2670 [00:00&lt;00:00, 49246.67it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3960/3960 [00:00&lt;00:00, 94525.98it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2670/2670 [00:00&lt;00:00, 77297.02it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2670/2670 [00:00&lt;00:00, 50618.98it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2652/2652 [00:00&lt;00:00, 543235.70it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3932/3932 [00:00&lt;00:00, 93634.87it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2652/2652 [00:00&lt;00:00, 524238.58it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3932/3932 [00:00&lt;00:00, 678180.91it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2652/2652 [00:00&lt;00:00, 13164.61it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3949/3949 [00:00&lt;00:00, 86277.56it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2652/2652 [00:00&lt;00:00, 74208.73it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2652/2652 [00:00&lt;00:00, 22483.93it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2571/2571 [00:00&lt;00:00, 410958.67it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3824/3824 [00:00&lt;00:00, 99588.45it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2565/2565 [00:00&lt;00:00, 617907.63it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3822/3822 [00:00&lt;00:00, 645485.40it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2565/2565 [00:00&lt;00:00, 13777.95it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3840/3840 [00:00&lt;00:00, 69691.52it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2565/2565 [00:00&lt;00:00, 68739.31it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2565/2565 [00:00&lt;00:00, 5947.85it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2454/2454 [00:00&lt;00:00, 115931.05it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3679/3679 [00:00&lt;00:00, 82065.86it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2451/2451 [00:00&lt;00:00, 495242.27it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3672/3672 [00:00&lt;00:00, 599606.18it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2447/2447 [00:01&lt;00:00, 1589.26it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4116/4116 [00:00&lt;00:00, 9559.00it/s] 
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2447/2447 [00:00&lt;00:00, 74524.12it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2447/2447 [00:00&lt;00:00, 4554.52it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 1885/1885 [00:00&lt;00:00, 74929.52it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2785/2785 [00:00&lt;00:00, 29180.30it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 1814/1814 [00:00&lt;00:00, 148504.26it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2506/2506 [00:00&lt;00:00, 3442.60it/s]
+100%|██████████| 2675/2675 [00:00&lt;00:00, 4218.67it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2506/2506 [00:00&lt;00:00, 195705.03it/s]
+100%|██████████| 2675/2675 [00:00&lt;00:00, 182408.48it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 2506/2506 [00:00&lt;00:00, 28032.87it/s]</code></pre>
+100%|██████████| 2674/2674 [00:00&lt;00:00, 30048.97it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -582,18 +658,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -625,7 +690,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/benchmark-urbanism\.github\.io\/cityseer-examples\/");
@@ -633,7 +720,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
