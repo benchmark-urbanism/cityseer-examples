@@ -318,31 +318,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df_streets: gpd.GeoDataFrame <span class="op">=</span> gpd.read_file(bubenec_path, layer<span class="op">=</span><span class="st">"streets"</span>)  <span class="co"># type: ignore</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>nx_momepy <span class="op">=</span> io.nx_from_generic_geopandas(df_streets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/examples/../temp/bubenec.gpkg
 path exists: True</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 35/35 [00:00&lt;00:00, 17268.63it/s]</code></pre>
+<pre><code>100%|██████████| 35/35 [00:00&lt;00:00, 1769.83it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 35/35 [00:00&lt;00:00, 47187.61it/s]</code></pre>
 </div>
 </div>
 <p>At this point the input GeoPandas file has been converted to a <code>networkX</code> <code>MultiGraph</code> with <code>geom</code> attributes for the edges. This graph can now be fed to <code>cityseer</code> <code>graph</code> module methods if wanted. For running optimised network centrality or landuse accessibilities, use the <code>io.network_structure_from_nx</code> method to prepare the necessary structures.</p>
 <div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    nx_momepy, crs<span class="op">=</span>df_streets.crs.to_epsg()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    nx_momepy, crs<span class="op">=</span>df_streets.crs.to_epsg()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 29/29 [00:00&lt;00:00, 14987.04it/s]
-100%|██████████| 29/29 [00:00&lt;00:00, 2427.94it/s]</code></pre>
+100%|██████████| 29/29 [00:00&lt;00:00, 14449.37it/s]
+100%|██████████| 29/29 [00:00&lt;00:00, 2098.13it/s]</code></pre>
 </div>
 </div>
 <p>The following block downloads some OSM data which will be used for demonstrating some landuse accessibility methods.</p>
 <div id="cell-7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -361,49 +360,49 @@ path exists: True</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8</td>
 <td>0</td>
-<td>1.603586e+06</td>
-<td>6.464429e+06</td>
+<td>1603585.6</td>
+<td>6464428.8</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603585.640 6464428.774)</td>
+<td>POINT (1603585.6 6464428.8)</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603413.206-y6464228.73</td>
+<td data-quarto-table-cell-role="th">x1603413.2-y6464228.7</td>
 <td>1</td>
-<td>1.603413e+06</td>
-<td>6.464229e+06</td>
+<td>1603413.2</td>
+<td>6464228.7</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603413.206 6464228.730)</td>
+<td>POINT (1603413.2 6464228.7)</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603268.502-y6464060.781</td>
+<td data-quarto-table-cell-role="th">x1603268.5-y6464060.8</td>
 <td>2</td>
-<td>1.603269e+06</td>
-<td>6.464061e+06</td>
+<td>1603268.5</td>
+<td>6464060.8</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603268.502 6464060.781)</td>
+<td>POINT (1603268.5 6464060.8)</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603363.558-y6464031.885</td>
+<td data-quarto-table-cell-role="th">x1603363.6-y6464031.9</td>
 <td>3</td>
-<td>1.603364e+06</td>
-<td>6.464032e+06</td>
+<td>1603363.6</td>
+<td>6464031.9</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603363.558 6464031.885)</td>
+<td>POINT (1603363.6 6464031.9)</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603607.303-y6464181.853</td>
+<td data-quarto-table-cell-role="th">x1603607.3-y6464181.9</td>
 <td>4</td>
-<td>1.603607e+06</td>
-<td>6.464182e+06</td>
+<td>1603607.3</td>
+<td>6464181.9</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603607.303 6464181.853)</td>
+<td>POINT (1603607.3 6464181.9)</td>
 </tr>
 </tbody>
 </table>
@@ -412,7 +411,7 @@ path exists: True</code></pre>
 </div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>edges_gdf.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edges_gdf.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -438,52 +437,52 @@ path exists: True</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774-x1603413.206-y6464228.73</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8-x1603413.2-y6464228.7</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603413.206-y6464228.73</td>
-<td>264.103950</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603413.2-y6464228.7</td>
+<td>264.124535</td>
 <td>0.000000</td>
 <td>1</td>
-<td>-130.760729</td>
-<td>-130.760729</td>
-<td>-130.760729</td>
-<td>LINESTRING (1603585.640 6464428.774, 1603413.2...</td>
+<td>-130.747175</td>
+<td>-130.747175</td>
+<td>-130.747175</td>
+<td>LINESTRING (1603585.6 6464428.8, 1603413.2 646...</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774-x1603561.74-y6464494.467</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8-x1603561.7-y6464494.5</td>
 <td>1</td>
 <td>0</td>
 <td>8</td>
 <td>0</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603561.74-y6464494.467</td>
-<td>70.020202</td>
-<td>8.483583</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603561.7-y6464494.5</td>
+<td>70.026746</td>
+<td>8.479425</td>
 <td>1</td>
-<td>111.541453</td>
-<td>103.057871</td>
-<td>109.992304</td>
-<td>LINESTRING (1603561.740 6464494.467, 1603564.6...</td>
+<td>111.540976</td>
+<td>103.061551</td>
+<td>109.990108</td>
+<td>LINESTRING (1603561.7 6464494.5, 1603564.6 646...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774-x1603650.45-y6464368.601</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8-x1603650.5-y6464368.6</td>
 <td>2</td>
 <td>0</td>
 <td>6</td>
 <td>0</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603650.45-y6464368.601</td>
-<td>88.924305</td>
-<td>19.246836</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603650.5-y6464368.6</td>
+<td>88.999005</td>
+<td>19.087196</td>
 <td>1</td>
-<td>-42.077556</td>
-<td>-55.845266</td>
-<td>-42.875276</td>
-<td>LINESTRING (1603585.640 6464428.774, 1603603.0...</td>
+<td>-42.077527</td>
+<td>-55.684912</td>
+<td>-42.848413</td>
+<td>LINESTRING (1603585.6 6464428.8, 1603603.1 646...</td>
 </tr>
 </tbody>
 </table>
@@ -492,43 +491,43 @@ path exists: True</code></pre>
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_point(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">50.1029248</span>, <span class="fl">14.4029967</span>), tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}, dist<span class="op">=</span><span class="dv">400</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>data_gdf.to_crs(<span class="dv">3857</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.loc[<span class="st">"node"</span>]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>data_gdf.index <span class="op">=</span> data_gdf.index.astype(<span class="bu">str</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf[[<span class="st">"amenity"</span>, <span class="st">"geometry"</span>]]</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_gdf.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_point(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">50.1029248</span>, <span class="fl">14.4029967</span>), tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}, dist<span class="op">=</span><span class="dv">400</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data_gdf.to_crs(<span class="dv">3857</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.loc[<span class="st">"node"</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>data_gdf.index <span class="op">=</span> data_gdf.index.astype(<span class="bu">str</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf[[<span class="st">"amenity"</span>, <span class="st">"geometry"</span>]]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_gdf.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      amenity                         geometry
 0  restaurant  POINT (1602992.986 6463522.177)
 1  restaurant  POINT (1602903.753 6463784.958)
 2  restaurant  POINT (1603489.527 6463552.391)
 3  restaurant  POINT (1602809.665 6464167.222)
-4  restaurant  POINT (1603027.863 6464060.660)</code></pre>
+4  restaurant   POINT (1603027.863 6464060.66)</code></pre>
 </div>
 </div>
 <div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute metrics</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    network_structure, nodes_gdf, [<span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">1000</span>]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    data_gdf,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"amenity"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    accessibility_keys<span class="op">=</span>[<span class="st">"restaurant"</span>],</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>[<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>],</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute metrics</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    network_structure, nodes_gdf, [<span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">1000</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    data_gdf,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"amenity"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    accessibility_keys<span class="op">=</span>[<span class="st">"restaurant"</span>],</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>[<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>],</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 29/29 [00:01&lt;00:00, 28.86it/s]
+100%|██████████| 29/29 [00:01&lt;00:00, 28.82it/s]
 INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
-100%|██████████| 29/29 [00:01&lt;00:00, 28.87it/s]</code></pre>
+100%|██████████| 29/29 [00:01&lt;00:00, 28.90it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -563,124 +562,124 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8</td>
 <td>0</td>
-<td>1.603586e+06</td>
-<td>6.464429e+06</td>
+<td>1603585.6</td>
+<td>6464428.8</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603585.640 6464428.774)</td>
-<td>0.716697</td>
-<td>2.050036</td>
-<td>4.991603</td>
+<td>POINT (1603585.6 6464428.8)</td>
+<td>0.716430</td>
+<td>2.049671</td>
+<td>4.991226</td>
 <td>0.0</td>
 <td>...</td>
-<td>0.105017</td>
-<td>1.056299</td>
-<td>6.454368</td>
+<td>0.104906</td>
+<td>1.055928</td>
+<td>6.453668</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>1.0</td>
-<td>0.043205</td>
-<td>314.179047</td>
+<td>0.043196</td>
+<td>314.199646</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603413.206-y6464228.73</td>
+<td data-quarto-table-cell-role="th">x1603413.2-y6464228.7</td>
 <td>1</td>
-<td>1.603413e+06</td>
-<td>6.464229e+06</td>
+<td>1603413.2</td>
+<td>6464228.7</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603413.206 6464228.730)</td>
-<td>0.121535</td>
-<td>1.309901</td>
-<td>5.305615</td>
+<td>POINT (1603413.2 6464228.7)</td>
+<td>0.121621</td>
+<td>1.310057</td>
+<td>5.305830</td>
 <td>0.0</td>
 <td>...</td>
 <td>0.000000</td>
-<td>0.089877</td>
-<td>5.084879</td>
+<td>0.089919</td>
+<td>5.085167</td>
 <td>1.0</td>
 <td>0.134929</td>
 <td>1.0</td>
 <td>0.367327</td>
 <td>2.0</td>
-<td>0.660077</td>
+<td>0.660115</td>
 <td>50.075100</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603268.502-y6464060.781</td>
+<td data-quarto-table-cell-role="th">x1603268.5-y6464060.8</td>
 <td>2</td>
-<td>1.603269e+06</td>
-<td>6.464061e+06</td>
+<td>1603268.5</td>
+<td>6464060.8</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603268.502 6464060.781)</td>
-<td>0.434456</td>
-<td>1.921538</td>
-<td>5.837987</td>
+<td>POINT (1603268.5 6464060.8)</td>
+<td>0.434258</td>
+<td>1.921060</td>
+<td>5.837248</td>
 <td>0.0</td>
 <td>...</td>
-<td>0.036077</td>
-<td>0.693734</td>
-<td>4.369751</td>
+<td>0.036046</td>
+<td>0.693404</td>
+<td>4.368770</td>
 <td>1.0</td>
 <td>0.309082</td>
 <td>1.0</td>
 <td>0.555951</td>
 <td>5.0</td>
-<td>0.895136</td>
+<td>0.895088</td>
 <td>29.353716</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603363.558-y6464031.885</td>
+<td data-quarto-table-cell-role="th">x1603363.6-y6464031.9</td>
 <td>3</td>
-<td>1.603364e+06</td>
-<td>6.464032e+06</td>
+<td>1603363.6</td>
+<td>6464031.9</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603363.558 6464031.885)</td>
-<td>0.390683</td>
-<td>1.850008</td>
-<td>6.036365</td>
+<td>POINT (1603363.6 6464031.9)</td>
+<td>0.390539</td>
+<td>1.849684</td>
+<td>6.035850</td>
 <td>1.0</td>
 <td>...</td>
 <td>0.000000</td>
-<td>0.676959</td>
-<td>6.886633</td>
+<td>0.676799</td>
+<td>6.885900</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>1.0</td>
-<td>0.075615</td>
+<td>0.075555</td>
 <td>2.0</td>
-<td>0.354570</td>
-<td>129.104904</td>
+<td>0.354505</td>
+<td>129.144821</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603607.303-y6464181.853</td>
+<td data-quarto-table-cell-role="th">x1603607.3-y6464181.9</td>
 <td>4</td>
-<td>1.603607e+06</td>
-<td>6.464182e+06</td>
+<td>1603607.3</td>
+<td>6464181.9</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603607.303 6464181.853)</td>
-<td>0.284579</td>
-<td>1.452106</td>
-<td>4.887573</td>
+<td>POINT (1603607.3 6464181.9)</td>
+<td>0.284575</td>
+<td>1.452098</td>
+<td>4.887502</td>
 <td>1.0</td>
 <td>...</td>
 <td>0.000000</td>
-<td>0.263284</td>
-<td>3.326667</td>
+<td>0.263222</td>
+<td>3.326343</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>1.0</td>
-<td>0.082232</td>
-<td>249.821609</td>
+<td>0.082238</td>
+<td>249.814056</td>
 </tr>
 </tbody>
 </table>
@@ -690,26 +689,26 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 </div>
 </div>
 <div id="cell-11" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if using dual network</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>nx_dual <span class="op">=</span> graphs.nx_to_dual(nx_momepy)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual, _edges_gdf_dual, network_structure_dual <span class="op">=</span> io.network_structure_from_nx(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    nx_dual, df_streets.crs.to_epsg()</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual <span class="op">=</span> networks.node_centrality_simplest(</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    network_structure_dual, nodes_gdf_dual, [<span class="dv">500</span>]</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if using dual network</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nx_dual <span class="op">=</span> graphs.nx_to_dual(nx_momepy)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual, _edges_gdf_dual, network_structure_dual <span class="op">=</span> io.network_structure_from_nx(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    nx_dual, df_streets.crs.to_epsg()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual <span class="op">=</span> networks.node_centrality_simplest(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    network_structure_dual, nodes_gdf_dual, [<span class="dv">500</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 35/35 [00:00&lt;00:00, 8927.85it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 8260.22it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 35/35 [00:00&lt;00:00, 397.32it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 411.48it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 35/35 [00:00&lt;00:00, 16494.45it/s]
-100%|██████████| 35/35 [00:00&lt;00:00, 1757.82it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 26374.53it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 1860.40it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 35/35 [00:01&lt;00:00, 34.94it/s]</code></pre>
+100%|██████████| 35/35 [00:01&lt;00:00, 34.90it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -724,10 +723,11 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <th data-quarto-table-cell-role="th">y</th>
 <th data-quarto-table-cell-role="th">live</th>
 <th data-quarto-table-cell-role="th">weight</th>
-<th data-quarto-table-cell-role="th">geom</th>
+<th data-quarto-table-cell-role="th">primal_edge</th>
 <th data-quarto-table-cell-role="th">primal_edge_node_a</th>
 <th data-quarto-table-cell-role="th">primal_edge_node_b</th>
 <th data-quarto-table-cell-role="th">primal_edge_idx</th>
+<th data-quarto-table-cell-role="th">dual_node</th>
 <th data-quarto-table-cell-role="th">cc_density_500_ang</th>
 <th data-quarto-table-cell-role="th">cc_harmonic_500_ang</th>
 <th data-quarto-table-cell-role="th">cc_hillier_500_ang</th>
@@ -737,89 +737,94 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603413.206-y6464228.73_x1603585.64-y6464428.774_k0</td>
+<td data-quarto-table-cell-role="th">x1603413.2-y6464228.7_x1603585.6-y6464428.8_k0</td>
 <td>0</td>
 <td>1.603499e+06</td>
 <td>6.464329e+06</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603499.423 6464328.752)</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603413.206-y6464228.73</td>
+<td>LINESTRING (1603585.6 6464428.8, 1603413.2 646...</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603413.2-y6464228.7</td>
 <td>0</td>
+<td>POINT (1603499.4 6464328.75)</td>
 <td>18.0</td>
-<td>11.511215</td>
-<td>10.933968</td>
-<td>29.632427</td>
+<td>11.510646</td>
+<td>10.932516</td>
+<td>29.636362</td>
 <td>10.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603561.74-y6464494.467_x1603585.64-y6464428.774_k0</td>
+<td data-quarto-table-cell-role="th">x1603561.7-y6464494.5_x1603585.6-y6464428.8_k0</td>
 <td>1</td>
 <td>1.603573e+06</td>
 <td>6.464461e+06</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603572.785 6464461.339)</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603561.74-y6464494.467</td>
+<td>LINESTRING (1603561.7 6464494.5, 1603564.6 646...</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603561.7-y6464494.5</td>
 <td>0</td>
+<td>POINT (1603572.744261 6464461.367872)</td>
 <td>13.0</td>
-<td>8.308631</td>
-<td>7.956708</td>
-<td>21.239941</td>
+<td>8.309587</td>
+<td>7.957019</td>
+<td>21.239109</td>
 <td>11.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603585.64-y6464428.774_x1603650.45-y6464368.601_k0</td>
+<td data-quarto-table-cell-role="th">x1603585.6-y6464428.8_x1603650.5-y6464368.6_k0</td>
 <td>2</td>
 <td>1.603619e+06</td>
 <td>6.464400e+06</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603619.295 6464399.737)</td>
-<td>x1603585.64-y6464428.774</td>
-<td>x1603650.45-y6464368.601</td>
+<td>LINESTRING (1603585.6 6464428.8, 1603603.1 646...</td>
+<td>x1603585.6-y6464428.8</td>
+<td>x1603650.5-y6464368.6</td>
 <td>0</td>
+<td>POINT (1603619.281722 6464399.737661)</td>
 <td>13.0</td>
-<td>8.324493</td>
-<td>8.047422</td>
-<td>21.000513</td>
+<td>8.325413</td>
+<td>8.047424</td>
+<td>21.000507</td>
 <td>16.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">x1603413.206-y6464228.73_x1603607.303-y6464181.853_k0</td>
+<td data-quarto-table-cell-role="th">x1603413.2-y6464228.7_x1603607.3-y6464181.9_k0</td>
 <td>3</td>
 <td>1.603510e+06</td>
 <td>6.464204e+06</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603510.094 6464204.494)</td>
-<td>x1603413.206-y6464228.73</td>
-<td>x1603607.303-y6464181.853</td>
+<td>LINESTRING (1603607.3 6464181.9, 1603592.9 646...</td>
+<td>x1603413.2-y6464228.7</td>
+<td>x1603607.3-y6464181.9</td>
 <td>0</td>
+<td>POINT (1603510.08598 6464204.473294)</td>
 <td>21.0</td>
-<td>13.298367</td>
-<td>12.854933</td>
-<td>34.305897</td>
+<td>13.297271</td>
+<td>12.853871</td>
+<td>34.308731</td>
 <td>10.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x1603363.558-y6464031.885_x1603413.206-y6464228.73_k0</td>
+<td data-quarto-table-cell-role="th">x1603363.6-y6464031.9_x1603413.2-y6464228.7_k0</td>
 <td>4</td>
 <td>1.603388e+06</td>
 <td>6.464130e+06</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (1603388.005 6464130.401)</td>
-<td>x1603413.206-y6464228.73</td>
-<td>x1603363.558-y6464031.885</td>
+<td>LINESTRING (1603363.6 6464031.9, 1603376.5 646...</td>
+<td>x1603413.2-y6464228.7</td>
+<td>x1603363.6-y6464031.9</td>
 <td>0</td>
+<td>POINT (1603388.006614 6464130.397742)</td>
 <td>24.0</td>
-<td>15.826625</td>
-<td>15.015126</td>
-<td>38.361317</td>
-<td>10.0</td>
+<td>15.824812</td>
+<td>15.012451</td>
+<td>38.368153</td>
+<td>9.0</td>
 </tr>
 </tbody>
 </table>

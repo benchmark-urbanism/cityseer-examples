@@ -372,14 +372,14 @@ INFO:cityseer.tools.io:Edges: 24189
 INFO:cityseer.tools.io:Dropped 430 edges where not both start and end nodes were present.
 INFO:cityseer.tools.io:Running basic graph cleaning
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 18193/18193 [00:00&lt;00:00, 34807.56it/s]
+100%|██████████| 18193/18193 [00:00&lt;00:00, 36376.39it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
-100%|██████████| 22578/22578 [00:00&lt;00:00, 67829.11it/s]
+100%|██████████| 22578/22578 [00:00&lt;00:00, 125918.80it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 22516/22516 [00:14&lt;00:00, 1585.65it/s]
+100%|██████████| 22516/22516 [00:13&lt;00:00, 1718.67it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 75794/75794 [00:00&lt;00:00, 96996.81it/s] 
-100%|██████████| 75794/75794 [00:11&lt;00:00, 6749.52it/s]</code></pre>
+100%|██████████| 75794/75794 [00:00&lt;00:00, 77741.04it/s]
+100%|██████████| 75794/75794 [00:11&lt;00:00, 6857.38it/s]</code></pre>
 </div>
 </div>
 </section>
@@ -409,18 +409,18 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [03:26&lt;00:00, 367.92it/s]
+100%|██████████| 75794/75794 [03:18&lt;00:00, 381.59it/s]
 INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [02:33&lt;00:00, 493.78it/s]
+100%|██████████| 75794/75794 [01:55&lt;00:00, 657.37it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 75794/75794 [02:34&lt;00:00, 490.22it/s]</code></pre>
+100%|██████████| 75794/75794 [01:42&lt;00:00, 738.44it/s]</code></pre>
 </div>
 </div>
 </section>
 <section id="plots" class="level2">
 <h2 class="anchored" data-anchor-id="plots">Plots</h2>
 <p>Let’s plot a selection of distance thresholds for each of the computed measures.</p>
-<div id="cell-13" class="cell" data-execution_count="7">
+<div id="cell-13" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer <span class="im">import</span> rustalgos</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> plot</span>

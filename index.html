@@ -306,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p><code>cityseer</code> is a <code>python</code> package that can be installed with <code>pip</code>:</p>
-<div id="d0735126" class="cell" data-execution_count="1">
+<div id="579f3c83" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install --upgrade cityseer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -323,7 +323,7 @@ Warning
 </div>
 </div>
 <p><code>cityseer</code> revolves around networks (graphs). If you’re comfortable with <code>numpy</code> and abstract data handling, then the underlying data structures can be created and manipulated directly. However, it is generally more convenient to sketch the graph using <a href="https://networkx.github.io/"><code>NetworkX</code></a> and to let <code>cityseer</code> take care of initialising and converting the graph for you.</p>
-<div id="d17894dc" class="cell" data-execution_count="2">
+<div id="d029656a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># any networkX MultiGraph with 'x' and 'y' node attributes will do</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here we'll use the cityseer mock module to generate an example networkX graph</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
@@ -341,7 +341,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <pre><code>MultiGraph with 57 nodes and 79 edges</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 270269.18it/s]</code></pre>
+<pre><code>  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 424807.71it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -361,16 +361,16 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <li><p>In reality, most data-sources are not this refined and will represent roadway geometries by adding additional nodes to the network. For a variety of reasons, this is not ideal and you may want to follow the <a href="https://cityseer.benchmarkurbanism.com/guide#graph-cleaning"><code>Graph Cleaning</code></a> or <a href="https://cityseer.benchmarkurbanism.com/guide#graph-corrections"><code>Graph Corrections</code></a> guides.</p></li>
 </ol>
 <p>Here, we’ll walk through a high-level overview showing how to use <code>cityseer</code>. You can provide your own shapely geometries if available; else, you can auto-infer simple geometries from the start to end node of each network edge, which works well for graphs where nodes have been used to inscribe roadway geometries (i.e.&nbsp;OSM).</p>
-<div id="c6ec5aa0" class="cell" data-execution_count="3">
+<div id="c586eb8b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use nx_simple_geoms to infer geoms for your edges</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_simple_geoms(G)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, labels<span class="op">=</span><span class="va">True</span>, node_size<span class="op">=</span><span class="dv">80</span>, plot_geoms<span class="op">=</span><span class="va">True</span>, dpi<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 41408.40it/s]
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 32725.93it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 47600.92it/s]</code></pre>
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 27628.62it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -382,16 +382,16 @@ INFO:cityseer.tools.plot:Preparing graph edges
 </div>
 <p>We have now inferred geometries for each edge, meaning that each edge now has an associated <code>LineString</code> geometry. Any further manipulation of the graph using the <code>cityseer.graph</code> module will retain and further manipulate these geometries in-place.</p>
 <p>Once the geoms are readied, we can use tools such as <a href="https://cityseer.benchmarkurbanism.com/tools/graphs#nx-decompose"><code>nx_decompose</code></a> for generating granular graph representations and <a href="https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual"><code>nx_to_dual</code></a> for casting a primal graph representation to its dual.</p>
-<div id="47815715" class="cell" data-execution_count="4">
+<div id="85825da7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will (optionally) decompose the graph</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>G_decomp <span class="op">=</span> graphs.nx_decompose(G, <span class="dv">50</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G_decomp, plot_geoms<span class="op">=</span><span class="va">True</span>, labels<span class="op">=</span><span class="va">False</span>, dpi<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 50.
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 1922.22it/s]
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 1940.00it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/316 [00:00&lt;?, ?it/s]100%|██████████| 316/316 [00:00&lt;00:00, 26996.64it/s]</code></pre>
+  0%|          | 0/316 [00:00&lt;?, ?it/s]100%|██████████| 316/316 [00:00&lt;00:00, 49359.45it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -401,7 +401,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 </div>
 </div>
 </div>
-<div id="ee446c29" class="cell" data-execution_count="5">
+<div id="cf38266a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will (optionally) cast to a dual network</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># here we are plotting the newly decomposed graph (blue) against the original graph (red)</span></span>
@@ -409,15 +409,15 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 25322.89it/s]
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 15893.61it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 888.12it/s]
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 889.91it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 533574.90it/s]
+  0%|          | 0/79 [00:00&lt;?, ?it/s]100%|██████████| 79/79 [00:00&lt;00:00, 461490.27it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/155 [00:00&lt;?, ?it/s]100%|██████████| 155/155 [00:00&lt;00:00, 321680.91it/s]</code></pre>
+  0%|          | 0/155 [00:00&lt;?, ?it/s]100%|██████████| 155/155 [00:00&lt;00:00, 513115.33it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -435,7 +435,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <section id="network-centralities" class="level3">
 <h3 class="anchored" data-anchor-id="network-centralities">Network Centralities</h3>
 <p>The <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest"><code>networks.node_centrality_shortest</code></a>, <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-simplest"><code>networks.node_centrality_simplest</code></a>, and <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#segment-centrality"><code>networks.segment_centrality</code></a> methods wrap underlying rust functions that compute the centrality methods. All selected measures and distance thresholds are computed simultaneously to reduce the amount of time required for multi-variable and multi-scalar workflows. The results of the computations will be written to the <code>GeoDataFrame</code>.</p>
-<div id="e0389363" class="cell" data-execution_count="6">
+<div id="5c1f4058" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a Network layer from the networkX graph</span></span>
@@ -457,10 +457,10 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()  <span class="co"># the results are now in the GeoDataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:00&lt;00:00, 94024.05it/s]
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:00&lt;00:00, 7022.43it/s]
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:00&lt;00:00, 110475.31it/s]
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:00&lt;00:00, 9539.88it/s]
 INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.80it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.49it/s]</code></pre>
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.84it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.60it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -501,7 +501,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>5719700.0</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (700700.000 5719700.000)</td>
+<td>POINT (700700 5719700)</td>
 <td>857.327026</td>
 <td>3042.260254</td>
 <td>10088.987305</td>
@@ -515,8 +515,8 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>3582.891113</td>
 <td>590.865967</td>
 <td>2805.016113</td>
-<td>23574.992188</td>
-<td>159337.421875</td>
+<td>23574.986328</td>
+<td>159337.343750</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
@@ -525,7 +525,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>5719780.0</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (700610.000 5719780.000)</td>
+<td>POINT (700610 5719780)</td>
 <td>784.184753</td>
 <td>2527.174805</td>
 <td>9059.986328</td>
@@ -538,9 +538,9 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>1221.976562</td>
 <td>3301.651611</td>
 <td>534.708435</td>
-<td>2270.786377</td>
-<td>15957.032227</td>
-<td>103352.539062</td>
+<td>2270.786133</td>
+<td>15957.037109</td>
+<td>103352.734375</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
@@ -549,7 +549,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>5719700.0</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (700460.000 5719700.000)</td>
+<td>POINT (700460 5719700)</td>
 <td>695.835876</td>
 <td>2062.288330</td>
 <td>6928.821289</td>
@@ -563,8 +563,8 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>2788.973877</td>
 <td>484.306824</td>
 <td>1700.836914</td>
-<td>7541.830078</td>
-<td>36259.589844</td>
+<td>7541.829590</td>
+<td>36259.562500</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
@@ -573,7 +573,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>5719820.0</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (700520.000 5719820.000)</td>
+<td>POINT (700520 5719820)</td>
 <td>817.972900</td>
 <td>2366.633057</td>
 <td>5945.978027</td>
@@ -588,7 +588,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>538.021851</td>
 <td>2131.172119</td>
 <td>7549.370117</td>
-<td>24907.955078</td>
+<td>24907.962891</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
@@ -597,7 +597,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>5719905.0</td>
 <td>True</td>
 <td>1</td>
-<td>POINT (700620.000 5719905.000)</td>
+<td>POINT (700620 5719905)</td>
 <td>812.112549</td>
 <td>2419.865234</td>
 <td>7675.241699</td>
@@ -611,8 +611,8 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <td>2981.365723</td>
 <td>528.050293</td>
 <td>2153.490723</td>
-<td>11441.311523</td>
-<td>66363.132812</td>
+<td>11441.312500</td>
+<td>66363.117188</td>
 </tr>
 </tbody>
 </table>
@@ -621,7 +621,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 </div>
 </div>
 </div>
-<div id="002b2ca2" class="cell" data-execution_count="7">
+<div id="7adb2206" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot centrality</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -641,7 +641,7 @@ INFO:cityseer.metrics.networks:Computing shortest path segment centrality.
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/316 [00:00&lt;?, ?it/s]100%|██████████| 316/316 [00:00&lt;00:00, 184057.78it/s]</code></pre>
+  0%|          | 0/316 [00:00&lt;?, ?it/s]100%|██████████| 316/316 [00:00&lt;00:00, 251499.06it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -657,7 +657,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <p>Landuse and statistical measures require a GeoPandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html"><code>GeoDataFrame</code></a> consisting of <code>Point</code> geometries. Columns representing categorical landuse information (“pub”, “shop”, “school”) can be passed to landuse methods, whereas columns representing numerical information can be used for statistical methods.</p>
 <p>When computing these measures, <code>cityseer</code> will assign each data point to the two closest network nodes — one in either direction — based on the closest adjacent street edge. This enables <code>cityseer</code> to use dynamic spatial aggregation methods that more accurately describe distances from the perspective of pedestrians travelling over the network, and relative to the direction of approach.</p>
 <p><a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-landuses"><code>layers.compute_landuses</code></a> and <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-mixed-uses"><code>layers.compute_mixed_uses</code></a> methods are used for the calculation of land-use accessibility and mixed-use measures whereas <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-stats"><code>layers.compute_stats</code></a> can be used for statistical aggregations. As with the centrality methods, the measures are computed over the network and are computed simultaneously for all measures and distances.</p>
-<div id="4ef2c982" class="cell" data-execution_count="8">
+<div id="da89846a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a mock data dictionary representing categorical landuse data</span></span>
@@ -710,7 +710,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>POINT (700593.320 5719841.434)</td>
+<td>POINT (700593.32 5719841.434)</td>
 <td>4</td>
 <td>h</td>
 </tr>
@@ -720,7 +720,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 </div>
 </div>
 </div>
-<div id="53cce797" class="cell" data-execution_count="9">
+<div id="e4b1ede2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example easy-wrapper method for computing mixed-uses</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a distance weighted form of hill diversity</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_mixed_uses(</span>
@@ -741,7 +741,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nodes_gdf[<span class="st">"cc_hill_q0_800_nw"</span>])  <span class="co"># which can be retrieved as needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing mixed-use measures.
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.92it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.66it/s]</code></pre>
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.92it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.63it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'geom', 'cc_seg_density_200',
@@ -777,7 +777,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 <pre><code></code></pre>
 </div>
 </div>
-<div id="f256bfd6" class="cell" data-execution_count="10">
+<div id="9bf6ba07" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for curiosity's sake - plot the assignments to see which edges the data points were assigned to</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plot.plot_assignment(network_structure, G_decomp, data_gdf, dpi<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -792,7 +792,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 </div>
 </div>
 </div>
-<div id="f890f45b" class="cell" data-execution_count="11">
+<div id="1d4723e8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot distance-weighted hill mixed uses</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mixed_uses_vals <span class="op">=</span> nodes_gdf[<span class="st">"cc_hill_q0_800_wt"</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>mixed_uses_vals <span class="op">=</span> colors.Normalize()(mixed_uses_vals)</span>
@@ -818,7 +818,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 </div>
 </div>
 </div>
-<div id="90844d71" class="cell" data-execution_count="12">
+<div id="39d167ca" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute landuse accessibilities for land-use types a, b, c</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    data_gdf,  <span class="co"># the source data</span></span>
@@ -843,7 +843,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 <span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># and can be retrieved as needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: a, b, c
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.92it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.62it/s]</code></pre>
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.91it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.64it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         cc_a_800_wt  cc_b_1600_nw
@@ -866,7 +866,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 </div>
 </div>
 <p>Aggregations can likewise be computed for numerical data. Let’s generate some mock numerical data:</p>
-<div id="595fbd41" class="cell" data-execution_count="13">
+<div id="7124f46f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>numerical_data_gdf <span class="op">=</span> mock.mock_numerical_data(G_decomp, num_arrs<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>numerical_data_gdf.head()</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute stats for column mock_numerical_1</span></span>
@@ -886,7 +886,7 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 <span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nodes_gdf[<span class="st">"cc_mock_numerical_1_mean_800_wt"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing statistics.
-  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.91it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.68it/s]</code></pre>
+  0%|          | 0/294 [00:00&lt;?, ?it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.84it/s]100%|██████████| 294/294 [00:01&lt;00:00, 293.59it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0          99.438004
@@ -903,8 +903,8 @@ Name: cc_hill_q0_800_nw, Length: 294, dtype: float32</code></pre>
 Name: cc_mock_numerical_1_max_800, Length: 294, dtype: float32
 0          51.426266
 1          53.213055
-2          51.837532
-3          49.952999
+2          51.837536
+3          49.952995
 4          53.090725
              ...    
 53±0±54     1.913000
@@ -920,7 +920,7 @@ Name: cc_mock_numerical_1_mean_800_wt, Length: 294, dtype: float32</code></pre>
 </div>
 <p>The landuse metrics and statistical aggregations are computed over the street network relative to the network, with results written to each node. The mixed-use, accessibility, and statistical aggregations can therefore be compared directly to centrality computations from the same locations, and can be correlated or otherwise compared.</p>
 <p>Data derived from metrics can be converted back into a <code>NetworkX</code> graph using the <a href="https://cityseer.benchmarkurbanism.com/tools/io#nx-from-cityseer-geopandas">nx_from_cityseer_geopandas</a> method.</p>
-<div id="65f0bd18" class="cell" data-execution_count="14">
+<div id="4ccde3bd" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>nx_multigraph_round_trip <span class="op">=</span> io.nx_from_cityseer_geopandas(</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    nodes_gdf,</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    edges_gdf,</span>
@@ -929,97 +929,97 @@ Name: cc_mock_numerical_1_mean_800_wt, Length: 294, dtype: float32</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Populating node and edge map data to a networkX graph.
 INFO:cityseer.tools.io:Unpacking node data.
-0it [00:00, ?it/s]294it [00:00, 13463.68it/s]
+0it [00:00, ?it/s]294it [00:00, 13140.30it/s]
 INFO:cityseer.tools.io:Unpacking edge data.
-0it [00:00, ?it/s]632it [00:00, 15005.69it/s]
+0it [00:00, ?it/s]632it [00:00, 14019.76it/s]
 INFO:cityseer.tools.io:Unpacking metrics to nodes.
-0it [00:00, ?it/s]294it [00:00, 23817.92it/s]
-0it [00:00, ?it/s]294it [00:00, 22013.81it/s]
-0it [00:00, ?it/s]294it [00:00, 23200.42it/s]
-0it [00:00, ?it/s]294it [00:00, 24339.28it/s]
-0it [00:00, ?it/s]294it [00:00, 24567.68it/s]
-0it [00:00, ?it/s]294it [00:00, 24361.40it/s]
-0it [00:00, ?it/s]294it [00:00, 24309.53it/s]
-0it [00:00, ?it/s]294it [00:00, 24957.00it/s]
-0it [00:00, ?it/s]294it [00:00, 24215.97it/s]
-0it [00:00, ?it/s]294it [00:00, 24928.75it/s]
-0it [00:00, ?it/s]294it [00:00, 24735.23it/s]
-0it [00:00, ?it/s]294it [00:00, 23834.96it/s]
-0it [00:00, ?it/s]294it [00:00, 23494.82it/s]
-0it [00:00, ?it/s]294it [00:00, 24363.33it/s]
-0it [00:00, ?it/s]294it [00:00, 23111.71it/s]
-0it [00:00, ?it/s]294it [00:00, 25162.23it/s]
-0it [00:00, ?it/s]294it [00:00, 24292.77it/s]
-0it [00:00, ?it/s]294it [00:00, 23632.15it/s]
-0it [00:00, ?it/s]294it [00:00, 23990.77it/s]
-0it [00:00, ?it/s]294it [00:00, 22426.58it/s]
-0it [00:00, ?it/s]294it [00:00, 23135.56it/s]
-0it [00:00, ?it/s]294it [00:00, 24096.72it/s]
-0it [00:00, ?it/s]294it [00:00, 24106.61it/s]
-0it [00:00, ?it/s]294it [00:00, 23102.19it/s]
-0it [00:00, ?it/s]294it [00:00, 23376.78it/s]
-0it [00:00, ?it/s]294it [00:00, 24248.35it/s]
-0it [00:00, ?it/s]294it [00:00, 23202.16it/s]
-0it [00:00, ?it/s]294it [00:00, 24274.60it/s]
-0it [00:00, ?it/s]294it [00:00, 24289.42it/s]
-0it [00:00, ?it/s]294it [00:00, 24317.68it/s]
-0it [00:00, ?it/s]294it [00:00, 24279.38it/s]
-0it [00:00, ?it/s]294it [00:00, 22890.34it/s]
-0it [00:00, ?it/s]294it [00:00, 23791.27it/s]
-0it [00:00, ?it/s]294it [00:00, 23252.04it/s]
-0it [00:00, ?it/s]294it [00:00, 23064.59it/s]
-0it [00:00, ?it/s]294it [00:00, 22636.95it/s]
-0it [00:00, ?it/s]294it [00:00, 22956.39it/s]
-0it [00:00, ?it/s]294it [00:00, 23761.47it/s]
-0it [00:00, ?it/s]294it [00:00, 22261.39it/s]
-0it [00:00, ?it/s]294it [00:00, 23224.45it/s]
-0it [00:00, ?it/s]294it [00:00, 22433.51it/s]
-0it [00:00, ?it/s]294it [00:00, 22001.24it/s]
-0it [00:00, ?it/s]294it [00:00, 23824.83it/s]
-0it [00:00, ?it/s]294it [00:00, 23935.35it/s]
-0it [00:00, ?it/s]294it [00:00, 23500.64it/s]
-0it [00:00, ?it/s]294it [00:00, 22319.01it/s]
-0it [00:00, ?it/s]294it [00:00, 21977.71it/s]
-0it [00:00, ?it/s]294it [00:00, 22484.23it/s]
-0it [00:00, ?it/s]294it [00:00, 21658.86it/s]
-0it [00:00, ?it/s]294it [00:00, 21705.75it/s]
-0it [00:00, ?it/s]294it [00:00, 23350.67it/s]
-0it [00:00, ?it/s]294it [00:00, 22954.25it/s]
-0it [00:00, ?it/s]294it [00:00, 23294.21it/s]
-0it [00:00, ?it/s]294it [00:00, 23529.33it/s]
-0it [00:00, ?it/s]294it [00:00, 22740.90it/s]
-0it [00:00, ?it/s]294it [00:00, 21919.11it/s]
-0it [00:00, ?it/s]294it [00:00, 22379.77it/s]
-0it [00:00, ?it/s]294it [00:00, 22327.09it/s]
-0it [00:00, ?it/s]294it [00:00, 22603.76it/s]
-0it [00:00, ?it/s]294it [00:00, 24002.91it/s]
-0it [00:00, ?it/s]294it [00:00, 21846.49it/s]
-0it [00:00, ?it/s]294it [00:00, 22241.32it/s]
-0it [00:00, ?it/s]294it [00:00, 22408.65it/s]
-0it [00:00, ?it/s]294it [00:00, 22763.99it/s]
-0it [00:00, ?it/s]294it [00:00, 23626.26it/s]
-0it [00:00, ?it/s]294it [00:00, 23412.74it/s]
-0it [00:00, ?it/s]294it [00:00, 22918.42it/s]
-0it [00:00, ?it/s]294it [00:00, 22270.64it/s]
-0it [00:00, ?it/s]294it [00:00, 21580.77it/s]
-0it [00:00, ?it/s]294it [00:00, 22115.67it/s]
-0it [00:00, ?it/s]294it [00:00, 21941.34it/s]
-0it [00:00, ?it/s]294it [00:00, 22717.44it/s]
-0it [00:00, ?it/s]294it [00:00, 22302.06it/s]
-0it [00:00, ?it/s]294it [00:00, 22263.40it/s]
-0it [00:00, ?it/s]294it [00:00, 24107.08it/s]
-0it [00:00, ?it/s]294it [00:00, 23991.70it/s]
-0it [00:00, ?it/s]294it [00:00, 23004.78it/s]
-0it [00:00, ?it/s]294it [00:00, 22389.12it/s]
-0it [00:00, ?it/s]294it [00:00, 22291.98it/s]
-0it [00:00, ?it/s]294it [00:00, 21939.39it/s]
-0it [00:00, ?it/s]294it [00:00, 22353.40it/s]
-0it [00:00, ?it/s]294it [00:00, 21738.27it/s]
-0it [00:00, ?it/s]294it [00:00, 22842.42it/s]
-0it [00:00, ?it/s]294it [00:00, 22778.71it/s]
-0it [00:00, ?it/s]294it [00:00, 22316.18it/s]
+0it [00:00, ?it/s]294it [00:00, 21881.77it/s]
+0it [00:00, ?it/s]294it [00:00, 21072.94it/s]
+0it [00:00, ?it/s]294it [00:00, 23672.52it/s]
+0it [00:00, ?it/s]294it [00:00, 23384.76it/s]
+0it [00:00, ?it/s]294it [00:00, 22970.07it/s]
+0it [00:00, ?it/s]294it [00:00, 23693.45it/s]
+0it [00:00, ?it/s]294it [00:00, 22590.51it/s]
+0it [00:00, ?it/s]294it [00:00, 23852.02it/s]
+0it [00:00, ?it/s]294it [00:00, 23196.93it/s]
+0it [00:00, ?it/s]294it [00:00, 23219.20it/s]
+0it [00:00, ?it/s]294it [00:00, 22917.14it/s]
+0it [00:00, ?it/s]294it [00:00, 23430.98it/s]
+0it [00:00, ?it/s]294it [00:00, 22578.51it/s]
+0it [00:00, ?it/s]294it [00:00, 22150.63it/s]
+0it [00:00, ?it/s]294it [00:00, 22895.01it/s]
+0it [00:00, ?it/s]294it [00:00, 23420.74it/s]
+0it [00:00, ?it/s]294it [00:00, 23452.81it/s]
+0it [00:00, ?it/s]294it [00:00, 22311.74it/s]
+0it [00:00, ?it/s]294it [00:00, 23526.19it/s]
+0it [00:00, ?it/s]294it [00:00, 23219.20it/s]
+0it [00:00, ?it/s]294it [00:00, 23273.54it/s]
+0it [00:00, ?it/s]294it [00:00, 22644.85it/s]
+0it [00:00, ?it/s]294it [00:00, 23240.64it/s]
+0it [00:00, ?it/s]294it [00:00, 22866.14it/s]
+0it [00:00, ?it/s]294it [00:00, 21293.82it/s]
+0it [00:00, ?it/s]294it [00:00, 22414.35it/s]
+0it [00:00, ?it/s]294it [00:00, 21598.16it/s]
+0it [00:00, ?it/s]294it [00:00, 23395.41it/s]
+0it [00:00, ?it/s]294it [00:00, 23752.78it/s]
+0it [00:00, ?it/s]294it [00:00, 23532.93it/s]
+0it [00:00, ?it/s]294it [00:00, 22980.77it/s]
+0it [00:00, ?it/s]294it [00:00, 22583.89it/s]
+0it [00:00, ?it/s]294it [00:00, 23090.51it/s]
+0it [00:00, ?it/s]294it [00:00, 23284.09it/s]
+0it [00:00, ?it/s]294it [00:00, 23255.55it/s]
+0it [00:00, ?it/s]294it [00:00, 22390.34it/s]
+0it [00:00, ?it/s]294it [00:00, 22215.27it/s]
+0it [00:00, ?it/s]294it [00:00, 23280.57it/s]
+0it [00:00, ?it/s]294it [00:00, 22717.02it/s]
+0it [00:00, ?it/s]294it [00:00, 22920.12it/s]
+0it [00:00, ?it/s]294it [00:00, 22442.90it/s]
+0it [00:00, ?it/s]294it [00:00, 23077.54it/s]
+0it [00:00, ?it/s]294it [00:00, 22925.66it/s]
+0it [00:00, ?it/s]294it [00:00, 21605.35it/s]
+0it [00:00, ?it/s]294it [00:00, 23182.97it/s]
+0it [00:00, ?it/s]294it [00:00, 22649.01it/s]
+0it [00:00, ?it/s]294it [00:00, 22741.32it/s]
+0it [00:00, ?it/s]294it [00:00, 23487.66it/s]
+0it [00:00, ?it/s]294it [00:00, 23167.29it/s]
+0it [00:00, ?it/s]294it [00:00, 23143.81it/s]
+0it [00:00, ?it/s]294it [00:00, 23440.77it/s]
+0it [00:00, ?it/s]294it [00:00, 22977.35it/s]
+0it [00:00, ?it/s]294it [00:00, 23435.87it/s]
+0it [00:00, ?it/s]294it [00:00, 23562.15it/s]
+0it [00:00, ?it/s]294it [00:00, 23859.40it/s]
+0it [00:00, ?it/s]294it [00:00, 23253.79it/s]
 0it [00:00, ?it/s]294it [00:00, 23448.35it/s]
-0it [00:00, ?it/s]294it [00:00, 23888.06it/s]</code></pre>
+0it [00:00, ?it/s]294it [00:00, 23886.21it/s]
+0it [00:00, ?it/s]294it [00:00, 23213.08it/s]
+0it [00:00, ?it/s]294it [00:00, 21564.92it/s]
+0it [00:00, ?it/s]294it [00:00, 21885.66it/s]
+0it [00:00, ?it/s]294it [00:00, 23124.71it/s]
+0it [00:00, ?it/s]294it [00:00, 17616.58it/s]
+0it [00:00, ?it/s]294it [00:00, 13800.30it/s]
+0it [00:00, ?it/s]294it [00:00, 14998.61it/s]
+0it [00:00, ?it/s]294it [00:00, 16758.52it/s]
+0it [00:00, ?it/s]294it [00:00, 14684.26it/s]
+0it [00:00, ?it/s]294it [00:00, 18336.44it/s]
+0it [00:00, ?it/s]294it [00:00, 20589.49it/s]
+0it [00:00, ?it/s]294it [00:00, 21416.61it/s]
+0it [00:00, ?it/s]294it [00:00, 22254.16it/s]
+0it [00:00, ?it/s]294it [00:00, 22072.91it/s]
+0it [00:00, ?it/s]294it [00:00, 20610.14it/s]
+0it [00:00, ?it/s]294it [00:00, 23480.95it/s]
+0it [00:00, ?it/s]294it [00:00, 23694.36it/s]
+0it [00:00, ?it/s]294it [00:00, 20355.66it/s]
+0it [00:00, ?it/s]294it [00:00, 22153.01it/s]
+0it [00:00, ?it/s]294it [00:00, 24009.92it/s]
+0it [00:00, ?it/s]294it [00:00, 23177.74it/s]
+0it [00:00, ?it/s]294it [00:00, 13918.36it/s]
+0it [00:00, ?it/s]294it [00:00, 16891.90it/s]
+0it [00:00, ?it/s]294it [00:00, 21525.77it/s]
+0it [00:00, ?it/s]294it [00:00, 23348.90it/s]
+0it [00:00, ?it/s]294it [00:00, 22245.73it/s]
+0it [00:00, ?it/s]294it [00:00, 22077.66it/s]
+0it [00:00, ?it/s]294it [00:00, 21617.09it/s]
+0it [00:00, ?it/s]294it [00:00, 22026.00it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>{'x': 700700.0,
@@ -1040,28 +1040,28 @@ INFO:cityseer.tools.io:Unpacking metrics to nodes.
  'cc_seg_beta_1600': 3582.89111328125,
  'cc_seg_betweenness_200': 590.865966796875,
  'cc_seg_betweenness_400': 2805.01611328125,
- 'cc_seg_betweenness_800': 23574.9921875,
- 'cc_seg_betweenness_1600': 159337.421875,
+ 'cc_seg_betweenness_800': 23574.986328125,
+ 'cc_seg_betweenness_1600': 159337.34375,
  'cc_hill_q0_200_nw': 4.0,
- 'cc_hill_q0_200_wt': 0.2142721265554428,
+ 'cc_hill_q0_200_wt': 0.214272141456604,
  'cc_hill_q1_200_nw': 3.789292097091675,
- 'cc_hill_q1_200_wt': 0.20572812855243683,
+ 'cc_hill_q1_200_wt': 0.20572809875011444,
  'cc_hill_q2_200_nw': 3.571428060531616,
- 'cc_hill_q2_200_wt': 0.19956745207309723,
+ 'cc_hill_q2_200_wt': 0.19956739246845245,
  'cc_hill_q0_400_nw': 9.0,
  'cc_hill_q0_400_wt': 1.1907039880752563,
- 'cc_hill_q1_400_nw': 8.17171573638916,
+ 'cc_hill_q1_400_nw': 8.171717643737793,
  'cc_hill_q1_400_wt': 1.0840710401535034,
  'cc_hill_q2_400_nw': 7.529411792755127,
  'cc_hill_q2_400_wt': 1.0111380815505981,
  'cc_hill_q0_800_nw': 9.0,
- 'cc_hill_q0_800_wt': 3.0550568103790283,
+ 'cc_hill_q0_800_wt': 3.055056571960449,
  'cc_hill_q1_800_nw': 8.06127643585205,
- 'cc_hill_q1_800_wt': 2.7106282711029053,
- 'cc_hill_q2_800_nw': 7.449612140655518,
- 'cc_hill_q2_800_wt': 2.509385347366333,
+ 'cc_hill_q1_800_wt': 2.7106285095214844,
+ 'cc_hill_q2_800_nw': 7.449613094329834,
+ 'cc_hill_q2_800_wt': 2.509385108947754,
  'cc_hill_q0_1600_nw': 10.0,
- 'cc_hill_q0_1600_wt': 5.220044136047363,
+ 'cc_hill_q0_1600_wt': 5.220043659210205,
  'cc_hill_q1_1600_nw': 9.22851276397705,
  'cc_hill_q1_1600_wt': 4.775951862335205,
  'cc_hill_q2_1600_nw': 8.672131538391113,
@@ -1073,7 +1073,7 @@ INFO:cityseer.tools.io:Unpacking metrics to nodes.
  'cc_a_800_nw': 2.0,
  'cc_a_800_wt': 0.3162217140197754,
  'cc_a_1600_nw': 5.0,
- 'cc_a_1600_wt': 1.0843466520309448,
+ 'cc_a_1600_wt': 1.0843467712402344,
  'cc_a_nearest_max_1600': 349.61199951171875,
  'cc_b_200_nw': 1.0,
  'cc_b_200_wt': 0.01839187555015087,
@@ -1089,28 +1089,28 @@ INFO:cityseer.tools.io:Unpacking metrics to nodes.
  'cc_c_400_nw': 1.0,
  'cc_c_400_wt': 0.1017569750547409,
  'cc_c_800_nw': 4.0,
- 'cc_c_800_wt': 0.3910076320171356,
+ 'cc_c_800_wt': 0.39100760221481323,
  'cc_c_1600_nw': 5.0,
- 'cc_c_1600_wt': 1.124714732170105,
+ 'cc_c_1600_wt': 1.1247146129608154,
  'cc_c_nearest_max_1600': 228.5167999267578,
- 'cc_mock_numerical_1_sum_800_nw': 1170.739013671875,
- 'cc_mock_numerical_1_sum_800_wt': 211.98065185546875,
- 'cc_mock_numerical_1_mean_800_nw': 41.81210708618164,
+ 'cc_mock_numerical_1_sum_800_nw': 1170.7388916015625,
+ 'cc_mock_numerical_1_sum_800_wt': 211.98062133789062,
+ 'cc_mock_numerical_1_mean_800_nw': 41.812103271484375,
  'cc_mock_numerical_1_mean_800_wt': 51.426265716552734,
  'cc_mock_numerical_1_count_800_nw': 28.0,
- 'cc_mock_numerical_1_count_800_wt': 4.122030735015869,
+ 'cc_mock_numerical_1_count_800_wt': 4.122030258178711,
  'cc_mock_numerical_1_var_800_nw': 766.1060791015625,
  'cc_mock_numerical_1_var_800_wt': 5831.8505859375,
  'cc_mock_numerical_1_max_800': 99.43800354003906,
  'cc_mock_numerical_1_min_800': 0.4690000116825104,
  'cc_mock_numerical_1_sum_1600_nw': 2528.3251953125,
- 'cc_mock_numerical_1_sum_1600_wt': 541.5324096679688,
+ 'cc_mock_numerical_1_sum_1600_wt': 541.5323486328125,
  'cc_mock_numerical_1_mean_1600_nw': 51.598472595214844,
- 'cc_mock_numerical_1_mean_1600_wt': 48.46940612792969,
+ 'cc_mock_numerical_1_mean_1600_wt': 48.46938705444336,
  'cc_mock_numerical_1_count_1600_nw': 49.0,
- 'cc_mock_numerical_1_count_1600_wt': 11.172664642333984,
- 'cc_mock_numerical_1_var_1600_nw': 986.6458740234375,
- 'cc_mock_numerical_1_var_1600_wt': 4370.0771484375,
+ 'cc_mock_numerical_1_count_1600_wt': 11.172667503356934,
+ 'cc_mock_numerical_1_var_1600_nw': 986.6461181640625,
+ 'cc_mock_numerical_1_var_1600_wt': 4370.07763671875,
  'cc_mock_numerical_1_max_1600': 99.43800354003906,
  'cc_mock_numerical_1_min_1600': 0.4690000116825104}</code></pre>
 </div>

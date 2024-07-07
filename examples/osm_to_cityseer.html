@@ -363,10 +363,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>simple_plot(multi_graph_cons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting OSMnx MultiDiGraph to cityseer MultiGraph.
-100%|██████████| 6036/6036 [00:01&lt;00:00, 5798.37it/s]
+100%|██████████| 6036/6036 [00:01&lt;00:00, 4437.64it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 3595/3595 [00:00&lt;00:00, 23873.61it/s]</code></pre>
+100%|██████████| 3595/3595 [00:00&lt;00:00, 20294.44it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -386,7 +386,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>G_raw <span class="op">=</span> io.nx_from_osm_nx(multi_di_graph_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting OSMnx MultiDiGraph to cityseer MultiGraph.
-100%|██████████| 30898/30898 [00:06&lt;00:00, 4746.43it/s]</code></pre>
+100%|██████████| 30898/30898 [00:07&lt;00:00, 4326.17it/s]</code></pre>
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
@@ -397,20 +397,18 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 15843/15843 [00:00&lt;00:00, 452646.78it/s]
+100%|██████████| 15843/15843 [00:00&lt;00:00, 312282.86it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 18245/18245 [00:02&lt;00:00, 6805.06it/s]
+100%|██████████| 18245/18245 [00:02&lt;00:00, 6530.14it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 18245/18245 [00:00&lt;00:00, 42166.85it/s]
+100%|██████████| 18245/18245 [00:00&lt;00:00, 39269.89it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 15843/15843 [00:02&lt;00:00, 6536.31it/s]
+100%|██████████| 15843/15843 [00:02&lt;00:00, 6851.57it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 5475/5475 [00:00&lt;00:00, 156393.03it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4989/4989 [00:00&lt;00:00, 41835.45it/s]</code></pre>
+100%|██████████| 5475/5475 [00:00&lt;00:00, 246880.26it/s]</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>G1 <span class="op">=</span> graphs.nx_consolidate_nodes(G, buffer_dist<span class="op">=</span><span class="dv">12</span>, crawl<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>G2 <span class="op">=</span> graphs.nx_split_opposing_geoms(G1, buffer_dist<span class="op">=</span><span class="dv">15</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>G3 <span class="op">=</span> graphs.nx_consolidate_nodes(G2, buffer_dist<span class="op">=</span><span class="dv">15</span>, neighbour_policy<span class="op">=</span><span class="st">"indirect"</span>)</span>
@@ -419,37 +417,33 @@ INFO:cityseer.tools.graphs:Removing filler nodes.
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>simple_plot(G5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.util:Creating nodes STR tree
-  0%|          | 0/4759 [00:00&lt;?, ?it/s]100%|██████████| 4759/4759 [00:00&lt;00:00, 53191.63it/s]
+100%|██████████| 4989/4989 [00:00&lt;00:00, 67623.61it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4759/4759 [00:02&lt;00:00, 1776.24it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2592/2592 [00:00&lt;00:00, 136751.86it/s]
+100%|██████████| 4989/4989 [00:02&lt;00:00, 2288.62it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4542/4542 [00:00&lt;00:00, 8408.74it/s] 
+100%|██████████| 4656/4656 [00:00&lt;00:00, 9415.34it/s] 
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3955/3955 [00:00&lt;00:00, 445926.68it/s]
+100%|██████████| 4101/4101 [00:00&lt;00:00, 637493.17it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2556/2556 [00:00&lt;00:00, 2675.87it/s]
+100%|██████████| 2685/2685 [00:00&lt;00:00, 2979.42it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4207/4207 [00:00&lt;00:00, 10774.22it/s]
+100%|██████████| 4361/4361 [00:00&lt;00:00, 12188.54it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2556/2556 [00:00&lt;00:00, 75759.96it/s]
+100%|██████████| 2685/2685 [00:00&lt;00:00, 82508.78it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2556/2556 [00:00&lt;00:00, 8149.37it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2517/2517 [00:00&lt;00:00, 36548.73it/s]
+100%|██████████| 2685/2685 [00:00&lt;00:00, 7964.17it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3545/3545 [00:00&lt;00:00, 78880.87it/s]
+100%|██████████| 3890/3890 [00:00&lt;00:00, 114301.42it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2320/2320 [00:00&lt;00:00, 266794.21it/s]
+100%|██████████| 2648/2648 [00:00&lt;00:00, 28091.59it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 3507/3507 [00:00&lt;00:00, 4683.29it/s]
+100%|██████████| 3568/3568 [00:00&lt;00:00, 4297.52it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 3507/3507 [00:00&lt;00:00, 171372.60it/s]
+100%|██████████| 3568/3568 [00:00&lt;00:00, 34758.11it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 3507/3507 [00:00&lt;00:00, 16124.67it/s]</code></pre>
+100%|██████████| 3560/3560 [00:00&lt;00:00, 25998.14it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -472,143 +466,176 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 12392/12392 [00:00&lt;00:00, 414090.53it/s]
+100%|██████████| 12429/12429 [00:00&lt;00:00, 411966.02it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 13740/13740 [00:00&lt;00:00, 819465.59it/s]
+100%|██████████| 13773/13773 [00:00&lt;00:00, 792593.11it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 13740/13740 [00:00&lt;00:00, 67192.27it/s]
+100%|██████████| 13773/13773 [00:00&lt;00:00, 63453.10it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 12392/12392 [00:01&lt;00:00, 6950.56it/s]
+100%|██████████| 12429/12429 [00:01&lt;00:00, 6430.53it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 4154/4154 [00:00&lt;00:00, 187031.85it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3354/3354 [00:00&lt;00:00, 25296.42it/s]
+100%|██████████| 4170/4170 [00:00&lt;00:00, 162044.26it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 356972.33it/s]
+100%|██████████| 4781/4781 [00:00&lt;00:00, 550754.39it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 114226.08it/s]
+100%|██████████| 3358/3358 [00:00&lt;00:00, 90179.30it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 60.
+100%|██████████| 4781/4781 [00:00&lt;00:00, 128016.19it/s]
+WARNING:cityseer.tools.graphs:Be cautious with large buffer distances when using crawl!
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 3358/3358 [00:00&lt;00:00, 66223.78it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 3358/3358 [00:00&lt;00:00, 92212.08it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 60.
+100%|██████████| 4781/4781 [00:00&lt;00:00, 129266.40it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 3358/3358 [00:00&lt;00:00, 20936.70it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 4428/4428 [00:00&lt;00:00, 167363.96it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 3005/3005 [00:00&lt;00:00, 75603.19it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 40.
+100%|██████████| 4428/4428 [00:00&lt;00:00, 122649.05it/s]
+WARNING:cityseer.tools.graphs:Be cautious with large buffer distances when using crawl!
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 3005/3005 [00:00&lt;00:00, 64465.38it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 3005/3005 [00:00&lt;00:00, 77660.81it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 40.
+100%|██████████| 4428/4428 [00:00&lt;00:00, 88344.40it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 3005/3005 [00:00&lt;00:00, 626279.93it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 4428/4428 [00:00&lt;00:00, 15310.85it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 3005/3005 [00:01&lt;00:00, 2707.85it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 40.
+100%|██████████| 4595/4595 [00:00&lt;00:00, 26443.73it/s]
+WARNING:cityseer.tools.graphs:Be cautious with large buffer distances when using crawl!
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 3005/3005 [00:00&lt;00:00, 56759.42it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 3005/3005 [00:00&lt;00:00, 11112.55it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 40.
+100%|██████████| 3917/3917 [00:00&lt;00:00, 51039.13it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2604/2604 [00:00&lt;00:00, 284618.95it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3873/3873 [00:00&lt;00:00, 552967.95it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2591/2591 [00:00&lt;00:00, 32198.68it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 116053.63it/s]
+100%|██████████| 3880/3880 [00:00&lt;00:00, 74537.74it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3007/3007 [00:00&lt;00:00, 76871.76it/s]
+100%|██████████| 2591/2591 [00:00&lt;00:00, 77438.18it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 158938.82it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 613556.73it/s]
+100%|██████████| 2591/2591 [00:00&lt;00:00, 52761.23it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 137569.07it/s]
+100%|██████████| 3843/3843 [00:00&lt;00:00, 95931.00it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 553874.32it/s]
+100%|██████████| 2568/2568 [00:00&lt;00:00, 564427.64it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 498866.10it/s]
+100%|██████████| 3843/3843 [00:00&lt;00:00, 621432.27it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 114266.44it/s]
+100%|██████████| 2568/2568 [00:00&lt;00:00, 12985.37it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 3863/3863 [00:00&lt;00:00, 82458.06it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2568/2568 [00:00&lt;00:00, 70683.56it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2568/2568 [00:00&lt;00:00, 25106.81it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 3732/3732 [00:00&lt;00:00, 92279.78it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2477/2477 [00:00&lt;00:00, 443683.42it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3727/3727 [00:00&lt;00:00, 700837.08it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2473/2473 [00:00&lt;00:00, 11369.32it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 120919.72it/s]
+100%|██████████| 3736/3736 [00:00&lt;00:00, 35870.42it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3007/3007 [00:00&lt;00:00, 71202.27it/s]
+100%|██████████| 2473/2473 [00:00&lt;00:00, 77869.97it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 139926.47it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 577696.60it/s]
+100%|██████████| 2473/2473 [00:00&lt;00:00, 13033.01it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 121071.79it/s]
+100%|██████████| 3594/3594 [00:00&lt;00:00, 92849.09it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 473025.25it/s]
+100%|██████████| 2369/2369 [00:00&lt;00:00, 376932.07it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4430/4430 [00:00&lt;00:00, 485593.95it/s]
+100%|██████████| 3584/3584 [00:00&lt;00:00, 684223.28it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 5101.05it/s]
+100%|██████████| 2361/2361 [00:00&lt;00:00, 105637.24it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 3584/3584 [00:00&lt;00:00, 96317.61it/s]
+WARNING:cityseer.tools.graphs:Be cautious with large buffer distances when using crawl!
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2361/2361 [00:00&lt;00:00, 75265.46it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2361/2361 [00:00&lt;00:00, 118595.83it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 30.
+100%|██████████| 3584/3584 [00:00&lt;00:00, 93952.41it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2361/2361 [00:00&lt;00:00, 521060.34it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3584/3584 [00:00&lt;00:00, 657728.53it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2361/2361 [00:00&lt;00:00, 25945.64it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4601/4601 [00:00&lt;00:00, 32214.92it/s]
+100%|██████████| 3588/3588 [00:00&lt;00:00, 84907.43it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3007/3007 [00:00&lt;00:00, 79164.63it/s]
+100%|██████████| 2361/2361 [00:00&lt;00:00, 74800.41it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3007/3007 [00:00&lt;00:00, 8528.42it/s] 
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2694/2694 [00:00&lt;00:00, 288163.19it/s]
+100%|██████████| 2361/2361 [00:00&lt;00:00, 35500.10it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4002/4002 [00:00&lt;00:00, 34398.63it/s]
+100%|██████████| 3564/3564 [00:00&lt;00:00, 47975.98it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2680/2680 [00:00&lt;00:00, 311153.59it/s]
+100%|██████████| 2351/2351 [00:00&lt;00:00, 133322.63it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3955/3955 [00:00&lt;00:00, 12902.49it/s]
+100%|██████████| 3563/3563 [00:00&lt;00:00, 521416.04it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2670/2670 [00:00&lt;00:00, 49246.67it/s]
+100%|██████████| 2351/2351 [00:00&lt;00:00, 34965.30it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3960/3960 [00:00&lt;00:00, 94525.98it/s]
+100%|██████████| 3563/3563 [00:00&lt;00:00, 89462.21it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2670/2670 [00:00&lt;00:00, 77297.02it/s]
+100%|██████████| 2351/2351 [00:00&lt;00:00, 80679.49it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2670/2670 [00:00&lt;00:00, 50618.98it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2652/2652 [00:00&lt;00:00, 543235.70it/s]
+100%|██████████| 2351/2351 [00:00&lt;00:00, 44581.12it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3932/3932 [00:00&lt;00:00, 93634.87it/s]
+100%|██████████| 3556/3556 [00:00&lt;00:00, 103059.99it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2652/2652 [00:00&lt;00:00, 524238.58it/s]
+100%|██████████| 2349/2349 [00:00&lt;00:00, 524818.63it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3932/3932 [00:00&lt;00:00, 678180.91it/s]
+100%|██████████| 3554/3554 [00:00&lt;00:00, 651652.74it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2652/2652 [00:00&lt;00:00, 13164.61it/s]
+100%|██████████| 2347/2347 [00:01&lt;00:00, 2267.01it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3949/3949 [00:00&lt;00:00, 86277.56it/s]
+100%|██████████| 3867/3867 [00:00&lt;00:00, 14490.59it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2652/2652 [00:00&lt;00:00, 74208.73it/s]
+100%|██████████| 2347/2347 [00:00&lt;00:00, 71002.73it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2652/2652 [00:00&lt;00:00, 22483.93it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2571/2571 [00:00&lt;00:00, 410958.67it/s]
+100%|██████████| 2347/2347 [00:00&lt;00:00, 3063.43it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3824/3824 [00:00&lt;00:00, 99588.45it/s]
+100%|██████████| 2912/2912 [00:00&lt;00:00, 19564.89it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2565/2565 [00:00&lt;00:00, 617907.63it/s]
-INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3822/3822 [00:00&lt;00:00, 645485.40it/s]
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2565/2565 [00:00&lt;00:00, 13777.95it/s]
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3840/3840 [00:00&lt;00:00, 69691.52it/s]
-INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2565/2565 [00:00&lt;00:00, 68739.31it/s]
-INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2565/2565 [00:00&lt;00:00, 5947.85it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2454/2454 [00:00&lt;00:00, 115931.05it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3679/3679 [00:00&lt;00:00, 82065.86it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2451/2451 [00:00&lt;00:00, 495242.27it/s]
-INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3672/3672 [00:00&lt;00:00, 599606.18it/s]
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2447/2447 [00:01&lt;00:00, 1589.26it/s]
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4116/4116 [00:00&lt;00:00, 9559.00it/s] 
-INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2447/2447 [00:00&lt;00:00, 74524.12it/s]
-INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2447/2447 [00:00&lt;00:00, 4554.52it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1885/1885 [00:00&lt;00:00, 74929.52it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 2785/2785 [00:00&lt;00:00, 29180.30it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1814/1814 [00:00&lt;00:00, 148504.26it/s]
+100%|██████████| 1925/1925 [00:00&lt;00:00, 57653.56it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2675/2675 [00:00&lt;00:00, 4218.67it/s]
+100%|██████████| 2754/2754 [00:00&lt;00:00, 3669.98it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2675/2675 [00:00&lt;00:00, 182408.48it/s]
+100%|██████████| 2754/2754 [00:00&lt;00:00, 164271.99it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 2674/2674 [00:00&lt;00:00, 30048.97it/s]</code></pre>
+100%|██████████| 2754/2754 [00:00&lt;00:00, 25726.77it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
