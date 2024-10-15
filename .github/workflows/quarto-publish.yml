@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          # To install LaTeX to build PDF book
-          # tinytex: true
-          # uncomment below and fill to pin a version
-          # version: SPECIFIC-QUARTO-VERSION-HERE
+        # with:
+        #   To install LaTeX to build PDF book
+        #   tinytex: true
+        #   uncomment below and fill to pin a version
+        #   version: SPECIFIC-QUARTO-VERSION-HERE
       # quarto doesn't seem to find PDM installs so export to requirements and install manually below
       - name: Install uv
         uses: astral-sh/setup-uv@v3
