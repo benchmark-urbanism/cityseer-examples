@@ -25,10 +25,13 @@ jobs:
       # quarto doesn't seem to find PDM installs so export to requirements and install manually below
       - name: Install uv
         uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
       - name: Set up Python
         run: uv python install
-      - name: Install
-        run: uv sync
+      - name: Install the project
+        run: uv sync --all-extras --dev
       # See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md
       # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
       - name: Publish to GitHub Pages (and render)
