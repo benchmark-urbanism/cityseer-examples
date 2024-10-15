@@ -49,6 +49,10 @@ edges_gdf.head()
 It is then possible to save the `GeoDataFrame`. Create a `temp` folder or update your path accordingly:
 
 ```{python}
+from pathlib import Path
+
+# create the directory if necessary
+Path.mkdir(Path("temp"), exist_ok=True)
 edges_gdf.to_file("temp/output_file.gpkg")
 ```
 
