@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 15, 2024</p>
+      <p class="date-modified">November 20, 2024</p>
     </div>
   </div>
     
@@ -313,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="download-boundary" class="level2">
 <h2 class="anchored" data-anchor-id="download-boundary">Download Boundary</h2>
 <p>Download the boundary. Go to OSM and select the relation ID for the boundary that you’d like to download and pass it to <code>ox.geocode_to_gdf()</code>.</p>
-<div id="c20be6d3" class="cell" data-execution_count="1">
+<div id="506e26d8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bounds_gdf <span class="op">=</span> ox.geocode_to_gdf(</span>
@@ -349,7 +349,7 @@ Tip
 <section id="buffer-and-simplify" class="level2">
 <h2 class="anchored" data-anchor-id="buffer-and-simplify">Buffer and Simplify</h2>
 <p>Buffer and simplify depending on preferences. Make sure your distances correspond to the unit of the current CRS!</p>
-<div id="b71c9c6f" class="cell" data-execution_count="2">
+<div id="692a8311" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># buffer if wanted</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_geom.<span class="bu">buffer</span>(<span class="fl">0.01</span>)  <span class="co"># WGS - 4326</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># some simplification is recommended</span></span>
@@ -371,7 +371,7 @@ Tip
 <section id="generate-network" class="level2">
 <h2 class="anchored" data-anchor-id="generate-network">Generate Network</h2>
 <p>Now you can pass the boundary to <code>cityseer</code> to download and create the network.</p>
-<div id="56ca856b" class="cell" data-execution_count="3">
+<div id="ee9ddb10" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>G_nx <span class="op">=</span> io.osm_graph_from_poly(</span>
@@ -384,20 +384,16 @@ Tip
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32631.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-  0%|          | 0/26684 [00:00&lt;?, ?it/s]100%|██████████| 26684/26684 [00:00&lt;00:00, 669587.06it/s]
+  0%|          | 0/29545 [00:00&lt;?, ?it/s]100%|██████████| 29545/29545 [00:00&lt;00:00, 554487.34it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-  0%|          | 0/28861 [00:00&lt;?, ?it/s]100%|██████████| 28861/28861 [00:00&lt;00:00, 1323303.21it/s]
+  0%|          | 0/32373 [00:00&lt;?, ?it/s]100%|██████████| 32373/32373 [00:00&lt;00:00, 1120907.11it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-  0%|          | 0/28861 [00:00&lt;?, ?it/s] 41%|████▏     | 11972/28861 [00:00&lt;00:00, 119705.56it/s] 84%|████████▎ | 24156/28861 [00:00&lt;00:00, 120955.01it/s]100%|██████████| 28861/28861 [00:00&lt;00:00, 120723.92it/s]
+  0%|          | 0/32373 [00:00&lt;?, ?it/s] 30%|██▉       | 9684/32373 [00:00&lt;00:00, 96834.32it/s] 62%|██████▏   | 20119/32373 [00:00&lt;00:00, 101248.44it/s] 94%|█████████▍| 30474/32373 [00:00&lt;00:00, 102295.14it/s]100%|██████████| 32373/32373 [00:00&lt;00:00, 101342.78it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-  0%|          | 0/26684 [00:00&lt;?, ?it/s]  4%|▎         | 993/26684 [00:00&lt;00:02, 9916.63it/s]  8%|▊         | 2132/26684 [00:00&lt;00:02, 10762.60it/s] 13%|█▎        | 3363/26684 [00:00&lt;00:02, 11454.43it/s] 17%|█▋        | 4509/26684 [00:00&lt;00:01, 11349.75it/s] 21%|██        | 5648/26684 [00:00&lt;00:01, 11341.59it/s] 26%|██▌       | 6859/26684 [00:00&lt;00:01, 11554.59it/s] 30%|███       | 8015/26684 [00:00&lt;00:01, 11527.70it/s] 35%|███▌      | 9393/26684 [00:00&lt;00:01, 12235.42it/s] 40%|████      | 10696/26684 [00:00&lt;00:01, 12394.32it/s] 45%|████▌     | 12016/26684 [00:01&lt;00:01, 12628.44it/s] 50%|████▉     | 13290/26684 [00:01&lt;00:01, 12656.46it/s] 55%|█████▍    | 14556/26684 [00:01&lt;00:00, 12459.00it/s] 59%|█████▉    | 15803/26684 [00:01&lt;00:00, 12130.56it/s] 64%|██████▍   | 17075/26684 [00:01&lt;00:00, 12298.91it/s] 69%|██████▊   | 18307/26684 [00:01&lt;00:00, 11980.23it/s] 73%|███████▎  | 19508/26684 [00:01&lt;00:00, 11911.32it/s] 78%|███████▊  | 20774/26684 [00:01&lt;00:00, 12125.35it/s] 82%|████████▏ | 22001/26684 [00:01&lt;00:00, 12161.26it/s] 87%|████████▋ | 23219/26684 [00:01&lt;00:00, 12068.45it/s] 92%|█████████▏| 24427/26684 [00:02&lt;00:00, 11699.73it/s] 96%|█████████▌| 25614/26684 [00:02&lt;00:00, 11652.84it/s]100%|██████████| 26684/26684 [00:02&lt;00:00, 12001.73it/s]
-INFO:cityseer.tools.graphs:Ironing edges.
-  0%|          | 0/8985 [00:00&lt;?, ?it/s]  6%|▋         | 571/8985 [00:00&lt;00:01, 5695.52it/s] 13%|█▎        | 1153/8985 [00:00&lt;00:01, 5766.16it/s] 19%|█▉        | 1730/8985 [00:00&lt;00:01, 5707.55it/s] 26%|██▌       | 2325/8985 [00:00&lt;00:01, 5800.04it/s] 33%|███▎      | 2967/8985 [00:00&lt;00:00, 6020.63it/s] 40%|████      | 3603/8985 [00:00&lt;00:00, 6134.30it/s] 47%|████▋     | 4224/8985 [00:00&lt;00:00, 6158.71it/s] 54%|█████▍    | 4846/8985 [00:00&lt;00:00, 6177.35it/s] 61%|██████    | 5485/8985 [00:00&lt;00:00, 6241.64it/s] 68%|██████▊   | 6110/8985 [00:01&lt;00:00, 6193.76it/s] 75%|███████▌  | 6744/8985 [00:01&lt;00:00, 6237.13it/s] 82%|████████▏ | 7368/8985 [00:01&lt;00:00, 6170.33it/s] 89%|████████▉ | 7991/8985 [00:01&lt;00:00, 6188.07it/s] 96%|█████████▌| 8610/8985 [00:01&lt;00:00, 6063.10it/s]100%|██████████| 8985/8985 [00:01&lt;00:00, 6054.42it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-  0%|          | 0/8985 [00:00&lt;?, ?it/s]100%|██████████| 8985/8985 [00:00&lt;00:00, 203190.93it/s]
+  0%|          | 0/29545 [00:00&lt;?, ?it/s]  3%|▎         | 821/29545 [00:00&lt;00:03, 8136.56it/s]  6%|▌         | 1635/29545 [00:00&lt;00:04, 6794.80it/s]  8%|▊         | 2329/29545 [00:00&lt;00:04, 6493.75it/s] 10%|█         | 2985/29545 [00:00&lt;00:04, 6348.06it/s] 12%|█▏        | 3669/29545 [00:00&lt;00:03, 6494.64it/s] 15%|█▍        | 4322/29545 [00:00&lt;00:03, 6332.19it/s] 17%|█▋        | 5011/29545 [00:00&lt;00:03, 6498.33it/s] 20%|█▉        | 5863/29545 [00:00&lt;00:03, 7114.99it/s] 22%|██▏       | 6579/29545 [00:00&lt;00:03, 6765.04it/s] 25%|██▍       | 7262/29545 [00:01&lt;00:03, 6443.75it/s] 27%|██▋       | 7938/29545 [00:01&lt;00:03, 6527.58it/s] 29%|██▉       | 8659/29545 [00:01&lt;00:03, 6721.97it/s] 32%|███▏      | 9336/29545 [00:01&lt;00:03, 6662.29it/s] 34%|███▍      | 10154/29545 [00:01&lt;00:02, 7104.98it/s] 38%|███▊      | 11251/29545 [00:01&lt;00:02, 8169.73it/s] 42%|████▏     | 12262/29545 [00:01&lt;00:01, 8738.68it/s] 45%|████▍     | 13155/29545 [00:01&lt;00:01, 8537.77it/s] 48%|████▊     | 14125/29545 [00:01&lt;00:01, 8870.12it/s] 52%|█████▏    | 15455/29545 [00:02&lt;00:01, 10164.66it/s] 56%|█████▌    | 16618/29545 [00:02&lt;00:01, 10592.72it/s] 60%|██████    | 17844/29545 [00:02&lt;00:01, 11074.48it/s] 65%|██████▍   | 19087/29545 [00:02&lt;00:00, 11468.87it/s] 69%|██████▉   | 20441/29545 [00:02&lt;00:00, 12072.65it/s] 73%|███████▎  | 21692/29545 [00:02&lt;00:00, 12179.97it/s] 78%|███████▊  | 22950/29545 [00:02&lt;00:00, 12270.48it/s] 82%|████████▏ | 24248/29545 [00:02&lt;00:00, 12475.05it/s] 87%|████████▋ | 25658/29545 [00:02&lt;00:00, 12958.57it/s] 91%|█████████ | 26955/29545 [00:02&lt;00:00, 12263.73it/s] 95%|█████████▌| 28190/29545 [00:03&lt;00:00, 11807.95it/s]100%|██████████| 29545/29545 [00:03&lt;00:00, 9407.76it/s] 
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/8974 [00:00&lt;?, ?it/s] 28%|██▊       | 2555/8974 [00:00&lt;00:00, 25542.90it/s] 57%|█████▋    | 5110/8974 [00:00&lt;00:00, 15200.34it/s] 76%|███████▋  | 6859/8974 [00:00&lt;00:00, 11694.01it/s] 91%|█████████▏| 8191/8974 [00:00&lt;00:00, 9825.46it/s] 100%|██████████| 8974/8974 [00:00&lt;00:00, 10616.48it/s]</code></pre>
+  0%|          | 0/11375 [00:00&lt;?, ?it/s] 17%|█▋        | 1890/11375 [00:00&lt;00:00, 18891.73it/s] 33%|███▎      | 3780/11375 [00:00&lt;00:00, 15125.00it/s] 47%|████▋     | 5339/11375 [00:00&lt;00:00, 12583.80it/s] 58%|█████▊    | 6649/11375 [00:00&lt;00:00, 10624.23it/s] 68%|██████▊   | 7760/11375 [00:00&lt;00:00, 9280.40it/s]  77%|███████▋  | 8725/11375 [00:00&lt;00:00, 8342.67it/s] 84%|████████▍ | 9583/11375 [00:01&lt;00:00, 7421.55it/s] 91%|█████████ | 10343/11375 [00:01&lt;00:00, 6786.83it/s] 97%|█████████▋| 11031/11375 [00:01&lt;00:00, 6161.66it/s]100%|██████████| 11375/11375 [00:01&lt;00:00, 8217.20it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

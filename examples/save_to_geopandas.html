@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 15, 2024</p>
+      <p class="date-modified">November 20, 2024</p>
     </div>
   </div>
     
@@ -330,7 +330,7 @@ Tip
 </div>
 </div>
 <p>Assume we have the following network.</p>
-<div id="7080f802" class="cell" data-execution_count="1">
+<div id="3453c047" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,20 +350,16 @@ Tip
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 3035.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-  0%|          | 0/18052 [00:00&lt;?, ?it/s]100%|██████████| 18052/18052 [00:00&lt;00:00, 686221.08it/s]
+  0%|          | 0/20083 [00:00&lt;?, ?it/s]100%|██████████| 20083/20083 [00:00&lt;00:00, 546379.32it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-  0%|          | 0/19745 [00:00&lt;?, ?it/s]100%|██████████| 19745/19745 [00:00&lt;00:00, 1416757.03it/s]
+  0%|          | 0/22224 [00:00&lt;?, ?it/s]100%|██████████| 22224/22224 [00:00&lt;00:00, 1010112.72it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-  0%|          | 0/19745 [00:00&lt;?, ?it/s] 56%|█████▌    | 11003/19745 [00:00&lt;00:00, 110021.97it/s]100%|██████████| 19745/19745 [00:00&lt;00:00, 108997.23it/s]
+  0%|          | 0/22224 [00:00&lt;?, ?it/s] 41%|████      | 9046/22224 [00:00&lt;00:00, 90449.52it/s] 88%|████████▊ | 19520/22224 [00:00&lt;00:00, 98848.27it/s]100%|██████████| 22224/22224 [00:00&lt;00:00, 97018.91it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-  0%|          | 0/18052 [00:00&lt;?, ?it/s]  6%|▌         | 994/18052 [00:00&lt;00:01, 9911.44it/s] 12%|█▏        | 2159/18052 [00:00&lt;00:01, 10902.39it/s] 18%|█▊        | 3321/18052 [00:00&lt;00:01, 11194.64it/s] 25%|██▌       | 4563/18052 [00:00&lt;00:01, 11663.64it/s] 33%|███▎      | 5902/18052 [00:00&lt;00:00, 12270.56it/s] 40%|███▉      | 7189/18052 [00:00&lt;00:00, 12463.58it/s] 47%|████▋     | 8436/18052 [00:00&lt;00:00, 12459.81it/s] 54%|█████▍    | 9736/18052 [00:00&lt;00:00, 12585.45it/s] 62%|██████▏   | 11102/18052 [00:00&lt;00:00, 12911.15it/s] 69%|██████▊   | 12394/18052 [00:01&lt;00:00, 12909.79it/s] 76%|███████▌  | 13686/18052 [00:01&lt;00:00, 12559.57it/s] 83%|████████▎ | 14944/18052 [00:01&lt;00:00, 12417.87it/s] 90%|█████████ | 16329/18052 [00:01&lt;00:00, 12840.57it/s] 98%|█████████▊| 17616/18052 [00:01&lt;00:00, 12770.29it/s]100%|██████████| 18052/18052 [00:01&lt;00:00, 12455.77it/s]
-INFO:cityseer.tools.graphs:Ironing edges.
-  0%|          | 0/6961 [00:00&lt;?, ?it/s]  8%|▊         | 587/6961 [00:00&lt;00:01, 5862.50it/s] 17%|█▋        | 1189/6961 [00:00&lt;00:00, 5947.04it/s] 27%|██▋       | 1845/6961 [00:00&lt;00:00, 6224.10it/s] 36%|███▌      | 2489/6961 [00:00&lt;00:00, 6305.25it/s] 45%|████▌     | 3137/6961 [00:00&lt;00:00, 6363.99it/s] 54%|█████▍    | 3774/6961 [00:00&lt;00:00, 6348.27it/s] 63%|██████▎   | 4420/6961 [00:00&lt;00:00, 6383.97it/s] 73%|███████▎  | 5059/6961 [00:00&lt;00:00, 6306.64it/s] 82%|████████▏ | 5702/6961 [00:00&lt;00:00, 6343.92it/s] 91%|█████████ | 6337/6961 [00:01&lt;00:00, 6279.97it/s]100%|██████████| 6961/6961 [00:01&lt;00:00, 6291.37it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-  0%|          | 0/6961 [00:00&lt;?, ?it/s]100%|██████████| 6961/6961 [00:00&lt;00:00, 201654.52it/s]
+  0%|          | 0/20083 [00:00&lt;?, ?it/s]  4%|▍         | 762/20083 [00:00&lt;00:02, 7565.93it/s]  8%|▊         | 1519/20083 [00:00&lt;00:02, 7089.45it/s] 11%|█         | 2230/20083 [00:00&lt;00:02, 7005.08it/s] 15%|█▍        | 2932/20083 [00:00&lt;00:02, 6564.87it/s] 18%|█▊        | 3592/20083 [00:00&lt;00:02, 6404.04it/s] 21%|██        | 4235/20083 [00:00&lt;00:02, 6397.45it/s] 26%|██▌       | 5151/20083 [00:00&lt;00:02, 7254.70it/s] 29%|██▉       | 5881/20083 [00:00&lt;00:01, 7178.41it/s] 33%|███▎      | 6602/20083 [00:00&lt;00:01, 6895.28it/s] 37%|███▋      | 7447/20083 [00:01&lt;00:01, 7339.90it/s] 42%|████▏     | 8348/20083 [00:01&lt;00:01, 7828.08it/s] 48%|████▊     | 9576/20083 [00:01&lt;00:01, 8925.42it/s] 53%|█████▎    | 10546/20083 [00:01&lt;00:01, 9118.69it/s] 58%|█████▊    | 11659/20083 [00:01&lt;00:00, 9699.20it/s] 64%|██████▍   | 12887/20083 [00:01&lt;00:00, 10457.43it/s] 70%|███████   | 14134/20083 [00:01&lt;00:00, 11054.58it/s] 76%|███████▌  | 15243/20083 [00:01&lt;00:00, 10645.75it/s] 83%|████████▎ | 16764/20083 [00:01&lt;00:00, 11965.66it/s] 89%|████████▉ | 17969/20083 [00:01&lt;00:00, 11601.05it/s] 95%|█████████▌| 19137/20083 [00:02&lt;00:00, 11291.81it/s]100%|██████████| 20083/20083 [00:02&lt;00:00, 9240.87it/s] 
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/6954 [00:00&lt;?, ?it/s] 35%|███▌      | 2453/6954 [00:00&lt;00:00, 24519.09it/s] 71%|███████   | 4905/6954 [00:00&lt;00:00, 14898.79it/s] 95%|█████████▍| 6603/6954 [00:00&lt;00:00, 12087.91it/s]100%|██████████| 6954/6954 [00:00&lt;00:00, 12741.10it/s]</code></pre>
+  0%|          | 0/8694 [00:00&lt;?, ?it/s] 12%|█▏        | 1026/8694 [00:00&lt;00:01, 5741.05it/s] 31%|███       | 2684/8694 [00:00&lt;00:00, 10555.78it/s] 47%|████▋     | 4062/8694 [00:00&lt;00:00, 11804.28it/s] 62%|██████▏   | 5350/8694 [00:00&lt;00:00, 10967.46it/s] 75%|███████▍  | 6517/8694 [00:00&lt;00:00, 9929.21it/s]  87%|████████▋ | 7563/8694 [00:00&lt;00:00, 9089.81it/s] 98%|█████████▊| 8511/8694 [00:00&lt;00:00, 8268.05it/s]100%|██████████| 8694/8694 [00:00&lt;00:00, 9042.51it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -377,7 +373,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <section id="convert-to-geopandas" class="level2">
 <h2 class="anchored" data-anchor-id="convert-to-geopandas">Convert to GeoPandas</h2>
 <p>You can now convert the network to a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<div id="c02027b9" class="cell" data-execution_count="2">
+<div id="011d2d1d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to a LineString GeoDataFrame</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>edges_gdf <span class="op">=</span> io.geopandas_from_nx(G_nx, crs<span class="op">=</span><span class="dv">3035</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>edges_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,8 +400,8 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>LINESTRING (3686135.767 2665023.326, 3686194.5...</td>
-<td>[rue francoise dolto, rue de gireugne]</td>
+<td>LINESTRING (3686215.164 2665464.119, 3686209.1...</td>
+<td>[rue de gireugne, rue francoise dolto]</td>
 <td>[]</td>
 <td>[tertiary]</td>
 <td>448239596</td>
@@ -414,16 +410,6 @@ INFO:cityseer.tools.plot:Preparing graph edges
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>LINESTRING (3686215.164 2665464.119, 3686216.1...</td>
-<td>[rue de gireugne]</td>
-<td>[]</td>
-<td>[tertiary]</td>
-<td>10746741880</td>
-<td>1969279930</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
 <td>LINESTRING (3686586.641 2665354.037, 3686435.5...</td>
 <td>[]</td>
 <td>[]</td>
@@ -432,9 +418,19 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <td>10746741876</td>
 <td>0</td>
 </tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>LINESTRING (3686215.164 2665464.119, 3686216.1...</td>
+<td>[rue de gireugne]</td>
+<td>[]</td>
+<td>[tertiary]</td>
+<td>10746741880</td>
+<td>1969279930</td>
+<td>0</td>
+</tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>LINESTRING (3683478.127 2667452.761, 3683515.2...</td>
+<td>LINESTRING (3683478.127 2667452.761, 3683490.1...</td>
 <td>[rue de chatellerault]</td>
 <td>[d 925]</td>
 <td>[secondary]</td>
@@ -462,14 +458,14 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <section id="save" class="level2">
 <h2 class="anchored" data-anchor-id="save">Save</h2>
 <p>It is then possible to save the <code>GeoDataFrame</code>. Create a <code>temp</code> folder or update your path accordingly:</p>
-<div id="83d4027d" class="cell" data-execution_count="3">
+<div id="c890ca3d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the directory if necessary</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Path.mkdir(Path(<span class="st">"temp"</span>), exist_ok<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>edges_gdf.to_file(<span class="st">"temp/output_file.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:pyogrio._io:Created 6,954 records</code></pre>
+<pre><code>INFO:pyogrio._io:Created 8,694 records</code></pre>
 </div>
 </div>
 <p>The GPKG file can now be explored or modified in GIS software such as QGIS.</p>
@@ -477,7 +473,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <section id="reload" class="level2">
 <h2 class="anchored" data-anchor-id="reload">Reload</h2>
 <p>To reload, you can read the <code>LineString</code> file with <code>geopandas</code>.</p>
-<div id="02697b88" class="cell" data-execution_count="4">
+<div id="f4566a0f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>in_edges_gdf <span class="op">=</span> gpd.read_file(<span class="st">"temp/output_file.gpkg"</span>)</span>
@@ -502,26 +498,16 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>['rue francoise dolto', 'rue de gireugne']</td>
+<td>['rue de gireugne', 'rue francoise dolto']</td>
 <td>[]</td>
 <td>['tertiary']</td>
 <td>448239596</td>
 <td>10746741880</td>
 <td>0</td>
-<td>LINESTRING (3686135.767 2665023.326, 3686194.5...</td>
+<td>LINESTRING (3686215.164 2665464.119, 3686209.1...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>['rue de gireugne']</td>
-<td>[]</td>
-<td>['tertiary']</td>
-<td>10746741880</td>
-<td>1969279930</td>
-<td>0</td>
-<td>LINESTRING (3686215.164 2665464.119, 3686216.1...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
 <td>[]</td>
 <td>[]</td>
 <td>['track']</td>
@@ -529,6 +515,16 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <td>10746741876</td>
 <td>0</td>
 <td>LINESTRING (3686586.641 2665354.037, 3686435.5...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>['rue de gireugne']</td>
+<td>[]</td>
+<td>['tertiary']</td>
+<td>10746741880</td>
+<td>1969279930</td>
+<td>0</td>
+<td>LINESTRING (3686215.164 2665464.119, 3686216.1...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
@@ -538,7 +534,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <td>1563458310</td>
 <td>1527199968</td>
 <td>0</td>
-<td>LINESTRING (3683478.127 2667452.761, 3683515.2...</td>
+<td>LINESTRING (3683478.127 2667452.761, 3683490.1...</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
@@ -560,16 +556,16 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <section id="convert-back-to-nx" class="level2">
 <h2 class="anchored" data-anchor-id="convert-back-to-nx">Convert back to nx</h2>
 <p>Then use <code>cityseer</code> to convert the <code>LineString</code> <code>GeoDataFrame</code> back into a <code>networkx</code> graph.</p>
-<div id="6696d9c0" class="cell" data-execution_count="5">
+<div id="b07cac01" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>in_G_nx <span class="op">=</span> io.nx_from_generic_geopandas(in_edges_gdf)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(in_G_nx, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>  0%|          | 0/6954 [00:00&lt;?, ?it/s] 10%|█         | 718/6954 [00:00&lt;00:00, 7177.83it/s] 21%|██        | 1451/6954 [00:00&lt;00:00, 7264.64it/s] 31%|███▏      | 2178/6954 [00:00&lt;00:00, 7180.70it/s] 42%|████▏     | 2921/6954 [00:00&lt;00:00, 7275.64it/s] 53%|█████▎    | 3667/6954 [00:00&lt;00:00, 7338.23it/s] 63%|██████▎   | 4401/6954 [00:00&lt;00:00, 5005.25it/s] 74%|███████▍  | 5131/6954 [00:00&lt;00:00, 5565.32it/s] 85%|████████▍ | 5881/6954 [00:00&lt;00:00, 6070.57it/s] 95%|█████████▌| 6615/6954 [00:01&lt;00:00, 6414.58it/s]100%|██████████| 6954/6954 [00:01&lt;00:00, 6394.35it/s]
+<pre><code>  0%|          | 0/8694 [00:00&lt;?, ?it/s]  8%|▊         | 662/8694 [00:00&lt;00:01, 6612.75it/s] 15%|█▌        | 1324/8694 [00:00&lt;00:01, 6121.29it/s] 23%|██▎       | 2016/8694 [00:00&lt;00:01, 6466.74it/s] 31%|███▏      | 2719/8694 [00:00&lt;00:00, 6682.32it/s] 39%|███▉      | 3390/8694 [00:00&lt;00:00, 6378.77it/s] 47%|████▋     | 4073/8694 [00:00&lt;00:00, 6524.51it/s] 55%|█████▍    | 4770/8694 [00:00&lt;00:00, 6665.55it/s] 63%|██████▎   | 5439/8694 [00:00&lt;00:00, 6427.19it/s] 70%|███████   | 6104/8694 [00:00&lt;00:00, 6493.36it/s] 78%|███████▊  | 6756/8694 [00:01&lt;00:00, 6394.76it/s] 85%|████████▌ | 7398/8694 [00:01&lt;00:00, 6361.81it/s] 93%|█████████▎| 8081/8694 [00:01&lt;00:00, 6498.88it/s]100%|██████████| 8694/8694 [00:01&lt;00:00, 6350.00it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-  0%|          | 0/6952 [00:00&lt;?, ?it/s]100%|██████████| 6952/6952 [00:00&lt;00:00, 173975.41it/s]
+  0%|          | 0/8693 [00:00&lt;?, ?it/s]100%|██████████| 8693/8693 [00:00&lt;00:00, 189151.77it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/6952 [00:00&lt;?, ?it/s] 32%|███▏      | 2250/6952 [00:00&lt;00:00, 22481.15it/s] 65%|██████▍   | 4499/6952 [00:00&lt;00:00, 14818.86it/s] 88%|████████▊ | 6129/6952 [00:00&lt;00:00, 11416.97it/s]100%|██████████| 6952/6952 [00:00&lt;00:00, 11516.06it/s]</code></pre>
+  0%|          | 0/8691 [00:00&lt;?, ?it/s] 29%|██▉       | 2506/8691 [00:00&lt;00:00, 25047.42it/s] 58%|█████▊    | 5011/8691 [00:00&lt;00:00, 13576.00it/s] 76%|███████▋  | 6648/8691 [00:00&lt;00:00, 10481.60it/s] 91%|█████████ | 7876/8691 [00:00&lt;00:00, 8633.14it/s] 100%|██████████| 8691/8691 [00:00&lt;00:00, 9396.91it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
