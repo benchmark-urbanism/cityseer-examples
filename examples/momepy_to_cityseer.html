@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1e8aa9d37ded5ff210454fa88ddfbe5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd469e0fd2e6d0164b41e1955f8bb114.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 20, 2024</p>
+      <p class="date-modified">November 25, 2024</p>
     </div>
   </div>
     
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"examples"</span>):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"/examples"</span>):</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    repo_path <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">".."</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">str</span>(repo_path.resolve()).endswith(<span class="st">"cityseer-examples"</span>):</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
@@ -331,13 +331,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df_streets: gpd.GeoDataFrame <span class="op">=</span> gpd.read_file(bubenec_path, layer<span class="op">=</span><span class="st">"streets"</span>)  <span class="co"># type: ignore</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>nx_momepy <span class="op">=</span> io.nx_from_generic_geopandas(df_streets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/examples/../temp/bubenec.gpkg
+<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/temp/bubenec.gpkg
 path exists: True</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 35/35 [00:00&lt;00:00, 1769.83it/s]
+<pre><code>100%|██████████| 35/35 [00:00&lt;00:00, 2744.66it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 35/35 [00:00&lt;00:00, 47187.61it/s]</code></pre>
+100%|██████████| 35/35 [00:00&lt;00:00, 48609.48it/s]</code></pre>
 </div>
 </div>
 <p>At this point the input GeoPandas file has been converted to a <code>networkX</code> <code>MultiGraph</code> with <code>geom</code> attributes for the edges. This graph can now be fed to <code>cityseer</code> <code>graph</code> module methods if wanted. For running optimised network centrality or landuse accessibilities, use the <code>io.network_structure_from_nx</code> method to prepare the necessary structures.</p>
@@ -347,8 +347,8 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 29/29 [00:00&lt;00:00, 14449.37it/s]
-100%|██████████| 29/29 [00:00&lt;00:00, 2098.13it/s]</code></pre>
+100%|██████████| 29/29 [00:00&lt;00:00, 13809.58it/s]
+100%|██████████| 29/29 [00:00&lt;00:00, 167.93it/s]</code></pre>
 </div>
 </div>
 <p>The following block downloads some OSM data which will be used for demonstrating some landuse accessibility methods.</p>
@@ -517,7 +517,7 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 0  restaurant  POINT (1602992.986 6463522.177)
 1  restaurant  POINT (1602903.753 6463784.958)
 2  restaurant  POINT (1603489.527 6463552.391)
-3  restaurant  POINT (1602809.665 6464167.222)
+3         pub  POINT (1602809.665 6464167.222)
 4  restaurant   POINT (1603027.863 6464060.66)</code></pre>
 </div>
 </div>
@@ -537,9 +537,9 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 29/29 [00:01&lt;00:00, 28.82it/s]
+100%|██████████| 29/29 [00:01&lt;00:00, 28.91it/s]
 INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
-100%|██████████| 29/29 [00:01&lt;00:00, 28.90it/s]</code></pre>
+100%|██████████| 29/29 [00:01&lt;00:00, 28.91it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -641,8 +641,8 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 <td>0.309082</td>
 <td>1.0</td>
 <td>0.555951</td>
-<td>5.0</td>
-<td>0.895088</td>
+<td>4.0</td>
+<td>0.861386</td>
 <td>29.353716</td>
 </tr>
 <tr class="even">
@@ -665,8 +665,8 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 <td>0.000000</td>
 <td>1.0</td>
 <td>0.075555</td>
-<td>2.0</td>
-<td>0.354505</td>
+<td>3.0</td>
+<td>0.380441</td>
 <td>129.144821</td>
 </tr>
 <tr class="odd">
@@ -713,14 +713,14 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 35/35 [00:00&lt;00:00, 8260.22it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 10674.08it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 35/35 [00:00&lt;00:00, 411.48it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 321.32it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 35/35 [00:00&lt;00:00, 26374.53it/s]
-100%|██████████| 35/35 [00:00&lt;00:00, 1860.40it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 45632.78it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 1584.36it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 35/35 [00:01&lt;00:00, 34.90it/s]</code></pre>
+100%|██████████| 35/35 [00:01&lt;00:00, 34.82it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -761,9 +761,9 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <td>0</td>
 <td>POINT (1603499.4 6464328.75)</td>
 <td>18.0</td>
-<td>11.510646</td>
-<td>10.932516</td>
-<td>29.636362</td>
+<td>8.775770</td>
+<td>7.850220</td>
+<td>41.272728</td>
 <td>10.0</td>
 </tr>
 <tr class="even">
@@ -779,9 +779,9 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <td>0</td>
 <td>POINT (1603572.744261 6464461.367872)</td>
 <td>13.0</td>
-<td>8.309587</td>
-<td>7.957019</td>
-<td>21.239109</td>
+<td>6.314738</td>
+<td>5.733047</td>
+<td>29.478218</td>
 <td>11.0</td>
 </tr>
 <tr class="odd">
@@ -797,9 +797,9 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <td>0</td>
 <td>POINT (1603619.281722 6464399.737661)</td>
 <td>13.0</td>
-<td>8.325413</td>
-<td>8.047424</td>
-<td>21.000507</td>
+<td>6.275379</td>
+<td>5.827383</td>
+<td>29.001013</td>
 <td>16.0</td>
 </tr>
 <tr class="even">
@@ -815,9 +815,9 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <td>0</td>
 <td>POINT (1603510.08598 6464204.473294)</td>
 <td>21.0</td>
-<td>13.297271</td>
-<td>12.853871</td>
-<td>34.308731</td>
+<td>9.990052</td>
+<td>9.261309</td>
+<td>47.617462</td>
 <td>10.0</td>
 </tr>
 <tr class="odd">
@@ -833,9 +833,9 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <td>0</td>
 <td>POINT (1603388.006614 6464130.397742)</td>
 <td>24.0</td>
-<td>15.824812</td>
-<td>15.012451</td>
-<td>38.368153</td>
+<td>12.397884</td>
+<td>10.922266</td>
+<td>52.736309</td>
 <td>9.0</td>
 </tr>
 </tbody>
@@ -930,8 +930,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1042,7 +1040,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

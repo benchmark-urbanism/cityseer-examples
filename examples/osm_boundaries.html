@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1e8aa9d37ded5ff210454fa88ddfbe5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd469e0fd2e6d0164b41e1955f8bb114.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 20, 2024</p>
+      <p class="date-modified">November 25, 2024</p>
     </div>
   </div>
     
@@ -309,11 +309,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>If you want to download a street network for a specific OSM boundary then you can use <code>osmnx</code> to download the boundary, which can then be passed to <code>cityseer</code> for generating a network.</p>
+<p>If you want to download a street network for a specific OSM boundary then you can use <code>osmnx</code> to download the boundary. The boundary can then be passed to <code>cityseer</code> for generating a network.</p>
 <section id="download-boundary" class="level2">
 <h2 class="anchored" data-anchor-id="download-boundary">Download Boundary</h2>
 <p>Download the boundary. Go to OSM and select the relation ID for the boundary that you’d like to download and pass it to <code>ox.geocode_to_gdf()</code>.</p>
-<div id="506e26d8" class="cell" data-execution_count="1">
+<div id="1f376f47" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bounds_gdf <span class="op">=</span> ox.geocode_to_gdf(</span>
@@ -349,7 +349,7 @@ Tip
 <section id="buffer-and-simplify" class="level2">
 <h2 class="anchored" data-anchor-id="buffer-and-simplify">Buffer and Simplify</h2>
 <p>Buffer and simplify depending on preferences. Make sure your distances correspond to the unit of the current CRS!</p>
-<div id="692a8311" class="cell" data-execution_count="2">
+<div id="210d6a13" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># buffer if wanted</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_geom.<span class="bu">buffer</span>(<span class="fl">0.01</span>)  <span class="co"># WGS - 4326</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># some simplification is recommended</span></span>
@@ -371,7 +371,7 @@ Tip
 <section id="generate-network" class="level2">
 <h2 class="anchored" data-anchor-id="generate-network">Generate Network</h2>
 <p>Now you can pass the boundary to <code>cityseer</code> to download and create the network.</p>
-<div id="ee9ddb10" class="cell" data-execution_count="3">
+<div id="2dc766fd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>G_nx <span class="op">=</span> io.osm_graph_from_poly(</span>
@@ -384,16 +384,16 @@ Tip
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32631.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-  0%|          | 0/29545 [00:00&lt;?, ?it/s]100%|██████████| 29545/29545 [00:00&lt;00:00, 554487.34it/s]
+  0%|          | 0/29652 [00:00&lt;?, ?it/s]100%|██████████| 29652/29652 [00:00&lt;00:00, 554891.53it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-  0%|          | 0/32373 [00:00&lt;?, ?it/s]100%|██████████| 32373/32373 [00:00&lt;00:00, 1120907.11it/s]
+  0%|          | 0/32489 [00:00&lt;?, ?it/s]100%|██████████| 32489/32489 [00:00&lt;00:00, 1132646.85it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-  0%|          | 0/32373 [00:00&lt;?, ?it/s] 30%|██▉       | 9684/32373 [00:00&lt;00:00, 96834.32it/s] 62%|██████▏   | 20119/32373 [00:00&lt;00:00, 101248.44it/s] 94%|█████████▍| 30474/32373 [00:00&lt;00:00, 102295.14it/s]100%|██████████| 32373/32373 [00:00&lt;00:00, 101342.78it/s]
+  0%|          | 0/32489 [00:00&lt;?, ?it/s] 32%|███▏      | 10237/32489 [00:00&lt;00:00, 102364.24it/s] 64%|██████▍   | 20893/32489 [00:00&lt;00:00, 104826.31it/s] 97%|█████████▋| 31556/32489 [00:00&lt;00:00, 105645.32it/s]100%|██████████| 32489/32489 [00:00&lt;00:00, 104875.76it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-  0%|          | 0/29545 [00:00&lt;?, ?it/s]  3%|▎         | 821/29545 [00:00&lt;00:03, 8136.56it/s]  6%|▌         | 1635/29545 [00:00&lt;00:04, 6794.80it/s]  8%|▊         | 2329/29545 [00:00&lt;00:04, 6493.75it/s] 10%|█         | 2985/29545 [00:00&lt;00:04, 6348.06it/s] 12%|█▏        | 3669/29545 [00:00&lt;00:03, 6494.64it/s] 15%|█▍        | 4322/29545 [00:00&lt;00:03, 6332.19it/s] 17%|█▋        | 5011/29545 [00:00&lt;00:03, 6498.33it/s] 20%|█▉        | 5863/29545 [00:00&lt;00:03, 7114.99it/s] 22%|██▏       | 6579/29545 [00:00&lt;00:03, 6765.04it/s] 25%|██▍       | 7262/29545 [00:01&lt;00:03, 6443.75it/s] 27%|██▋       | 7938/29545 [00:01&lt;00:03, 6527.58it/s] 29%|██▉       | 8659/29545 [00:01&lt;00:03, 6721.97it/s] 32%|███▏      | 9336/29545 [00:01&lt;00:03, 6662.29it/s] 34%|███▍      | 10154/29545 [00:01&lt;00:02, 7104.98it/s] 38%|███▊      | 11251/29545 [00:01&lt;00:02, 8169.73it/s] 42%|████▏     | 12262/29545 [00:01&lt;00:01, 8738.68it/s] 45%|████▍     | 13155/29545 [00:01&lt;00:01, 8537.77it/s] 48%|████▊     | 14125/29545 [00:01&lt;00:01, 8870.12it/s] 52%|█████▏    | 15455/29545 [00:02&lt;00:01, 10164.66it/s] 56%|█████▌    | 16618/29545 [00:02&lt;00:01, 10592.72it/s] 60%|██████    | 17844/29545 [00:02&lt;00:01, 11074.48it/s] 65%|██████▍   | 19087/29545 [00:02&lt;00:00, 11468.87it/s] 69%|██████▉   | 20441/29545 [00:02&lt;00:00, 12072.65it/s] 73%|███████▎  | 21692/29545 [00:02&lt;00:00, 12179.97it/s] 78%|███████▊  | 22950/29545 [00:02&lt;00:00, 12270.48it/s] 82%|████████▏ | 24248/29545 [00:02&lt;00:00, 12475.05it/s] 87%|████████▋ | 25658/29545 [00:02&lt;00:00, 12958.57it/s] 91%|█████████ | 26955/29545 [00:02&lt;00:00, 12263.73it/s] 95%|█████████▌| 28190/29545 [00:03&lt;00:00, 11807.95it/s]100%|██████████| 29545/29545 [00:03&lt;00:00, 9407.76it/s] 
+  0%|          | 0/29652 [00:00&lt;?, ?it/s]  3%|▎         | 807/29652 [00:00&lt;00:03, 8057.77it/s]  5%|▌         | 1613/29652 [00:00&lt;00:03, 7160.63it/s]  8%|▊         | 2336/29652 [00:00&lt;00:04, 6197.11it/s] 10%|█         | 2969/29652 [00:00&lt;00:04, 6222.61it/s] 12%|█▏        | 3600/29652 [00:00&lt;00:04, 6233.24it/s] 14%|█▍        | 4229/29652 [00:00&lt;00:04, 6016.42it/s] 17%|█▋        | 4956/29652 [00:00&lt;00:03, 6396.50it/s] 19%|█▉        | 5640/29652 [00:00&lt;00:03, 6507.51it/s] 22%|██▏       | 6451/29652 [00:00&lt;00:03, 6984.93it/s] 24%|██▍       | 7154/29652 [00:01&lt;00:03, 6474.33it/s] 27%|██▋       | 7911/29652 [00:01&lt;00:03, 6779.82it/s] 29%|██▉       | 8627/29652 [00:01&lt;00:03, 6868.40it/s] 32%|███▏      | 9510/29652 [00:01&lt;00:02, 7435.76it/s] 35%|███▍      | 10283/29652 [00:01&lt;00:02, 7412.37it/s] 39%|███▉      | 11546/29652 [00:01&lt;00:02, 8931.85it/s] 42%|████▏     | 12474/29652 [00:01&lt;00:01, 9033.48it/s] 45%|████▌     | 13383/29652 [00:01&lt;00:01, 8973.74it/s] 48%|████▊     | 14285/29652 [00:01&lt;00:01, 8977.75it/s] 53%|█████▎    | 15644/29652 [00:02&lt;00:01, 10333.75it/s] 57%|█████▋    | 16793/29652 [00:02&lt;00:01, 10675.73it/s] 61%|██████    | 18037/29652 [00:02&lt;00:01, 11198.63it/s] 65%|██████▌   | 19329/29652 [00:02&lt;00:00, 11706.32it/s] 70%|██████▉   | 20658/29652 [00:02&lt;00:00, 12173.26it/s] 74%|███████▍  | 22009/29652 [00:02&lt;00:00, 12562.02it/s] 78%|███████▊  | 23267/29652 [00:02&lt;00:00, 12325.34it/s] 83%|████████▎ | 24579/29652 [00:02&lt;00:00, 12534.17it/s] 88%|████████▊ | 26025/29652 [00:02&lt;00:00, 13093.82it/s] 92%|█████████▏| 27336/29652 [00:02&lt;00:00, 12021.15it/s] 97%|█████████▋| 28689/29652 [00:03&lt;00:00, 12442.44it/s]100%|██████████| 29652/29652 [00:03&lt;00:00, 9488.80it/s] 
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-  0%|          | 0/11375 [00:00&lt;?, ?it/s] 17%|█▋        | 1890/11375 [00:00&lt;00:00, 18891.73it/s] 33%|███▎      | 3780/11375 [00:00&lt;00:00, 15125.00it/s] 47%|████▋     | 5339/11375 [00:00&lt;00:00, 12583.80it/s] 58%|█████▊    | 6649/11375 [00:00&lt;00:00, 10624.23it/s] 68%|██████▊   | 7760/11375 [00:00&lt;00:00, 9280.40it/s]  77%|███████▋  | 8725/11375 [00:00&lt;00:00, 8342.67it/s] 84%|████████▍ | 9583/11375 [00:01&lt;00:00, 7421.55it/s] 91%|█████████ | 10343/11375 [00:01&lt;00:00, 6786.83it/s] 97%|█████████▋| 11031/11375 [00:01&lt;00:00, 6161.66it/s]100%|██████████| 11375/11375 [00:01&lt;00:00, 8217.20it/s]</code></pre>
+  0%|          | 0/11399 [00:00&lt;?, ?it/s] 21%|██        | 2409/11399 [00:00&lt;00:00, 24079.69it/s] 42%|████▏     | 4817/11399 [00:00&lt;00:00, 15150.39it/s] 57%|█████▋    | 6516/11399 [00:00&lt;00:00, 11575.50it/s] 69%|██████▊   | 7818/11399 [00:00&lt;00:00, 9831.61it/s]  78%|███████▊  | 8889/11399 [00:00&lt;00:00, 8675.41it/s] 86%|████████▌ | 9807/11399 [00:01&lt;00:00, 7696.08it/s] 93%|█████████▎| 10605/11399 [00:01&lt;00:00, 6742.63it/s] 99%|█████████▉| 11297/11399 [00:01&lt;00:00, 6047.42it/s]100%|██████████| 11399/11399 [00:01&lt;00:00, 8337.22it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -490,8 +490,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -602,7 +600,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

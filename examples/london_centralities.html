@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1e8aa9d37ded5ff210454fa88ddfbe5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd469e0fd2e6d0164b41e1955f8bb114.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 20, 2024</p>
+      <p class="date-modified">November 25, 2024</p>
     </div>
   </div>
     
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"examples"</span>):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"/examples"</span>):</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    repo_path <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">".."</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">str</span>(repo_path.resolve()).endswith(<span class="st">"cityseer-examples"</span>):</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data path:"</span>, open_roads_path)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path exists:"</span>, open_roads_path.exists())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/examples/../temp/os_open_roads/oproad_gb.gpkg
+<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/temp/os_open_roads/oproad_gb.gpkg
 path exists: True</code></pre>
 </div>
 </div>
@@ -384,14 +384,14 @@ INFO:cityseer.tools.io:Edges: 24189
 INFO:cityseer.tools.io:Dropped 430 edges where not both start and end nodes were present.
 INFO:cityseer.tools.io:Running basic graph cleaning
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 18193/18193 [00:00&lt;00:00, 36376.39it/s]
+100%|██████████| 18193/18193 [00:01&lt;00:00, 12489.19it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
-100%|██████████| 22578/22578 [00:00&lt;00:00, 125918.80it/s]
+100%|██████████| 22578/22578 [00:00&lt;00:00, 39326.27it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 22516/22516 [00:13&lt;00:00, 1718.67it/s]
+100%|██████████| 22516/22516 [00:37&lt;00:00, 603.95it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 75794/75794 [00:00&lt;00:00, 77741.04it/s]
-100%|██████████| 75794/75794 [00:11&lt;00:00, 6857.38it/s]</code></pre>
+100%|██████████| 75794/75794 [00:02&lt;00:00, 35416.78it/s]
+100%|██████████| 75794/75794 [00:26&lt;00:00, 2869.72it/s]</code></pre>
 </div>
 </div>
 </section>
@@ -421,11 +421,11 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [03:18&lt;00:00, 381.59it/s]
+100%|██████████| 75794/75794 [06:44&lt;00:00, 187.53it/s]
 INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [01:55&lt;00:00, 657.37it/s]
+100%|██████████| 75794/75794 [04:11&lt;00:00, 301.05it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 75794/75794 [01:42&lt;00:00, 738.44it/s]</code></pre>
+100%|██████████| 75794/75794 [02:17&lt;00:00, 551.76it/s]</code></pre>
 </div>
 </div>
 </section>
@@ -683,8 +683,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -795,7 +793,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

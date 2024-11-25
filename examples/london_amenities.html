@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f1e8aa9d37ded5ff210454fa88ddfbe5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd469e0fd2e6d0164b41e1955f8bb114.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 20, 2024</p>
+      <p class="date-modified">November 25, 2024</p>
     </div>
   </div>
     
@@ -359,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Fetch and simplify the street network. The street network will be decomposed for a higher resolution analysis.</p>
 <div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate OSM graph from polygon</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>G_utm <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, simplify<span class="op">=</span><span class="va">True</span>, iron_edges<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>G_utm <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, simplify<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># decompose for higher resolution analysis</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>G_decomp <span class="op">=</span> graphs.nx_decompose(G_utm, <span class="dv">25</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
@@ -367,72 +367,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    G_decomp, crs<span class="op">=</span><span class="dv">32629</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
+<pre><code>WARNING:cityseer.tools.io:Merging node 12346974350 into 12346974349 due to identical x, y coords.
+WARNING:cityseer.tools.io:Merging node 12282444586 into 5753060461 due to identical x, y coords.
+INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 158974/158974 [00:00&lt;00:00, 448816.60it/s]
+100%|██████████| 174264/174264 [00:00&lt;00:00, 186830.01it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 174746/174746 [00:00&lt;00:00, 958047.36it/s]
+100%|██████████| 191529/191529 [00:00&lt;00:00, 414045.17it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 174746/174746 [00:02&lt;00:00, 69522.98it/s]
+100%|██████████| 191529/191529 [00:06&lt;00:00, 29476.09it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 158974/158974 [00:20&lt;00:00, 7661.52it/s]
+100%|██████████| 174264/174264 [01:04&lt;00:00, 2681.14it/s]
+100%|██████████| 78548/78548 [00:01&lt;00:00, 46130.52it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 51042/51042 [00:00&lt;00:00, 281125.34it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 44125/44125 [00:01&lt;00:00, 41301.46it/s]
-INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 40426/40426 [00:00&lt;00:00, 100086.85it/s]
-INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 40426/40426 [00:11&lt;00:00, 3640.98it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 28513/28513 [00:00&lt;00:00, 159276.17it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 43571/43571 [00:03&lt;00:00, 11934.13it/s]
+100%|██████████| 58746/58746 [00:00&lt;00:00, 197320.92it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 40139/40139 [00:00&lt;00:00, 691922.69it/s]
+100%|██████████| 76816/76816 [00:00&lt;00:00, 255091.63it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 28135/28135 [00:11&lt;00:00, 2433.05it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 41835/41835 [00:00&lt;00:00, 220327.91it/s]
-INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 29831/29831 [00:00&lt;00:00, 100799.57it/s]
-INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 29831/29831 [00:05&lt;00:00, 5392.59it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 25797/25797 [00:00&lt;00:00, 59691.08it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 37634/37634 [00:01&lt;00:00, 20032.03it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 24356/24356 [00:00&lt;00:00, 132270.32it/s]
-INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 34781/34781 [00:10&lt;00:00, 3355.07it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 34781/34781 [00:00&lt;00:00, 189489.49it/s]
+100%|██████████| 58746/58746 [00:05&lt;00:00, 10670.78it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 77147/77147 [00:05&lt;00:00, 13879.96it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 34779/34779 [00:00&lt;00:00, 719880.47it/s]
+100%|██████████| 76304/76304 [00:00&lt;00:00, 325181.01it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 23771/23771 [00:06&lt;00:00, 3438.18it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 34993/34993 [00:00&lt;00:00, 55171.39it/s] 
+100%|██████████| 58746/58746 [00:06&lt;00:00, 9780.45it/s] 
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 76525/76525 [00:02&lt;00:00, 29757.03it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 76521/76521 [00:00&lt;00:00, 353030.06it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 58746/58746 [00:06&lt;00:00, 9087.67it/s] 
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 76729/76729 [00:02&lt;00:00, 35045.98it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 23985/23985 [00:00&lt;00:00, 109008.42it/s]
+100%|██████████| 58746/58746 [00:03&lt;00:00, 18981.64it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 23985/23985 [00:02&lt;00:00, 10589.26it/s]
+100%|██████████| 58746/58746 [00:04&lt;00:00, 11888.25it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 73043/73043 [00:01&lt;00:00, 41577.49it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 23634/23634 [00:00&lt;00:00, 429373.54it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 34563/34563 [00:00&lt;00:00, 117906.15it/s]
+100%|██████████| 56118/56118 [00:01&lt;00:00, 43097.21it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 54749/54749 [00:01&lt;00:00, 38225.17it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 54749/54749 [00:03&lt;00:00, 16026.90it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 70332/70332 [00:02&lt;00:00, 24079.19it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 23568/23568 [00:00&lt;00:00, 474414.40it/s]
-INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 34323/34323 [00:10&lt;00:00, 3345.77it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 34323/34323 [00:00&lt;00:00, 193568.69it/s]
+100%|██████████| 54045/54045 [00:00&lt;00:00, 130869.43it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 53889/53889 [00:01&lt;00:00, 36971.43it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 53889/53889 [00:05&lt;00:00, 9188.23it/s] 
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 68867/68867 [00:01&lt;00:00, 48753.37it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 52924/52924 [00:00&lt;00:00, 171246.80it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 68592/68592 [00:00&lt;00:00, 254192.38it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 52826/52826 [00:14&lt;00:00, 3647.49it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 69163/69163 [00:02&lt;00:00, 25500.82it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 52826/52826 [00:01&lt;00:00, 36928.69it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 52826/52826 [00:28&lt;00:00, 1863.97it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 59843/59843 [00:02&lt;00:00, 22506.81it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 59069/59069 [00:00&lt;00:00, 229666.21it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 43940/43940 [00:10&lt;00:00, 4014.49it/s]
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 59564/59564 [00:00&lt;00:00, 67180.99it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 43940/43940 [00:01&lt;00:00, 42267.47it/s]
+INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 43940/43940 [00:29&lt;00:00, 1513.70it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 51743/51743 [00:06&lt;00:00, 8337.82it/s] 
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 36464/36464 [00:02&lt;00:00, 13799.78it/s]
+INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 34296/34296 [00:01&lt;00:00, 25024.46it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 48315/48315 [00:00&lt;00:00, 172657.82it/s]
+INFO:cityseer.tools.graphs:Snapping gapped endings.
+100%|██████████| 34296/34296 [00:03&lt;00:00, 10561.17it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 48531/48531 [00:00&lt;00:00, 164157.85it/s]
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 34296/34296 [00:17&lt;00:00, 1958.10it/s] 
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 56612/56612 [00:04&lt;00:00, 13751.11it/s]
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+100%|██████████| 38724/38724 [00:00&lt;00:00, 58859.72it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 37272/37272 [00:04&lt;00:00, 7773.84it/s] 
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 34322/34322 [00:16&lt;00:00, 2081.67it/s]
+100%|██████████| 50144/50144 [01:49&lt;00:00, 458.24it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 90342/90342 [00:01&lt;00:00, 83076.16it/s] 
-100%|██████████| 90342/90342 [00:13&lt;00:00, 6772.80it/s]</code></pre>
+100%|██████████| 106236/106236 [00:06&lt;00:00, 16881.69it/s]
+100%|██████████| 106236/106236 [01:37&lt;00:00, 1093.36it/s]</code></pre>
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
@@ -448,7 +491,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: pub, restaurant
-100%|██████████| 90342/90342 [01:08&lt;00:00, 1324.37it/s]</code></pre>
+100%|██████████| 106236/106236 [03:02&lt;00:00, 582.02it/s]</code></pre>
 </div>
 </div>
 <p>The output GeoDataFrame will contain new columns for each landuse and distance combination. For each of these the following will have been computed:</p>
@@ -457,7 +500,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <li>Similarly, a distance-weighted count of reachable locations</li>
 <li>The distance to the nearest instance of a given landuse. Where there are no reachable landuses for a given node within the specified distance threshold, then a <code>np.inf</code> value will be returned.</li>
 </ul>
-<div id="cell-11" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="22">
+<div id="cell-11" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer <span class="im">import</span> rustalgos</span>
@@ -538,7 +581,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="33">
+<div id="cell-12" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Distances to nearest instance of specified landuse"</span>,</span>
@@ -576,18 +619,18 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distance to nearest restaurant."</span>, color<span class="op">=</span>text_colour, fontsize<span class="op">=</span>font_size</span>
 <span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/bs/sq3p18cs4dn1ws4kpmfyk_3c0000gn/T/ipykernel_66498/4173652336.py:8: SettingWithCopyWarning: 
+<pre><code>/var/folders/bs/sq3p18cs4dn1ws4kpmfyk_3c0000gn/T/ipykernel_22711/4173652336.py:8: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   dist_data[np.isinf(dist_data)] = max(distances)
-/var/folders/bs/sq3p18cs4dn1ws4kpmfyk_3c0000gn/T/ipykernel_66498/4173652336.py:22: SettingWithCopyWarning: 
+/var/folders/bs/sq3p18cs4dn1ws4kpmfyk_3c0000gn/T/ipykernel_22711/4173652336.py:22: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   dist_data[np.isinf(dist_data)] = max(distances)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Text(0.5, 1.0, 'Distance to nearest restaurant.')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -685,8 +728,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -797,7 +838,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
