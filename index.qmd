@@ -17,7 +17,7 @@ Use the navigation menu to explore examples.
 
 ::: {.callout-warning}
 
-The guide and examples are based on `cityseer>=4.12.0`. Version `4.12.0` uses a new output column naming convention for computed metrics for improved consistency. If using an earlier version, please upgrade to `4.12.0` or else adapt the column names to match the earlier convention.
+The guide and examples are based on `cityseer>=4.16.3`.
 
 :::
 

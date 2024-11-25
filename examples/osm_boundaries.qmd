@@ -7,7 +7,7 @@ language:
   title-block-modified: "Last update"
 ---
 
-If you want to download a street network for a specific OSM boundary then you can use `osmnx` to download the boundary, which can then be passed to `cityseer` for generating a network.
+If you want to download a street network for a specific OSM boundary then you can use `osmnx` to download the boundary. The boundary can then be passed to `cityseer` for generating a network.
 
 ## Download Boundary
 

@@ -12,7 +12,7 @@
 cityseer/_version.py
 
 # temporary working directories
-**/temp/**
+**/temp
 
 # pdm
 .pdm-python
