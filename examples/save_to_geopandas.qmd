@@ -19,12 +19,16 @@ Assume we have the following network.
 import osmnx as ox
 from cityseer.tools import io, plot
 
+# retrieve a boundary from OSM
 bounds_gdf = ox.geocode_to_gdf(
     "R1536593",  # OSM relation ID
     by_osmid=True,
 )
+# project
 bounds_gdf = bounds_gdf.to_crs(3035)  # projected CRS
+# extract geom
 bounds_geom = bounds_gdf.union_all().simplify(500)
+# extract network for geom
 G_nx = io.osm_graph_from_poly(
     bounds_geom,
     poly_crs_code=3035,  # set to your CRS
@@ -60,7 +64,7 @@ The GPKG file can now be explored or modified in GIS software such as QGIS.
 
 ## Reload
 
-To reload, you can read the `LineString` file with `geopandas`.
+To reload, you can read the data with `geopandas`.
 
 ```{python}
 import geopandas as gpd
