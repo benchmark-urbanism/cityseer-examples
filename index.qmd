@@ -17,7 +17,7 @@ Use the navigation menu to explore examples.
 
 ::: {.callout-warning}
 
-The guide and examples are based on `cityseer>=4.16.14`.
+The guide and examples are based on `cityseer>=4.16.15`.
 
 :::
 
