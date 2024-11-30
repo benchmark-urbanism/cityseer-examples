@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 29, 2024</p>
+      <p class="date-modified">November 30, 2024</p>
     </div>
   </div>
     
@@ -309,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Install and update <code>cityseer</code> if necessary.</p>
-<div id="cell-2" class="cell" data-execution_count="5">
+<div id="cell-2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install --upgrade cityseer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>See the <a href="https://cityseer.benchmarkurbanism.com/guide">guide</a> for a preamble.</p>
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="downloading-data" class="level2">
 <h2 class="anchored" data-anchor-id="downloading-data">Downloading data</h2>
 <p>This example will make use of OSM data downloaded from the <a href="https://wiki.openstreetmap.org/wiki/API">OSM API</a>. To keep things interesting, let’s pick London Soho, which will be buffered and cleaned for a 1,250m radius.</p>
-<div id="cell-5" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="6">
+<div id="cell-5" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> utm</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -361,147 +361,152 @@ WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 14799/14799 [00:00&lt;00:00, 148566.80it/s]
+100%|██████████| 14807/14807 [00:00&lt;00:00, 613965.43it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 16099/16099 [00:00&lt;00:00, 463869.56it/s]
+100%|██████████| 16107/16107 [00:00&lt;00:00, 1118837.64it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 16099/16099 [00:00&lt;00:00, 23463.07it/s]
+100%|██████████| 16107/16107 [00:00&lt;00:00, 51149.70it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 14799/14799 [00:03&lt;00:00, 3944.51it/s]
+100%|██████████| 14807/14807 [00:01&lt;00:00, 9491.54it/s] 
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 14799/14799 [00:00&lt;00:00, 154355.66it/s]
+100%|██████████| 14807/14807 [00:00&lt;00:00, 565542.59it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 16099/16099 [00:00&lt;00:00, 252854.74it/s]
+100%|██████████| 16107/16107 [00:00&lt;00:00, 929317.36it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 16099/16099 [00:00&lt;00:00, 36632.08it/s]
+100%|██████████| 16107/16107 [00:00&lt;00:00, 30750.00it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 14799/14799 [00:03&lt;00:00, 4430.60it/s]
-100%|██████████| 7847/7847 [00:00&lt;00:00, 29545.89it/s]
+100%|██████████| 14807/14807 [00:01&lt;00:00, 8596.08it/s]
+INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 7848/7848 [00:00&lt;00:00, 259308.64it/s]
+100%|██████████| 7848/7848 [00:02&lt;00:00, 3020.41it/s]
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 6548/6548 [00:00&lt;00:00, 15848.78it/s]
+100%|██████████| 5424/5424 [00:00&lt;00:00, 23495.07it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 6547/6547 [00:00&lt;00:00, 163503.63it/s]
+100%|██████████| 5807/5807 [00:00&lt;00:00, 181832.81it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7128/7128 [00:00&lt;00:00, 282220.22it/s]
+100%|██████████| 4822/4822 [00:00&lt;00:00, 81470.68it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 68645.11it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 51685.36it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7128/7128 [00:00&lt;00:00, 45628.53it/s]
+100%|██████████| 4822/4822 [00:00&lt;00:00, 54426.19it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7084/7084 [00:00&lt;00:00, 264722.47it/s]
+100%|██████████| 4796/4796 [00:00&lt;00:00, 551709.55it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 6970.15it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 6897.39it/s] 
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7143/7143 [00:00&lt;00:00, 81118.75it/s]
+100%|██████████| 4850/4850 [00:00&lt;00:00, 77982.86it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7134/7134 [00:00&lt;00:00, 240998.76it/s]
+100%|██████████| 4842/4842 [00:00&lt;00:00, 331005.13it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 31282.42it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 43239.77it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7135/7135 [00:00&lt;00:00, 74437.75it/s]
+100%|██████████| 4843/4843 [00:00&lt;00:00, 21258.55it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7135/7135 [00:00&lt;00:00, 363307.42it/s]
+100%|██████████| 4843/4843 [00:00&lt;00:00, 262265.85it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 15016.09it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 13227.53it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7136/7136 [00:00&lt;00:00, 10492.68it/s]
+100%|██████████| 4844/4844 [00:00&lt;00:00, 67518.77it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5875/5875 [00:00&lt;00:00, 39182.34it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 52394.20it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 70470.03it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 89017.54it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7136/7136 [00:00&lt;00:00, 101340.64it/s]
+100%|██████████| 4844/4844 [00:00&lt;00:00, 26022.01it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5875/5875 [00:00&lt;00:00, 84584.64it/s]
+100%|██████████| 3729/3729 [00:00&lt;00:00, 146229.49it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5821/5821 [00:00&lt;00:00, 43731.44it/s]
+100%|██████████| 3695/3695 [00:00&lt;00:00, 47077.34it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5821/5821 [00:00&lt;00:00, 8397.71it/s] 
+100%|██████████| 3695/3695 [00:00&lt;00:00, 7890.65it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6483/6483 [00:00&lt;00:00, 25464.47it/s]
+100%|██████████| 4369/4369 [00:00&lt;00:00, 14246.40it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5336/5336 [00:00&lt;00:00, 147346.84it/s]
+100%|██████████| 3347/3347 [00:00&lt;00:00, 99794.10it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5310/5310 [00:00&lt;00:00, 40602.91it/s]
+100%|██████████| 3313/3313 [00:00&lt;00:00, 61584.44it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5310/5310 [00:00&lt;00:00, 16519.66it/s]
+100%|██████████| 3313/3313 [00:00&lt;00:00, 21354.62it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6248/6248 [00:00&lt;00:00, 9618.89it/s]
+100%|██████████| 4180/4180 [00:00&lt;00:00, 70943.76it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5227/5227 [00:00&lt;00:00, 156839.32it/s]
+100%|██████████| 3274/3274 [00:00&lt;00:00, 172925.05it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5217/5217 [00:00&lt;00:00, 41853.19it/s]
+100%|██████████| 3264/3264 [00:00&lt;00:00, 54643.24it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5217/5217 [00:00&lt;00:00, 9874.68it/s] 
+100%|██████████| 3264/3264 [00:00&lt;00:00, 13411.29it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6048/6048 [00:00&lt;00:00, 67687.97it/s]
+100%|██████████| 4067/4067 [00:00&lt;00:00, 41628.29it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5059/5059 [00:00&lt;00:00, 265985.38it/s]
+100%|██████████| 3189/3189 [00:00&lt;00:00, 228929.01it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5052/5052 [00:00&lt;00:00, 38691.91it/s]
+100%|██████████| 3183/3183 [00:00&lt;00:00, 35380.10it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6025/6025 [00:00&lt;00:00, 324569.82it/s]
+100%|██████████| 4054/4054 [00:00&lt;00:00, 703825.01it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 5052/5052 [00:02&lt;00:00, 1685.37it/s]
+100%|██████████| 3183/3183 [00:00&lt;00:00, 4772.23it/s] 
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6716/6716 [00:00&lt;00:00, 316185.27it/s]
+100%|██████████| 4176/4176 [00:00&lt;00:00, 125288.18it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5052/5052 [00:02&lt;00:00, 1808.15it/s]
+100%|██████████| 3183/3183 [00:02&lt;00:00, 1529.20it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 8696/8696 [00:00&lt;00:00, 46617.32it/s]
+100%|██████████| 4700/4700 [00:00&lt;00:00, 69806.55it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 6190/6190 [00:00&lt;00:00, 48572.34it/s]
+100%|██████████| 3473/3473 [00:00&lt;00:00, 106498.16it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5756/5756 [00:03&lt;00:00, 1694.45it/s]
+100%|██████████| 2954/2954 [00:01&lt;00:00, 2439.17it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6112/6112 [00:00&lt;00:00, 295051.92it/s]
+100%|██████████| 3459/3459 [00:00&lt;00:00, 70037.35it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3607/3607 [00:02&lt;00:00, 1786.82it/s]
+100%|██████████| 2233/2233 [00:01&lt;00:00, 1754.22it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6205/6205 [00:00&lt;00:00, 14379.90it/s]
+100%|██████████| 3477/3477 [00:00&lt;00:00, 19759.63it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3607/3607 [00:00&lt;00:00, 43759.41it/s]
+100%|██████████| 2233/2233 [00:00&lt;00:00, 49668.19it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3607/3607 [00:02&lt;00:00, 1742.40it/s]
+100%|██████████| 2233/2233 [00:00&lt;00:00, 2405.85it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3795/3795 [00:00&lt;00:00, 10622.30it/s]
+100%|██████████| 2871/2871 [00:00&lt;00:00, 24783.38it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3570/3570 [00:00&lt;00:00, 200225.52it/s]
+100%|██████████| 2756/2756 [00:00&lt;00:00, 590252.34it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2286/2286 [00:00&lt;00:00, 3719.56it/s]
+100%|██████████| 1822/1822 [00:00&lt;00:00, 6374.01it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3588/3588 [00:00&lt;00:00, 81222.58it/s]
+100%|██████████| 2759/2759 [00:00&lt;00:00, 122562.27it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2286/2286 [00:00&lt;00:00, 35590.73it/s]
+100%|██████████| 1822/1822 [00:00&lt;00:00, 63104.01it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2286/2286 [00:02&lt;00:00, 1116.79it/s]
+100%|██████████| 1822/1822 [00:00&lt;00:00, 4332.72it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 2749/2749 [00:00&lt;00:00, 8918.00it/s] 
+100%|██████████| 2410/2410 [00:00&lt;00:00, 29905.87it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1651/1651 [00:00&lt;00:00, 7793.46it/s] 
+100%|██████████| 1533/1533 [00:00&lt;00:00, 31481.00it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2448/2448 [00:00&lt;00:00, 25657.34it/s]
+100%|██████████| 2259/2259 [00:00&lt;00:00, 55616.79it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2420/2420 [00:00&lt;00:00, 7714.79it/s]
+100%|██████████| 2242/2242 [00:00&lt;00:00, 15593.53it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2335/2335 [00:00&lt;00:00, 47892.36it/s]
+100%|██████████| 2193/2193 [00:00&lt;00:00, 213309.26it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 1491/1491 [00:00&lt;00:00, 210328.84it/s]
+100%|██████████| 1440/1440 [00:00&lt;00:00, 317666.74it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1467/1467 [00:00&lt;00:00, 25790.28it/s]</code></pre>
+100%|██████████| 1425/1425 [00:00&lt;00:00, 61483.61it/s]</code></pre>
 </div>
 </div>
 <p>The automated graph cleaning may give satisfactory results depending on the intended end-use. See the steps following beneath for an example of how to manually clean the graph where additional control is preferred.</p>
-<div id="cell-7" class="cell" data-execution_count="7">
+<div id="cell-7" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The graph before simplification."</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>simple_plot(G_raw, plot_geoms<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -515,7 +520,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <pre><code>The graph before simplification.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 7847/7847 [00:01&lt;00:00, 4060.25it/s]</code></pre>
+<pre><code>100%|██████████| 7848/7848 [00:00&lt;00:00, 9553.62it/s] </code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -532,7 +537,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <pre><code>The graph after simplification</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 2227/2227 [00:00&lt;00:00, 7262.13it/s]</code></pre>
+<pre><code>100%|██████████| 2097/2097 [00:00&lt;00:00, 34937.12it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -545,242 +550,292 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </section>
 <section id="manual-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="manual-cleaning">Manual cleaning</h2>
-<p>The automated simplification uses a number of steps and should generally give a solid starting point for further manual cleaning.</p>
-<p>It is also possible to clean the network with an entirely manual sequence of steps if you need greater control. The following is the steps followed by the automatic cleaning routine. You can adapt this to work for context specific considerations such as which OSM road types to clean and what distances to use.</p>
-<div id="cell-9" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove disconnected components</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G_raw, despine<span class="op">=</span><span class="dv">0</span>, remove_disconnected<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># clean by highway types - leave motorway as is</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># split only for a given type at a time</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist, tags, simplify_line_angles <span class="kw">in</span> (</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">28</span>, [<span class="st">"trunk"</span>], <span class="dv">45</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">24</span>, [<span class="st">"primary"</span>], <span class="dv">45</span>),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">20</span>, [<span class="st">"secondary"</span>], <span class="dv">45</span>),</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">16</span>, [<span class="st">"tertiary"</span>], <span class="dv">45</span>),</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        G,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        squash_nodes<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>tags,</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        osm_matched_tags_only<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        simplify_line_angles<span class="op">=</span>simplify_line_angles,</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist, tags, simplify_line_angles <span class="kw">in</span> (</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">28</span>, [<span class="st">"trunk"</span>], <span class="dv">95</span>),</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">24</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>], <span class="dv">95</span>),</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">20</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>], <span class="dv">95</span>),</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">16</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>, <span class="st">"tertiary"</span>], <span class="dv">95</span>),</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_consolidate_nodes(</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        G,</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        crawl<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>tags,</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        osm_matched_tags_only<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        simplify_line_angles<span class="op">=</span>simplify_line_angles,</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_remove_filler_nodes(G)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co"># snap gapped endings - don't clean danglers before this</span></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_snap_gapped_endings(G, buffer_dist<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co"># snap gapped endings to roads - don't clean danglers before this</span></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># look for degree 1 dead-ends and link to nearby edges</span></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
+<p>The automated simplification uses a number of steps and should generally give a solid starting point for further customised cleaning. The following is the steps followed by the automatic cleaning routine. You can adapt this to work for context specific considerations such as which OSM road types to clean and what distances to use.</p>
+<div id="cell-9" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># deduplicate by hierarchy</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_deduplicate_edges(G_raw)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># remove disconnected components</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G, despine<span class="op">=</span><span class="dv">0</span>, remove_disconnected<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># clean by highway types - leave motorways alone</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># split only for a given type at a time</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist, tags, max_angle <span class="kw">in</span> (</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">28</span>, [<span class="st">"trunk"</span>], <span class="dv">45</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">24</span>, [<span class="st">"primary"</span>], <span class="dv">45</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">20</span>, [<span class="st">"secondary"</span>], <span class="dv">45</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">16</span>, [<span class="st">"tertiary"</span>], <span class="dv">45</span>),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        G,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        squash_nodes<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>tags,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        osm_matched_tags_only<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        simplify_by_max_angle<span class="op">=</span>max_angle,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># consolidate</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist, tags, max_angle <span class="kw">in</span> (</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">28</span>, [<span class="st">"trunk"</span>], <span class="dv">95</span>),</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">24</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>], <span class="dv">95</span>),</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">20</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>], <span class="dv">95</span>),</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">16</span>, [<span class="st">"trunk"</span>, <span class="st">"primary"</span>, <span class="st">"secondary"</span>, <span class="st">"tertiary"</span>], <span class="dv">95</span>),</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_consolidate_nodes(</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        G,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        crawl<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>tags,</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>        osm_matched_tags_only<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        simplify_by_max_angle<span class="op">=</span>max_angle,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_remove_filler_nodes(G)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># snap gapped endings - don't clean danglers before this</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_snap_gapped_endings(</span>
 <span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    G,</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    buffer_dist<span class="op">=</span><span class="dv">25</span>,</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    min_node_degree<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    max_node_degree<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    squash_nodes<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co"># remove danglers</span></span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G, despine<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co"># do smaller scale cleaning</span></span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>simplify_angles <span class="op">=</span> <span class="dv">95</span></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">6</span>, <span class="dv">12</span>):</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>        G,</span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>        squash_nodes<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>[</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "trunk",</span></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "primary",</span></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "secondary",</span></span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "tertiary",</span></span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>            <span class="st">"residential"</span>,</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>            <span class="st">"service"</span>,</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cycleway"</span>,</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bridleway"</span>,</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pedestrian"</span>,</span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "steps",</span></span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway"</span>,</span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>            <span class="st">"path"</span>,</span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>            <span class="st">"living_street"</span>,</span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>            <span class="st">"unclassified"</span>,</span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>        simplify_line_angles<span class="op">=</span>simplify_angles,</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_consolidate_nodes(</span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>        G,</span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>        crawl<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>[</span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trunk"</span>,</span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>            <span class="st">"primary"</span>,</span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secondary"</span>,</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tertiary"</span>,</span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>            <span class="st">"residential"</span>,</span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>            <span class="st">"service"</span>,</span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cycleway"</span>,</span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bridleway"</span>,</span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pedestrian"</span>,</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>            <span class="st">"steps"</span>,</span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway"</span>,</span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>            <span class="st">"path"</span>,</span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>            <span class="st">"living_street"</span>,</span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>            <span class="st">"unclassified"</span>,</span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>        simplify_line_angles<span class="op">=</span>simplify_angles,</span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_filler_nodes(G)</span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_merge_parallel_edges(</span>
-<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>    G, merge_edges_by_midline<span class="op">=</span><span class="va">True</span>, contains_buffer_dist<span class="op">=</span><span class="dv">50</span></span>
-<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_iron_edges(G, min_self_loop_length<span class="op">=</span><span class="dv">100</span>, max_foot_tunnel_length<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="co"># do this last to clean up any orphaned sub components</span></span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G, despine<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>simple_plot(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    osm_hwy_target_tags<span class="op">=</span>[</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"residential"</span>,</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"living_street"</span>,</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># "service", # intentionally omitted - e.g. parking lots</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cycleway"</span>,</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bridleway"</span>,</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pedestrian"</span>,</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>        <span class="st">"steps"</span>,</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway"</span>,</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway_green"</span>,</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">"path"</span>,</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    buffer_dist<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="co"># snap gapped endings to roads - don't clean danglers before this</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="co"># look for degree 1 dead-ends and link to nearby edges</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>    G,</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    buffer_dist<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    osm_hwy_target_tags<span class="op">=</span>[</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># "trunk",  # intentionally omitted</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"primary"</span>,</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>        <span class="st">"primary_link"</span>,</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>        <span class="st">"secondary"</span>,</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>        <span class="st">"secondary_link"</span>,</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tertiary"</span>,</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tertiary_link"</span>,</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>        <span class="st">"residential"</span>,</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>        <span class="st">"living_street"</span>,</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>        <span class="co"># "service", # intentionally omitted - e.g. parking lots</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cycleway"</span>,</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"bridleway"</span>,</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pedestrian"</span>,</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>        <span class="st">"steps"</span>,</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway"</span>,</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway_green"</span>,</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>        <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>        <span class="st">"path"</span>,</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    min_node_degree<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>    max_node_degree<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    squash_nodes<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a><span class="co"># remove danglers</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G, despine<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="co"># do smaller scale cleaning</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>max_angle <span class="op">=</span> <span class="dv">120</span>  <span class="co"># rue de nevers in Paris</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">5</span>, <span class="dv">10</span>):</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_split_opposing_geoms(</span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>        G,</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>        squash_nodes<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>[</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "trunk",  # intentionally omitted</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>            <span class="st">"primary"</span>,</span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>            <span class="st">"primary_link"</span>,</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secondary"</span>,</span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secondary_link"</span>,</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tertiary"</span>,</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tertiary_link"</span>,</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>            <span class="st">"residential"</span>,</span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>            <span class="st">"living_street"</span>,</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>            <span class="st">"service"</span>,</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cycleway"</span>,</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bridleway"</span>,</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pedestrian"</span>,</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>            <span class="co"># "steps",</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway"</span>,</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>            <span class="st">"path"</span>,</span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>            <span class="st">"unclassified"</span>,</span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>        simplify_by_max_angle<span class="op">=</span>max_angle,</span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> graphs.nx_consolidate_nodes(</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>        G,</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>        buffer_dist<span class="op">=</span>dist,</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>        crawl<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>        centroid_by_itx<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>        osm_hwy_target_tags<span class="op">=</span>[</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trunk"</span>,</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>            <span class="st">"trunk_link"</span>,</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>            <span class="st">"primary"</span>,</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>            <span class="st">"primary_link"</span>,</span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secondary"</span>,</span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secondary_link"</span>,</span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tertiary"</span>,</span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>            <span class="st">"tertiary_link"</span>,</span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>            <span class="st">"residential"</span>,</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>            <span class="st">"living_street"</span>,</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>            <span class="st">"service"</span>,</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>            <span class="st">"cycleway"</span>,</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>            <span class="st">"bridleway"</span>,</span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pedestrian"</span>,</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>            <span class="st">"steps"</span>,</span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway"</span>,</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>            <span class="st">"footway_pedestrian"</span>,  <span class="co"># plazas</span></span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>            <span class="st">"path"</span>,</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>            <span class="st">"unclassified"</span>,</span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>        prioritise_by_hwy_tag<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>        simplify_by_max_angle<span class="op">=</span>max_angle,</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_filler_nodes(G)</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_merge_parallel_edges(</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>    G, merge_edges_by_midline<span class="op">=</span><span class="va">True</span>, contains_buffer_dist<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_iron_edges(G, min_self_loop_length<span class="op">=</span><span class="dv">100</span>, max_foot_tunnel_length<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a><span class="co"># do this last to clean up any orphaned sub components</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G, despine<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>simple_plot(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Removing dangling nodes.
+<pre><code>INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 7848/7848 [00:00&lt;00:00, 30630.20it/s]
+100%|██████████| 7848/7848 [00:01&lt;00:00, 6357.43it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 6547/6547 [00:00&lt;00:00, 167574.56it/s]
+100%|██████████| 6548/6548 [00:00&lt;00:00, 35899.92it/s]
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 5807/5807 [00:00&lt;00:00, 857254.80it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7632/7632 [00:00&lt;00:00, 91361.65it/s]
+100%|██████████| 5263/5263 [00:00&lt;00:00, 825682.51it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 86843.18it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 112594.99it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7632/7632 [00:00&lt;00:00, 24958.87it/s]
+100%|██████████| 5263/5263 [00:00&lt;00:00, 89634.76it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7577/7577 [00:00&lt;00:00, 224384.44it/s]
+100%|██████████| 5228/5228 [00:00&lt;00:00, 907308.06it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 6484.13it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 17060.03it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7637/7637 [00:00&lt;00:00, 82708.64it/s]
+100%|██████████| 5282/5282 [00:00&lt;00:00, 177451.71it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7628/7628 [00:00&lt;00:00, 379842.70it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 565820.68it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 34444.58it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 65192.81it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7629/7629 [00:00&lt;00:00, 91002.11it/s]
+100%|██████████| 5275/5275 [00:00&lt;00:00, 185864.63it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7629/7629 [00:00&lt;00:00, 334315.56it/s]
+100%|██████████| 5275/5275 [00:00&lt;00:00, 859154.77it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 21761.31it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 49028.98it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7630/7630 [00:00&lt;00:00, 117587.23it/s]
+100%|██████████| 5276/5276 [00:00&lt;00:00, 216202.08it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 6186/6186 [00:00&lt;00:00, 42160.80it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 66572.56it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 86652.05it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 92334.55it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 7630/7630 [00:00&lt;00:00, 76748.93it/s]
+100%|██████████| 5276/5276 [00:00&lt;00:00, 158876.75it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 6186/6186 [00:00&lt;00:00, 76481.04it/s]
+100%|██████████| 4004/4004 [00:00&lt;00:00, 164847.40it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 6115/6115 [00:00&lt;00:00, 38659.71it/s]
+100%|██████████| 3959/3959 [00:00&lt;00:00, 32682.61it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 6115/6115 [00:00&lt;00:00, 8971.06it/s] 
+100%|██████████| 3959/3959 [00:00&lt;00:00, 10733.44it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6958/6958 [00:00&lt;00:00, 25294.62it/s]
+100%|██████████| 4790/4790 [00:00&lt;00:00, 39001.10it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5630/5630 [00:00&lt;00:00, 150148.99it/s]
+100%|██████████| 3611/3611 [00:00&lt;00:00, 179695.46it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5601/5601 [00:00&lt;00:00, 32654.54it/s]
+100%|██████████| 3575/3575 [00:00&lt;00:00, 73132.08it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5601/5601 [00:00&lt;00:00, 16528.03it/s]
+100%|██████████| 3575/3575 [00:00&lt;00:00, 32298.90it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6720/6720 [00:00&lt;00:00, 74922.38it/s]
+100%|██████████| 4597/4597 [00:00&lt;00:00, 130972.28it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5519/5519 [00:00&lt;00:00, 205617.02it/s]
+100%|██████████| 3536/3536 [00:00&lt;00:00, 447594.96it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5507/5507 [00:00&lt;00:00, 24350.63it/s]
+100%|██████████| 3526/3526 [00:00&lt;00:00, 84578.35it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5507/5507 [00:00&lt;00:00, 11355.13it/s]
+100%|██████████| 3526/3526 [00:00&lt;00:00, 22774.84it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6518/6518 [00:00&lt;00:00, 56831.07it/s]
+100%|██████████| 4484/4484 [00:00&lt;00:00, 21209.37it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5349/5349 [00:00&lt;00:00, 242825.02it/s]
+100%|██████████| 3451/3451 [00:00&lt;00:00, 302669.07it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5342/5342 [00:00&lt;00:00, 38061.77it/s]
+100%|██████████| 3445/3445 [00:00&lt;00:00, 64625.59it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6495/6495 [00:00&lt;00:00, 337174.39it/s]
+100%|██████████| 4471/4471 [00:00&lt;00:00, 817682.62it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 5342/5342 [00:03&lt;00:00, 1724.04it/s]
+100%|██████████| 3445/3445 [00:00&lt;00:00, 10334.80it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 7217/7217 [00:00&lt;00:00, 324475.21it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 407908.71it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5342/5342 [00:02&lt;00:00, 2325.95it/s]
+100%|██████████| 3445/3445 [00:00&lt;00:00, 9845.24it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 9262/9262 [00:00&lt;00:00, 98951.69it/s]
+100%|██████████| 5182/5182 [00:00&lt;00:00, 218050.96it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 6524/6524 [00:00&lt;00:00, 239968.77it/s]
+100%|██████████| 3766/3766 [00:00&lt;00:00, 271069.28it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 6123/6123 [00:01&lt;00:00, 5768.62it/s]
+100%|██████████| 3263/3263 [00:00&lt;00:00, 18464.02it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6681/6681 [00:00&lt;00:00, 325808.59it/s]
+100%|██████████| 3940/3940 [00:00&lt;00:00, 858738.19it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3945/3945 [00:01&lt;00:00, 2456.59it/s]
+100%|██████████| 2526/2526 [00:00&lt;00:00, 7103.31it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6791/6791 [00:00&lt;00:00, 14700.69it/s]
+100%|██████████| 3963/3963 [00:00&lt;00:00, 89064.54it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3945/3945 [00:00&lt;00:00, 46973.16it/s]
+100%|██████████| 2526/2526 [00:00&lt;00:00, 88023.10it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3945/3945 [00:02&lt;00:00, 1756.60it/s]
+100%|██████████| 2526/2526 [00:00&lt;00:00, 4557.52it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4297/4297 [00:00&lt;00:00, 12410.64it/s]
+100%|██████████| 3329/3329 [00:00&lt;00:00, 35116.04it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4060/4060 [00:00&lt;00:00, 410888.77it/s]
+100%|██████████| 3208/3208 [00:00&lt;00:00, 759672.95it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2567/2567 [00:00&lt;00:00, 2973.24it/s]
+100%|██████████| 2090/2090 [00:00&lt;00:00, 7625.14it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4091/4091 [00:00&lt;00:00, 63282.41it/s]
+100%|██████████| 3214/3214 [00:00&lt;00:00, 196059.94it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2567/2567 [00:00&lt;00:00, 5569.42it/s]
+100%|██████████| 2090/2090 [00:00&lt;00:00, 89542.24it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2567/2567 [00:01&lt;00:00, 1972.57it/s]
+100%|██████████| 2090/2090 [00:00&lt;00:00, 4441.24it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3158/3158 [00:00&lt;00:00, 9579.16it/s] 
+100%|██████████| 2803/2803 [00:00&lt;00:00, 44282.61it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1859/1859 [00:00&lt;00:00, 20774.23it/s]
+100%|██████████| 1750/1750 [00:00&lt;00:00, 67544.23it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2846/2846 [00:00&lt;00:00, 40836.89it/s]
+100%|██████████| 2640/2640 [00:00&lt;00:00, 96016.95it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2817/2817 [00:00&lt;00:00, 9782.37it/s]
+100%|██████████| 2620/2620 [00:00&lt;00:00, 12948.30it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2735/2735 [00:00&lt;00:00, 93463.43it/s]
+100%|██████████| 2573/2573 [00:00&lt;00:00, 134594.78it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 1702/1702 [00:00&lt;00:00, 203706.92it/s]
+100%|██████████| 1655/1655 [00:00&lt;00:00, 188087.93it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1674/1674 [00:00&lt;00:00, 28229.71it/s]
+100%|██████████| 1642/1642 [00:00&lt;00:00, 39852.14it/s]
 INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 2626/2626 [00:00&lt;00:00, 15107.60it/s]</code></pre>
+100%|██████████| 2479/2479 [00:00&lt;00:00, 14268.28it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
