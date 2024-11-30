@@ -17,7 +17,7 @@ Use the navigation menu to explore examples.
 
 ::: {.callout-warning}
 
-The guide and examples are based on `cityseer>=4.17.0`.
+The guide and examples are based on `cityseer>=4.17.1`.
 
 :::
 
@@ -41,7 +41,7 @@ The [`tools.graphs`](https://cityseer.benchmarkurbanism.com/tools/graphs) module
 
 There are generally two scenarios when creating a street network graph:
 
-1. In the ideal case, if you have access to a high-quality street network dataset -- which keeps the topology of the network separate from the geometry of the streets -- then you would construct the network based on the topology while assigning the roadway geometries to the respective edges spanning the nodes. [OS Open Roads](https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-roads.html) is a good example of this type of dataset. Assigning the geometries to an edge involves A) casting the geometry to a [`shapely`](https://shapely.readthedocs.io) `LineString`, and B) assigning this geometry to the respective edge by adding the `LineString` geometry as a `geom` attribute. e.g. `G.add_edge(start_node, end_node, geom=a_linestring_geom)`.
+1. In the ideal case, if you have access to a high-quality street network dataset -- which keeps the topology of the network separate from the geometry of the streets -- then you would construct the network based on the topology while assigning the roadway geometries to the respective edges spanning the nodes. [OS Open Roads](https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-roads.html) is a good example of this type of dataset. Assigning the geometries to an edge involves A - casting the geometry to a [`shapely`](https://shapely.readthedocs.io) `LineString`, and B - assigning this geometry to the respective edge by adding the `LineString` geometry as a `geom` attribute. e.g. `G.add_edge(start_node, end_node, geom=a_linestring_geom)`.
 
 2. In reality, most data-sources are not this refined and will represent roadway geometries by adding additional nodes to the network. For a variety of reasons, this is not ideal and you may want to follow the [`Graph Cleaning`](https://cityseer.benchmarkurbanism.com/guide#graph-cleaning) or [`Graph Corrections`](https://cityseer.benchmarkurbanism.com/guide#graph-corrections) guides.
 
