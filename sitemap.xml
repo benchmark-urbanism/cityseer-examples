@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/index.html</loc>
-    <lastmod>2024-11-30T20:17:15.781Z</lastmod>
-  </url>
-  <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/graph_corrections.html</loc>
-    <lastmod>2024-11-30T20:17:15.653Z</lastmod>
-  </url>
-  <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/osm_to_cityseer.html</loc>
-    <lastmod>2024-11-30T20:17:15.781Z</lastmod>
-  </url>
-  <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/london_centralities.html</loc>
-    <lastmod>2024-11-30T20:17:15.769Z</lastmod>
-  </url>
-  <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/continuity/continuity_os_open.html</loc>
-    <lastmod>2024-11-30T20:17:15.517Z</lastmod>
-  </url>
-  <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/save_to_geopandas.html</loc>
-    <lastmod>2024-11-30T20:17:15.781Z</lastmod>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/graph_cleaning.html</loc>
+    <lastmod>2025-03-19T08:55:45.670Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/continuity/continuity_osm.html</loc>
-    <lastmod>2024-11-30T20:17:15.577Z</lastmod>
+    <lastmod>2025-03-19T08:55:45.655Z</lastmod>
   </url>
   <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/momepy_to_cityseer.html</loc>
-    <lastmod>2024-11-30T20:17:15.769Z</lastmod>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/london_centralities.html</loc>
+    <lastmod>2025-03-19T08:55:45.769Z</lastmod>
   </url>
   <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/osm_boundaries.html</loc>
-    <lastmod>2024-11-30T20:17:15.769Z</lastmod>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/save_to_geopandas.html</loc>
+    <lastmod>2025-03-19T08:55:45.781Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/london_amenities.html</loc>
-    <lastmod>2024-11-30T20:17:15.721Z</lastmod>
+    <lastmod>2025-03-19T08:55:45.734Z</lastmod>
   </url>
   <url>
-    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/graph_cleaning.html</loc>
-    <lastmod>2024-11-30T20:17:15.597Z</lastmod>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/index.html</loc>
+    <lastmod>2025-03-19T08:55:45.782Z</lastmod>
+  </url>
+  <url>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/osm_boundaries.html</loc>
+    <lastmod>2025-03-19T08:55:45.770Z</lastmod>
+  </url>
+  <url>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/momepy_to_cityseer.html</loc>
+    <lastmod>2025-03-19T08:55:45.770Z</lastmod>
+  </url>
+  <url>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/continuity/continuity_os_open.html</loc>
+    <lastmod>2025-03-19T08:55:45.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://benchmark-urbanism.github.io/cityseer-examples/examples/osm_to_cityseer.html</loc>
+    <lastmod>2025-03-19T08:55:45.781Z</lastmod>
   </url>
 </urlset>

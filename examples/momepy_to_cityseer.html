@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d129a44951930463e8a313df5966fbea.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2b47bf357f29ab94ba3d6b697b791909.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-29ed4b63dfd6dc480108f25333b72b8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -172,12 +172,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../examples/graph_cleaning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph Cleaning</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../examples/graph_corrections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OSM Strategies</span></a>
   </div>
 </li>
       </ul>
@@ -293,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 30, 2024</p>
+      <p class="date-modified">March 19, 2025</p>
     </div>
   </div>
     
@@ -308,53 +302,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>import geopandas as gpd from osmnx import features</p>
 <p>from cityseer.tools import io, graphs from cityseer.metrics import networks, layers</p>
 <p>This example uses the <code>momepy</code> <code>bubenec.gpkg</code> GeoPandas GeoDataFrame as an example. Please download this file and place it in a locally accessible file. Update the filepaths in the next code block accordingly.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, graphs</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks, layers</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"/examples"</span>):</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    repo_path <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">".."</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">str</span>(repo_path.resolve()).endswith(<span class="st">"cityseer-examples"</span>):</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check your notebook working directory relative to your project and data paths."</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>bubenec_path <span class="op">=</span> Path(repo_path <span class="op">/</span> <span class="st">"temp/bubenec.gpkg"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data path:"</span>, bubenec_path)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path exists:"</span>, bubenec_path.exists())</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df_streets: gpd.GeoDataFrame <span class="op">=</span> gpd.read_file(bubenec_path, layer<span class="op">=</span><span class="st">"streets"</span>)  <span class="co"># type: ignore</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>nx_momepy <span class="op">=</span> io.nx_from_generic_geopandas(df_streets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">str</span>(repo_path).endswith(<span class="st">"/examples"</span>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    repo_path <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">".."</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">str</span>(repo_path.resolve()).endswith(<span class="st">"cityseer-examples"</span>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please check your notebook working directory relative to your project and data paths."</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>bubenec_path <span class="op">=</span> Path(repo_path <span class="op">/</span> <span class="st">"temp/bubenec.gpkg"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data path:"</span>, bubenec_path)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path exists:"</span>, bubenec_path.exists())</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>df_streets <span class="op">=</span> gpd.read_file(momepy.datasets.get_path(<span class="st">"bubenec"</span>), layer<span class="op">=</span><span class="st">"streets"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>nx_momepy <span class="op">=</span> io.nx_from_generic_geopandas(df_streets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/temp/bubenec.gpkg
-path exists: True</code></pre>
+<pre><code>data path: /Users/gareth/dev/cityseer-examples/temp/bubenec.gpkg
+path exists: False</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 35/35 [00:00&lt;00:00, 2744.66it/s]
+<pre><code>  0%|          | 0/35 [00:00&lt;?, ?it/s]100%|██████████| 35/35 [00:00&lt;00:00, 1861.20it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 35/35 [00:00&lt;00:00, 48609.48it/s]</code></pre>
+100%|██████████| 35/35 [00:00&lt;00:00, 78293.67it/s]</code></pre>
 </div>
 </div>
 <p>At this point the input GeoPandas file has been converted to a <code>networkX</code> <code>MultiGraph</code> with <code>geom</code> attributes for the edges. This graph can now be fed to <code>cityseer</code> <code>graph</code> module methods if wanted. For running optimised network centrality or landuse accessibilities, use the <code>io.network_structure_from_nx</code> method to prepare the necessary structures.</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    nx_momepy, crs<span class="op">=</span>df_streets.crs.to_epsg()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 29/29 [00:00&lt;00:00, 13809.58it/s]
-100%|██████████| 29/29 [00:00&lt;00:00, 167.93it/s]</code></pre>
+100%|██████████| 29/29 [00:00&lt;00:00, 1504.67it/s]
+100%|██████████| 29/29 [00:00&lt;00:00, 2120.03it/s]</code></pre>
 </div>
 </div>
 <p>The following block downloads some OSM data which will be used for demonstrating some landuse accessibility methods.</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -422,9 +417,9 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 </div>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edges_gdf.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -502,7 +497,7 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_point(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">50.1029248</span>, <span class="fl">14.4029967</span>), tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}, dist<span class="op">=</span><span class="dv">400</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -521,7 +516,7 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 4  restaurant   POINT (1603027.863 6464060.66)</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute metrics</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    network_structure, nodes_gdf, [<span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">1000</span>]</span>
@@ -537,11 +532,11 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 29/29 [00:01&lt;00:00, 28.91it/s]
+100%|██████████| 29/29 [00:01&lt;00:00, 28.81it/s]
 INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
-100%|██████████| 29/29 [00:01&lt;00:00, 28.91it/s]</code></pre>
+100%|██████████| 29/29 [00:01&lt;00:00, 28.87it/s]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -588,7 +583,7 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 <td>...</td>
 <td>0.104906</td>
 <td>1.055928</td>
-<td>6.453668</td>
+<td>6.453667</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>0.0</td>
@@ -700,7 +695,7 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="7">
+<div id="cell-11" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if using dual network</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nx_dual <span class="op">=</span> graphs.nx_to_dual(nx_momepy)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf_dual, _edges_gdf_dual, network_structure_dual <span class="op">=</span> io.network_structure_from_nx(</span>
@@ -713,16 +708,16 @@ INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 35/35 [00:00&lt;00:00, 10674.08it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 13876.61it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 35/35 [00:00&lt;00:00, 321.32it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 208.48it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 35/35 [00:00&lt;00:00, 45632.78it/s]
-100%|██████████| 35/35 [00:00&lt;00:00, 1584.36it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 40043.82it/s]
+100%|██████████| 35/35 [00:00&lt;00:00, 2084.70it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 35/35 [00:01&lt;00:00, 34.82it/s]</code></pre>
+100%|██████████| 35/35 [00:01&lt;00:00, 34.45it/s]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d129a44951930463e8a313df5966fbea.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2b47bf357f29ab94ba3d6b697b791909.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-29ed4b63dfd6dc480108f25333b72b8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -169,12 +169,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../examples/graph_cleaning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph Cleaning</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../examples/graph_corrections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OSM Strategies</span></a>
   </div>
 </li>
       </ul>
@@ -301,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 30, 2024</p>
+      <p class="date-modified">March 19, 2025</p>
     </div>
   </div>
     
@@ -338,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data path:"</span>, open_roads_path)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path exists:"</span>, open_roads_path.exists())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/temp/os_open_roads/oproad_gb.gpkg
+<pre><code>data path: /Users/gareth/dev/cityseer-examples/temp/os_open_roads/oproad_gb.gpkg
 path exists: True</code></pre>
 </div>
 </div>
@@ -379,19 +373,19 @@ path exists: True</code></pre>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    G_decomp, crs<span class="op">=</span><span class="dv">27700</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Nodes: 18193
+<pre><code>INFO:cityseer.tools.io:Nodes: 18182
 INFO:cityseer.tools.io:Edges: 24189
 INFO:cityseer.tools.io:Dropped 430 edges where not both start and end nodes were present.
 INFO:cityseer.tools.io:Running basic graph cleaning
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 18193/18193 [00:01&lt;00:00, 12489.19it/s]
+100%|██████████| 18182/18182 [00:00&lt;00:00, 34128.77it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
-100%|██████████| 22578/22578 [00:00&lt;00:00, 39326.27it/s]
+100%|██████████| 22567/22567 [00:00&lt;00:00, 67447.36it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 22516/22516 [00:37&lt;00:00, 603.95it/s]
+100%|██████████| 22504/22504 [00:13&lt;00:00, 1656.90it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 75794/75794 [00:02&lt;00:00, 35416.78it/s]
-100%|██████████| 75794/75794 [00:26&lt;00:00, 2869.72it/s]</code></pre>
+100%|██████████| 75807/75807 [00:00&lt;00:00, 88415.28it/s] 
+100%|██████████| 75807/75807 [00:13&lt;00:00, 5704.25it/s]</code></pre>
 </div>
 </div>
 </section>
@@ -421,11 +415,11 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [06:44&lt;00:00, 187.53it/s]
+100%|██████████| 75807/75807 [02:53&lt;00:00, 436.09it/s]
 INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75794/75794 [04:11&lt;00:00, 301.05it/s]
+100%|██████████| 75807/75807 [01:30&lt;00:00, 837.52it/s] 
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 75794/75794 [02:17&lt;00:00, 551.76it/s]</code></pre>
+100%|██████████| 75807/75807 [01:37&lt;00:00, 777.32it/s]</code></pre>
 </div>
 </div>
 </section>
