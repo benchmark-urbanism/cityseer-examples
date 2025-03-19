@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Install and update <code>cityseer</code> if necessary.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install --upgrade cityseer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="data-source" class="level2">
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <p>The following example assumes that the OS Open Roads dataset has been downloaded to <code>temp/os_open_roads/oproad_gb.gpkg</code> relative to the root of the <code>cityseer-examples</code> repository. Please edit the paths and path setup in this cell if you are using different directories.</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
@@ -340,7 +340,7 @@ path exists: True</code></pre>
 <section id="extents" class="level2">
 <h2 class="anchored" data-anchor-id="extents">Extents</h2>
 <p>Instead of loading the entire dataset, we’ll use a bounding box to only load an area of interest.</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -363,7 +363,7 @@ path exists: True</code></pre>
 <section id="load" class="level2">
 <h2 class="anchored" data-anchor-id="load">Load</h2>
 <p>We can now load the OS Open Roads dataset and convert it to a format that can be used by cityseer for downstream calculations.</p>
-<div id="cell-9" class="cell" data-execution_count="4">
+<div id="cell-9" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load OS Open Roads data from downloaded geopackage</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>G_open <span class="op">=</span> io.nx_from_open_roads(open_roads_path, target_bbox<span class="op">=</span>target_bbox)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># decompose for higher resolution analysis</span></span>
@@ -378,21 +378,21 @@ INFO:cityseer.tools.io:Edges: 24189
 INFO:cityseer.tools.io:Dropped 430 edges where not both start and end nodes were present.
 INFO:cityseer.tools.io:Running basic graph cleaning
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 18182/18182 [00:00&lt;00:00, 34128.77it/s]
+100%|██████████| 18182/18182 [00:00&lt;00:00, 23947.00it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
-100%|██████████| 22567/22567 [00:00&lt;00:00, 67447.36it/s]
+100%|██████████| 22567/22567 [00:00&lt;00:00, 41614.51it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 22504/22504 [00:13&lt;00:00, 1656.90it/s]
+100%|██████████| 22504/22504 [00:21&lt;00:00, 1047.14it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 75807/75807 [00:00&lt;00:00, 88415.28it/s] 
-100%|██████████| 75807/75807 [00:13&lt;00:00, 5704.25it/s]</code></pre>
+100%|██████████| 75807/75807 [00:01&lt;00:00, 70731.31it/s]
+100%|██████████| 75807/75807 [00:15&lt;00:00, 4897.20it/s]</code></pre>
 </div>
 </div>
 </section>
 <section id="calculate-centralities" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-centralities">Calculate centralities</h2>
 <p>The centrality methods can now be computed.</p>
-<div id="cell-11" class="cell" data-execution_count="5">
+<div id="cell-11" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want to compute wider area centralities, e.g. 20km, then use less decomposition to speed up the computation</span></span>
@@ -415,18 +415,18 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75807/75807 [02:53&lt;00:00, 436.09it/s]
+100%|██████████| 75807/75807 [02:54&lt;00:00, 434.26it/s]
 INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75807/75807 [01:30&lt;00:00, 837.52it/s] 
+100%|██████████| 75807/75807 [01:40&lt;00:00, 755.86it/s]
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 75807/75807 [01:37&lt;00:00, 777.32it/s]</code></pre>
+100%|██████████| 75807/75807 [02:28&lt;00:00, 510.64it/s]</code></pre>
 </div>
 </div>
 </section>
 <section id="plots" class="level2">
 <h2 class="anchored" data-anchor-id="plots">Plots</h2>
 <p>Let’s plot a selection of distance thresholds for each of the computed measures.</p>
-<div id="cell-13" class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer <span class="im">import</span> rustalgos</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> plot</span>
