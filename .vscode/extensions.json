@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "quarto.quarto",
+    "tamasfe.even-better-toml",
+    "mhutchie.git-graph",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "ms-python.python",
+    "ms-python.debugpy",
+    "charliermarsh.ruff",
+    "esbenp.prettier-vscode"
+  ]
+}

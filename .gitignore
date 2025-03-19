@@ -4,6 +4,7 @@
 # Quarto
 /output/
 .quarto/
+_freeze/
 
 # code profiling
 .prof
@@ -25,6 +26,7 @@ build/
 # Jupyter notebooks
 .ipynb_checkpoints
 **/.ipynb_checkpoints/*
+.jupyter_cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

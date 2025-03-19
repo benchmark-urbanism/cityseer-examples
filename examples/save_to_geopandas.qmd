@@ -1,10 +1,11 @@
 ---
 title: Saving via GeoPandas
-date-format: long
-date-modified: last-modified
-lang: en
-language:
-  title-block-modified: "Last update"
+editor:
+  render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
 ---
 
 ## Generate a network
@@ -53,11 +54,8 @@ edges_gdf.head()
 It is then possible to save the `GeoDataFrame`. Create a `temp` folder or update your path accordingly:
 
 ```{python}
-from pathlib import Path
-
-# create the directory if necessary
-Path.mkdir(Path("temp"), exist_ok=True)
-edges_gdf.to_file("temp/output_file.gpkg")
+f_path = "../temp/output_file.gpkg"
+edges_gdf.to_file(f_path)
 ```
 
 The GPKG file can now be explored or modified in GIS software such as QGIS.
@@ -69,7 +67,7 @@ To reload, you can read the data with `geopandas`.
 ```{python}
 import geopandas as gpd
 
-in_edges_gdf = gpd.read_file("temp/output_file.gpkg")
+in_edges_gdf = gpd.read_file(f_path)
 in_edges_gdf.head()
 ```
 

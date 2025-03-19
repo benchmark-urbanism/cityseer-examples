@@ -23,7 +23,6 @@ website:
         contents:
           - examples/osm_boundaries.qmd
           - examples/graph_cleaning.ipynb
-          - examples/graph_corrections.ipynb
       - section: Conversion
         contents:
           - examples/save_to_geopandas.qmd
