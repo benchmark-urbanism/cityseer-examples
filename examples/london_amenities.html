@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 19, 2025</p>
+      <p class="date-modified">March 25, 2025</p>
     </div>
   </div>
     
@@ -311,13 +311,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For additional information on network preparation, see the corresponding notebook on <a href="https://colab.research.google.com/github/cityseer/cityseer/blob/master/demos/graph_cleaning.ipynb">graph cleaning</a>.</p>
 <p>This example will make use of OSM data downloaded from the <a href="https://wiki.openstreetmap.org/wiki/API">OSM API</a> for a 5000m radius around London Soho.</p>
 <p>The landuse amenity data is taken from <code>OpenStreetMap</code> via <code>osmnx</code>.</p>
-<div id="cell-4" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="2">
+<div id="cell-4" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download from OSM</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">5000</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plot_buffer <span class="op">=</span> <span class="dv">3500</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plot_buffer <span class="op">=</span> <span class="dv">2000</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># creates a WGS shapely polygon</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>poly_wgs, _ <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>poly_utm, _ <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>, projected<span class="op">=</span><span class="va">True</span>)</span>
@@ -385,141 +385,141 @@ WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.io:Converting networkX graph from EPSG code 4326 to EPSG code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 180851/180851 [00:00&lt;00:00, 397542.49it/s]
+100%|██████████| 181022/181022 [00:00&lt;00:00, 955658.72it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 198152/198152 [00:00&lt;00:00, 745908.35it/s]
+100%|██████████| 198319/198319 [00:00&lt;00:00, 1760679.57it/s]
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 198152/198152 [00:07&lt;00:00, 25352.52it/s]
+100%|██████████| 198319/198319 [00:01&lt;00:00, 130575.41it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 180851/180851 [00:35&lt;00:00, 5113.71it/s] 
+100%|██████████| 181022/181022 [00:07&lt;00:00, 25398.68it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 82209/82209 [00:00&lt;00:00, 276081.31it/s]
-100%|██████████| 82209/82209 [00:44&lt;00:00, 1866.06it/s]
+100%|██████████| 82251/82251 [00:00&lt;00:00, 1117373.44it/s]
+100%|██████████| 82251/82251 [00:05&lt;00:00, 14540.92it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 64908/64908 [00:05&lt;00:00, 11824.79it/s]
-100%|██████████| 61067/61067 [00:03&lt;00:00, 17815.10it/s]
+100%|██████████| 64954/64954 [00:00&lt;00:00, 91445.07it/s]
+100%|██████████| 61088/61088 [00:00&lt;00:00, 132556.78it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 57503/57503 [00:00&lt;00:00, 73947.22it/s] 
+100%|██████████| 57547/57547 [00:00&lt;00:00, 444312.42it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 53120/53120 [00:00&lt;00:00, 245444.14it/s]
+100%|██████████| 53132/53132 [00:00&lt;00:00, 1344018.82it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 40905/40905 [00:03&lt;00:00, 12664.62it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 83997.60it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 53297/53297 [00:03&lt;00:00, 16473.70it/s]
+100%|██████████| 53310/53310 [00:00&lt;00:00, 61295.09it/s] 
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 52669/52669 [00:00&lt;00:00, 327394.55it/s]
+100%|██████████| 52681/52681 [00:00&lt;00:00, 1162220.13it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 40905/40905 [00:03&lt;00:00, 12144.18it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 76086.65it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 52843/52843 [00:00&lt;00:00, 68930.39it/s]
+100%|██████████| 52854/52854 [00:00&lt;00:00, 351951.96it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 52807/52807 [00:00&lt;00:00, 308338.67it/s]
+100%|██████████| 52818/52818 [00:00&lt;00:00, 1310205.27it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 40905/40905 [00:01&lt;00:00, 26712.76it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 154614.67it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 52827/52827 [00:02&lt;00:00, 25655.82it/s]
+100%|██████████| 52838/52838 [00:00&lt;00:00, 85063.46it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 52827/52827 [00:00&lt;00:00, 312787.18it/s]
+100%|██████████| 52838/52838 [00:00&lt;00:00, 1293813.65it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 40905/40905 [00:01&lt;00:00, 22769.45it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 139013.33it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 52848/52848 [00:00&lt;00:00, 74513.79it/s]
+100%|██████████| 52859/52859 [00:00&lt;00:00, 383077.90it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 40905/40905 [00:00&lt;00:00, 42765.34it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 275190.31it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 40905/40905 [00:02&lt;00:00, 18075.59it/s]
+100%|██████████| 40929/40929 [00:00&lt;00:00, 104270.25it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 51298/51298 [00:01&lt;00:00, 39739.74it/s]
+100%|██████████| 51309/51309 [00:00&lt;00:00, 219997.98it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 39678/39678 [00:00&lt;00:00, 52412.52it/s]
+100%|██████████| 39702/39702 [00:00&lt;00:00, 331545.93it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 38687/38687 [00:00&lt;00:00, 44243.70it/s]
+100%|██████████| 38709/38709 [00:00&lt;00:00, 276339.23it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 38687/38687 [00:03&lt;00:00, 10039.57it/s]
+100%|██████████| 38709/38709 [00:00&lt;00:00, 61792.73it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 47785/47785 [00:01&lt;00:00, 30199.81it/s]
+100%|██████████| 47805/47805 [00:00&lt;00:00, 178283.84it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 36875/36875 [00:00&lt;00:00, 128520.54it/s]
+100%|██████████| 36904/36904 [00:00&lt;00:00, 639339.27it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 36649/36649 [00:00&lt;00:00, 44319.51it/s]
+100%|██████████| 36680/36680 [00:00&lt;00:00, 269800.64it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 36649/36649 [00:02&lt;00:00, 13924.18it/s]
+100%|██████████| 36680/36680 [00:00&lt;00:00, 88318.27it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 46501/46501 [00:00&lt;00:00, 50490.94it/s]
+100%|██████████| 46525/46525 [00:00&lt;00:00, 279323.68it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 36122/36122 [00:00&lt;00:00, 188528.34it/s]
+100%|██████████| 36155/36155 [00:00&lt;00:00, 819623.29it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 36027/36027 [00:00&lt;00:00, 43143.42it/s]
+100%|██████████| 36060/36060 [00:00&lt;00:00, 272072.75it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 36027/36027 [00:03&lt;00:00, 11869.58it/s]
+100%|██████████| 36060/36060 [00:00&lt;00:00, 73796.25it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 45568/45568 [00:01&lt;00:00, 44626.65it/s]
+100%|██████████| 45594/45594 [00:00&lt;00:00, 272547.84it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 35434/35434 [00:00&lt;00:00, 179367.20it/s]
+100%|██████████| 35469/35469 [00:00&lt;00:00, 815814.04it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 35341/35341 [00:00&lt;00:00, 43281.67it/s]
+100%|██████████| 35377/35377 [00:00&lt;00:00, 270660.23it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 45337/45337 [00:00&lt;00:00, 308293.81it/s]
+100%|██████████| 45365/45365 [00:00&lt;00:00, 1379001.31it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 35341/35341 [00:03&lt;00:00, 10158.57it/s]
+100%|██████████| 35377/35377 [00:00&lt;00:00, 72158.49it/s] 
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 46098/46098 [00:00&lt;00:00, 215960.04it/s]
+100%|██████████| 46133/46133 [00:00&lt;00:00, 1268608.80it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 35341/35341 [00:04&lt;00:00, 7418.17it/s]
+100%|██████████| 35377/35377 [00:00&lt;00:00, 49583.25it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 49214/49214 [00:00&lt;00:00, 70865.95it/s]
+100%|██████████| 49250/49250 [00:00&lt;00:00, 359072.66it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 37053/37053 [00:00&lt;00:00, 122505.09it/s]
+100%|██████████| 37086/37086 [00:00&lt;00:00, 613895.06it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 31456/31456 [00:04&lt;00:00, 7066.09it/s] 
+100%|██████████| 31483/31483 [00:00&lt;00:00, 56086.93it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 37330/37330 [00:00&lt;00:00, 319512.71it/s]
+100%|██████████| 37357/37357 [00:00&lt;00:00, 1239030.95it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 25180/25180 [00:05&lt;00:00, 4215.51it/s]
+100%|██████████| 25204/25204 [00:01&lt;00:00, 18064.51it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 37469/37469 [00:00&lt;00:00, 75234.72it/s]
+100%|██████████| 37499/37499 [00:00&lt;00:00, 56115.30it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 25180/25180 [00:00&lt;00:00, 39495.07it/s]
+100%|██████████| 25204/25204 [00:00&lt;00:00, 261966.01it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 25180/25180 [00:10&lt;00:00, 2293.17it/s]
+100%|██████████| 25204/25204 [00:01&lt;00:00, 16154.37it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 34375/34375 [00:02&lt;00:00, 13000.65it/s]
+100%|██████████| 34389/34389 [00:00&lt;00:00, 134432.42it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 33793/33793 [00:00&lt;00:00, 306287.94it/s]
+100%|██████████| 33801/33801 [00:00&lt;00:00, 1271335.16it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 22962/22962 [00:06&lt;00:00, 3559.53it/s]
+100%|██████████| 22976/22976 [00:01&lt;00:00, 22847.11it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 33947/33947 [00:00&lt;00:00, 66343.94it/s]
+100%|██████████| 33954/33954 [00:00&lt;00:00, 50609.41it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 22962/22962 [00:00&lt;00:00, 47584.01it/s]
+100%|██████████| 22976/22976 [00:00&lt;00:00, 260135.75it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 22962/22962 [00:08&lt;00:00, 2570.03it/s]
+100%|██████████| 22976/22976 [00:01&lt;00:00, 15070.56it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 31111/31111 [00:01&lt;00:00, 21126.65it/s]
+100%|██████████| 31115/31115 [00:00&lt;00:00, 118383.10it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 20491/20491 [00:00&lt;00:00, 41716.69it/s]
+100%|██████████| 20500/20500 [00:00&lt;00:00, 212432.79it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 29739/29739 [00:00&lt;00:00, 31815.78it/s]
+100%|██████████| 29740/29740 [00:00&lt;00:00, 167187.51it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 29448/29448 [00:03&lt;00:00, 8897.59it/s]
+100%|██████████| 29451/29451 [00:00&lt;00:00, 45993.52it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 29243/29243 [00:00&lt;00:00, 82549.06it/s]
+100%|██████████| 29245/29245 [00:00&lt;00:00, 365339.65it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 19698/19698 [00:00&lt;00:00, 104428.31it/s]
+100%|██████████| 19707/19707 [00:00&lt;00:00, 733719.31it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 19531/19531 [00:00&lt;00:00, 50789.06it/s]
+100%|██████████| 19542/19542 [00:00&lt;00:00, 266606.89it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 28510/28510 [00:32&lt;00:00, 878.46it/s] 
+100%|██████████| 28511/28511 [00:04&lt;00:00, 5928.74it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 79185/79185 [00:02&lt;00:00, 39339.20it/s]
-100%|██████████| 79185/79185 [00:22&lt;00:00, 3593.33it/s]</code></pre>
+100%|██████████| 79184/79184 [00:00&lt;00:00, 156084.73it/s]
+100%|██████████| 79184/79184 [00:05&lt;00:00, 14122.59it/s]</code></pre>
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
@@ -535,7 +535,12 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: pub, restaurant
-100%|██████████| 79185/79185 [01:16&lt;00:00, 1038.54it/s]</code></pre>
+100%|██████████| 79184/79184 [00:26&lt;00:00, 2995.47it/s]
+INFO:cityseer.config:Metrics computed for:
+INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
+INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
+INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.
+INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</code></pre>
 </div>
 </div>
 <p>The output GeoDataFrame will contain new columns for each landuse and distance combination. For each of these the following will have been computed:</p>
@@ -544,7 +549,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <li>Similarly, a distance-weighted count of reachable locations</li>
 <li>The distance to the nearest instance of a given landuse. Where there are no reachable landuses for a given node within the specified distance threshold, then a <code>np.inf</code> value will be returned.</li>
 </ul>
-<div id="cell-11" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="27">
+<div id="cell-11" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer <span class="im">import</span> rustalgos</span>
@@ -568,40 +573,42 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">0</span>],</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Number of pubs within walking tolerance."</span>,</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the axis limits</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># turn off the axis</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].axis(<span class="va">False</span>)</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_restaurant_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_wt"</span>,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"plasma"</span>,</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Number of restaurants within walking tolerance."</span>,</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the axis limits</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># turn off the axis</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].axis(<span class="va">False</span>)</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Number of pubs within walking tolerance."</span>,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the axis limits</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># turn off the axis</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].axis(<span class="va">False</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_restaurant_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_wt"</span>,</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"plasma"</span>,</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Number of restaurants within walking tolerance."</span>,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the axis limits</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># turn off the axis</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].axis(<span class="va">False</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    fig.tight_layout()</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -631,7 +638,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="25">
+<div id="cell-12" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Distances to nearest instance of specified landuse"</span>,</span>
@@ -647,44 +654,46 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"inferno_r"</span>,</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">0</span>],</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Distance to nearest pub."</span>, color<span class="op">=</span>text_colour, fontsize<span class="op">=</span>font_size)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># set the axis limits</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off the axis</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axis(<span class="va">False</span>)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>dist_data <span class="op">=</span> nodes_gdf[<span class="ss">f"cc_restaurant_nearest_max_</span><span class="sc">{</span><span class="bu">max</span>(distances)<span class="sc">}</span><span class="ss">"</span>]</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>dist_data[np.isinf(dist_data)] <span class="op">=</span> <span class="bu">max</span>(distances)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="ss">f"cc_pub_nearest_max_</span><span class="sc">{</span><span class="bu">max</span>(distances)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis_r"</span>,</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distance to nearest restaurant."</span>, color<span class="op">=</span>text_colour, fontsize<span class="op">=</span>font_size</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># set the axis limits</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off the axis</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="va">False</span>)</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Distance to nearest pub."</span>, color<span class="op">=</span>text_colour, fontsize<span class="op">=</span>font_size)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># set the axis limits</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off the axis</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axis(<span class="va">False</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>dist_data <span class="op">=</span> nodes_gdf[<span class="ss">f"cc_restaurant_nearest_max_</span><span class="sc">{</span><span class="bu">max</span>(distances)<span class="sc">}</span><span class="ss">"</span>]</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>dist_data[np.isinf(dist_data)] <span class="op">=</span> <span class="bu">max</span>(distances)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="ss">f"cc_pub_nearest_max_</span><span class="sc">{</span><span class="bu">max</span>(distances)<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis_r"</span>,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distance to nearest restaurant."</span>, color<span class="op">=</span>text_colour, fontsize<span class="op">=</span>font_size</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># set the axis limits</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off the axis</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="va">False</span>)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/_n/10pj6p7s77548fdmhtj594n00000gp/T/ipykernel_76472/1718785405.py:9: SettingWithCopyWarning: 
+<pre><code>/var/folders/9_/5x31j5x55819zxycf85n4cp40000gq/T/ipykernel_57639/2561977630.py:9: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   dist_data[np.isinf(dist_data)] = max(distances)
-/var/folders/_n/10pj6p7s77548fdmhtj594n00000gp/T/ipykernel_76472/1718785405.py:27: SettingWithCopyWarning: 
+/var/folders/9_/5x31j5x55819zxycf85n4cp40000gq/T/ipykernel_57639/2561977630.py:28: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy

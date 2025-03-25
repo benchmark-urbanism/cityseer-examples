@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 19, 2025</p>
+      <p class="date-modified">March 25, 2025</p>
     </div>
   </div>
     
@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Install and update <code>cityseer</code> if necessary.</p>
-<div id="cell-2" class="cell" data-execution_count="7">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install --upgrade cityseer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="data-source" class="level2">
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <p>The following example assumes that the OS Open Roads dataset has been downloaded to <code>temp/os_open_roads/oproad_gb.gpkg</code> relative to the root of the <code>cityseer-examples</code> repository. Please edit the paths and path setup in this cell if you are using different directories.</p>
-<div id="cell-5" class="cell" data-execution_count="8">
+<div id="cell-5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>repo_path <span class="op">=</span> Path.cwd()</span>
@@ -332,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data path:"</span>, open_roads_path)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path exists:"</span>, open_roads_path.exists())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>data path: /Users/gareth/dev/cityseer-examples/temp/os_open_roads/oproad_gb.gpkg
+<pre><code>data path: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/temp/os_open_roads/oproad_gb.gpkg
 path exists: True</code></pre>
 </div>
 </div>
@@ -340,7 +340,7 @@ path exists: True</code></pre>
 <section id="extents" class="level2">
 <h2 class="anchored" data-anchor-id="extents">Extents</h2>
 <p>Instead of loading the entire dataset, we’ll use a bounding box to only load an area of interest.</p>
-<div id="cell-7" class="cell" data-execution_count="9">
+<div id="cell-7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -363,7 +363,7 @@ path exists: True</code></pre>
 <section id="load" class="level2">
 <h2 class="anchored" data-anchor-id="load">Load</h2>
 <p>We can now load the OS Open Roads dataset and convert it to a format that can be used by cityseer for downstream calculations.</p>
-<div id="cell-9" class="cell" data-execution_count="10">
+<div id="cell-9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load OS Open Roads data from downloaded geopackage</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>G_open <span class="op">=</span> io.nx_from_open_roads(open_roads_path, target_bbox<span class="op">=</span>target_bbox)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># decompose for higher resolution analysis</span></span>
@@ -378,21 +378,21 @@ INFO:cityseer.tools.io:Edges: 24189
 INFO:cityseer.tools.io:Dropped 430 edges where not both start and end nodes were present.
 INFO:cityseer.tools.io:Running basic graph cleaning
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 18182/18182 [00:00&lt;00:00, 23947.00it/s]
+100%|██████████| 18182/18182 [00:00&lt;00:00, 101002.24it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
-100%|██████████| 22567/22567 [00:00&lt;00:00, 41614.51it/s]
+100%|██████████| 22567/22567 [00:00&lt;00:00, 259534.08it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 25.
-100%|██████████| 22504/22504 [00:21&lt;00:00, 1047.14it/s]
+100%|██████████| 22504/22504 [00:04&lt;00:00, 4561.16it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 75807/75807 [00:01&lt;00:00, 70731.31it/s]
-100%|██████████| 75807/75807 [00:15&lt;00:00, 4897.20it/s]</code></pre>
+100%|██████████| 75807/75807 [00:00&lt;00:00, 289414.92it/s]
+100%|██████████| 75807/75807 [00:04&lt;00:00, 15326.89it/s]</code></pre>
 </div>
 </div>
 </section>
 <section id="calculate-centralities" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-centralities">Calculate centralities</h2>
 <p>The centrality methods can now be computed.</p>
-<div id="cell-11" class="cell" data-execution_count="11">
+<div id="cell-11" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want to compute wider area centralities, e.g. 20km, then use less decomposition to speed up the computation</span></span>
@@ -406,7 +406,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf_jitter,</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    jitter_scale<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    jitter_scale<span class="op">=</span><span class="dv">1</span>,</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_simplest(</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
@@ -415,18 +415,33 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75807/75807 [02:54&lt;00:00, 434.26it/s]
+100%|██████████| 75807/75807 [01:12&lt;00:00, 1049.11it/s]
+INFO:cityseer.config:Metrics computed for:
+INFO:cityseer.config:Distance: 250m, Beta: 0.016, Walking Time: 3.130000114440918 minutes.
+INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
+INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.
+INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.
 INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 75807/75807 [01:40&lt;00:00, 755.86it/s]
+100%|██████████| 75807/75807 [00:21&lt;00:00, 3561.46it/s]
+INFO:cityseer.config:Metrics computed for:
+INFO:cityseer.config:Distance: 250m, Beta: 0.016, Walking Time: 3.130000114440918 minutes.
+INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
+INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.
+INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-100%|██████████| 75807/75807 [02:28&lt;00:00, 510.64it/s]</code></pre>
+100%|██████████| 75807/75807 [00:47&lt;00:00, 1589.63it/s]
+INFO:cityseer.config:Metrics computed for:
+INFO:cityseer.config:Distance: 250m, Beta: 0.016, Walking Time: 3.130000114440918 minutes.
+INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
+INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.
+INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</code></pre>
 </div>
 </div>
 </section>
 <section id="plots" class="level2">
 <h2 class="anchored" data-anchor-id="plots">Plots</h2>
 <p>Let’s plot a selection of distance thresholds for each of the computed measures.</p>
-<div id="cell-13" class="cell" data-execution_count="12">
+<div id="cell-13" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer <span class="im">import</span> rustalgos</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> plot</span>
@@ -438,101 +453,104 @@ INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>text_colour <span class="op">=</span> <span class="st">"#ddd"</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>font_size <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, b, avg_d <span class="kw">in</span> <span class="bu">zip</span>(distances, betas, avg_dists):</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Shortest and simplest path closeness centrality: </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">m"</span>,</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">8</span>,</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>],</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        nodes_gdf[<span class="ss">f"cc_beta_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>],</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Gravity index (</span><span class="sc">{</span>avg_d<span class="sc">:.2f}</span><span class="ss">m avg. toler.)"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>],</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        nodes_gdf_jitter[<span class="ss">f"cc_beta_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>],</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(<span class="ss">f"Gravity index w. jitter"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">2</span>],</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        nodes_gdf[<span class="ss">f"cc_hillier_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_ang"</span>],</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_beta_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">0</span>],</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Gravity index (</span><span class="sc">{</span>avg_d<span class="sc">:.2f}</span><span class="ss">m avg. toler.)"</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    nodes_gdf_jitter.plot(</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_beta_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(<span class="ss">f"Gravity index w. jitter"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_hillier_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_ang"</span>,</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">2</span>],</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_title(</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Simplest path hillier integration"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_title(</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Simplest path hillier integration"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, b, avg_d <span class="kw">in</span> <span class="bu">zip</span>(distances, betas, avg_dists):</span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(</span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Shortest and simplest path betweenness centrality: </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">m"</span>,</span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">8</span>,</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>],</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>        nodes_gdf[<span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>],</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>        s_max<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Dist. wtd. betw. (</span><span class="sc">{</span>avg_d<span class="sc">:.2f}</span><span class="ss">m avg. toler.)"</span>,</span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>],</span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>        nodes_gdf_jitter[<span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>],</span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>        s_max<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(</span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Dist. wtd. betw. w. jitter"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    plot.plot_scatter(</span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">2</span>],</span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>        network_structure.node_xs,</span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>        network_structure.node_ys,</span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>        nodes_gdf[<span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_ang"</span>],</span>
-<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>        bbox_extents<span class="op">=</span>plot_bbox,</span>
-<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>        cmap_key<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>        s_max<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>        face_colour<span class="op">=</span>bg_colour,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set the axis limits</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>        ax.set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>        ax.set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># turn off the axis</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>        ax.axis(<span class="va">False</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, b, avg_d <span class="kw">in</span> <span class="bu">zip</span>(distances, betas, avg_dists):</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">3.5</span>), dpi<span class="op">=</span><span class="dv">200</span>, facecolor<span class="op">=</span>bg_colour)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Shortest and simplest path betweenness centrality: </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">m"</span>,</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">0</span>],</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Dist. wtd. betw. (</span><span class="sc">{</span>avg_d<span class="sc">:.2f}</span><span class="ss">m avg. toler.)"</span>,</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span>font_size,</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>text_colour,</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>    nodes_gdf_jitter.plot(</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Dist. wtd. betw. w. jitter"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    nodes_gdf.plot(</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>        column<span class="op">=</span><span class="ss">f"cc_betweenness_</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">_ang"</span>,</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>axes[<span class="dv">2</span>],</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_title(</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Simplest path betweenness"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
 <span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].set_title(</span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Simplest path betweenness"</span>, fontsize<span class="op">=</span>font_size, color<span class="op">=</span>text_colour</span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set the axis limits</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>        ax.set_xlim(plot_bbox[<span class="dv">0</span>], plot_bbox[<span class="dv">2</span>])</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>        ax.set_ylim(plot_bbox[<span class="dv">1</span>], plot_bbox[<span class="dv">3</span>])</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>        <span class="co"># turn off the axis</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>        ax.axis(<span class="va">False</span>)</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
