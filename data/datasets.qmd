@@ -1,6 +1,12 @@
 ---
 title: Datasets
+editor:
+  render-on-save: true
 ---
+
+The datasets used from the recipes are provided for reproducibility and further exploration per the following links. Please refer to the respective sources for the most up-to-date versions. Please use the datasets in accordance with the source licenses (these should be open, but please check) and be sure to cite the original authors of the data.
+
+Dataset preprocessing is done per the [ua-dataset-madrid](https://github.com/songololo/ua-dataset-madrid) repository, which is intended to be a source for openly reproducible urban analytics data for reproducible papers, workflows, and tutorials.
 
 ## Neighbourhoods
 
@@ -12,7 +18,7 @@ title: Datasets
 
 [License](https://datos.madrid.es/egob/catalogo/aviso-legal)
 
-Cite: Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
+Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
 
 Description: Delimitation of the 131 neighborhoods of the municipality of Madrid. The names and codes of each neighborhood and the districts to which they belong are indicated. The initial delimitation corresponds to the territorial restructuring of 1987.
 
@@ -43,7 +49,7 @@ Urban Atlas Land Cover/Land Use 2018 (vector), Europe, 6-yearly. European Union'
 
 [License](https://datos.madrid.es/egob/catalogo/aviso-legal)
 
-Cite: Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
+Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
 
 Description: Microdata file of the census of premises and activities of the Madrid City Council, classified according to their type of access (street door or grouped), situation (open, closed...) and indication of the economic activity exercised and the hospitality and restaurant terraces that appear registered in said census.
 
@@ -90,7 +96,7 @@ License for theme: ODbL
 
 [License](https://creativecommons.org/licenses/by/4.0/)
 
-Cite: Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
+Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
 
 Description: Set of roads officially approved by the municipalities of the Community of Madrid, ordered by different characteristics.
 

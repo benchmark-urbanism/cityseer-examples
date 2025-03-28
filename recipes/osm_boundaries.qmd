@@ -18,7 +18,7 @@ Download the boundary. Go to OSM and select the relation ID for the boundary tha
 import osmnx as ox
 
 bounds_gdf = ox.geocode_to_gdf(
-    "17349208",  # OSM relation ID
+    "R17349208",  # OSM relation ID
     by_osmid=True,
 )
 # optionally use to_crs() to project to a target CRS

@@ -18,9 +18,11 @@ website:
     collapse-level: 2
     contents:
       - href: index.qmd
-        text: Guide
-      - href: cookbook.qmd
+        text: Overview
+      - href: recipes/cookbook.qmd
         text: Cookbook
+      - href: data/datasets.qmd
+        text: Data
 
 format:
   html:

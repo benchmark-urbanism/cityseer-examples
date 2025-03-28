@@ -1,13 +1,23 @@
-# Cityseer Examples
+---
+title: Cityseer Guide
+editor:
+  render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
+---
 
 This repository contains examples for the `cityseer-api` package.
 
 - [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
 - [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
 
-Use the navigation menu to explore examples.
+## Cookbook
 
-## Getting Started
+See the [Cookbook](./recipes/cookbook.qmd) for a collection of recipes to illustrate typical usage scenarios for `cityseer`.
+
+## Overview
 
 `cityseer` is a `python` package that can be installed with `pip`:
 
