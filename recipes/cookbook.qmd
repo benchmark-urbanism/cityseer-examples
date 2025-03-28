@@ -12,19 +12,49 @@ Please open an issue to request adding further examples to illustrate a given us
 
 The datasets used from the recipes are available on the [datasets](../data/datasets.qmd) page, where you can also find information on the sources.
 
+## Installation
+
+To install `cityseer`, you can use `pip`:
+
+```bash
+pip install --upgrade cityseer
+```
+
+Or, from a notebook:
+
+```python
+!pip install --upgrade cityseer
+```
+
 ## Network Preparation
+
+`cityseer` uses `networkx` [`MultiGraphs`](https://networkx.org/documentation/stable/reference/classes/multigraph.html) to represent pedestrian networks. In doing so, it embeds spatial information in the graph nodes and edges so that it can accurately manipulate the graphs and calculate derivative metrics.
 
 ### Create from OSM
 
+Create a `networkx` network from OpenStreetMap data.
+
+[Notebook](../recipes/networks/create_from_osm.ipynb)
+
 ### Create from a buffered coordinate
 
-### Using the Dual Graph
+Create a `networkx` graph from a buffered point.
 
-## Working with Files
+[Notebook](../recipes/networks/create_from_buffered_point.ipynb)
 
-### Create from a File
+### Create a Dual Graph
 
-### Save to a File
+Create a dual graph representation from a primal graph.
+
+[Notebook](../recipes/networks/create_dual_graph.ipynb)
+
+### Create from a LineStrings File
+
+Use `geopandas` to open a LineStrings file and convert it to a `networkx` graph.
+
+### Save to a LineStrings File
+
+Save a `networkx` graph to a LineStrings file using `geopandas`.
 
 ## Network Cleaning
 
@@ -57,6 +87,8 @@ The datasets used from the recipes are available on the [datasets](../data/datas
 ## Centrality
 
 ### Shortest Metric Centrality
+
+[Notebook](../recipes/centrality/shortest_metric_centrality.ipynb)
 
 ### Simplest Angular Centrality
 

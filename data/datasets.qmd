@@ -127,3 +127,13 @@ Copyright European Union 2025 - The source needs to be indicated and when re-use
 | SAME    | Residence unchanged in past year     |
 | CHG_IN  | Moved within reporting country       |
 | CHG_OUT | Moved from outside reporting country |
+
+## GTFS - Metro
+
+[Stops](./madrid_gtfs/madrid_metro/stops.txt)
+
+[Stop Times](./madrid_gtfs/madrid_metro/stop_times.txt)
+
+[Source](https://mobilitydatabase.org/feeds/gtfs/mdb-794)
+
+[License](https://mobilitydatabase.org/terms-and-conditions)
