@@ -18,26 +18,9 @@ website:
     collapse-level: 2
     contents:
       - href: index.qmd
-        text: Home
-      - section: Preparation
-        contents:
-          - examples/osm_boundaries.qmd
-          - examples/graph_cleaning.ipynb
-      - section: Conversion
-        contents:
-          - examples/save_to_geopandas.qmd
-          - examples/momepy_to_cityseer.ipynb
-          - examples/osm_to_cityseer.ipynb
-      - section: Networks
-        contents:
-          - examples/london_centralities.ipynb
-      - section: Accessibility
-        contents:
-          - examples/london_amenities.ipynb
-      - section: Continuity
-        contents:
-          - examples/continuity/continuity_os_open.ipynb
-          - examples/continuity/continuity_osm.ipynb
+        text: Guide
+      - href: cookbook.qmd
+        text: Cookbook
 
 format:
   html:
