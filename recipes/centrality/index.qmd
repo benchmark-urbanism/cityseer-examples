@@ -1,0 +1,15 @@
+---
+title: Network Centrality
+editor:
+  render-on-save: true
+---
+
+## Shortest Metric Centrality
+
+[Notebook](shortest_metric_centrality.ipynb)
+
+## Simplest Angular Centrality
+
+## Segment Centrality
+
+## Adding the Transport Network

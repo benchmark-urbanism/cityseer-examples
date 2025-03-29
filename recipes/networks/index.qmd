@@ -1,0 +1,67 @@
+---
+title: Network Generation
+editor:
+  render-on-save: true
+---
+
+`cityseer` uses `networkx` [`MultiGraphs`](https://networkx.org/documentation/stable/reference/classes/multigraph.html) to represent pedestrian networks. In doing so, it embeds spatial information in the graph nodes and edges so that it can accurately manipulate the graphs and calculate derivative metrics.
+
+## OSM network from a bounding box
+
+Use a bounding box to create a `networkx` graph from OpenStreetMap data.
+
+[Notebook](create_from_bbox.ipynb)
+
+## OSM network from a buffered coordinate
+
+Use a buffered point to create a `networkx` graph from OSM.
+
+[Notebook](create_from_buffered_point.ipynb)
+
+## OSM network from a boundary file
+
+Use a custom boundary file to create a `networkx` graph from OSM.
+
+[Notebook](network_from_bounds.ipynb)
+
+## OSM network from a relation id
+
+Use an OSM relation id to create a `networkx` graph from OSM.
+
+[Notebook](network_from_relation_id.ipynb)
+
+## Custom network from a streets dataset
+
+Use `geopandas` to open a street network file and convert it to a `networkx` graph.
+
+[Notebook](network_from_streets.ipynb)
+
+## Convert a network from osmnx
+
+Convert a network from `osmnx` to a `cityseer` compatible `networkx` graph.
+
+[Notebook](osmnx_to_cityseer.ipynb)
+
+## Convert a network from momepy
+
+Convert a network from `momepy` to a `cityseer` compatible `networkx` graph.
+
+[Notebook](momepy_to_cityseer.ipynb)
+
+## Saving a network to a file
+
+Save a `networkx` graph to a file.
+
+[Notebook](save_to_file.ipynb)
+
+## Dual graph from a primal graph
+
+Create a dual graph representation from a primal graph.
+
+[Notebook](create_dual_graph.ipynb)
+
+## Custom network simplification
+
+Manually configure network simplification steps and parameters.
+
+[Notebook](network_simplification.ipynb)

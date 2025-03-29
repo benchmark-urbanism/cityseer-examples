@@ -18,12 +18,9 @@ website:
     collapse-level: 2
     contents:
       - href: index.qmd
-        text: Overview
-      - href: recipes/cookbook.qmd
-        text: Cookbook
       - href: data/datasets.qmd
-        text: Data
-
+      - href: recipes/networks/index.qmd
+      - href: recipes/centrality/index.qmd
 format:
   html:
     theme: simplex
