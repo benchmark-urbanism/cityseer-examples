@@ -26,6 +26,8 @@ Calculate metric distance centralities for OSM data.
 
 ## Adding GTFS transport data
 
-Add GTFS transportation data to the network and calculate centralities.
+> GTFS transport data support is still experimental.
 
-[Notebook](gtfs_metro.ipynb)
+Add GTFS transportation data to the network.
+
+[Notebook](centrality_metro.ipynb)

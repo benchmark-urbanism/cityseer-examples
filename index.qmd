@@ -48,32 +48,19 @@ See the [Network Preparation](./recipes/networks/index.qmd) page for examples of
 
 `cityseer` converts the network into a `rust` data structure prior to computing derivative metrics. This is done to improve performance so that it can be used on large networks.
 
-This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function which is available in the `cityseer` `io` module. This function returns three objects:
+This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function which is available in the `cityseer` `io` module. Once you've prepared the nodes `GeoDataFrame` and the `NetworkStructure` from the `network_structure_from_nx` function, you can use it over and over again to calculate a variety of metrics.
+This function returns three objects:
 
 - A nodes `GeoDataFrame` with the graph's nodes. This is used for saving the outputs of calculations, and makes it easy to export the outputs of calculations to files that can be used from QGIS or other GIS software and workflows.
 - An edges `GeoDataFrame` with the graph's edges, including information that has been generated for the graph's edges such as metric and angular distances, entry and exit angles, and the overall bearing of the edge.
 - A `cityseer` `NetworkStructure` object which is used by `cityseer` for calculating the measures.
 
-Once you've prepared the nodes `GeoDataFrame` and the `NetworkStructure` from the `network_structure_from_nx` function, you can use it over and over again to calculate a variety of metrics.
+Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
 
-Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will also contain the primal edges, and these will be used for visualising the outputs of the calculations. Use of the dual representation is optional, but recommended.
+#### Centrality
 
 See the [Network Centrality](./recipes/centrality/index.qmd) page for examples of how to efficiently calculate a variety of shortest metric and simplest angular centrality metrics.
 
-## Accessibility
+#### Accessibility
 
-### Importing Data
-
-### Calculate the Accessibility of POIs
-
-### Nearest Distances to POIs
-
-## Statistics
-
-### Network Based Spatial Statistics
-
-### Exploring Distributions
-
-### Exploring Correlations
-
-## Examples
+#### Statistical Measures
