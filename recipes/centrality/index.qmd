@@ -4,12 +4,24 @@ editor:
   render-on-save: true
 ---
 
-## Shortest Metric Centrality
+Once you have created a `cityseer` compatible `networkx` graph, you can calculate a variety of centrality metrics. The following examples illustrate how to calculate and visualise these metrics.
+
+## Metric distance network centrality
+
+Calculate metric distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
 
 [Notebook](shortest_metric_centrality.ipynb)
 
-## Simplest Angular Centrality
+## Angular distance network centrality
 
-## Segment Centrality
+Calculate angular (geometric or "simplest") distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
+
+[Notebook](simplest_angular_centrality.ipynb)
+
+## Network centrality from OSM data
+
+Calculate metric distance centralities for OSM data.
+
+[Notebook](osm_centrality.ipynb)
 
 ## Adding the Transport Network

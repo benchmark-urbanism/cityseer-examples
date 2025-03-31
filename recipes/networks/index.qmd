@@ -1,10 +1,19 @@
 ---
-title: Network Generation
+title: Network Preparation
 editor:
   render-on-save: true
 ---
 
-`cityseer` uses `networkx` [`MultiGraphs`](https://networkx.org/documentation/stable/reference/classes/multigraph.html) to represent pedestrian networks. In doing so, it embeds spatial information in the graph nodes and edges so that it can accurately manipulate the graphs and calculate derivative metrics.
+The below examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.
+
+If you wish to manually prepare the network, then the network nodes require `x` and `y` attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:
+
+- An optional `live` attribute indicating whether to compute metrics for a given node (`live=True`) else whether to skip calculations (`live=False`). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.
+- An optional `weight` attribute indicating the weight of the node. `cityseer` will by default assume `weight=1` when calculating centrality metrics. Advanced users may in some cases wish to use the `weight` attribute to indicate the relative importance of a node in the network.
+
+For edges, `cityseer` network representations contain a `geom` attribute which stores a shapely LineString geometry of the edge.
+
+The first several examples use the [osm_graph_from_poly](https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly) function available from the `cityseer` package's `io` module. This is a versatile function for generating networks from OSM data. See the first (bounding box) example for some use cases including how to use specific Coordinate Reference Systems.
 
 ## OSM network from a bounding box
 
