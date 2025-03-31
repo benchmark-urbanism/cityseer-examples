@@ -24,4 +24,8 @@ Calculate metric distance centralities for OSM data.
 
 [Notebook](osm_centrality.ipynb)
 
-## Adding the Transport Network
+## Adding GTFS transport data
+
+Add GTFS transportation data to the network and calculate centralities.
+
+[Notebook](gtfs_metro.ipynb)
