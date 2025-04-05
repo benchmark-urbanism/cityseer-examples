@@ -1,0 +1,19 @@
+---
+title: Statistics
+editor:
+  render-on-save: true
+---
+
+Once you have created a `cityseer` compatible `networkx` graph, you can calculate statistical aggregations over the network.
+
+## Statistics from geopandas data
+
+Calculate building statistics from a `geopandas` `GeoDataFrame`.
+
+[Notebook](gpd_stats.ipynb)
+
+## Statistics from OSM data
+
+Calculate building statistics from `osmnx` data.
+
+[Notebook](osm_stats.ipynb)
