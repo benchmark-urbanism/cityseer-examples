@@ -4,6 +4,13 @@ editor:
   render-on-save: true
 ---
 
+This repository contains examples for the `cityseer` package.
+
+- [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
+- [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
+
+## Cookbook
+
 This cookbook contains a collection of recipes to illustrate typical usage scenarios for `cityseer`.
 
 The recipes build on each other, so if you are wondering why or how to do something, you may find the answers in another (typically preceding) recipe.
