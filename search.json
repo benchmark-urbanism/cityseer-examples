@@ -338,7 +338,17 @@
     "href": "index.html",
     "title": "Cookbook",
     "section": "",
-    "text": "This cookbook contains a collection of recipes to illustrate typical usage scenarios for cityseer.\nThe recipes build on each other, so if you are wondering why or how to do something, you may find the answers in another (typically preceding) recipe.\nPlease open an issue to request the addition of further examples for a given use-case.",
+    "text": "This repository contains examples for the cityseer package.",
+    "crumbs": [
+      "Cookbook"
+    ]
+  },
+  {
+    "objectID": "index.html#cookbook",
+    "href": "index.html#cookbook",
+    "title": "Cookbook",
+    "section": "Cookbook",
+    "text": "Cookbook\nThis cookbook contains a collection of recipes to illustrate typical usage scenarios for cityseer.\nThe recipes build on each other, so if you are wondering why or how to do something, you may find the answers in another (typically preceding) recipe.\nPlease open an issue to request the addition of further examples for a given use-case.",
     "crumbs": [
       "Cookbook"
     ]
