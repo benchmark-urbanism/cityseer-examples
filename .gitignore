@@ -5,6 +5,7 @@
 /output/
 .quarto/
 _freeze/
+*.quarto_ipynb
 
 # code profiling
 .prof

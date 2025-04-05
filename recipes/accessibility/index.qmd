@@ -1,0 +1,25 @@
+---
+title: Accessibilities
+editor:
+  render-on-save: true
+---
+
+Once you have created a `cityseer` compatible `networkx` graph, you can calculate accessibilities to landuses or points of interest.
+
+## Landuse accessibility from geopandas data
+
+Calculate landuse accessibilities from a `geopandas` `GeoDataFrame`.
+
+[Notebook](gpd_accessibility.ipynb)
+
+## Landuse accessibility from OSM data
+
+Calculate landuse accessibilities from OpenStreetMap.
+
+[Notebook](osm_accessibility.ipynb)
+
+## Calculating mixed-uses
+
+Calculate mixed land-uses.
+
+[Notebook](gpd_mixed_uses.ipynb)

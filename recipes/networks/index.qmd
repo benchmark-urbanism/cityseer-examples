@@ -1,0 +1,83 @@
+---
+title: Network Preparation
+editor:
+  render-on-save: true
+---
+
+The below examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.
+
+If you wish to manually prepare the network, then the network nodes require `x` and `y` attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:
+
+- An optional `live` attribute indicating whether to compute metrics for a given node (`live=True`) else whether to skip calculations (`live=False`). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.
+- An optional `weight` attribute indicating the weight of the node. `cityseer` will by default assume `weight=1` when calculating centrality metrics. Advanced users may in some cases wish to use the `weight` attribute to indicate the relative importance of a node in the network.
+
+For edges, `cityseer` network representations contain a `geom` attribute which stores a shapely LineString geometry of the edge.
+
+The first several examples use the [osm_graph_from_poly](https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly) function available from the `cityseer` package's `io` module. This is a versatile function for generating networks from OSM data. See the first (bounding box) example for some use cases including how to use specific Coordinate Reference Systems.
+
+## OSM network from a bounding box
+
+Use a bounding box to create a `networkx` graph from OpenStreetMap data.
+
+[Notebook](create_from_bbox.ipynb)
+
+## OSM network from a buffered coordinate
+
+Use a buffered point to create a `networkx` graph from OSM.
+
+[Notebook](create_from_buffered_point.ipynb)
+
+## OSM network from a boundary file
+
+Use a custom boundary file to create a `networkx` graph from OSM.
+
+[Notebook](network_from_bounds.ipynb)
+
+## OSM network from a relation id
+
+Use an OSM relation id to create a `networkx` graph from OSM.
+
+[Notebook](network_from_relation_id.ipynb)
+
+## Custom network from a streets dataset
+
+Use `geopandas` to open a street network file and convert it to a `networkx` graph.
+
+[Notebook](network_from_streets.ipynb)
+
+## Convert a network from osmnx
+
+Convert a network from `osmnx` to a `cityseer` compatible `networkx` graph.
+
+[Notebook](osmnx_to_cityseer.ipynb)
+
+## Convert a network from momepy
+
+Convert a network from `momepy` to a `cityseer` compatible `networkx` graph.
+
+[Notebook](momepy_to_cityseer.ipynb)
+
+## Saving a network to a file
+
+Save a `networkx` graph to a file.
+
+[Notebook](save_to_file.ipynb)
+
+## Dual graph from a primal graph
+
+Create a dual graph representation from a primal graph.
+
+[Notebook](create_dual_graph.ipynb)
+
+## Custom network simplification
+
+Good sources of street network data, such as the Ordnance Survey's [OS Open Roads](https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-roads.html), typically have two distinguishing characteristics:
+
+- The network has been simplified to its essential structure: i.e. unnecessarily complex representations of intersections, on-ramps, divided roadways, etc., have been reduced to a simpler representation concurring more readily with the core topological structure of street networks. Simplified forms of network representation contrast those focusing on completeness (e.g. for route way-finding, see [OS ITN Layer](https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/products/itn-layer.html)): these introduce unnecessary complexity serving to hinder rather than help shortest-path algorithms in the sense used by pedestrian centrality measures.
+- The topology of the network is kept distinct from the geometry of the streets. Often-times, as can be seen with [Open Street Map](https://www.openstreetmap.org), additional nodes are added to streets to represent geometric twists and turns along a roadway. These additional nodes cause topological distortions that impact network centrality measures.
+
+When a high-quality source is available, it may be best not to attempt additional clean-up unless there is a particular rationale for doing so. On the other hand, many indispensable sources of network information, particularly Open Street Map data, can be particularly messy for network analysis purposes.
+
+`cityseer` uses customisable graph cleaning methods that reduce topological idiosyncrasies which may otherwise confound centrality measures. It can, for example, remove dual carriageways while merging nodes and roadways in a manner that is as 'tidy' as possible. `cityseer` has an automated cleaning routine for OSM data, but it is also possible to manually configure network simplification steps and parameters as shown in the following notebook.
+
+[Notebook](network_simplification.ipynb)
