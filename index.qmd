@@ -63,4 +63,12 @@ See the [Network Centrality](./recipes/centrality/index.qmd) page for examples o
 
 #### Accessibility
 
+See the [Accessibility](./recipes/accessibility/index.qmd) page for examples of how to efficiently calculate a variety of landuse accessibility and mixed-use metrics.
+
 #### Statistical Measures
+
+### Edge Rolloff
+
+When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running centrality and/or land-use analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should --- for the same reasons --- cover these buffered extents as well.
+
+The `live=True` node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the `live=False` nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both `live=True` and `live=False` nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for `live=True` nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to `live=True`.

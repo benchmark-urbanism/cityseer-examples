@@ -21,6 +21,7 @@ website:
       - href: data/datasets.qmd
       - href: recipes/networks/index.qmd
       - href: recipes/centrality/index.qmd
+      - href: recipes/accessibility/index.qmd
 format:
   html:
     theme: simplex

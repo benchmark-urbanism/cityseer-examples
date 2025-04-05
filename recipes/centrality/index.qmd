@@ -10,13 +10,13 @@ Once you have created a `cityseer` compatible `networkx` graph, you can calculat
 
 Calculate metric distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
 
-[Notebook](shortest_metric_centrality.ipynb)
+[Notebook](gpd_metric_centrality.ipynb)
 
 ## Angular distance network centrality
 
 Calculate angular (geometric or "simplest") distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
 
-[Notebook](simplest_angular_centrality.ipynb)
+[Notebook](gpd_angular_centrality.ipynb)
 
 ## Network centrality from OSM data
 
