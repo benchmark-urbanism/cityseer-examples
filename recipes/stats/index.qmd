@@ -4,7 +4,12 @@ editor:
   render-on-save: true
 ---
 
-Once you have created a `cityseer` compatible `networkx` graph, you can calculate statistical aggregations over the network.
+The following two examples use the [`layers.compute_stats`](https://cityseer.benchmarkurbanism.com/metrics/layers#compute-stats) method to compute statistics such as `min`, `max`, `mean`, and `var`. In general, the same network pre-processing steps can be followed as shown for these network preparation steps or for the network centrality steps. A data set is their necessary for identifying the locations of different land uses and it is the impossible to compete accessibilities over the network using the `layers.compute_stats` method.
+
+This method requires:
+
+- A `geopandas` `GeoDataFrame` parameter containing landuse data;
+- A `stats_column_labels` identifying the corresponding numeric columns for which to compute statistics;
 
 ## Statistics from geopandas data
 
