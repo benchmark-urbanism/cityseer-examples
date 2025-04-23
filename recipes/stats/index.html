@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../recipes/accessibility/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Statistics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recipes/stats/index.html">Statistics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -138,6 +139,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/stats/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -175,7 +182,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph, you can calculate statistical aggregations over the network.</p>
+<p>The following two examples use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-stats"><code>layers.compute_stats</code></a> method to compute statistics such as <code>min</code>, <code>max</code>, <code>mean</code>, and <code>var</code>. In general, the same network pre-processing steps can be followed as shown for these network preparation steps or for the network centrality steps. A data set is their necessary for identifying the locations of different land uses and it is the impossible to compete accessibilities over the network using the <code>layers.compute_stats</code> method.</p>
+<p>This method requires:</p>
+<ul>
+<li>A <code>geopandas</code> <code>GeoDataFrame</code> parameter containing landuse data;</li>
+<li>A <code>stats_column_labels</code> identifying the corresponding numeric columns for which to compute statistics;</li>
+</ul>
 <section id="statistics-from-geopandas-data" class="level2">
 <h2 class="anchored" data-anchor-id="statistics-from-geopandas-data">Statistics from geopandas data</h2>
 <p>Calculate building statistics from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
@@ -607,6 +619,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../recipes/accessibility/index.html" class="pagination-link" aria-label="Accessibilities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Accessibilities</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

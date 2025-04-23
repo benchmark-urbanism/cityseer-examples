@@ -173,6 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./recipes/stats/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -265,16 +271,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Once you’ve prepared the <code>NetworkStructure</code> object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the <code>NetworkStructure</code> object.</p>
 <p>Use of the dual representation is optional, but recommended. Keep in mind that if you’ve converted your <code>networkx</code> network into a dual representation, then the nodes <code>GeoDataFrame</code> will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.</p>
+<p>Note that distances used when computing accessibilities, statistics, or other measures are all based on distances over the network. In the case of weighted variants, the distances used for the weighting process are the distances from each point of measure to the individual data points (such as land uses) under consideration.</p>
 <section id="centrality" class="level4">
 <h4 class="anchored" data-anchor-id="centrality">Centrality</h4>
-<p>See the <a href="./recipes/centrality/index.html">Network Centrality</a> page for examples of how to efficiently calculate a variety of shortest “metric” and simplest “angular” centrality metrics.</p>
+<p>See the <a href="./recipes/centrality/index.html">Network Centrality</a> page for examples of how to calculate a variety of shortest “metric” and simplest “angular” centrality metrics.</p>
 </section>
 <section id="accessibility" class="level4">
 <h4 class="anchored" data-anchor-id="accessibility">Accessibility</h4>
-<p>See the <a href="./recipes/accessibility/index.html">Accessibility</a> page for examples of how to efficiently calculate a variety of landuse accessibility and mixed-use metrics.</p>
+<p>See the <a href="./recipes/accessibility/index.html">Accessibility</a> page for examples of how to calculate a variety of landuse accessibility and mixed-use metrics.</p>
 </section>
-<section id="statistical-measures" class="level4">
-<h4 class="anchored" data-anchor-id="statistical-measures">Statistical Measures</h4>
+<section id="statistics" class="level4">
+<h4 class="anchored" data-anchor-id="statistics">Statistics</h4>
+<p>See the <a href="./recipes/stats/index.html">Statistics</a> page for examples of how to calculate statistical metrics over the network.</p>
 </section>
 </section>
 <section id="edge-rolloff" class="level3">

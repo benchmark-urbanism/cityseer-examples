@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>osm_stats – Cityseer Guide</title>
+<title>Statistics from OSM data – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Statistics from OSM data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -175,6 +175,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/stats/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -184,180 +190,207 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-<div id="1d3b0e0e" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Statistics from OSM data</h1>
 </div>
-<div id="39e56178" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_decompose(G, <span class="dv">50</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Calculate building statistics from <code>osmnx</code> data.</p>
+<div id="1d3b0e0e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+</div>
+<p>To start, follow the same approach as shown in the network examples to create the network.</p>
+<div id="39e56178" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_decompose(G, <span class="dv">50</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 23999/23999 [00:00&lt;00:00, 49775.25it/s]
+100%|██████████| 24093/24093 [00:00&lt;00:00, 52053.70it/s]
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 22280/22280 [00:00&lt;00:00, 363202.48it/s]
+100%|██████████| 22376/22376 [00:00&lt;00:00, 824367.32it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 23999/23999 [00:01&lt;00:00, 13748.75it/s]
+100%|██████████| 24093/24093 [00:01&lt;00:00, 17619.79it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 22280/22280 [00:00&lt;00:00, 32127.82it/s]
+100%|██████████| 22376/22376 [00:00&lt;00:00, 23764.97it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 12113/12113 [00:00&lt;00:00, 1162041.22it/s]
-100%|██████████| 12113/12113 [00:00&lt;00:00, 13632.40it/s]
+100%|██████████| 12155/12155 [00:00&lt;00:00, 1504508.21it/s]
+100%|██████████| 12155/12155 [00:01&lt;00:00, 10579.17it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 10394/10394 [00:00&lt;00:00, 92719.89it/s]
-100%|██████████| 7339/7339 [00:00&lt;00:00, 148250.52it/s]
+100%|██████████| 10438/10438 [00:00&lt;00:00, 64006.25it/s]
+100%|██████████| 7386/7386 [00:00&lt;00:00, 306039.25it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 8952/8952 [00:00&lt;00:00, 914786.44it/s]
+100%|██████████| 9004/9004 [00:00&lt;00:00, 902121.52it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6626/6626 [00:00&lt;00:00, 1330562.47it/s]
+100%|██████████| 6652/6652 [00:00&lt;00:00, 1451714.98it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5244/5244 [00:00&lt;00:00, 166836.80it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 90093.47it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6635/6635 [00:00&lt;00:00, 181382.84it/s]
+100%|██████████| 6661/6661 [00:00&lt;00:00, 52171.12it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6586/6586 [00:00&lt;00:00, 821620.00it/s]
+100%|██████████| 6612/6612 [00:00&lt;00:00, 1670043.24it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5244/5244 [00:00&lt;00:00, 23397.27it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 38631.24it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6644/6644 [00:00&lt;00:00, 268858.90it/s]
+100%|██████████| 6668/6668 [00:00&lt;00:00, 329042.43it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6633/6633 [00:00&lt;00:00, 1161814.85it/s]
+100%|██████████| 6658/6658 [00:00&lt;00:00, 70240.20it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5244/5244 [00:00&lt;00:00, 151359.31it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 147680.84it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6634/6634 [00:00&lt;00:00, 328338.11it/s]
+100%|██████████| 6659/6659 [00:00&lt;00:00, 492746.73it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6634/6634 [00:00&lt;00:00, 770775.98it/s]
+100%|██████████| 6659/6659 [00:00&lt;00:00, 1442882.18it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5244/5244 [00:00&lt;00:00, 109291.58it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 96024.53it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6635/6635 [00:00&lt;00:00, 295872.83it/s]
+100%|██████████| 6660/6660 [00:00&lt;00:00, 428962.91it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5244/5244 [00:00&lt;00:00, 216812.03it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 61706.08it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5244/5244 [00:00&lt;00:00, 5756.07it/s]
+100%|██████████| 5270/5270 [00:00&lt;00:00, 6486.51it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6583/6583 [00:00&lt;00:00, 301820.07it/s]
+100%|██████████| 6608/6608 [00:00&lt;00:00, 265646.49it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5204/5204 [00:00&lt;00:00, 573508.45it/s]
+100%|██████████| 5230/5230 [00:00&lt;00:00, 437909.69it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5132/5132 [00:00&lt;00:00, 227380.14it/s]
+100%|██████████| 5158/5158 [00:00&lt;00:00, 61966.97it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5132/5132 [00:07&lt;00:00, 654.65it/s] 
+100%|██████████| 5158/5158 [00:06&lt;00:00, 789.33it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6036/6036 [00:00&lt;00:00, 140358.14it/s]
+100%|██████████| 6060/6060 [00:00&lt;00:00, 81597.58it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4773/4773 [00:00&lt;00:00, 626056.63it/s]
+100%|██████████| 4798/4798 [00:00&lt;00:00, 622637.62it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4737/4737 [00:00&lt;00:00, 218848.92it/s]
+100%|██████████| 4762/4762 [00:00&lt;00:00, 58029.97it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4737/4737 [00:01&lt;00:00, 3029.69it/s]
+100%|██████████| 4762/4762 [00:01&lt;00:00, 3430.03it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5825/5825 [00:00&lt;00:00, 243085.76it/s]
+100%|██████████| 5851/5851 [00:00&lt;00:00, 209652.49it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4683/4683 [00:00&lt;00:00, 768583.72it/s]
+100%|██████████| 4708/4708 [00:00&lt;00:00, 924951.20it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4669/4669 [00:00&lt;00:00, 212625.19it/s]
+100%|██████████| 4694/4694 [00:00&lt;00:00, 26154.54it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4669/4669 [00:02&lt;00:00, 1959.83it/s]
+100%|██████████| 4694/4694 [00:02&lt;00:00, 2148.87it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5685/5685 [00:00&lt;00:00, 318953.15it/s]
+100%|██████████| 5710/5710 [00:00&lt;00:00, 279914.40it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4588/4588 [00:00&lt;00:00, 831287.17it/s]
+100%|██████████| 4613/4613 [00:00&lt;00:00, 767943.02it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4573/4573 [00:00&lt;00:00, 211694.19it/s]
+100%|██████████| 4598/4598 [00:00&lt;00:00, 56333.59it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5662/5662 [00:00&lt;00:00, 1077257.85it/s]
+100%|██████████| 5687/5687 [00:00&lt;00:00, 1612452.30it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 4573/4573 [00:00&lt;00:00, 29304.54it/s]
+100%|██████████| 4598/4598 [00:00&lt;00:00, 18176.86it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5861/5861 [00:00&lt;00:00, 1326077.02it/s]
+100%|██████████| 5888/5888 [00:00&lt;00:00, 1752985.66it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 4573/4573 [00:00&lt;00:00, 30098.24it/s]
+100%|██████████| 4598/4598 [00:00&lt;00:00, 16131.24it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6720/6720 [00:00&lt;00:00, 375759.54it/s]
+100%|██████████| 6766/6766 [00:00&lt;00:00, 442655.76it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 5053/5053 [00:00&lt;00:00, 666891.70it/s]
+100%|██████████| 5088/5088 [00:00&lt;00:00, 645277.54it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4254/4254 [00:00&lt;00:00, 48328.44it/s]
+100%|██████████| 4287/4287 [00:00&lt;00:00, 32714.52it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4781/4781 [00:00&lt;00:00, 1205178.64it/s]
+100%|██████████| 4808/4808 [00:00&lt;00:00, 1453001.92it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3115/3115 [00:00&lt;00:00, 21004.70it/s]
+100%|██████████| 3131/3131 [00:00&lt;00:00, 11904.13it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4821/4821 [00:00&lt;00:00, 212173.17it/s]
+100%|██████████| 4848/4848 [00:00&lt;00:00, 128808.62it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3115/3115 [00:00&lt;00:00, 242641.18it/s]
+100%|██████████| 3131/3131 [00:00&lt;00:00, 61487.45it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3115/3115 [00:11&lt;00:00, 263.97it/s]
+100%|██████████| 3131/3131 [00:10&lt;00:00, 295.17it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3844/3844 [00:00&lt;00:00, 89095.03it/s]
+100%|██████████| 3874/3874 [00:00&lt;00:00, 44290.41it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3652/3652 [00:00&lt;00:00, 1608822.41it/s]
+100%|██████████| 3678/3678 [00:00&lt;00:00, 1361695.66it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2456/2456 [00:00&lt;00:00, 23687.37it/s]
+100%|██████████| 2472/2472 [00:00&lt;00:00, 12715.47it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3663/3663 [00:00&lt;00:00, 396821.44it/s]
+100%|██████████| 3688/3688 [00:00&lt;00:00, 401000.47it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2456/2456 [00:00&lt;00:00, 217858.27it/s]
+100%|██████████| 2472/2472 [00:00&lt;00:00, 56345.58it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2456/2456 [00:06&lt;00:00, 354.20it/s]
+100%|██████████| 2472/2472 [00:06&lt;00:00, 363.22it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3149/3149 [00:00&lt;00:00, 114052.62it/s]
+100%|██████████| 3165/3165 [00:00&lt;00:00, 56212.72it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2020/2020 [00:00&lt;00:00, 152591.57it/s]
+100%|██████████| 2028/2028 [00:00&lt;00:00, 106089.56it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2914/2914 [00:00&lt;00:00, 223726.92it/s]
+100%|██████████| 2930/2930 [00:00&lt;00:00, 137809.62it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2893/2893 [00:00&lt;00:00, 52630.74it/s]
+100%|██████████| 2911/2911 [00:00&lt;00:00, 22077.08it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2879/2879 [00:00&lt;00:00, 453519.16it/s]
+100%|██████████| 2898/2898 [00:00&lt;00:00, 440705.30it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 1876/1876 [00:00&lt;00:00, 725676.87it/s]
+100%|██████████| 1887/1887 [00:00&lt;00:00, 709706.93it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1858/1858 [00:00&lt;00:00, 414257.75it/s]
+100%|██████████| 1869/1869 [00:00&lt;00:00, 305108.56it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 50.
-100%|██████████| 2825/2825 [00:00&lt;00:00, 11877.77it/s]
+100%|██████████| 2845/2845 [00:00&lt;00:00, 3897.41it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 4987/4987 [00:00&lt;00:00, 136249.31it/s]
+100%|██████████| 5001/5001 [00:00&lt;00:00, 43693.58it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 4987/4987 [00:01&lt;00:00, 2903.79it/s]
+100%|██████████| 5001/5001 [00:05&lt;00:00, 882.45it/s] 
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 4987/4987 [00:00&lt;00:00, 258595.25it/s]
-100%|██████████| 4987/4987 [00:00&lt;00:00, 9031.54it/s]</code></pre>
+100%|██████████| 5001/5001 [00:00&lt;00:00, 57807.11it/s]
+100%|██████████| 5001/5001 [00:00&lt;00:00, 6341.88it/s]</code></pre>
 </div>
 </div>
-<div id="bcbfd458" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"building"</span>: <span class="va">True</span>})</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(G.graph[<span class="st">"crs"</span>])</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data_gdf.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<p>Prepare the buildings GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>building</code>.</p>
+<p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
+<div id="bcbfd458" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"building"</span>: <span class="va">True</span>})</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(G.graph[<span class="st">"crs"</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data_gdf.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -417,56 +450,8 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <tbody>
 <tr class="odd">
 <td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">way</td>
-<td data-quarto-table-cell-role="th">1374498886</td>
-<td>POLYGON ((699072.276 5711987.717, 699073.651 5...</td>
-<td>London</td>
-<td>WC1H 0PD</td>
-<td>Gordon Square</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>kiosk</td>
-<td>NaN</td>
-<td>Garden Kiosk</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1374681344</td>
-<td>POLYGON ((700334.357 5710842.473, 700337.684 5...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>commercial</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1374681345</td>
-<td>POLYGON ((700347.126 5710850.783, 700337.684 5...</td>
+<td data-quarto-table-cell-role="th">1376078547</td>
+<td>POLYGON ((700109.929 5711088.531, 700109.345 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -489,15 +474,15 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1374681346</td>
-<td>POLYGON ((700335.868 5710827.778, 700339.655 5...</td>
+<td data-quarto-table-cell-role="th">1376143786</td>
+<td>POLYGON ((699629.646 5710126.422, 699636.667 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>commercial</td>
+<td>yes</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -513,8 +498,8 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1374820282</td>
-<td>POLYGON ((699547.129 5710318.314, 699559.064 5...</td>
+<td data-quarto-table-cell-role="th">1376223154</td>
+<td>POLYGON ((698717.576 5711621.834, 698721.937 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -522,6 +507,54 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <td>NaN</td>
 <td>NaN</td>
 <td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1376708981</td>
+<td>POLYGON ((699087.434 5711425.131, 699087.697 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1377426683</td>
+<td>POLYGON ((699683.471 5710178.415, 699687.2 571...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>stall</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -543,12 +576,13 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="ea9a0d91" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> data_gdf.loc[<span class="st">"way"</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way[[<span class="st">"geometry"</span>]]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>bldg_way.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<p>Some preparatory data cleaning is typically necessary. This example extracts the particular rows and columns of interest for the subsequent steps of analysis.</p>
+<div id="ea9a0d91" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> data_gdf.loc[<span class="st">"way"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way[[<span class="st">"geometry"</span>]]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>bldg_way.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -586,12 +620,12 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="8c06b751" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> data_gdf.loc[<span class="st">"relation"</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel[[<span class="st">"geometry"</span>]]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>bldg_rel.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div id="8c06b751" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> data_gdf.loc[<span class="st">"relation"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel[[<span class="st">"geometry"</span>]]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>bldg_rel.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -629,12 +663,12 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="35bfdbe2" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> pd.concat([bldg_way, bldg_rel], axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.explode(ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div id="35bfdbe2" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> pd.concat([bldg_way, bldg_rel], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.explode(ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -672,272 +706,122 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 </div>
 </div>
 </div>
-<div id="daf40e17" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"area"</span>] <span class="op">=</span> bldgs_gpd.geometry.area</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"perimeter"</span>] <span class="op">=</span> bldgs_gpd.geometry.length</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"compactness"</span>] <span class="op">=</span> momepy.circular_compactness(bldgs_gpd.geometry)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"orientation"</span>] <span class="op">=</span> momepy.orientation(bldgs_gpd.geometry)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"shape_index"</span>] <span class="op">=</span> momepy.shape_index(bldgs_gpd.geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="daf40e17" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"area"</span>] <span class="op">=</span> bldgs_gpd.geometry.area</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"perimeter"</span>] <span class="op">=</span> bldgs_gpd.geometry.length</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"compactness"</span>] <span class="op">=</span> momepy.circular_compactness(bldgs_gpd.geometry)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"orientation"</span>] <span class="op">=</span> momepy.orientation(bldgs_gpd.geometry)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"shape_index"</span>] <span class="op">=</span> momepy.shape_index(bldgs_gpd.geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f945491c" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.geometry.<span class="bu">type</span>.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div id="f945491c" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.geometry.<span class="bu">type</span>.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>array(['Polygon'], dtype=object)</code></pre>
 </div>
 </div>
-<div id="9709eafe" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, bldgs_gpd <span class="op">=</span> layers.compute_stats(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    bldgs_gpd,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    stats_column_labels<span class="op">=</span>[</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"area"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"perimeter"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"compactness"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"orientation"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"shape_index"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-stats"><code>layers.compute_stats</code></a> method to compute statistics for numeric columns in the <code>GeoDataFrame</code>. These are specified with the <code>stats_column_labels</code> argument. These statistics are computed over the network using network distances. In the case of weighted variances, the contribution of any particular point is weighted by the distance from the point of measure.</p>
+<div id="9709eafe" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, bldgs_gpd <span class="op">=</span> layers.compute_stats(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    bldgs_gpd,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    stats_column_labels<span class="op">=</span>[</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"area"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"perimeter"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"compactness"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"orientation"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"shape_index"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing statistics.
 INFO:cityseer.metrics.layers:Assigning data to network.
-100%|██████████| 9768/9768 [00:00&lt;00:00, 49350.64it/s]
-100%|██████████| 4987/4987 [00:02&lt;00:00, 2479.62it/s]
+100%|██████████| 9767/9767 [00:00&lt;00:00, 1000922.77it/s]
+100%|██████████| 5001/5001 [00:01&lt;00:00, 4926.64it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
-INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.
-INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   super().__setitem__(key, value)</code></pre>
 </div>
 </div>
-<div id="b9f98c13" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<p>This will generate a set of columns containing <code>count</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, and <code>var</code>, in unweighted <code>nw</code> and weighted <code>wt</code> versions (where applicable) for each of the input distance thresholds.</p>
+<div id="b9f98c13" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node',
        ...
-       'cc_shape_index_sum_800_nw', 'cc_shape_index_sum_800_wt',
-       'cc_shape_index_mean_800_nw', 'cc_shape_index_mean_800_wt',
-       'cc_shape_index_count_800_nw', 'cc_shape_index_count_800_wt',
-       'cc_shape_index_var_800_nw', 'cc_shape_index_var_800_wt',
-       'cc_shape_index_max_800', 'cc_shape_index_min_800'],
-      dtype='object', length=210)</code></pre>
+       'cc_shape_index_sum_200_nw', 'cc_shape_index_sum_200_wt',
+       'cc_shape_index_mean_200_nw', 'cc_shape_index_mean_200_wt',
+       'cc_shape_index_count_200_nw', 'cc_shape_index_count_200_wt',
+       'cc_shape_index_var_200_nw', 'cc_shape_index_var_200_wt',
+       'cc_shape_index_max_200', 'cc_shape_index_min_200'],
+      dtype='object', length=110)</code></pre>
+</div>
+</div>
+<p>The result in columns can be explored with conventional Python ecosystem tools such as <code>seaborn</code> and <code>matplotlib</code>.</p>
+<div id="e302a9be" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>nodes_gdf,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"cc_area_mean_100_wt"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    bins<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="osm_stats_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="90a20dfe" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_area_mean_100_wt"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"hot"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    vmin<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    vmax<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    norm<span class="op">=</span>colors.LogNorm(),  <span class="co"># Apply log normalization</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.plot(</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"area"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"hot"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    vmin<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    vmax<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    norm<span class="op">=</span>colors.LogNorm(),  <span class="co"># Apply log normalization</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(np.float64(697129.6654319772),
+ np.float64(700565.4282649271),
+ np.float64(5709114.974765815),
+ np.float64(5712534.021335888))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="osm_stats_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 

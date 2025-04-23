@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../recipes/stats/index.html" rel="next">
 <link href="../../recipes/centrality/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -139,6 +140,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/stats/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -177,7 +184,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph and the derivative <code>NetworkStructure</code>, you can calculate a variety of accessibility metrics.</p>
 <p>The following two examples use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. In general, the same network pre-processing steps can be followed as shown for these network preparation steps or for the network centrality steps. A data set is their necessary for identifying the locations of different land uses and it is the impossible to compete accessibilities over the network using the <code>layers.compute_accessibilities</code> method.</p>
 <p>This method requires:</p>
 <ul>
@@ -191,6 +197,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Similarly, a distance-weighted count of reachable locations</li>
 <li>The distance to the nearest instance of a given landuse.</li>
 </ul>
+<p>The last example follows a similar approach, but computes mixed land-uses using the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-mixed-uses"><code>layers.compute_mixed_uses</code></a> method.</p>
 <section id="landuse-accessibility-from-geopandas-data" class="level2">
 <h2 class="anchored" data-anchor-id="landuse-accessibility-from-geopandas-data">Landuse accessibility from geopandas data</h2>
 <p>Calculate landuse accessibilities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
@@ -634,6 +641,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../recipes/stats/index.html" class="pagination-link" aria-label="Statistics">
+        <span class="nav-page-text">Statistics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
