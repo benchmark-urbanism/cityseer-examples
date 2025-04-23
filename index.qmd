@@ -58,15 +58,19 @@ Once you've prepared the `NetworkStructure` object, you can use it over-and-over
 
 Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
 
+Note that distances used when computing accessibilities, statistics, or other measures are all based on distances over the network. In the case of weighted variants, the distances used for the weighting process are the distances from each point of measure to the individual data points (such as land uses) under consideration.
+
 #### Centrality
 
-See the [Network Centrality](./recipes/centrality/index.qmd) page for examples of how to efficiently calculate a variety of shortest "metric" and simplest "angular" centrality metrics.
+See the [Network Centrality](./recipes/centrality/index.qmd) page for examples of how to calculate a variety of shortest "metric" and simplest "angular" centrality metrics.
 
 #### Accessibility
 
-See the [Accessibility](./recipes/accessibility/index.qmd) page for examples of how to efficiently calculate a variety of landuse accessibility and mixed-use metrics.
+See the [Accessibility](./recipes/accessibility/index.qmd) page for examples of how to calculate a variety of landuse accessibility and mixed-use metrics.
 
-#### Statistical Measures
+#### Statistics
+
+See the [Statistics](./recipes/stats/index.qmd) page for examples of how to calculate statistical metrics over the network.
 
 ### Edge Rolloff
 
