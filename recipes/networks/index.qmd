@@ -6,18 +6,24 @@ editor:
 
 The below examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.
 
-If you wish to manually prepare the network, then the network nodes require `x` and `y` attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:
+If you specifically wish to prepare the network manually:
+
+- The network must be a `networkx` `MultiGraph` object. This is the default for `cityseer`, but if you are using another package, such as `osmnx`, you may need to convert the graph to a `MultiGraph` first.
+- `cityseer` is focused on pedestrian networks which do not ordinarily have directionality associated. Note that if adding transportation networks, this is done at a later step in way that retains directionality for transportation networks.
+- The network must have a coordinate reference system (CRS) associated with it. If you are converting from `osmnx` or `geopandas`, then this is done automatically. Otherwise, you can define this by setting a `crs` parameter on the graph to a valid CRS code; for example `G.graph['crs'] = 27700`.
+
+The network nodes require `x` and `y` attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:
 
 - An optional `live` attribute indicating whether to compute metrics for a given node (`live=True`) else whether to skip calculations (`live=False`). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.
 - An optional `weight` attribute indicating the weight of the node. `cityseer` will by default assume `weight=1` when calculating centrality metrics. Advanced users may in some cases wish to use the `weight` attribute to indicate the relative importance of a node in the network.
 
-For edges, `cityseer` network representations contain a `geom` attribute which stores a shapely LineString geometry of the edge.
+For edges, `cityseer` network representations contain a `geom` attribute which stores a shapely LineString geometry of the edge. `cityseer` will use the `geom` attribute to calculate properties of the network such as the lengths of streets and their angular deviations. For the best to results the topology of the graph should reflect the real world topology of the street network and should not be conflated with the geometric representation of the streets. Curvatures and turns within a street segment should be represented within the same LineString geometry rather than adding additional nodes and segments, which would otherwise distort the outcomes of centrality measures.
 
-The first several examples use the [osm_graph_from_poly](https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly) function available from the `cityseer` package's `io` module. This is a versatile function for generating networks from OSM data. See the first (bounding box) example for some use cases including how to use specific Coordinate Reference Systems.
+The first several examples use the [osm_graph_from_poly](https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly) function available from the `cityseer` package's `io` module. This is a versatile function for generating networks from OSM data.
 
 ## OSM network from a bounding box
 
-Use a bounding box to create a `networkx` graph from OpenStreetMap data.
+Use a bounding box to create a `networkx` graph from OpenStreetMap data. See this example for some use cases including how to use specific Coordinate Reference Systems.
 
 [Notebook](create_from_bbox.ipynb)
 
@@ -71,13 +77,11 @@ Create a dual graph representation from a primal graph.
 
 ## Custom network simplification
 
-Good sources of street network data, such as the Ordnance Survey's [OS Open Roads](https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-roads.html), typically have two distinguishing characteristics:
+For purposes of network analysis, good sources of street network data, such as the Ordnance Survey's OS Open Roads, typically have two distinguishing characteristics:
 
-- The network has been simplified to its essential structure: i.e. unnecessarily complex representations of intersections, on-ramps, divided roadways, etc., have been reduced to a simpler representation concurring more readily with the core topological structure of street networks. Simplified forms of network representation contrast those focusing on completeness (e.g. for route way-finding, see [OS ITN Layer](https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/products/itn-layer.html)): these introduce unnecessary complexity serving to hinder rather than help shortest-path algorithms in the sense used by pedestrian centrality measures.
+- The network has been simplified to its essential structure: i.e. unnecessarily complex representations of intersections, on-ramps, divided roadways, etc., have been reduced to a simpler representation concurring more readily with the core topological structure of street networks.
 - The topology of the network is kept distinct from the geometry of the streets. Often-times, as can be seen with [Open Street Map](https://www.openstreetmap.org), additional nodes are added to streets to represent geometric twists and turns along a roadway. These additional nodes cause topological distortions that impact network centrality measures.
 
-When a high-quality source is available, it may be best not to attempt additional clean-up unless there is a particular rationale for doing so. On the other hand, many indispensable sources of network information, particularly Open Street Map data, can be particularly messy for network analysis purposes.
-
-`cityseer` uses customisable graph cleaning methods that reduce topological idiosyncrasies which may otherwise confound centrality measures. It can, for example, remove dual carriageways while merging nodes and roadways in a manner that is as 'tidy' as possible. `cityseer` has an automated cleaning routine for OSM data, but it is also possible to manually configure network simplification steps and parameters as shown in the following notebook.
+When a high-quality source is available, it may be best not to attempt additional clean-up unless there is a particular rationale for doing so. On the other hand, cleaning and simplification is recommended when working with Open Street Map data. `cityseer` has an automated cleaning routine for OSM data, but it is also possible to manually configure network simplification steps and parameters as shown in the following notebook.
 
 [Notebook](network_simplification.ipynb)

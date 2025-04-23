@@ -4,7 +4,21 @@ editor:
   render-on-save: true
 ---
 
-Once you have created a `cityseer` compatible `networkx` graph, you can calculate accessibilities to landuses or points of interest.
+Once you have created a `cityseer` compatible `networkx` graph and the derivative `NetworkStructure`, you can calculate a variety of accessibility metrics.
+
+The following two examples use the [`layers.compute_accessibilities`](https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities) method to compute accessibilities to land uses. In general, the same network pre-processing steps can be followed as shown for these network preparation steps or for the network centrality steps. A data set is their necessary for identifying the locations of different land uses and it is the impossible to compete accessibilities over the network using the `layers.compute_accessibilities` method.
+
+This method requires:
+
+- A `geopandas` `GeoDataFrame` parameter containing landuse data;
+- A `landuse_column_label` identifying the corresponding column which contains the landuse labels;
+- The target accessibility keys indicating which landuse types to compute accessibilities for (from the available landuse types in the landuses column).
+
+The output GeoDataFrame will contain new columns for each landuse in the following three forms.
+
+- A count of reachable instances of a given landuse (within the specified distance thresholds)
+- Similarly, a distance-weighted count of reachable locations
+- The distance to the nearest instance of a given landuse.
 
 ## Landuse accessibility from geopandas data
 

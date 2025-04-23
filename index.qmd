@@ -46,20 +46,21 @@ See the [Network Preparation](./recipes/networks/index.qmd) page for examples of
 
 ### Metrics
 
-`cityseer` converts the network into a `rust` data structure prior to computing derivative metrics. This is done to improve performance so that it can be used on large networks.
+`cityseer` converts the network into a `rust` data structure prior to computing derivative metrics. This is done to improve performance so that it can be used for larger cities with correspondingly larger data sets and networks.
 
-This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function which is available in the `cityseer` `io` module. Once you've prepared the nodes `GeoDataFrame` and the `NetworkStructure` from the `network_structure_from_nx` function, you can use it over and over again to calculate a variety of metrics.
-This function returns three objects:
+This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function which is available in the `cityseer` `io` module. You will see this method used in all of the following examples. Use of this method will result in three derivative data structures:
 
 - A nodes `GeoDataFrame` with the graph's nodes. This is used for saving the outputs of calculations, and makes it easy to export the outputs of calculations to files that can be used from QGIS or other GIS software and workflows.
 - An edges `GeoDataFrame` with the graph's edges, including information that has been generated for the graph's edges such as metric and angular distances, entry and exit angles, and the overall bearing of the edge.
 - A `cityseer` `NetworkStructure` object which is used by `cityseer` for calculating the measures.
 
+Once you've prepared the `NetworkStructure` object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the `NetworkStructure` object.
+
 Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
 
 #### Centrality
 
-See the [Network Centrality](./recipes/centrality/index.qmd) page for examples of how to efficiently calculate a variety of shortest metric and simplest angular centrality metrics.
+See the [Network Centrality](./recipes/centrality/index.qmd) page for examples of how to efficiently calculate a variety of shortest "metric" and simplest "angular" centrality metrics.
 
 #### Accessibility
 
@@ -69,6 +70,8 @@ See the [Accessibility](./recipes/accessibility/index.qmd) page for examples of 
 
 ### Edge Rolloff
 
-When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running centrality and/or land-use analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should --- for the same reasons --- cover these buffered extents as well.
+When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should --- for the same reasons --- cover these buffered extents as well.
 
 The `live=True` node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the `live=False` nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both `live=True` and `live=False` nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for `live=True` nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to `live=True`.
+
+Here is an example of how to [set node status to live or not](./recipes/live_nodes.ipynb) based on whether it intersects the original boundary.
