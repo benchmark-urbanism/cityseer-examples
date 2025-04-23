@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -180,15 +180,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#convert-to-the-same-utm-crs-as-the-network" id="toc-convert-to-the-same-utm-crs-as-the-network" class="nav-link active" data-scroll-target="#convert-to-the-same-utm-crs-as-the-network">convert to the same UTM CRS as the network</a></li>
-  <li><a href="#to-match-epsg-code-for-utm-zone-30n-per-network-data" id="toc-to-match-epsg-code-for-utm-zone-30n-per-network-data" class="nav-link" data-scroll-target="#to-match-epsg-code-for-utm-zone-30n-per-network-data">to match EPSG code for UTM zone 30N per network data</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -213,14 +206,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Calculate landuse accessibilities from OSM data.</p>
-<p>This examples calculates landuse accessibility to pubs and restaurants for London</p>
+<p>This examples calculates landuse accessibility to pubs and restaurants for London using OpenStreetMap data.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-3" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="2">
+<p>To start, follow the same approach as shown in the network examples to create the network.</p>
+<div id="cell-4" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
@@ -233,87 +227,150 @@ WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+100%|██████████| 24093/24093 [00:00&lt;00:00, 51290.61it/s]
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
+100%|██████████| 22376/22376 [00:00&lt;00:00, 1132845.84it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
+100%|██████████| 24093/24093 [00:01&lt;00:00, 16990.13it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 22376/22376 [00:00&lt;00:00, 23375.08it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 12155/12155 [00:00&lt;00:00, 1573899.89it/s]
+100%|██████████| 12155/12155 [00:01&lt;00:00, 10470.36it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 10438/10438 [00:00&lt;00:00, 64395.92it/s]
+100%|██████████| 7386/7386 [00:00&lt;00:00, 311266.70it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 9004/9004 [00:00&lt;00:00, 992940.87it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 6652/6652 [00:00&lt;00:00, 1432705.67it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 5270/5270 [00:00&lt;00:00, 167212.46it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6661/6661 [00:00&lt;00:00, 162107.52it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 6612/6612 [00:00&lt;00:00, 1768895.14it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 5270/5270 [00:00&lt;00:00, 38747.78it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6668/6668 [00:00&lt;00:00, 315822.02it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 6658/6658 [00:00&lt;00:00, 1637581.42it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 5270/5270 [00:00&lt;00:00, 152669.73it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6659/6659 [00:00&lt;00:00, 65366.97it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 6659/6659 [00:00&lt;00:00, 1380616.43it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 5270/5270 [00:00&lt;00:00, 95310.29it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6660/6660 [00:00&lt;00:00, 65674.52it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 5270/5270 [00:00&lt;00:00, 60563.67it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 5270/5270 [00:00&lt;00:00, 7267.67it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6608/6608 [00:00&lt;00:00, 264152.73it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 5230/5230 [00:00&lt;00:00, 456614.35it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 5158/5158 [00:00&lt;00:00, 58115.11it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 5158/5158 [00:06&lt;00:00, 759.84it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6059/6059 [00:00&lt;00:00, 72499.40it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 4798/4798 [00:00&lt;00:00, 501002.55it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 4762/4762 [00:00&lt;00:00, 24404.47it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 4762/4762 [00:01&lt;00:00, 3349.55it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 5851/5851 [00:00&lt;00:00, 219079.73it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 4708/4708 [00:00&lt;00:00, 1004925.36it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 4694/4694 [00:00&lt;00:00, 60766.94it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 4694/4694 [00:02&lt;00:00, 2234.60it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 5710/5710 [00:00&lt;00:00, 325705.84it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 4613/4613 [00:00&lt;00:00, 805643.09it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 4598/4598 [00:00&lt;00:00, 60209.14it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 5687/5687 [00:00&lt;00:00, 1604210.56it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
+100%|██████████| 4598/4598 [00:00&lt;00:00, 18916.69it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 5888/5888 [00:00&lt;00:00, 1774524.82it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 4598/4598 [00:00&lt;00:00, 16279.57it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 6767/6767 [00:00&lt;00:00, 352796.80it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
+100%|██████████| 5088/5088 [00:00&lt;00:00, 713733.07it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 4288/4288 [00:00&lt;00:00, 32345.17it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 4811/4811 [00:00&lt;00:00, 1686767.24it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 3133/3133 [00:00&lt;00:00, 11938.20it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 4851/4851 [00:00&lt;00:00, 100570.25it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 3133/3133 [00:00&lt;00:00, 62204.75it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 3133/3133 [00:10&lt;00:00, 298.19it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3876/3876 [00:00&lt;00:00, 46089.68it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 3680/3680 [00:00&lt;00:00, 1693552.64it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2473/2473 [00:00&lt;00:00, 10257.75it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3690/3690 [00:00&lt;00:00, 403277.44it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2473/2473 [00:00&lt;00:00, 59565.93it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2473/2473 [00:06&lt;00:00, 392.17it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3165/3165 [00:00&lt;00:00, 59942.17it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2028/2028 [00:00&lt;00:00, 105268.97it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
+100%|██████████| 2930/2930 [00:00&lt;00:00, 150827.95it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
+100%|██████████| 2911/2911 [00:00&lt;00:00, 23159.06it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 2898/2898 [00:00&lt;00:00, 355547.23it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
+100%|██████████| 1887/1887 [00:00&lt;00:00, 901133.06it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 1869/1869 [00:00&lt;00:00, 320135.34it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
+100%|██████████| 2845/2845 [00:00&lt;00:00, 44313.05it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code></pre>
+100%|██████████| 2845/2845 [00:04&lt;00:00, 682.84it/s] 
+INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
+100%|██████████| 2845/2845 [00:00&lt;00:00, 19500.36it/s]
+100%|██████████| 2845/2845 [00:00&lt;00:00, 4317.47it/s]</code></pre>
 </div>
 </div>
-<p>Prepare the amenities GeoDataFrame.</p>
-<section id="convert-to-the-same-utm-crs-as-the-network" class="level1">
-<h1>convert to the same UTM CRS as the network</h1>
-</section>
-<section id="to-match-epsg-code-for-utm-zone-30n-per-network-data" class="level1">
-<h1>to match EPSG code for UTM zone 30N per network data</h1>
-<div id="cell-5" class="cell" data-execution_count="3">
+<p>Prepare the amenities GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>amenity</code> type of either <code>pub</code> or <code>restaurant</code>. You can use the same idea to extract other features or land use types.</p>
+<p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    poly_wgs, tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -339,7 +396,6 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <th data-quarto-table-cell-role="th">contact:email</th>
 <th data-quarto-table-cell-role="th">contact:phone</th>
 <th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">gift</th>
 <th data-quarto-table-cell-role="th">access:conditional</th>
 <th data-quarto-table-cell-role="th">note:access</th>
 <th data-quarto-table-cell-role="th">name:gsw</th>
@@ -349,6 +405,7 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <th data-quarto-table-cell-role="th">serving_system:buffet</th>
 <th data-quarto-table-cell-role="th">building:use</th>
 <th data-quarto-table-cell-role="th">floor</th>
+<th data-quarto-table-cell-role="th">type</th>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">element</th>
@@ -592,8 +649,8 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>NaN</td>
 <td>retail</td>
+<td>NaN</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -641,24 +698,25 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>NaN</td>
 <td>Ground</td>
+<td>NaN</td>
 </tr>
 </tbody>
 </table>
 
-<p>1432 rows × 253 columns</p>
+<p>1431 rows × 253 columns</p>
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
+<p>Some preparatory data cleaning is typically necessary. This example extracts the particular rows and columns of interest for the subsequent steps of analysis.</p>
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract nodes</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.loc[<span class="st">"node"</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extract relevant columns</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf[[<span class="st">"amenity"</span>, <span class="st">"geometry"</span>]]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data_gdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -697,44 +755,14 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <td>pub</td>
 <td>POINT (699071.215 5711168.671)</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">697</td>
-<td>restaurant</td>
-<td>POINT (698734.983 5712225.281)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">698</td>
-<td>restaurant</td>
-<td>POINT (699919.63 5711570.79)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">699</td>
-<td>restaurant</td>
-<td>POINT (698469.249 5710542.417)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">700</td>
-<td>restaurant</td>
-<td>POINT (699644.903 5710197.532)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">701</td>
-<td>restaurant</td>
-<td>POINT (699289.031 5710607.191)</td>
-</tr>
 </tbody>
 </table>
 
-<p>702 rows × 2 columns</p>
 </div>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="5">
+<p>Once the land use and network data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame.</p>
+<div id="cell-10" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
@@ -748,6 +776,8 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: pub, restaurant
 INFO:cityseer.metrics.layers:Assigning data to network.
+100%|██████████| 701/701 [00:00&lt;00:00, 122370.96it/s]
+100%|██████████| 2845/2845 [00:01&lt;00:00, 2793.31it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
@@ -755,7 +785,9 @@ INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.
 INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="6">
+<p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
+<p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
+<div id="cell-12" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
@@ -769,13 +801,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
       dtype='object')</code></pre>
 </div>
 </div>
-<p>The output GeoDataFrame will contain new columns for each landuse and distance combination. For each of these the following will have been computed:</p>
-<ul>
-<li>A count of reachable instances of a given landuse (within the specified distance thresholds)</li>
-<li>Similarly, a distance-weighted count of reachable locations</li>
-<li>The distance to the nearest instance of a given landuse. Where there are no reachable landuses for a given node within the specified distance threshold, then a <code>np.inf</code> value will be returned.</li>
-</ul>
-<div id="cell-10" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="7">
+<div id="cell-13" class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_restaurant_400_wt"</span>,</span>
@@ -805,7 +831,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_pub_nearest_max_800"</span>,</span>
@@ -824,7 +850,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>(np.float64(697035.8123208123),
  np.float64(700647.6928482385),
- np.float64(5709196.424057339),
+ np.float64(5709196.42405734),
  np.float64(5712635.724144622))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -837,7 +863,6 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

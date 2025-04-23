@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -207,15 +207,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Use <code>geopandas</code> to open a street network file and convert it to a <code>networkx</code> graph.</p>
 <p>If you have a street network file in a GeoPackage, shapefile, or similar format, then you can load this file and convert it to a <code>networkx</code> graph.</p>
-<div id="cell-2" class="cell" data-execution_count="2">
+<div id="cell-2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <code>geopandas</code> to load the street network file. Check that your file path is correct!</p>
-<div id="cell-4" class="cell" data-execution_count="3">
+<div id="cell-4" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -319,111 +319,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1424.530768</td>
 <td>MULTILINESTRING ((454817.822 4476974.014, 4548...</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">47149</td>
-<td>2091784.0</td>
-<td>2091784.0</td>
-<td>079</td>
-<td>07903996</td>
-<td>Avda</td>
-<td>del</td>
-<td>Mediterr�neo</td>
-<td>Mediterr�neo</td>
-<td>MEDITERRANEO</td>
-<td>03996</td>
-<td>0.0</td>
-<td>58613.712917</td>
-<td>MULTILINESTRING ((446091.268 4471663.652, 4459...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">47150</td>
-<td>2091784.0</td>
-<td>2091784.0</td>
-<td>079</td>
-<td>07903996</td>
-<td>Avda</td>
-<td>del</td>
-<td>Mediterr�neo</td>
-<td>Mediterr�neo</td>
-<td>MEDITERRANEO</td>
-<td>03996</td>
-<td>0.0</td>
-<td>58613.712917</td>
-<td>MULTILINESTRING ((445780.228 4471776.141, 4456...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">47151</td>
-<td>2069757.0</td>
-<td>2069757.0</td>
-<td>079</td>
-<td>079A0077</td>
-<td>Avia</td>
-<td>None</td>
-<td>M-40</td>
-<td>M-40</td>
-<td>M40</td>
-<td>None</td>
-<td>0.0</td>
-<td>97748.532973</td>
-<td>MULTILINESTRING ((446869.563 4472572.823, 4468...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">47152</td>
-<td>2069757.0</td>
-<td>2069757.0</td>
-<td>079</td>
-<td>079A0077</td>
-<td>Avia</td>
-<td>None</td>
-<td>M-40</td>
-<td>M-40</td>
-<td>M40</td>
-<td>None</td>
-<td>0.0</td>
-<td>97748.532973</td>
-<td>MULTILINESTRING ((446779.507 4472055.539, 4467...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">47153</td>
-<td>2091817.0</td>
-<td>2091817.0</td>
-<td>079</td>
-<td>07904590</td>
-<td>Calle</td>
-<td>de la</td>
-<td>Hacienda de Pavones</td>
-<td>Hacienda de Pavones</td>
-<td>HACIENDA PAVONES</td>
-<td>04590</td>
-<td>0.0</td>
-<td>6119.528247</td>
-<td>MULTILINESTRING ((446834.272 4472176.772, 4468...</td>
-</tr>
 </tbody>
 </table>
 
-<p>47154 rows × 13 columns</p>
 </div>
 </div>
 </div>
 <p>Take note of you data CRS.</p>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>epsg_code <span class="op">=</span> streets_gpd.crs.to_epsg()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(streets_gpd.crs.is_projected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -432,9 +335,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 True</code></pre>
 </div>
 </div>
-<p>If your street network is not in a projected CRS, it is recommended to convert your dataset to a locally projected coordinate system. This can be done with the build-in <code>to_crs</code> method in <code>geopandas</code>. The EPSG code for the UTM zone can be found at <a href="https://epsg.io/">epsg.io</a>.</p>
+<p>If your street network is not in a projected CRS, it is recommended to convert your dataset to a locally projected coordinate system. This can be done with the built-in <code>to_crs</code> method in <code>geopandas</code>. The EPSG code for the UTM zone can be found at <a href="https://epsg.io/">epsg.io</a>.</p>
 <p>Alternatively, you can project the graph after creation.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shown as example - unnecessary step for current dataset</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.to_crs(epsg<span class="op">=</span><span class="dv">25830</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
@@ -445,39 +348,45 @@ True</code></pre>
 </div>
 </div>
 <p>Take note of the geometry type.</p>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>streets_gpd.geometry.<span class="bu">type</span>.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array(['MultiLineString'], dtype=object)</code></pre>
 </div>
 </div>
 <p>If your data consists of <code>MultiLineString</code> geometries, then these should first be converted to unnested <code>LineString</code> geometries.</p>
-<div id="cell-12" class="cell" data-execution_count="7">
+<div id="cell-12" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>streets_gpd.geometry.<span class="bu">type</span>.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>array(['LineString'], dtype=object)</code></pre>
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#nx-from-generic-geopandas"><code>nx_from_generic_geopandas</code></a> function to convert the <code>geopandas</code> LineStrings dataset to a <code>networkx</code> graph. This function will automatically create nodes and edges from the LineStrings in the dataset.</p>
 <p>The function expects that all features are <code>LineString</code> geometries, where the geometries represent individual street segments that meet at intersections. Street segments which share endpoints will be connected by a node in the graph.</p>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.</code></pre>
+<pre><code>100%|██████████| 47155/47155 [00:06&lt;00:00, 7684.49it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 47129/47129 [00:00&lt;00:00, 280225.96it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MultiGraph with 31280 nodes and 47129 edges</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="9">
+<div id="cell-15" class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    G, plot_geoms<span class="op">=</span><span class="va">True</span>, x_lim<span class="op">=</span>(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>), y_lim<span class="op">=</span>(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    G,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    plot_geoms<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    x_lim<span class="op">=</span>(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    y_lim<span class="op">=</span>(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
-INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
+INFO:cityseer.tools.plot:Preparing graph edges
+100%|██████████| 47129/47129 [00:00&lt;00:00, 61490.78it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -489,17 +398,22 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <p>If your data is not in a projected CRS (and if you did not already reproject the <code>GeoDataFrame</code> before creating the graph), then reproject your <code>networkx</code> graph to a locally projected coordinate system before doing further analysis.</p>
 <p>If the data is currently in geographic longitudes and latitudes (WGS84 / 4326) then the <a href="https://cityseer.benchmarkurbanism.com/tools/io#nx-wgs-to-utm"><code>nx_wgs_to_utm</code></a> function can be used to convert it to the local UTM projection. Alternatively, the <a href="https://cityseer.benchmarkurbanism.com/tools/io#nx-epsg-conversion">nx_epsg_conversion</a> function can be used to specify input and output CRS.</p>
-<div id="cell-17" class="cell" data-execution_count="10">
+<div id="cell-17" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shown as an example - unnecessary step for current dataset</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>G_utm <span class="op">=</span> io.nx_epsg_conversion(G, to_crs_code<span class="op">=</span><span class="dv">32630</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_utm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-INFO:cityseer.tools.io:Processing edge geom coordinates, if present.</code></pre>
+100%|██████████| 31280/31280 [00:00&lt;00:00, 1153945.46it/s]
+INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
+100%|██████████| 47129/47129 [00:03&lt;00:00, 15486.95it/s]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MultiGraph with 31280 nodes and 47129 edges</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
 </div>
 </div>
 

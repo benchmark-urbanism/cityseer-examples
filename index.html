@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -256,17 +256,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="metrics" class="level3">
 <h3 class="anchored" data-anchor-id="metrics">Metrics</h3>
-<p><code>cityseer</code> converts the network into a <code>rust</code> data structure prior to computing derivative metrics. This is done to improve performance so that it can be used on large networks.</p>
-<p>This is done using <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> function which is available in the <code>cityseer</code> <code>io</code> module. Once you’ve prepared the nodes <code>GeoDataFrame</code> and the <code>NetworkStructure</code> from the <code>network_structure_from_nx</code> function, you can use it over and over again to calculate a variety of metrics. This function returns three objects:</p>
+<p><code>cityseer</code> converts the network into a <code>rust</code> data structure prior to computing derivative metrics. This is done to improve performance so that it can be used for larger cities with correspondingly larger data sets and networks.</p>
+<p>This is done using <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> function which is available in the <code>cityseer</code> <code>io</code> module. You will see this method used in all of the following examples. Use of this method will result in three derivative data structures:</p>
 <ul>
 <li>A nodes <code>GeoDataFrame</code> with the graph’s nodes. This is used for saving the outputs of calculations, and makes it easy to export the outputs of calculations to files that can be used from QGIS or other GIS software and workflows.</li>
 <li>An edges <code>GeoDataFrame</code> with the graph’s edges, including information that has been generated for the graph’s edges such as metric and angular distances, entry and exit angles, and the overall bearing of the edge.</li>
 <li>A <code>cityseer</code> <code>NetworkStructure</code> object which is used by <code>cityseer</code> for calculating the measures.</li>
 </ul>
+<p>Once you’ve prepared the <code>NetworkStructure</code> object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the <code>NetworkStructure</code> object.</p>
 <p>Use of the dual representation is optional, but recommended. Keep in mind that if you’ve converted your <code>networkx</code> network into a dual representation, then the nodes <code>GeoDataFrame</code> will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.</p>
 <section id="centrality" class="level4">
 <h4 class="anchored" data-anchor-id="centrality">Centrality</h4>
-<p>See the <a href="./recipes/centrality/index.html">Network Centrality</a> page for examples of how to efficiently calculate a variety of shortest metric and simplest angular centrality metrics.</p>
+<p>See the <a href="./recipes/centrality/index.html">Network Centrality</a> page for examples of how to efficiently calculate a variety of shortest “metric” and simplest “angular” centrality metrics.</p>
 </section>
 <section id="accessibility" class="level4">
 <h4 class="anchored" data-anchor-id="accessibility">Accessibility</h4>
@@ -278,8 +279,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="edge-rolloff" class="level3">
 <h3 class="anchored" data-anchor-id="edge-rolloff">Edge Rolloff</h3>
-<p>When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running centrality and/or land-use analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should — for the same reasons — cover these buffered extents as well.</p>
+<p>When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should — for the same reasons — cover these buffered extents as well.</p>
 <p>The <code>live=True</code> node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the <code>live=False</code> nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both <code>live=True</code> and <code>live=False</code> nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for <code>live=True</code> nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to <code>live=True</code>.</p>
+<p>Here is an example of how to <a href="./recipes/live_nodes.html">set node status to live or not</a> based on whether it intersects the original boundary.</p>
 
 
 </section>

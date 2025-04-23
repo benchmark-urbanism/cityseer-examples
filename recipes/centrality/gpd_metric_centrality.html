@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate metric distance centralities from a <code>cityseer</code> network.</p>
+<p>Calculate metric distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -226,16 +226,18 @@ INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</c
 </div>
 </div>
 <p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code></pre>
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest"><code>node_centrality_shortest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest metric distance centralities. The function requires a <code>NetworkStructure</code> and nodes <code>GeoDataFrame</code> prepared with the <code>network_structure_from_nx</code> function in the previous step.</p>
 <p>The function can calculate centralities for numerous distances at once via the <code>distances</code> parameter, which accepts a list of distances.</p>
-<p>The function returns the nodes <code>GeoDataFrame</code> with the outputs of the centralities added as columns. The columns are named <code>cc_{centrality}_{distance}</code>. Standard <code>geopandas</code> functionality can be used to explore, visualise, or save the results. See the documentation for more information on the available centrality formulations.</p>
+<p>The function returns the nodes <code>GeoDataFrame</code> with the outputs of the centralities added as columns. The columns are named <code>cc_{centrality}_{distance}</code>. Standard <code>geopandas</code> functionality can be used to explore, visualise, or save the results. See the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest">documentation</a> for more information on the available centrality formulations.</p>
 <div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
@@ -500,7 +502,7 @@ INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.</code></pre>
 </div>
 </div>
-<p>The function will map the minutes values into the equivalent distances, which are reported in the logged output. Use the configurable <code>speed_m_s</code> parameter to set a custom metres per second walking speed.</p>
+<p>The function will map the minutes values into the equivalent distances, which are reported in the logged output.</p>
 <div id="cell-16" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -517,7 +519,7 @@ INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.
       dtype='object')</code></pre>
 </div>
 </div>
-<p>As per the function logging outputs, 15 minutes has been mapped to 1200m at default <code>speed_m_s</code>, so the corresponding outputs can be visualised using the 1200m columns.</p>
+<p>As per the function logging outputs, 15 minutes has been mapped to 1200m at default <code>speed_m_s</code>, so the corresponding outputs can be visualised using the 1200m columns. Use the configurable <code>speed_m_s</code> parameter to set a custom metres per second walking speed.</p>
 <div id="cell-18" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
@@ -543,7 +545,7 @@ INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.
 </div>
 </div>
 </div>
-<p>For spatial-impedance weighted forms of centralities (beta variants), you can specify the <code>beta</code> parameter explicitly. These will otherwise be extrapolated automatically from the <code>distances</code> or <code>minutes</code> parameters. See the documentation for more information on how spatial impedances are converted to distance thresholds.</p>
+<p>For spatial-impedance weighted forms of centralities (beta variants), you can specify the <code>beta</code> parameter explicitly. These will otherwise be extrapolated automatically from the <code>distances</code> or <code>minutes</code> parameters. See the <a href="https://cityseer.benchmarkurbanism.com/rustalgos/rustalgos#betas-from-distances">documentation</a> for more information on how spatial impedances are converted to distance thresholds.</p>
 <div id="cell-20" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>

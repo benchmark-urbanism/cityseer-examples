@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calculate mixed land-uses. – Cityseer Guide</title>
+<title>Statistics – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,44 +20,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -99,9 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../custom-style.css">
@@ -128,7 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Calculate mixed land-uses.</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Statistics</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -180,15 +143,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#statistics-from-geopandas-data" id="toc-statistics-from-geopandas-data" class="nav-link active" data-scroll-target="#statistics-from-geopandas-data">Statistics from geopandas data</a></li>
+  <li><a href="#statistics-from-osm-data" id="toc-statistics-from-osm-data" class="nav-link" data-scroll-target="#statistics-from-osm-data">Statistics from OSM data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calculate mixed land-uses.</h1>
+<h1 class="title">Statistics</h1>
 </div>
 
 
@@ -205,317 +175,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate mixed landuses from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<div id="1d3b0e0e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To start, follow the same approach as shown in the network examples to create the network.</p>
-<div id="39e56178" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(reset_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-INFO:cityseer.tools.graphs:Converting graph to dual.
-INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code></pre>
-</div>
-</div>
-<p>Read-in the dataset from the source Geopackage or Shapefile Geopandas.</p>
-<div id="bcbfd458" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prems_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_premises/madrid_premises.gpkg"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>prems_gpd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
+<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph, you can calculate statistical aggregations over the network.</p>
+<section id="statistics-from-geopandas-data" class="level2">
+<h2 class="anchored" data-anchor-id="statistics-from-geopandas-data">Statistics from geopandas data</h2>
+<p>Calculate building statistics from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
+<p><a href="../../recipes/stats/gpd_stats.html">Notebook</a></p>
+</section>
+<section id="statistics-from-osm-data" class="level2">
+<h2 class="anchored" data-anchor-id="statistics-from-osm-data">Statistics from OSM data</h2>
+<p>Calculate building statistics from <code>osmnx</code> data.</p>
+<p><a href="../../recipes/stats/osm_stats.html">Notebook</a></p>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">index</th>
-<th data-quarto-table-cell-role="th">local_id</th>
-<th data-quarto-table-cell-role="th">local_distr_id</th>
-<th data-quarto-table-cell-role="th">local_distr_desc</th>
-<th data-quarto-table-cell-role="th">local_neighb_id</th>
-<th data-quarto-table-cell-role="th">local_neighb_desc</th>
-<th data-quarto-table-cell-role="th">local_neighb_code</th>
-<th data-quarto-table-cell-role="th">local_census_section_id</th>
-<th data-quarto-table-cell-role="th">local_census_section_desc</th>
-<th data-quarto-table-cell-role="th">section_id</th>
-<th data-quarto-table-cell-role="th">section_desc</th>
-<th data-quarto-table-cell-role="th">division_id</th>
-<th data-quarto-table-cell-role="th">division_desc</th>
-<th data-quarto-table-cell-role="th">epigraph_id</th>
-<th data-quarto-table-cell-role="th">epigraph_desc</th>
-<th data-quarto-table-cell-role="th">easting</th>
-<th data-quarto-table-cell-role="th">northing</th>
-<th data-quarto-table-cell-role="th">geometry</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0</td>
-<td>10003324</td>
-<td>1</td>
-<td>CENTRO</td>
-<td>105</td>
-<td>UNIVERSIDAD</td>
-<td>5</td>
-<td>1091</td>
-<td>91</td>
-<td>I</td>
-<td>hospitality</td>
-<td>56</td>
-<td>food_bev</td>
-<td>561001</td>
-<td>RESTAURANTE</td>
-<td>440181.6</td>
-<td>4475586.5</td>
-<td>POINT (440181.6 4475586.5)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1</td>
-<td>10003330</td>
-<td>1</td>
-<td>CENTRO</td>
-<td>105</td>
-<td>UNIVERSIDAD</td>
-<td>5</td>
-<td>1115</td>
-<td>115</td>
-<td>R</td>
-<td>art_rec_entert</td>
-<td>90</td>
-<td>creat_entert</td>
-<td>900003</td>
-<td>TEATRO Y ACTIVIDADES ESCENICAS REALIZADAS EN D...</td>
-<td>440000.6</td>
-<td>4474761.5</td>
-<td>POINT (440000.6 4474761.5)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>2</td>
-<td>10003356</td>
-<td>1</td>
-<td>CENTRO</td>
-<td>104</td>
-<td>JUSTICIA</td>
-<td>4</td>
-<td>1074</td>
-<td>74</td>
-<td>I</td>
-<td>hospitality</td>
-<td>56</td>
-<td>food_bev</td>
-<td>561004</td>
-<td>BAR RESTAURANTE</td>
-<td>440618.6</td>
-<td>4474692.5</td>
-<td>POINT (440618.6 4474692.5)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>3</td>
-<td>10003364</td>
-<td>1</td>
-<td>CENTRO</td>
-<td>104</td>
-<td>JUSTICIA</td>
-<td>4</td>
-<td>1075</td>
-<td>75</td>
-<td>G</td>
-<td>wholesale_retail_motor</td>
-<td>47</td>
-<td>retail</td>
-<td>472401</td>
-<td>COMERCIO AL POR MENOR DE PAN Y PRODUCTOS DE PA...</td>
-<td>440666.6</td>
-<td>4474909.5</td>
-<td>POINT (440666.6 4474909.5)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>4</td>
-<td>10003367</td>
-<td>1</td>
-<td>CENTRO</td>
-<td>106</td>
-<td>SOL</td>
-<td>6</td>
-<td>1119</td>
-<td>119</td>
-<td>G</td>
-<td>wholesale_retail_motor</td>
-<td>47</td>
-<td>retail</td>
-<td>477701</td>
-<td>COMERCIO AL POR MENOR DE JOYAS, RELOJERIA Y BI...</td>
-<td>440378.6</td>
-<td>4474380.5</td>
-<td>POINT (440378.6 4474380.5)</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Identify or prepare any columns and land uses of interest, for which you want to compute accessibilities.</p>
-<div id="b26f8882" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prems_gpd.division_desc.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array(['food_bev', 'creat_entert', 'retail', 'services', 'education',
-       'accommod', 'Real Estate Activities',
-       'Residential Care Activities',
-       'Social Services Without Accommodation',
-       'Graphic Arts and Reproduction of Recorded Media',
-       'Sale and Repair of Motor Vehicles and Motorcycles',
-       'Decontamination and Other Waste Management Services',
-       'Gambling and Betting Activities', 'sports_rec', 'health',
-       'Wholesale Trade and Middlemen, Except for Motor Vehicles and Motorcycles',
-       'Telecommunications',
-       'Financial Services, Except Insurance and Pension Funds',
-       'Associative Activities', 'Veterinary Activities',
-       'Auxiliary Services to Financial Services and Insurance',
-       'Insurance, Reinsurance, and Pension Funds, Except Compulsory Social Security',
-       'Rental Activities',
-       'Office Administrative and Other Business Support Activities',
-       'Technical Services of Architecture and Engineering; Technical Testing and Analysis',
-       'Other Manufacturing Industries',
-       'Storage and Activities Related to Transport',
-       'Specialized Construction Activities and Building Finishing',
-       'Clothing Manufacturing',
-       'Activities of Travel Agencies, Tour Operators, Reservation Services, and Related Activities',
-       'Land Transport and Pipeline Transport',
-       'Other Professional, Scientific, and Technical Activities',
-       'Computer Repair, Personal Effects, and Household Items',
-       'Publishing (Includes Software)', 'Postal and Courier Activities',
-       'Food Industry', 'Advertising and Market Research',
-       'Public Administration and Defense; Compulsory Social Security',
-       'Film, Video, and TV Program Activities, Sound Recording, and Music Publishing, Sound Recording and Music Publishing',
-       'Legal and Accounting Activities',
-       'Building Promotion and Construction',
-       'Supply of Electricity, Gas, Steam, and Air Conditioning',
-       'Activities of Libraries, Archives, Museums, and Other Cultural Activities',
-       'Paper Industry',
-       'Manufacturing of Computer, Electronic, and Optical Products',
-       'Security and Investigation Activities',
-       'Leather and Footwear Industry',
-       'Repair and Installation of Machinery and Equipment',
-       'Manufacturing of Metal Products, Except Machinery and Equipment',
-       'Furniture Manufacturing',
-       'Building Services and Gardening Activities', 'Chemical Industry',
-       'Programming, Consultancy, and Other Computer-Related Activities',
-       'Manufacturing of Other Non-Metallic Mineral Products',
-       'Textile Industry', 'Research and Development',
-       'Activities of Head Offices; Management Consultancy Activities',
-       'Pharmaceutical Product Manufacturing',
-       'Manufacturing of Machinery and Equipment N.E.C.',
-       'Manufacturing of Motor Vehicles, Trailers, and Semi-Trailers',
-       'Information Services',
-       'Manufacturing of Rubber and Plastic Products',
-       'Manufacturing of Electrical Equipment',
-       'Manufacturing of Other Transport Equipment', 'Civil Engineering',
-       'Wood and Cork Industry, Except Furniture; Basketry and Basketwork',
-       'Waste Collection, Treatment, and Disposal; Materials Recovery',
-       'Activities of Extraterritorial Organizations and Bodies',
-       'Air Transport', 'Employment Activities',
-       'Agriculture, Livestock, Hunting, and Related Service Activities',
-       'Metallurgy; Manufacturing of Iron, Steel, and Ferro-Alloy Products',
-       'Broadcasting and Television Programming and Broadcasting Activities',
-       'Wastewater Collection and Treatment', 'Beverage Manufacturing',
-       'Water Collection, Treatment, and Supply',
-       'Support Activities for Extractive Industries',
-       'Other Extractive Industries', 'Forestry and Logging',
-       'Tobacco Industry'], dtype=object)</code></pre>
-</div>
-</div>
-<p>Once the land use and network data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-mixed-uses"><code>layers.compute_mixed_uses</code></a> method to compute accessibilities to land uses. The <code>landuse_column_label</code> should correspond to the data in the input GeoDataFrame.</p>
-<div id="9709eafe" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, prems_gpd <span class="op">=</span> layers.compute_mixed_uses(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    prems_gpd,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"division_desc"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.layers:Computing mixed-use measures.
-INFO:cityseer.metrics.layers:Assigning data to network.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
-INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
-INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.
-INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</code></pre>
-</div>
-</div>
-<p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#notes-2">form of mixed-use measure</a> and the distances will correspond to the input distances. The measures are available in non-weighted <code>nw</code> or distance weighted <code>wt</code> form.</p>
-<p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
-<div id="b9f98c13" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_hill_q0_100_nw', 'cc_hill_q0_100_wt',
-       'cc_hill_q1_100_nw', 'cc_hill_q1_100_wt', 'cc_hill_q2_100_nw',
-       'cc_hill_q2_100_wt', 'cc_hill_q0_200_nw', 'cc_hill_q0_200_wt',
-       'cc_hill_q1_200_nw', 'cc_hill_q1_200_wt', 'cc_hill_q2_200_nw',
-       'cc_hill_q2_200_wt', 'cc_hill_q0_400_nw', 'cc_hill_q0_400_wt',
-       'cc_hill_q1_400_nw', 'cc_hill_q1_400_wt', 'cc_hill_q2_400_nw',
-       'cc_hill_q2_400_wt', 'cc_hill_q0_800_nw', 'cc_hill_q0_800_wt',
-       'cc_hill_q1_800_nw', 'cc_hill_q1_800_wt', 'cc_hill_q2_800_nw',
-       'cc_hill_q2_800_wt'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<div id="814c118c" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_hill_q0_400_wt"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"hot"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>prems_gpd.plot(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"division_desc"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"tab20"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">439000</span>, <span class="dv">439000</span> <span class="op">+</span> <span class="dv">2500</span>)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4473000</span>, <span class="dv">4473000</span> <span class="op">+</span> <span class="dv">2500</span>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(439000.0),
- np.float64(441500.0),
- np.float64(4473000.0),
- np.float64(4475500.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_mixed_uses_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

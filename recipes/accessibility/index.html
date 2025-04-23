@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -177,7 +177,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph, you can calculate accessibilities to landuses or points of interest.</p>
+<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph and the derivative <code>NetworkStructure</code>, you can calculate a variety of accessibility metrics.</p>
+<p>The following two examples use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. In general, the same network pre-processing steps can be followed as shown for these network preparation steps or for the network centrality steps. A data set is their necessary for identifying the locations of different land uses and it is the impossible to compete accessibilities over the network using the <code>layers.compute_accessibilities</code> method.</p>
+<p>This method requires:</p>
+<ul>
+<li>A <code>geopandas</code> <code>GeoDataFrame</code> parameter containing landuse data;</li>
+<li>A <code>landuse_column_label</code> identifying the corresponding column which contains the landuse labels;</li>
+<li>The target accessibility keys indicating which landuse types to compute accessibilities for (from the available landuse types in the landuses column).</li>
+</ul>
+<p>The output GeoDataFrame will contain new columns for each landuse in the following three forms.</p>
+<ul>
+<li>A count of reachable instances of a given landuse (within the specified distance thresholds)</li>
+<li>Similarly, a distance-weighted count of reachable locations</li>
+<li>The distance to the nearest instance of a given landuse.</li>
+</ul>
 <section id="landuse-accessibility-from-geopandas-data" class="level2">
 <h2 class="anchored" data-anchor-id="landuse-accessibility-from-geopandas-data">Landuse accessibility from geopandas data</h2>
 <p>Calculate landuse accessibilities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>

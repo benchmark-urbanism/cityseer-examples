@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-2dc5758913bf537a8c950bb234f32119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -186,16 +186,22 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The below examples illustrate how to create <code>cityseer</code> compatible <code>networkx</code> graphs from various data sources, including OpenStreetMap (OSM) data and <code>geopandas</code> <code>GeoDataFrames</code>. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.</p>
-<p>If you wish to manually prepare the network, then the network nodes require <code>x</code> and <code>y</code> attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:</p>
+<p>If you specifically wish to prepare the network manually:</p>
+<ul>
+<li>The network must be a <code>networkx</code> <code>MultiGraph</code> object. This is the default for <code>cityseer</code>, but if you are using another package, such as <code>osmnx</code>, you may need to convert the graph to a <code>MultiGraph</code> first.</li>
+<li><code>cityseer</code> is focused on pedestrian networks which do not ordinarily have directionality associated. Note that if adding transportation networks, this is done at a later step in way that retains directionality for transportation networks.</li>
+<li>The network must have a coordinate reference system (CRS) associated with it. If you are converting from <code>osmnx</code> or <code>geopandas</code>, then this is done automatically. Otherwise, you can define this by setting a <code>crs</code> parameter on the graph to a valid CRS code; for example <code>G.graph['crs'] = 27700</code>.</li>
+</ul>
+<p>The network nodes require <code>x</code> and <code>y</code> attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:</p>
 <ul>
 <li>An optional <code>live</code> attribute indicating whether to compute metrics for a given node (<code>live=True</code>) else whether to skip calculations (<code>live=False</code>). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.</li>
 <li>An optional <code>weight</code> attribute indicating the weight of the node. <code>cityseer</code> will by default assume <code>weight=1</code> when calculating centrality metrics. Advanced users may in some cases wish to use the <code>weight</code> attribute to indicate the relative importance of a node in the network.</li>
 </ul>
-<p>For edges, <code>cityseer</code> network representations contain a <code>geom</code> attribute which stores a shapely LineString geometry of the edge.</p>
-<p>The first several examples use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function available from the <code>cityseer</code> package’s <code>io</code> module. This is a versatile function for generating networks from OSM data. See the first (bounding box) example for some use cases including how to use specific Coordinate Reference Systems.</p>
+<p>For edges, <code>cityseer</code> network representations contain a <code>geom</code> attribute which stores a shapely LineString geometry of the edge. <code>cityseer</code> will use the <code>geom</code> attribute to calculate properties of the network such as the lengths of streets and their angular deviations. For the best to results the topology of the graph should reflect the real world topology of the street network and should not be conflated with the geometric representation of the streets. Curvatures and turns within a street segment should be represented within the same LineString geometry rather than adding additional nodes and segments, which would otherwise distort the outcomes of centrality measures.</p>
+<p>The first several examples use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function available from the <code>cityseer</code> package’s <code>io</code> module. This is a versatile function for generating networks from OSM data.</p>
 <section id="osm-network-from-a-bounding-box" class="level2">
 <h2 class="anchored" data-anchor-id="osm-network-from-a-bounding-box">OSM network from a bounding box</h2>
-<p>Use a bounding box to create a <code>networkx</code> graph from OpenStreetMap data.</p>
+<p>Use a bounding box to create a <code>networkx</code> graph from OpenStreetMap data. See this example for some use cases including how to use specific Coordinate Reference Systems.</p>
 <p><a href="../../recipes/networks/create_from_bbox.html">Notebook</a></p>
 </section>
 <section id="osm-network-from-a-buffered-coordinate" class="level2">
@@ -240,13 +246,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="custom-network-simplification" class="level2">
 <h2 class="anchored" data-anchor-id="custom-network-simplification">Custom network simplification</h2>
-<p>Good sources of street network data, such as the Ordnance Survey’s <a href="https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-roads.html">OS Open Roads</a>, typically have two distinguishing characteristics:</p>
+<p>For purposes of network analysis, good sources of street network data, such as the Ordnance Survey’s OS Open Roads, typically have two distinguishing characteristics:</p>
 <ul>
-<li>The network has been simplified to its essential structure: i.e.&nbsp;unnecessarily complex representations of intersections, on-ramps, divided roadways, etc., have been reduced to a simpler representation concurring more readily with the core topological structure of street networks. Simplified forms of network representation contrast those focusing on completeness (e.g.&nbsp;for route way-finding, see <a href="https://www.ordnancesurvey.co.uk/business-and-government/help-and-support/products/itn-layer.html">OS ITN Layer</a>): these introduce unnecessary complexity serving to hinder rather than help shortest-path algorithms in the sense used by pedestrian centrality measures.</li>
+<li>The network has been simplified to its essential structure: i.e.&nbsp;unnecessarily complex representations of intersections, on-ramps, divided roadways, etc., have been reduced to a simpler representation concurring more readily with the core topological structure of street networks.</li>
 <li>The topology of the network is kept distinct from the geometry of the streets. Often-times, as can be seen with <a href="https://www.openstreetmap.org">Open Street Map</a>, additional nodes are added to streets to represent geometric twists and turns along a roadway. These additional nodes cause topological distortions that impact network centrality measures.</li>
 </ul>
-<p>When a high-quality source is available, it may be best not to attempt additional clean-up unless there is a particular rationale for doing so. On the other hand, many indispensable sources of network information, particularly Open Street Map data, can be particularly messy for network analysis purposes.</p>
-<p><code>cityseer</code> uses customisable graph cleaning methods that reduce topological idiosyncrasies which may otherwise confound centrality measures. It can, for example, remove dual carriageways while merging nodes and roadways in a manner that is as ‘tidy’ as possible. <code>cityseer</code> has an automated cleaning routine for OSM data, but it is also possible to manually configure network simplification steps and parameters as shown in the following notebook.</p>
+<p>When a high-quality source is available, it may be best not to attempt additional clean-up unless there is a particular rationale for doing so. On the other hand, cleaning and simplification is recommended when working with Open Street Map data. <code>cityseer</code> has an automated cleaning routine for OSM data, but it is also possible to manually configure network simplification steps and parameters as shown in the following notebook.</p>
 <p><a href="../../recipes/networks/network_simplification.html">Notebook</a></p>
 
 

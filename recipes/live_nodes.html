@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Network centrality from OSM data – Cityseer Guide</title>
+<title>Setting live or non-live nodes – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1f209a96a0b943f00bb8f0cdf3ecf223.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-885f1095337308f4ce75495ee971c0de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../../custom-style.css">
+<link rel="stylesheet" href="../custom-style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Cityseer Guide</span>
     </a>
   </div>
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Network centrality from OSM data</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Setting live or non-live nodes</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -139,39 +139,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src=".././assets/round_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cookbook</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../data/datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../data/datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/networks/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/networks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Network Preparation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/centrality/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/centrality/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Network Centrality</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/accessibility/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/accessibility/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Network centrality from OSM data</h1>
+<h1 class="title">Setting live or non-live nodes</h1>
 </div>
 
 
@@ -205,128 +205,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate metric distance centralities for OSM data.</p>
+<p>Set a note status to <code>live=True</code> or <code>live=False</code> based on whether it intersect the original boundary.</p>
+<p>This is used for demarcating nodes that fall within the original unbuffered boundary when calculating measures. This allows for the original boundary to be delineated from the buffered surrounding extents, which is normally included for purposes of avoiding edge roll-off. The algorithms will continue to consider parts of the network where nodes are not live (therefore preventing edge roll-off), but will not compute metrics for these nodes (reducing unnecessary computation).</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Prepare the network as shown in OSM examples. For example, from a relation id, bounding box, buffered point, or for extents defined from a loaded file. This example uses a buffered point.</p>
-<p>Using a simplified representation is recommended, otherwise centrality measures will be distorted for “messier” portions of the network.</p>
+<p>When using this approach it is best to work in a projector coordinate reference system. In this example we will cast the buffered point polygon to projected CRS by using the <code>projected=True</code> parameter.</p>
 <div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_utm, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>, projected<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>poly_utm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<figure class="figure">
+<p><img src="live_nodes_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the Polygon is in a projected CRS, the buffering step can proceed with a distance defined in metres. Here the Polygon is buffered by 400m since this is the maximum distance considered for the centrality analysis in the next step.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pol_buff <span class="op">=</span> poly_utm.<span class="bu">buffer</span>(<span class="dv">400</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pol_buff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<figure class="figure">
+<p><img src="live_nodes_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The buffer polygon can then be used as an argument for retrieving the OSM network. The <code>poly_crs_code</code> and <code>to_crs_code</code> parameters need to be set so that the function knows which CRS the input geometry is in, and which CRS to convert the network to.</p>
+<div id="cell-8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(pol_buff, poly_crs_code<span class="op">=</span>epsg_code, to_crs_code<span class="op">=</span>epsg_code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+100%|██████████| 9574/9574 [00:00&lt;00:00, 53513.86it/s]
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
+100%|██████████| 8905/8905 [00:00&lt;00:00, 1094674.01it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
+100%|██████████| 9574/9574 [00:00&lt;00:00, 19250.07it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 8905/8905 [00:00&lt;00:00, 24650.31it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 5145/5145 [00:00&lt;00:00, 1659721.13it/s]
+100%|██████████| 5145/5145 [00:00&lt;00:00, 10442.56it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 4476/4476 [00:00&lt;00:00, 63468.42it/s]
+100%|██████████| 3094/3094 [00:00&lt;00:00, 334782.57it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 3871/3871 [00:00&lt;00:00, 1087703.54it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2952/2952 [00:00&lt;00:00, 1751037.39it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 308750.85it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2952/2952 [00:00&lt;00:00, 177692.10it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2937/2937 [00:00&lt;00:00, 1278666.27it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 34263.76it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2966/2966 [00:00&lt;00:00, 293375.76it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2961/2961 [00:00&lt;00:00, 1754143.24it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 135246.24it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2962/2962 [00:00&lt;00:00, 475523.56it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2962/2962 [00:00&lt;00:00, 1277220.98it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 88577.52it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2963/2963 [00:00&lt;00:00, 516208.63it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2348/2348 [00:00&lt;00:00, 57349.15it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 313857.66it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2963/2963 [00:00&lt;00:00, 476998.65it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2348/2348 [00:00&lt;00:00, 579171.12it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2326/2326 [00:00&lt;00:00, 55185.40it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2326/2326 [00:01&lt;00:00, 1468.02it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2698/2698 [00:00&lt;00:00, 69898.16it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2133/2133 [00:00&lt;00:00, 603429.81it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2117/2117 [00:00&lt;00:00, 54698.65it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2117/2117 [00:00&lt;00:00, 6290.36it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2592/2592 [00:00&lt;00:00, 213156.79it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2088/2088 [00:00&lt;00:00, 862828.25it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2083/2083 [00:00&lt;00:00, 56612.21it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 2083/2083 [00:00&lt;00:00, 4523.22it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2536/2536 [00:00&lt;00:00, 305434.46it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 2050/2050 [00:00&lt;00:00, 1089774.80it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 2048/2048 [00:00&lt;00:00, 56403.26it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2530/2530 [00:00&lt;00:00, 1688667.91it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
+100%|██████████| 2048/2048 [00:00&lt;00:00, 18030.25it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2626/2626 [00:00&lt;00:00, 1712679.57it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 2048/2048 [00:00&lt;00:00, 14949.47it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 3074/3074 [00:00&lt;00:00, 458525.93it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
+100%|██████████| 2301/2301 [00:00&lt;00:00, 655377.80it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 1956/1956 [00:00&lt;00:00, 34370.76it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 2197/2197 [00:00&lt;00:00, 1675738.48it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 1424/1424 [00:00&lt;00:00, 11760.50it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 2213/2213 [00:00&lt;00:00, 190349.13it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 1424/1424 [00:00&lt;00:00, 56733.08it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 1424/1424 [00:02&lt;00:00, 633.45it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 1725/1725 [00:00&lt;00:00, 43771.55it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
+100%|██████████| 1629/1629 [00:00&lt;00:00, 1666875.14it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
+100%|██████████| 1089/1089 [00:00&lt;00:00, 13079.31it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 1634/1634 [00:00&lt;00:00, 392975.50it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
+100%|██████████| 1089/1089 [00:00&lt;00:00, 57539.46it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
+100%|██████████| 1089/1089 [00:01&lt;00:00, 970.97it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+100%|██████████| 1418/1418 [00:00&lt;00:00, 75465.65it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
+100%|██████████| 901/901 [00:00&lt;00:00, 160893.56it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
+100%|██████████| 1346/1346 [00:00&lt;00:00, 112845.21it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
+100%|██████████| 1336/1336 [00:00&lt;00:00, 21940.19it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 1332/1332 [00:00&lt;00:00, 399543.23it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
+100%|██████████| 861/861 [00:00&lt;00:00, 847324.20it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.graphs:Converting graph to dual.
+100%|██████████| 856/856 [00:00&lt;00:00, 322667.77it/s]</code></pre>
+</div>
+</div>
+<p>Since the network and the source geometry are in the same CRS, it is possible to demarcate each node as either <code>live=True</code> or <code>live=False</code> based on whether it intersects the original geometry.</p>
+<p>This can be done by iterating through the nodes and checking if they intersect the original geometry. If they do, the node is set to <code>live=True</code>, otherwise it is set to <code>live=False</code>.</p>
+<div id="cell-10" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> node_idx, node_data <span class="kw">in</span> G.nodes(data<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    node_pnt <span class="op">=</span> geometry.Point(node_data[<span class="st">"x"</span>], node_data[<span class="st">"y"</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> node_pnt.intersects(poly_utm):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        G.nodes[node_idx][<span class="st">"live"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        G.nodes[node_idx][<span class="st">"live"</span>] <span class="op">=</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Metrics can then be computed based on the target distance without encountering edge roll-off.</p>
+<div id="cell-12" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">400</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
-</div>
-</div>
-<p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code></pre>
-</div>
-</div>
-<p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest"><code>node_centrality_shortest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest metric distance centralities.</p>
-<blockquote class="blockquote">
-<p>Use angular centralities with caution on automatically cleaned OSM networks, preferably only after visual inspection and manual cleaning.</p>
-</blockquote>
-<div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">1000</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 1314/1314 [00:00&lt;00:00, 36674.13it/s]
+INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
+100%|██████████| 1314/1314 [00:01&lt;00:00, 751.64it/s]
+INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
+100%|██████████| 1314/1314 [00:00&lt;00:00, 12201.22it/s]
+100%|██████████| 1314/1314 [00:00&lt;00:00, 4381.52it/s]
+INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 1314/1314 [00:01&lt;00:00, 1310.09it/s]
 INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
-INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</code></pre>
+INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -344,217 +433,173 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
 <th data-quarto-table-cell-role="th">primal_edge_node_b</th>
 <th data-quarto-table-cell-role="th">primal_edge_idx</th>
 <th data-quarto-table-cell-role="th">dual_node</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">cc_farness_500</th>
-<th data-quarto-table-cell-role="th">cc_farness_1000</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_500</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_1000</th>
-<th data-quarto-table-cell-role="th">cc_hillier_500</th>
-<th data-quarto-table-cell-role="th">cc_hillier_1000</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_500</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_1000</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_beta_500</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_beta_1000</th>
+<th data-quarto-table-cell-role="th">cc_beta_400</th>
+<th data-quarto-table-cell-role="th">cc_cycles_400</th>
+<th data-quarto-table-cell-role="th">cc_density_400</th>
+<th data-quarto-table-cell-role="th">cc_farness_400</th>
+<th data-quarto-table-cell-role="th">cc_harmonic_400</th>
+<th data-quarto-table-cell-role="th">cc_hillier_400</th>
+<th data-quarto-table-cell-role="th">cc_betweenness_400</th>
+<th data-quarto-table-cell-role="th">cc_betweenness_beta_400</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">108285_108286_k0</td>
+<td data-quarto-table-cell-role="th">25257319_25257320_k0</td>
 <td>0</td>
-<td>698450.171116</td>
-<td>5.709385e+06</td>
-<td>True</td>
+<td>698204.726812</td>
+<td>5.710187e+06</td>
+<td>False</td>
 <td>1</td>
-<td>LINESTRING (698442.587 5709352.756, 698455.797...</td>
-<td>108285</td>
-<td>108286</td>
+<td>LINESTRING (698235.492 5710213.589, 698232.233...</td>
+<td>25257320</td>
+<td>25257319</td>
 <td>0</td>
-<td>POINT (698450.171116 5709384.525724)</td>
-<td>...</td>
-<td>5918.053223</td>
-<td>57333.406250</td>
-<td>0.204284</td>
-<td>0.281617</td>
-<td>0.142108</td>
-<td>0.144436</td>
+<td>POINT (698204.726812 5710187.371082)</td>
 <td>0.0</td>
 <td>0.0</td>
-<td>0.000000</td>
-<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">108286_6226833739_k0</td>
+<td data-quarto-table-cell-role="th">108252_25257054_k0</td>
 <td>1</td>
-<td>698445.518357</td>
-<td>5.709425e+06</td>
-<td>True</td>
+<td>698153.709285</td>
+<td>5.710642e+06</td>
+<td>False</td>
 <td>1</td>
-<td>LINESTRING (698434.184 5709439.895, 698435.241...</td>
-<td>108286</td>
-<td>6226833739</td>
+<td>LINESTRING (698138.426 5710664.248, 698144.112...</td>
+<td>108252</td>
+<td>25257054</td>
 <td>0</td>
-<td>POINT (698445.518357 5709425.066711)</td>
-<td>...</td>
-<td>5108.617676</td>
-<td>59628.519531</td>
-<td>0.270784</td>
-<td>0.353576</td>
-<td>0.164624</td>
-<td>0.151354</td>
-<td>10.0</td>
-<td>10.0</td>
-<td>2.237725</td>
-<td>4.535670</td>
+<td>POINT (698153.709285 5710641.538834)</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">108286_1270370717±1784656260_k0</td>
+<td data-quarto-table-cell-role="th">108252_452229727_k0</td>
 <td>2</td>
-<td>698462.969675</td>
-<td>5.709425e+06</td>
-<td>True</td>
+<td>698123.239970</td>
+<td>5.710685e+06</td>
+<td>False</td>
 <td>1</td>
-<td>LINESTRING (698465.562 5709434.93, 698460.378 ...</td>
-<td>108286</td>
-<td>1270370717±1784656260</td>
+<td>LINESTRING (698138.426 5710664.248, 698133.018...</td>
+<td>108252</td>
+<td>452229727</td>
 <td>0</td>
-<td>POINT (698462.969675 5709425.051823)</td>
-<td>...</td>
-<td>5866.822266</td>
-<td>66397.101562</td>
-<td>0.310603</td>
-<td>0.401597</td>
-<td>0.163802</td>
-<td>0.162899</td>
-<td>32.0</td>
-<td>160.0</td>
-<td>8.084851</td>
-<td>20.537325</td>
+<td>POINT (698123.23997 5710685.118712)</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1936005006_610896454±61089|05006_k0</td>
+<td data-quarto-table-cell-role="th">108252_12391|03078±57552|08253_k0</td>
 <td>3</td>
-<td>698508.474675</td>
-<td>5.709425e+06</td>
-<td>True</td>
+<td>698120.890901</td>
+<td>5.710655e+06</td>
+<td>False</td>
 <td>1</td>
-<td>LINESTRING (698494.235 5709445.995, 698518.821...</td>
-<td>1936005006</td>
-<td>610896454±61089|05006</td>
+<td>LINESTRING (698103.385 5710645.919, 698131.137...</td>
+<td>108252</td>
+<td>12391|03078±57552|08253</td>
 <td>0</td>
-<td>POINT (698508.474675 5709425.429823)</td>
-<td>...</td>
-<td>6557.025391</td>
-<td>66485.359375</td>
-<td>0.213854</td>
-<td>0.303207</td>
-<td>0.146560</td>
-<td>0.159569</td>
+<td>POINT (698120.890901 5710655.116857)</td>
 <td>0.0</td>
 <td>0.0</td>
-<td>0.000000</td>
-<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1784656176_6226833739_k0</td>
+<td data-quarto-table-cell-role="th">108252_10825|82720±25257|82720±12373|16592_k0</td>
 <td>4</td>
-<td>698421.101261</td>
-<td>5.709460e+06</td>
-<td>True</td>
+<td>698183.290484</td>
+<td>5.710684e+06</td>
+<td>False</td>
 <td>1</td>
-<td>LINESTRING (698434.184 5709439.895, 698432.763...</td>
-<td>6226833739</td>
-<td>1784656176</td>
+<td>LINESTRING (698228.148 5710703.651, 698222.24 ...</td>
+<td>108252</td>
+<td>10825|82720±25257|82720±12373|16592</td>
 <td>0</td>
-<td>POINT (698421.101261 5709459.670573)</td>
-<td>...</td>
-<td>5746.660645</td>
-<td>61360.828125</td>
-<td>0.265466</td>
-<td>0.348724</td>
-<td>0.167228</td>
-<td>0.156517</td>
-<td>63.0</td>
-<td>63.0</td>
-<td>14.596126</td>
-<td>29.232420</td>
+<td>POINT (698183.290484 5710683.927691)</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 26 columns</p>
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_beta_500', 'cc_beta_1000', 'cc_cycles_500',
-       'cc_cycles_1000', 'cc_density_500', 'cc_density_1000', 'cc_farness_500',
-       'cc_farness_1000', 'cc_harmonic_500', 'cc_harmonic_1000',
-       'cc_hillier_500', 'cc_hillier_1000', 'cc_betweenness_500',
-       'cc_betweenness_1000', 'cc_betweenness_beta_500',
-       'cc_betweenness_beta_1000'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_hillier_500"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>count    2825.000000
-mean        0.560724
-std         0.208340
-min         0.028747
-25%         0.421762
-50%         0.549569
-75%         0.695934
-max         1.059475
-Name: cc_hillier_500, dtype: float64</code></pre>
-</div>
-</div>
-<div id="cell-11" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_hillier_500"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+<p>Measures will only have been computed for live nodes.</p>
+<div id="cell-14" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_400"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(np.float64(697663.3353532758),
+ np.float64(699986.2102806268),
+ np.float64(5709670.722888798),
+ np.float64(5711930.195587498))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="osm_centrality_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="live_nodes_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+<p>To print or save only live nodes, filter the data frame accordingly.</p>
+<div id="cell-16" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nodes_filtered <span class="op">=</span> nodes_gdf[nodes_gdf.live]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>nodes_filtered.plot(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_400"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>(np.float64(698266.6364452019),
+ np.float64(699469.3803111856),
+ np.float64(5710222.983618274),
+ np.float64(5711471.82779159))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="osm_centrality_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="live_nodes_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
