@@ -4,7 +4,7 @@ version = "0.0.1"
 description = ""
 authors = [{ name = "Gareth Simons", email = "info@benchmarkurbanism.com" }]
 dependencies = [
-    "cityseer>=4.20.0",
+    "cityseer>=4.21.0b36",
     "pyproj>=3.6.1",
     "shapely>=2.0.3",
     "geopandas>=0.14.3",
@@ -18,6 +18,7 @@ dependencies = [
     "jupyter-cache>=1.0.1",
     "jupyterlab>=4.3.6",
     "matplotlib>=3.9.3",
+    "seaborn>=0.13.2",
 ]
 requires-python = ">=3.11, <3.14"
 readme = "README.md"

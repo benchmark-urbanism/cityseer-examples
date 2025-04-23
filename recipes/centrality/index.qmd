@@ -4,17 +4,17 @@ editor:
   render-on-save: true
 ---
 
-Once you have created a `cityseer` compatible `networkx` graph, you can calculate a variety of centrality metrics. The following examples illustrate how to calculate and visualise these metrics.
+Once you have created a `cityseer` compatible `networkx` graph and the derivative `NetworkStructure`, you can calculate a variety of centrality metrics.
 
 ## Metric distance network centrality
 
-Calculate metric distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
+Calculate metric distance centralities from a `geopandas` `GeoDataFrame`.
 
 [Notebook](gpd_metric_centrality.ipynb)
 
 ## Angular distance network centrality
 
-Calculate angular (geometric or "simplest") distance centralities from a `networkx` network prepared from an input `geopandas` `GeoDataFrame`.
+Calculate angular (geometric or "simplest") distance centralities from a `geopandas` `GeoDataFrame`.
 
 [Notebook](gpd_angular_centrality.ipynb)
 
