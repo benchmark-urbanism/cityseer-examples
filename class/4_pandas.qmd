@@ -1,0 +1,88 @@
+---
+title: Pandas and Geopandas
+---
+
+#### pandas: Data Manipulation
+
+```python
+import pandas as pd
+# Read a CSV file
+df = pd.read_csv('/content/sample_data/california_housing_train.csv')
+df.head()
+```
+
+#### Example: Creating a DataFrame
+
+```python
+data = {
+    "city": ["Madrid", "Barcelona", "Valencia"],
+    "population": [3200000, 1600000, 800000]
+}
+df = pd.DataFrame(data)
+print(df)
+```
+
+#### Example: Selecting Columns and Rows
+
+```python
+print(df["city"])
+print(df.loc[0])
+```
+
+#### Exercise 4.1:
+
+- Create a DataFrame with three cities and their populations.
+- Print the population column.
+
+#### Writing Data
+
+```python
+# Save to CSV
+df.to_csv('output.csv', index=False)
+```
+
+#### Example: Reading and Writing Other Formats
+
+```python
+# Read Excel file
+df2 = pd.read_excel('data.xlsx')
+# Write to Excel
+df.to_excel('output.xlsx', index=False)
+```
+
+#### geopandas: Spatial Data
+
+```python
+import geopandas as gpd
+# Read a GeoPackage (GPKG) file
+gdf = gpd.read_file('/content/madrid_blocks.gpkg')
+gdf.head()
+```
+
+#### Example: Creating GeoDataFrame from Coordinates
+
+```python
+from shapely.geometry import Point
+cities = ["Madrid", "Barcelona", "Valencia"]
+coords = [(-3.7038, 40.4168), (2.1734, 41.3851), (-0.3774, 39.4699)]
+geoms = [Point(lon, lat) for lon, lat in coords]
+gdf = gpd.GeoDataFrame({"city": cities, "geometry": geoms})
+print(gdf)
+```
+
+#### Example: Plotting Spatial Data
+
+```python
+gdf.plot()
+```
+
+#### Exercise 4.2:
+
+- Create a GeoDataFrame with three cities and their coordinates.
+- Plot the points on a map.
+
+#### Challenge 4:
+
+- Load a CSV or GeoPackage file from your data folder.
+- Find the number of rows and columns in the dataset.
+- Plot the spatial data if available.

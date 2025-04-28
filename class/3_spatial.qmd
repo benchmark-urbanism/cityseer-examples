@@ -1,0 +1,57 @@
+---
+title: Spatial (Shapely)
+---
+
+#### Basic Geometry
+
+```python
+from shapely.geometry import Point, Polygon
+
+# Create a point
+pt = Point(-3.7038, 40.4168)
+print(pt)
+
+# Create a polygon
+poly = Polygon([(-3.70, 40.41), (-3.71, 40.41), (-3.71, 40.42), (-3.70, 40.42)])
+print(poly)
+```
+
+#### Example: Distance and Buffer
+
+```python
+# Distance between two points
+pt2 = Point(-3.70, 40.42)
+print(pt.distance(pt2))
+
+# Buffer (circle around a point)
+buffer = pt.buffer(0.01)
+print(buffer)
+```
+
+#### Example: Point in Polygon
+
+```python
+print(pt.within(poly))
+```
+
+#### Exercise 5.1:
+
+- Create two points and calculate the distance between them.
+- Create a polygon and check if a point is inside it.
+
+#### Example: Intersecting Geometries
+
+```python
+poly2 = Polygon([(-3.705, 40.415), (-3.715, 40.415), (-3.715, 40.425), (-3.705, 40.425)])
+print(poly.intersects(poly2))
+```
+
+#### Exercise 5.2:
+
+- Create two polygons and check if they intersect.
+- Create a buffer around a point and plot it using geopandas.
+
+#### Challenge 5:
+
+- Create a list of points and a polygon. Check which points are inside the polygon.
+- Create buffers around several points and plot them all on a map.

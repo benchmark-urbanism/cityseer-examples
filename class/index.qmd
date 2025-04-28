@@ -1,0 +1,18 @@
+---
+editor:
+  render-on-save: true
+---
+
+This section provides some basic examples on the usage of Python and computational notebooks if you're new to programming or urban analytics.
+
+### Topics Covered
+
+1. **Notebooks**: Learn what computational notebooks are and how to use them effectively. [Go to Notebooks](1_notebooks.qmd)
+2. **Python 101**: Get familiar with Python basics, including variables, data types, and simple operations. [Go to Python 101](2_basics.qmd)
+3. **Spatial Data**: Explore spatial data and basic operations for urban analysis. [Go to Spatial Data](3_spatial.qmd)
+4. **Pandas**: Dive into data manipulation and analysis using the pandas library. [Go to Pandas](4_pandas.qmd)
+5. **Urban Morphology**: Analyze urban forms and patterns with the `momepy` library. [Go to Urban Morphology](5_momepy.qmd)
+6. **OpenStreetMap Data**: Work with OpenStreetMap data using the `osmnx` library. [Go to OpenStreetMap Data](6_osmnx.qmd)
+7. **Cityseer**: Discover the cityseer library and its applications in urban analysis. [Go to Cityseer](7_cityseer.qmd)
+8. **Data Science Workflows**: Learn about workflows for data science projects. [Go to Data Science Workflows](8_data_science.ipynb)
+9. **Modeling and Analysis**: Explore modeling techniques and analytical methods. [Go to Modeling and Analysis](9_models.ipynb)

@@ -1,0 +1,172 @@
+---
+title: Notebooks
+---
+
+### What is a Notebook?
+
+A computational notebook is an interactive environment where code, results, and explanations coexist. It is particularly useful for iterative workflows, such as data analysis, where one can test ideas step-by-step and document the process alongside the code.
+
+### Why Use Notebooks?
+
+Notebooks streamline workflows by integrating coding, results, and documentation in a single interface. This eliminates the fragmentation of older approaches, where separate tools were required for scripting, running, and documenting. The result: a more efficient, shareable, and reproducible analysis process.
+
+### Using Google Colab
+
+Google Colab provides a cloud-based platform for running Jupyter notebooks without local setup. It is particularly suited for urban analysts exploring datasets or prototyping workflows.
+
+::: {.callout-note}
+
+#### Getting Started with Colab
+
+1. **Access Colab:** Visit [Google Colab](https://colab.research.google.com/) and sign in with a Google account.
+2. **Create a New Notebook:** Click on "File > New Notebook" to start a new notebook.
+3. **Upload an Existing Notebook:** If you already have a `.ipynb` file, upload it via "File > Upload Notebook."
+
+:::
+
+#### Resetting the Runtime
+
+If the notebook becomes unresponsive or you need to clear all variables, use `Runtime > Restart runtime...`. After restarting, rerun all cells to restore the notebook's state.
+
+#### Key Components
+
+- **Code Cells:** Blocks for Python code execution. Outputs appear directly below the cell.
+- **Text Cells:** Markdown-based cells for documentation, explanations, or context.
+
+#### Running Code
+
+Execute a code cell by selecting it and pressing `Shift+Enter`. For example:
+
+```{python}
+# A simple arithmetic operation
+2 + 2
+```
+
+The output appears immediately below the cell, showing the result.
+
+Another example:
+
+```{python}
+# Assigning a value to a variable and printing it
+x = 5
+print(x)
+```
+
+#### Implicit Output
+
+In notebooks, the last line of a code cell automatically displays its value:
+
+```{python}
+# The value of 'x' will be displayed
+x = 42
+x
+```
+
+For multiple lines or non-terminal variables, use `print()`:
+
+```{python}
+# Explicitly displaying values
+x = 42
+y = x * 2
+print(y)
+```
+
+#### Editing and Rerunning
+
+Notebooks allow iterative modification. Update a code cell and rerun it to see the changes. This flexibility is central to notebook workflows.
+
+### Variables and Memory State
+
+Variables persist across cells within an active session. This enables flexibility but requires careful management of execution order.
+
+#### How Variables Persist
+
+Variables defined in one cell remain accessible in subsequent cells:
+
+```{python}
+# Define a variable
+city_name = "Madrid"
+```
+
+```{python}
+# Use the variable defined earlier
+print(f"The selected city is {city_name}.")
+```
+
+If the first cell is not executed, the second will raise an error.
+
+#### Modifying Variables
+
+Redefining a variable updates its value in memory. Subsequent cells will reflect this change:
+
+```{python}
+# Update the variable
+city_name = "Barcelona"
+```
+
+```{python}
+# The updated value is used
+print(f"The selected city is now {city_name}.")
+```
+
+#### Execution Order and State
+
+Execution order determines the notebook's state. Running cells out of order can lead to errors or unexpected results. For example:
+
+```{python}
+# Attempt to use a variable before defining it
+print(city_name)
+```
+
+To avoid such issues:
+
+1. Execute cells in logical order, starting from the top.
+2. Rerun dependent cells after modifying variables.
+3. Periodically use "Restart & Run All" to ensure consistency.
+
+### Execution Order Matters
+
+The order of execution directly impacts the notebook's environment. Variables, functions, and imports are only available if their defining cells have been run. For example:
+
+```{python}
+# Define a variable
+x = 10
+```
+
+```{python}
+# Use the variable
+y = x * 2
+print(y)
+```
+
+```{python}
+# Use the result of the second cell
+z = y + 5
+print(z)
+```
+
+If the second cell is modified (e.g., `y = x * 3`), the third cell must be rerun to reflect the updated value. Failing to do so results in outdated or invalid data. Periodically use "Restart & Run All" to ensure consistency.
+
+### Adding Text
+
+Text cells use Markdown, a lightweight markup language. For example:
+
+```markdown
+### Observations
+
+This notebook demonstrates the basics of using computational notebooks for interactive coding and documentation.
+```
+
+::: {.callout-note}
+
+1. **Troubleshooting Errors:** Ensure all prerequisite cells have been run.
+2. **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
+3. **Saving Progress:** Regularly save work to Google Drive via "File > Save a Copy in Drive."
+4. **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset and rerun all cells.
+
+:::
+
+### Exercise
+
+1. Create a new code cell and write a Python command to print the name of your favorite city. Run the cell.
+2. Add a new text cell with a heading (e.g., "My Favorite City") and a brief description of why you chose it. Render the cell to format the text.

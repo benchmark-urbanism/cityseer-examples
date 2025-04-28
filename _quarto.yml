@@ -15,14 +15,27 @@ website:
   sidebar:
     logo: ./assets/round_logo.png
     style: "docked"
-    collapse-level: 2
+    collapse-level: 3
     contents:
       - href: index.qmd
       - href: data/datasets.qmd
-      - href: recipes/networks/index.qmd
-      - href: recipes/centrality/index.qmd
-      - href: recipes/accessibility/index.qmd
-      - href: recipes/stats/index.qmd
+      - text: Python 101
+        href: class/index.qmd
+        contents:
+          - href: class/1_notebooks.qmd
+          - href: class/2_basics.qmd
+          - href: class/3_spatial.qmd
+          - href: class/4_pandas.qmd
+          - href: class/5_momepy.qmd
+          - href: class/6_osmnx.qmd
+          - href: class/7_cityseer.qmd
+      - text: Cityseer Recipes
+        href: recipes/index.qmd
+        contents:
+          - href: recipes/networks/index.qmd
+          - href: recipes/centrality/index.qmd
+          - href: recipes/accessibility/index.qmd
+          - href: recipes/stats/index.qmd
 format:
   html:
     theme: simplex
