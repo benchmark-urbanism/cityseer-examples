@@ -37,9 +37,9 @@ First, let's define some tabular data as a list of dictionaries. Each dictionary
 
 ```{python}
 data = [
-    {"city": "Madrid", "longitude": -3.7038, "latitude": 40.4168},
-    {"city": "Barcelona", "longitude": 2.1734, "latitude": 41.3851},
-    {"city": "Valencia", "longitude": -0.3774, "latitude": 39.4699}
+    {"city": "Madrid", "x": -3.7038, "y": 40.4168},
+    {"city": "Barcelona", "x": 2.1734, "y": 41.3851},
+    {"city": "Valencia", "x": -0.3774, "y": 39.4699}
 ]
 
 data
@@ -48,11 +48,11 @@ data
 Next, we need to create the corresponding geometry objects. Since these are coordinates, `Point` objects are appropriate. We can create a list of `Point` objects directly from our data.
 
 ```{python}
-# Create Point geometries from the longitude and latitude columns
+# Create Point geometries from the x and y columns
 locations = []
 
 for city in data:
-    locations.append(Point(city["longitude"], city["latitude"]))
+    locations.append(Point(city["x"], city["y"]))
 
 locations
 ```
@@ -92,39 +92,32 @@ gdf_cities.loc["Madrid"]
 You can also pass in a column name. For example, to get the latitude of Barcelona:
 
 ```{python}
-gdf_cities.loc['Barcelona', "latitude"]
+gdf_cities.loc['Barcelona', "y"]
 ```
 
-To return all rows or columns, you can use the `:` operator. For example, to get all the rows for the `latitude` column:
+To return all rows for a given column, you can use the `:` operator. For example, to get all the rows for the `y` column:
 
 ```{python}
-gdf_cities.loc[:, "latitude"]
+gdf_cities.loc[:, "y"]
 ```
 
-An extremely powerful feature of GeoDataFrames is the ability to filter rows based on their properties:
-
-```{python}
-# Select cities with latitude greater than 40
-gdf_cities[gdf_cities["latitude"] > 40]
-```
-
-As you can see, only two rows are returned because the third city, Valencia, has a latitude of less than 40. To understand how this indexing works, we can break these steps into separate lines. The first part is effectively creating a list of booleans, and the second step is using these booleans to filter the rows.
+An extremely powerful feature of GeoDataFrames is the ability to filter rows based on their properties. For this you can create a boolean mask which can be used to mask-out the rows you are not interested in. For example, if you want to filter the cities to only include those with a latitude greater than 40, you can do this:
 
 ```{python}
 # Create a boolean mask
-mask = gdf_cities["latitude"] > 40
+mask = gdf_cities["y"] > 40
 
 mask
 ```
 
-This mask is a pandas Series of booleans, where `True` indicates that the condition is met (latitude > 40) and `False` otherwise. You can use this mask to filter the rows in the original GeoDataFrame.
+This mask is a pandas Series of booleans, where `True` indicates that the condition is met (y > 40) and `False` otherwise. You can now use this mask to filter the rows in the original GeoDataFrame.
 
 ```{python}
 # Use the mask to filter the rows
-gdf_cities[mask]
+gdf_cities.loc[mask]
 ```
 
-Masks can often be combined into a single step, but it is okay to split this over two steps if you prefer.
+As you can see, only two rows are returned because the third city, Valencia, has a latitude of less than 40.
 
 ## Geospatial
 
@@ -148,21 +141,17 @@ Conveniently, GeoPandas integrates with `matplotlib` for quick and easy plotting
 gdf_cities.plot()
 ```
 
-This initial plot uses the WGS 84 CRS (latitude/longitude).
-
 ### Coordinate Transformations
 
-GeoPandas makes CRS transformation straightforward with the `to_crs()` method. Make sure you use a projected coordinate reference system when doing detailed spatial analysis.
-
-Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
+GeoPandas makes CRS transformation straightforward with the `to_crs()` method. Make sure you use a projected coordinate reference system when doing detailed spatial analysis. Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
 
 ```{python}
-gdf_cities_proj = gdf_cities.to_crs("EPSG:3035")
+gdf_cities_proj = gdf_cities.to_crs(3035)
 
 gdf_cities_proj
 ```
 
-Notice how the `longitude` and `latitude` columns no longer match the geometry, as the geometry is now in metres according to EPSG:3035. The `.crs` attribute reflects this change:
+Notice how the `x` and `y` columns no longer match the geometry, as the geometry is now in metres according to EPSG:3035. The `.crs` attribute reflects this change:
 
 ```{python}
 gdf_cities_proj.crs
@@ -195,4 +184,91 @@ pt = Point(3300000, 2000000)
 
 # Calculate distance from each geometry in the GeoSeries to the point
 gdf_cities_proj.geometry.distance(pt)
+```
+
+### Creating and Updating Columns
+
+It is very easy to create or update the values of a column in a data frame
+
+For example, if we wanted to create a new column called easting and set it to the x coordinate of the geometry, we could do this:
+
+```{python}
+gdf_cities_proj['easting'] = gdf_cities_proj.geometry.centroid.x
+
+gdf_cities_proj
+```
+
+Each row of geometry in the data frame is a shapely geometry so you can use conventional shapely syntax for accessing properties of a geometry such as the centroid or the centroids x coordinate.
+
+If you change your mind and instead wanted to simply update the existing `x` and `y` columns, then you can reference these columns directly:
+
+```{python}
+gdf_cities_proj['x'] = gdf_cities_proj.geometry.centroid.x
+gdf_cities_proj['y'] = gdf_cities_proj.geometry.centroid.y
+
+gdf_cities_proj
+```
+
+Data frames have an extensive variety of useful methods however we will use the `drop` method to remove the column we no longer wish to keep:
+
+```{python}
+gdf_cities_proj = gdf_cities_proj.drop(columns=['easting'])
+
+gdf_cities_proj
+```
+
+## Working with Data
+
+### Reading Data
+
+GeoPandas can read various spatial data formats, including Shapefiles, GeoPackages, and GeoJSON files. The `read_file()` function is the primary method for loading these files. Your file path has to point to the location of the file so you would need to edit the below line to reflect the location of the file on your own computer.
+
+```{python}
+mad_bldgs = gpd.read_file('../data/madrid_buildings/madrid_bldgs.gpkg')
+
+mad_bldgs.head()
+```
+
+The `head()` method shows the first few rows of the GeoDataFrame, including the geometry column. The CRS is automatically detected and set.
+
+### Plotting
+
+Let's plot the data.
+
+```{python}
+mad_bldgs.plot()
+```
+
+To zoom in when plotting you can set your x and y axis limits. For a cleaner plot, it is also generally preferable to turn off the axes so that the coordinates don't render.
+
+```{python}
+ax = mad_bldgs.plot()
+
+ax.set_xlim(439000, 442000)
+ax.set_ylim(4473000, 4476000)
+ax.axis('off')
+```
+
+Let's create a new column called `area` which we will set to the value of each geometry's area, then we will plot the data once more, this time rendering the colour by the area of the building.
+
+```{python}
+mad_bldgs['area'] = mad_bldgs.geometry.area
+
+ax = mad_bldgs.plot(
+    column='area',
+    cmap='viridis',
+    vmax=10000,
+)
+
+ax.set_xlim(439000, 442000)
+ax.set_ylim(4473000, 4476000)
+ax.axis('off')
+```
+
+### Saving Data
+
+GeoPandas can save GeoDataFrames to various formats, including Shapefiles, GeoPackages, and GeoJSON files. The `to_file()` method is used for this purpose. You can specify the format using the `driver` parameter.
+
+```python
+mad_bldgs.to_file('bldgs_w_area.gpkg', driver='GPKG')
 ```
