@@ -1,57 +1,188 @@
 ---
 title: Spatial (Shapely)
+editor:
+  render-on-save: true
 ---
 
-#### Basic Geometry
+### Introduction to Shapely
 
-```python
-from shapely.geometry import Point, Polygon
+Shapely is a powerful Python library for creating and manipulating geometric objects. It provides a simple and intuitive interface for working with points, lines, polygons, and other geometric shapes in a Cartesian coordinate system. Shapely is widely used in spatial analysis and serves as a foundational library for many downstream packages, such as GeoPandas, which extends its functionality to geospatial data analysis.
 
-# Create a point
-pt = Point(-3.7038, 40.4168)
-print(pt)
+Why is Shapely useful?
 
-# Create a polygon
-poly = Polygon([(-3.70, 40.41), (-3.71, 40.41), (-3.71, 40.42), (-3.70, 40.42)])
-print(poly)
+- **Geometry Creation**: Easily create points, lines, and polygons.
+- **Spatial Relationships**: Analyse relationships like containment, intersection, and proximity.
+- **Geometric Operations**: Perform operations like buffering, union, and intersection.
+- **Integration**: Shapely integrates seamlessly with other libraries like GeoPandas for advanced geospatial workflows.
+
+For more details, refer to the [Shapely API documentation](https://shapely.readthedocs.io/en/stable/).
+
+In this lesson, we will explore the basics of Shapely and its applications in an urban context. By the end, you will understand how to use Shapely to model spatial relationships and perform geometric operations.
+
+::: {.callout-note}
+
+Some level of pre-existing GIS knowledge is taken as a given --- this lesson will not cover the basics of coordinate reference systems or ideas such as spatial predicates. Those familiar with QGIS or similar GIS spatial packages and techniques will recognise the ideas used below where we are using standard spatial types such as points, linestrings, and polygons combined with operations such as buffering and predicates to analyse the relationship between different spatial features.
+
+:::
+
+---
+
+### Basic Geometry
+
+Shapely has support for constructing basic geometry via the [`geometry`](https://shapely.readthedocs.io/en/stable/geometry.html) module.
+
+Points are the most basic geometric objects in Shapely and serve as building blocks for more complex geometries.
+
+```{python}
+from shapely.geometry import Point, LineString, Polygon
+
+pt = Point(0, 0)
+pt
 ```
 
-#### Example: Distance and Buffer
+Linestrings are defined by a sequence of connected points. Define your points using pairs of XY coordinates. Alternatively, you can first create points representing each coordinate and then create the line from a list of points.
 
-```python
-# Distance between two points
-pt2 = Point(-3.70, 40.42)
-print(pt.distance(pt2))
+```{python}
+line = LineString([(0, 5), (5, 0), (10, 5)])
 
-# Buffer (circle around a point)
-buffer = pt.buffer(0.01)
-print(buffer)
+line
 ```
 
-#### Example: Point in Polygon
+Polygons are defined by a sequence of coordinates that form a closed shape. As with linestrings, you can create a polygon from a list of points or directly from a list of coordinates.
 
-```python
-print(pt.within(poly))
+```{python}
+poly = Polygon([(0, 0), (0, 10), (10, 10), (10, 0)])
+poly
 ```
 
-#### Exercise 5.1:
+Geometries in shapely have properties which contain commonly used forms of information for example you can get the area of a polygon:
+
+```{python}
+poly.area
+```
+
+Or, the length of a linestring:
+
+```{python}
+line.length
+```
+
+As well as some other useful properties such as centroids, x and y coordinates, or WKT (Well-Known Text) representations of a given geometry:
+
+```{python}
+poly.centroid
+```
+
+```{python}
+pt.x, pt.y
+```
+
+```{python}
+line.wkt
+```
+
+### Operations and Predicates
+
+Shapely has built in support for the typical kinds of spatial operations and predicates used in GIS. For example, you can measure the distance between one spatial object and another.
+
+```{python}
+pt.distance(line)
+```
+
+Note that shapely works with Cartesian coordinates and you have to perform any coordinate conversions to a projected coordinate reference system before doing operations like measuring distances or performing spatial predicates. Your objects have to be in the same coordinate reference system for this to work as intended.
+
+The documentation provides detailed information about the available operations and predicates which can be found on the associated documentation page. For example you can look at the [`geometry.Point`](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point) page for detailed information on point geometries.
+
+```{python}
+pt_buff = pt.buffer(2)
+
+pt_buff
+```
+
+As a case in point, the documentation page shows that the point geometry has a [buffer](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point.buffer) method. The buffer method expects a distance parameter and will return a polygon representing the result of the operation.
+
+For spatial predicates, you will find all of the usual suspects. For example, you can use the [`within`](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point.within) method To check if a point lies within the boundaries of the polygon.
+
+```{python}
+pt.within(poly)
+```
+
+Since the point is exactly on the corner of the polygon, it returns `False` for the `within` operation but will return `True` if we check for an [`intersects`](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point.intersects) instead.
+
+```{python}
+poly.intersects(pt)
+```
+
+### Buffers, Unions, and Differencing
+
+The other common operations are also lurking around. For example, you can use [`buffer`](https://shapely.readthedocs.io/en/stable/reference/shapely.LineString.html#shapely.LineString.buffer) to create a buffer around a linestring.
+
+```{python}
+line_buff = line.buffer(2)
+
+line_buff
+```
+
+Or, the [`union`](https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon.union) method to combine two polygons into a single geometry.
+
+```{python}
+poly2 = Polygon([(5, 5), (5, 15), (15, 15), (15, 5)])
+
+union_poly = poly.union(poly2)
+
+union_poly
+```
+
+[`difference`](https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon.difference) and other operations behave as expected:
+
+```{python}
+diff_poly = poly.difference(pt_buff)
+
+diff_poly
+```
+
+Some operations have configurable parameters, for example the [`buffer`](https://shapely.readthedocs.io/en/stable/reference/shapely.LineString.html#shapely.LineString.buffer) method has two commonly used parameters: `cap_style` and `join_style` which control the appearance of the buffer around the line.
+
+```{python}
+buffer_round = line.buffer(2, cap_style=1, join_style=1)
+
+buffer_round
+```
+
+### Workflows
+
+The functionality provided by shapely for spatial operations and predicates is essentially the same functionality provided by packages such as QGIS. As a result, anything you can do in a user interface-based approach you can quite often replicate using a Python-based approach and vice versa. Python tends to be preferable once the processing workflow becomes sufficiently long or complex, in which case it is advantageous to be able to save your workflow as a script for advanced processing in ways that would become arduous in a platform-based approach.
+
+To use an extremely simple example, we can model spatial features such as streets and see whether they are within a certain distance threshold of particular land uses.
+
+```{python}
+street = LineString([(0, 0), (10, 0)])
+street_buffer = street.buffer(5, cap_style=1, join_style=1)
+
+street_buffer
+```
+
+```{python}
+land_use = Point(3, 4)
+land_use
+```
+
+```{python}
+is_within = land_use.within(street_buffer)
+is_within
+```
+
+```{python}
+distance_to_street = land_use.distance(street)
+distance_to_street
+```
+
+In practice, these workflows are normally done using the GeoPandas package which allows multiple features to be analysed together. It also allows us to manipulate coordinate reference systems, to read and write files, and it has built-in plotting functionality.
+
+### Exercises
 
 - Create two points and calculate the distance between them.
 - Create a polygon and check if a point is inside it.
-
-#### Example: Intersecting Geometries
-
-```python
-poly2 = Polygon([(-3.705, 40.415), (-3.715, 40.415), (-3.715, 40.425), (-3.705, 40.425)])
-print(poly.intersects(poly2))
-```
-
-#### Exercise 5.2:
-
 - Create two polygons and check if they intersect.
-- Create a buffer around a point and plot it using geopandas.
-
-#### Challenge 5:
-
+- Create a LineString with at least three points.
 - Create a list of points and a polygon. Check which points are inside the polygon.
-- Create buffers around several points and plot them all on a map.
