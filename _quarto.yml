@@ -15,7 +15,7 @@ website:
   sidebar:
     logo: ./assets/round_logo.png
     style: "docked"
-    collapse-level: 3
+    collapse-level: 2
     contents:
       - href: index.qmd
       - href: data/datasets.qmd

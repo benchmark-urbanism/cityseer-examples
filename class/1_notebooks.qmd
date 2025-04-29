@@ -1,5 +1,7 @@
 ---
 title: Notebooks
+editor:
+  render-on-save: true
 ---
 
 ### What is a Notebook?
