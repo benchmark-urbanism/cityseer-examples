@@ -1,88 +1,198 @@
 ---
-title: Pandas and Geopandas
+title: GeoPandas
+editor:
+  render-on-save: true
 ---
 
-#### pandas: Data Manipulation
+When working with spatial data in urban analysis, we often deal with many geographic features at once (like buildings, streets, or administrative boundaries). While you could process each feature individually, it's far more efficient to manage and analyse them together in a structured format.
 
-```python
-import pandas as pd
-# Read a CSV file
-df = pd.read_csv('/content/sample_data/california_housing_train.csv')
-df.head()
-```
+For general data analysis in Python, the `pandas` library is the standard tool. Pandas provides the `DataFrame`, a powerful table-like structure where rows represent observations (e.g., individual buildings) and columns represent attributes (e.g., height, area, land use). This is conceptually similar to attribute tables in GIS software like QGIS or ArcGIS.
 
-#### Example: Creating a DataFrame
+[**GeoPandas**](https://geopandas.org/en/stable/) extends pandas by adding first-class support for geographic data. It introduces the `GeoDataFrame`, which is essentially a pandas `DataFrame` with a special column that holds geometry objects (like points, lines, or polygons). This allows you to seamlessly combine tabular data analysis with spatial operations.
 
-```python
-data = {
-    "city": ["Madrid", "Barcelona", "Valencia"],
-    "population": [3200000, 1600000, 800000]
-}
-df = pd.DataFrame(data)
-print(df)
-```
+Key features of GeoPandas include:
 
-#### Example: Selecting Columns and Rows
+- Storing geometric data alongside other attributes.
+- Reading and writing various spatial file formats (Shapefile, GeoPackage, GeoJSON, etc.).
+- Performing spatial operations (buffering, intersection, union, etc.).
+- Handling Coordinate Reference Systems (CRS).
+- Easy plotting of spatial data.
 
-```python
-print(df["city"])
-print(df.loc[0])
-```
+## From Scratch
 
-#### Exercise 4.1:
+While you'll often load spatial data directly from files, understanding how to create a `GeoDataFrame` manually is helpful. To create one, you typically need:
 
-- Create a DataFrame with three cities and their populations.
-- Print the population column.
+1. Tabular data (like a list of dictionaries or a pandas DataFrame).
+2. Corresponding geometry objects.
+3. A Coordinate Reference System (CRS) identifier.
 
-#### Writing Data
+Let's start with a simple example.
 
-```python
-# Save to CSV
-df.to_csv('output.csv', index=False)
-```
-
-#### Example: Reading and Writing Other Formats
-
-```python
-# Read Excel file
-df2 = pd.read_excel('data.xlsx')
-# Write to Excel
-df.to_excel('output.xlsx', index=False)
-```
-
-#### geopandas: Spatial Data
-
-```python
+```{python}
 import geopandas as gpd
-# Read a GeoPackage (GPKG) file
-gdf = gpd.read_file('/content/madrid_blocks.gpkg')
-gdf.head()
-```
-
-#### Example: Creating GeoDataFrame from Coordinates
-
-```python
 from shapely.geometry import Point
-cities = ["Madrid", "Barcelona", "Valencia"]
-coords = [(-3.7038, 40.4168), (2.1734, 41.3851), (-0.3774, 39.4699)]
-geoms = [Point(lon, lat) for lon, lat in coords]
-gdf = gpd.GeoDataFrame({"city": cities, "geometry": geoms})
-print(gdf)
 ```
 
-#### Example: Plotting Spatial Data
+First, let's define some tabular data as a list of dictionaries. Each dictionary represents a city with its name and approximate coordinates (longitude, latitude).
 
-```python
-gdf.plot()
+```{python}
+data = [
+    {"city": "Madrid", "longitude": -3.7038, "latitude": 40.4168},
+    {"city": "Barcelona", "longitude": 2.1734, "latitude": 41.3851},
+    {"city": "Valencia", "longitude": -0.3774, "latitude": 39.4699}
+]
+
+data
 ```
 
-#### Exercise 4.2:
+Next, we need to create the corresponding geometry objects. Since these are coordinates, `Point` objects are appropriate. We can create a list of `Point` objects directly from our data.
 
-- Create a GeoDataFrame with three cities and their coordinates.
-- Plot the points on a map.
+```{python}
+# Create Point geometries from the longitude and latitude columns
+locations = []
 
-#### Challenge 4:
+for city in data:
+    locations.append(Point(city["longitude"], city["latitude"]))
 
-- Load a CSV or GeoPackage file from your data folder.
-- Find the number of rows and columns in the dataset.
-- Plot the spatial data if available.
+locations
+```
+
+Now we have the tabular data and the geometry. The final piece is the CRS. Since the coordinates are longitude and latitude, the appropriate CRS is WGS 84, which has the EPSG code 4326.
+
+We can now create the `GeoDataFrame`:
+
+```{python}
+gdf_cities = gpd.GeoDataFrame(
+    data,  # The tabular data
+    geometry=locations,  # The Shapely geometry objects
+    crs="EPSG:4326"  # Coordinate Reference System (WGS 84)
+)
+
+gdf_cities
+```
+
+Notice that GeoPandas automatically recognised the `geometry` list as the active geometry column. (You can also specify a different column name if needed.)
+
+## Indexing
+
+Like pandas DataFrames, GeoDataFrames have an index. By default, it's a range of integers. You can set a more meaningful index using one of the columns, such as the city name, using the `set_index()` method. This can make selecting data easier.
+
+```{python}
+gdf_cities = gdf_cities.set_index("city")
+
+gdf_cities
+```
+
+You can access a row using its index. Pandas has a special indexing method called `loc[]` that allows you to access rows by their index label. This is particularly useful when you have set a meaningful index, like city names.
+
+```{python}
+gdf_cities.loc["Madrid"]
+```
+
+You can also pass in a column name. For example, to get the latitude of Barcelona:
+
+```{python}
+gdf_cities.loc['Barcelona', "latitude"]
+```
+
+To return all rows or columns, you can use the `:` operator. For example, to get all the rows for the `latitude` column:
+
+```{python}
+gdf_cities.loc[:, "latitude"]
+```
+
+An extremely powerful feature of GeoDataFrames is the ability to filter rows based on their properties:
+
+```{python}
+# Select cities with latitude greater than 40
+gdf_cities[gdf_cities["latitude"] > 40]
+```
+
+As you can see, only two rows are returned because the third city, Valencia, has a latitude of less than 40. To understand how this indexing works, we can break these steps into separate lines. The first part is effectively creating a list of booleans, and the second step is using these booleans to filter the rows.
+
+```{python}
+# Create a boolean mask
+mask = gdf_cities["latitude"] > 40
+
+mask
+```
+
+This mask is a pandas Series of booleans, where `True` indicates that the condition is met (latitude > 40) and `False` otherwise. You can use this mask to filter the rows in the original GeoDataFrame.
+
+```{python}
+# Use the mask to filter the rows
+gdf_cities[mask]
+```
+
+Masks can often be combined into a single step, but it is okay to split this over two steps if you prefer.
+
+## Geospatial
+
+GeoDataFrames have special properties related to their spatial nature.
+
+For example, GeoPandas knows which column contains the spatial data. You can access it directly using the `.geometry` attribute. This returns a `GeoSeries`.
+
+```{python}
+gdf_cities.geometry
+```
+
+It also knows the CRS, which can be accessed using the `.crs` attribute.
+
+```{python}
+gdf_cities.crs
+```
+
+Conveniently, GeoPandas integrates with `matplotlib` for quick and easy plotting. Calling `.plot()` on a GeoDataFrame will render its geometries.
+
+```{python}
+gdf_cities.plot()
+```
+
+This initial plot uses the WGS 84 CRS (latitude/longitude).
+
+### Coordinate Transformations
+
+GeoPandas makes CRS transformation straightforward with the `to_crs()` method. Make sure you use a projected coordinate reference system when doing detailed spatial analysis.
+
+Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
+
+```{python}
+gdf_cities_proj = gdf_cities.to_crs("EPSG:3035")
+
+gdf_cities_proj
+```
+
+Notice how the `longitude` and `latitude` columns no longer match the geometry, as the geometry is now in metres according to EPSG:3035. The `.crs` attribute reflects this change:
+
+```{python}
+gdf_cities_proj.crs
+```
+
+Plotting the transformed data shows the locations relative to the new projected coordinate system.
+
+```{python}
+gdf_cities_proj.plot()
+```
+
+### Spatial Operations
+
+GeoPandas allows you to apply spatial operations directly to `GeoDataFrames` or `GeoSeries`. These operations work element-wise.
+
+For example, to create a 100km buffer around each city:
+
+```{python}
+# The buffer distance is in the units of the CRS (metres for EPSG:3035)
+gdf_cities_proj["geometry"] = gdf_cities_proj.geometry.buffer(100000)  # 100km buffer
+
+gdf_cities_proj.plot()
+```
+
+Or, to calculate the distance from each feature in a GeoDataFrame to a single Shapely geometry object. Let's find the distance from each city buffer to a specific point (also defined in EPSG:3035 coordinates):
+
+```{python}
+# Define a point in the same CRS (EPSG:3035)
+pt = Point(3300000, 2000000)
+
+# Calculate distance from each geometry in the GeoSeries to the point
+gdf_cities_proj.geometry.distance(pt)
+```
