@@ -4,38 +4,26 @@ editor:
   render-on-save: true
 ---
 
-### What is a Notebook?
-
 A computational notebook is an interactive environment where code, results, and explanations coexist. It is particularly useful for iterative workflows, such as data analysis, where one can test ideas step-by-step and document the process alongside the code.
-
-### Why Use Notebooks?
 
 Notebooks streamline workflows by integrating coding, results, and documentation in a single interface. This eliminates the fragmentation of older approaches, where separate tools were required for scripting, running, and documenting. The result: a more efficient, shareable, and reproducible analysis process.
 
-### Using Google Colab
+## Google Colab
 
 Google Colab provides a cloud-based platform for running Jupyter notebooks without local setup. It is particularly suited for urban analysts exploring datasets or prototyping workflows.
 
-::: {.callout-note}
+### Getting Started
 
-#### Getting Started with Colab
+- **Access:** Visit [Google Colab](https://colab.research.google.com/) and sign in with a Google account.
+- **Create a New Notebook:** Click on "File > New Notebook" to start a new notebook.
+- **Upload an Existing Notebook:** If you already have a `.ipynb` file, upload it via "File > Upload Notebook."
 
-1. **Access Colab:** Visit [Google Colab](https://colab.research.google.com/) and sign in with a Google account.
-2. **Create a New Notebook:** Click on "File > New Notebook" to start a new notebook.
-3. **Upload an Existing Notebook:** If you already have a `.ipynb` file, upload it via "File > Upload Notebook."
-
-:::
-
-#### Resetting the Runtime
-
-If the notebook becomes unresponsive or you need to clear all variables, use `Runtime > Restart runtime...`. After restarting, rerun all cells to restore the notebook's state.
-
-#### Key Components
+## Overview
 
 - **Code Cells:** Blocks for Python code execution. Outputs appear directly below the cell.
 - **Text Cells:** Markdown-based cells for documentation, explanations, or context.
 
-#### Running Code
+### Running Code
 
 Execute a code cell by selecting it and pressing `Shift+Enter`. For example:
 
@@ -54,7 +42,7 @@ x = 5
 print(x)
 ```
 
-#### Implicit Output
+### Implicit Output
 
 In notebooks, the last line of a code cell automatically displays its value:
 
@@ -73,7 +61,7 @@ y = x * 2
 print(y)
 ```
 
-#### Editing and Rerunning
+### Editing and Rerunning
 
 Notebooks allow iterative modification. Update a code cell and rerun it to see the changes. This flexibility is central to notebook workflows.
 
@@ -81,7 +69,7 @@ Notebooks allow iterative modification. Update a code cell and rerun it to see t
 
 Variables persist across cells within an active session. This enables flexibility but requires careful management of execution order.
 
-#### How Variables Persist
+### How Variables Persist
 
 Variables defined in one cell remain accessible in subsequent cells:
 
@@ -97,7 +85,7 @@ print(f"The selected city is {city_name}.")
 
 If the first cell is not executed, the second will raise an error.
 
-#### Modifying Variables
+### Modifying Variables
 
 Redefining a variable updates its value in memory. Subsequent cells will reflect this change:
 
@@ -111,7 +99,7 @@ city_name = "Barcelona"
 print(f"The selected city is now {city_name}.")
 ```
 
-#### Execution Order and State
+### Execution Order and State
 
 Execution order determines the notebook's state. Running cells out of order can lead to errors or unexpected results. For example:
 
@@ -151,24 +139,17 @@ If the second cell is modified (e.g., `y = x * 3`), the third cell must be rerun
 
 ### Adding Text
 
-Text cells use Markdown, a lightweight markup language. For example:
+Text cells use [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. For example:
 
 ```markdown
 ### Observations
 
-This notebook demonstrates the basics of using computational notebooks for interactive coding and documentation.
+This notebook _demonstrates the basics_ of using computational notebooks for interactive **coding** and **documentation**.
 ```
 
-::: {.callout-note}
+## Tips
 
-1. **Troubleshooting Errors:** Ensure all prerequisite cells have been run.
-2. **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
-3. **Saving Progress:** Regularly save work to Google Drive via "File > Save a Copy in Drive."
-4. **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset and rerun all cells.
-
-:::
-
-### Exercise
-
-1. Create a new code cell and write a Python command to print the name of your favorite city. Run the cell.
-2. Add a new text cell with a heading (e.g., "My Favorite City") and a brief description of why you chose it. Render the cell to format the text.
+- **Troubleshooting Errors:** Ensure all prerequisite cells have been run.
+- **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
+- **Saving Progress:** Regularly save work to Google Drive via "File > Save a Copy in Drive."
+- **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset and rerun all cells.

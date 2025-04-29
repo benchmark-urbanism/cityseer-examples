@@ -8,7 +8,7 @@ Python is a versatile language, widely used for urban analysis and data science.
 
 The best way to learn Python is by trying things out. Change the examples, break them, and see what happens. If you don't understand something, add a `print()` statement or try a small experiment in a new cell. The fastest way to progress is to roll up your proverbial sleeves and use the tools to solve problems and learn as you go. What follows below is a very brief and very basic introduction to Python, and if you realistically want to use it from day-to-day, you have to get hands-on and look for further resources, of which there is an abundance online. It has never been a better time to learn because large language models can speed up the process and answer most of your questions. However, be aware that they can send you down rabbit holes. Don't use them or the code they generate if you don't understand what is going on; use them instead as a way to amplify or better understand what you do, rather than to do the work completely for you. Otherwise, you will learn nothing in the process and miss the opportunities to use these tools to their greatest potential.
 
-### Variables: Containers for Data
+### Variables
 
 Variables act as labelled containers for data. This is a subtle but important point. By assigning a variable to a container, it becomes possible to reuse these containers, combine them in various ways, and convey intentions more clearly.
 
@@ -54,7 +54,7 @@ print('hello' + ' world')
 # 1 + 'world'
 ```
 
-### Comments: Adding Explanations
+### Comments
 
 Use `#` to add comments, which are ignored by Python. Comments help explain your code.
 
@@ -73,7 +73,7 @@ It can span multiple lines.
 """
 ```
 
-### Arithmetic: Python as a Calculator
+### Arithmetic
 
 Python supports standard arithmetic operations:
 
@@ -99,7 +99,7 @@ print(result)  # Output: 12.5
 
 Use brackets explicitly to make your intention clear if you are in any way uncertain about the order of operations.
 
-### Strings: Managing Text
+### Strings
 
 Strings are very versatile and have a number of built-in methods for common use cases.
 
@@ -126,7 +126,7 @@ print(full_name.strip())  # Remove leading/trailing spaces
 print(full_name.replace(" ", "_"))  # Replace spaces with underscores
 ```
 
-#### F-Strings: Embedding Variables in Text
+#### F-Strings
 
 F-strings simplify string formatting by embedding variables directly. Use `f` before the opening quote and `{}` for variable placeholders, which will be replaced with the variable's value when the string is printed.
 
@@ -137,31 +137,26 @@ info = f"The city of {city} has a population of {population}."
 print(info)
 ```
 
-### Exercises: Practice and Apply
+### Exercises
 
-#### Exercise: Data Types and Variables
-
-1. Create a variable for a number. Print its type using `type()`.
-2. Create a variable for your name, then print a statement using an F-string to say "Hello, [your name]!".
-
-#### Exercise: Arithmetic and Strings
-
-1. Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results.
+- Create a variable for a number. Print its type using `type()`.
+- Create a variable for your name, then print a statement using an F-string to say "Hello, [your name]!".
+- Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results.
 
 ---
 
-## Working with Collections
+## Collections
 
 Often, you need to work with multiple pieces of data at once. Python provides several ways to group data, each with its own characteristics. Choosing the right one makes your code easier to write and understand.
 
-| Type       | Ordered (Insertion) | Unique Keys  | Mutable | Example Syntax     | Use Case Example              |
-| ---------- | ------------------- | ------------ | ------- | ------------------ | ----------------------------- |
-| List       | Yes                 | No           | Yes     | `[1, 2, 3]`        | Shopping list, coordinates    |
-| Tuple      | Yes                 | No           | No      | `(1, 2, 3)`        | Fixed coordinates, RGB colour |
-| Set        | No                  | Yes (Values) | Yes     | `{1, 2, 3}`        | Unique tags, deduplication    |
-| Dictionary | Yes (Since Py 3.7+) | Yes (Keys)   | Yes     | `{"a": 1, "b": 2}` | Lookup tables, data records   |
+| Type       | Ordered | Unique       | Mutable | Example Syntax     | Use Case Example              |
+| ---------- | ------- | ------------ | ------- | ------------------ | ----------------------------- |
+| List       | Yes     | No           | Yes     | `[1, 2, 3]`        | Shopping list, coordinates    |
+| Tuple      | Yes     | No           | No      | `(1, 2, 3)`        | Fixed coordinates, RGB colour |
+| Set        | No      | Yes (Values) | Yes     | `{1, 2, 3}`        | Unique tags, deduplication    |
+| Dictionary | Yes     | Yes (Keys)   | Yes     | `{"a": 1, "b": 2}` | Lookup tables, data records   |
 
-### Lists: Ordered Sequences
+#### Lists
 
 Use lists when the order of items matters and you might need to change the items later. Lists are mutable, which means they behave like a row of mailboxes. You can put content into the list and take content out, but the mailbox stays where it is and can be updated in place. To access the contents of a list, use square brackets with the index of the content, where the index is based on zero for the first item. You can also reverse index by using a negative symbol, in which case `-1` represents the last item in the list, and so forth.
 
@@ -200,7 +195,7 @@ print(f"Removed: {removed_planet}")
 print(planets)
 ```
 
-### Dictionaries: Key-Value Pairs
+#### Dictionaries
 
 Use dictionaries when you need to look up values based on a unique key (like looking up a word's definition in a dictionary). Dictionaries are powerful data structures because you can use the key to reference a value. Once you have structured data in a dictionary, you can later retrieve a particular value based on an associated key. You can also update the value associated with a key. Like lists, dictionaries use square bracket notation for indexing, but in this case, instead of using an integer for the position of an item, you use the key.
 
@@ -234,7 +229,7 @@ print(building_info.values()) # Get all values
 print(building_info.get("address", "Not specified")) # Get value, provide default if key not found
 ```
 
-### Tuples: Ordered Sequences (Fixed Records)
+#### Tuples
 
 Use tuples when you have a fixed collection of items whose order matters and should not change after creation (like coordinates). Tuples are immutable, meaning they cannot be changed after creation.
 
@@ -255,7 +250,7 @@ lat, lon = coords # Tuple unpacking
 print(f"Latitude: {lat}, Longitude: {lon}")
 ```
 
-### Sets: Unordered Collections of Unique Items
+#### Sets
 
 Use sets when you only care about the presence or absence of unique items, and order doesn't matter.
 
@@ -280,11 +275,11 @@ print(set1.difference(set2))   # Items in set1 but not set2: {1, 2}
 
 ---
 
-## Control Flow: Making Decisions and Repeating Actions
+## Control Flow
 
 Control flow structures are the backbone of programming logic. They let you make decisions based on data (`if`/`elif`/`else`) and repeat actions (`for`/`while`).
 
-### Conditionals: Making Decisions (`if`, `elif`, `else`)
+### Conditionals
 
 Conditionals allow your program to execute different blocks of code based on whether certain conditions are `True` or `False`. They use comparison operators to evaluate conditions.
 
@@ -349,7 +344,7 @@ Conditional logic allows your program to adapt its behaviour based on different 
 
 Loops save you from writing the same code over and over. They are indispensable for working with collections and can be combined with conditionals to selectively apply logic based on the value of the currently iterated item.
 
-#### `for` Loop: Iterate Over Sequences
+#### `for` Loops
 
 Use `for` to go through each item in a sequence (like a list, tuple, string, or dictionary keys/items). In each iteration of the loop, the variable specified after `for` (e.g., `planet` in the example below) is automatically updated to hold the current item from the sequence.
 
@@ -360,7 +355,7 @@ for planet in planets:
     print(f"Checking planet: {planet}")
 ```
 
-#### `while` Loop: Repeat While a Condition is True
+#### `while` Loops
 
 Use `while` when you don't know exactly how many times to loop in advance, but you know the condition under which the loop should continue running.
 
@@ -377,7 +372,7 @@ print("Blast off!")
 
 Loops are essential for processing collections of data or performing tasks multiple times without rewriting code.
 
-### Exercise: Lists and loops
+### Exercise
 
 Create a list of numbers from one to 10 and assign this to a variable called `Numbers`. Then, loop through your list of numbers. For each number, check if it is even. If it is, print the number.
 
@@ -385,7 +380,7 @@ Create a list of numbers from one to 10 and assign this to a variable called `Nu
 
 ---
 
-## Functions: Creating Reusable Code Blocks
+## Functions
 
 Functions help organise code into logical, reusable units. This makes programs easier to read, debug, and maintain. If you find yourself copying and pasting code, consider using a function instead.
 
@@ -436,7 +431,7 @@ Functions help make code modular, easier to test, and simpler to understand. Ret
 
 ---
 
-## Importing Modules: Using External Code
+## Importing Modules
 
 No need to reinvent the wheel! Python's modules provide ready-made tools. If you see an unfamiliar function, check if it comes from an import at the top of the file.
 
@@ -461,7 +456,7 @@ Later sections will heavily rely on importing powerful libraries like `pandas`, 
 
 ---
 
-## Common Errors (and How to Read Them)
+## Common Errors
 
 Errors are normal! Learning to read the messages is key to fixing them. If you get stuck, try searching for the error message online—-chances are, someone else has had the same problem.
 
