@@ -25,11 +25,11 @@ website:
           - href: class/1_notebooks.qmd
           - href: class/2_basics.qmd
           - href: class/3_spatial.qmd
-          - href: class/4_pandas.qmd
+          - href: class/4_geopandas.qmd
           - href: class/5_ecosystem.qmd
           - href: class/6_cityseer.qmd
-          - href: class/7_data_science.qmd
-          - href: class/8_models.qmd
+          - href: class/7_data_science.ipynb
+          - href: class/8_models.ipynb
       - text: Cityseer Recipes
         href: recipes/index.qmd
         contents:

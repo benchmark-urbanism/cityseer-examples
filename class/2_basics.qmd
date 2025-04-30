@@ -54,25 +54,6 @@ print('hello' + ' world')
 # 1 + 'world'
 ```
 
-### Comments
-
-Use `#` to add comments, which are ignored by Python. Comments help explain your code.
-
-```{python}
-# This is a comment
-# The next line prints a message
-print("Hello, World!")  # Print a greeting
-```
-
-Multiline comments can be added using triple quotes:
-
-```python
-"""
-This is a multiline comment.
-It can span multiple lines.
-"""
-```
-
 ### Arithmetic
 
 Python supports standard arithmetic operations:

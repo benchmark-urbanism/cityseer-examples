@@ -3,15 +3,13 @@ editor:
   render-on-save: true
 ---
 
-This section provides some basic examples on the usage of Python and computational notebooks if you're new to programming or urban analytics. These are high-level examples to give a basic indication of how these tools might typically be used.
+This section provides some introductory examples on the usage of Python and computational notebooks. These are high-level examples to give a basic indication of how these tools might typically be used; for more detailed examples, please refer to the online documentation for the libraries used.
 
-### Topics Covered
-
-1. **Notebooks**: Learn what computational notebooks are and how to use them effectively. [Notebooks](1_notebooks.qmd)
-2. **Python 101**: Get familiar with Python basics, including variables, data types, and simple operations. [Python 101](2_basics.qmd)
-3. **Spatial Data**: Explore spatial data and basic operations for urban analysis. [Spatial Data](3_spatial.qmd)
-4. **Pandas**: Dive into data manipulation and analysis using the pandas library. [Pandas](4_pandas.qmd)
-5. **OSM & Morphology**: Analyse OSM data with the `momepy` library. [OSM Data & Morphology](5_ecosystem.qmd)
-6. **Cityseer**: Discover the `cityseer` library and its applications in urban analysis. [Cityseer](6_cityseer.qmd)
-7. **Data Science Workflows**: Learn about workflows for data science projects. [Data Science Workflows](7_data_science.ipynb)
-8. **Modelling and Analysis**: Explore modelling techniques and analytical methods. [Modeling and Analysis](8_models.ipynb)
+1. [Notebooks](1_notebooks.qmd): Learn what computational notebooks are and how to use them.
+2. [Python Basics](2_basics.qmd): Python basics, including variables, data types, and simple operations.
+3. [Spatial Data](3_spatial.qmd): Spatial data types and basic operations using the `shapely` package.
+4. [GeoPandas](4_geopandas.qmd): Use of the `geopandas` package for handling geospatial datasets.
+5. [OSM Data & Urban Morphology](5_ecosystem.qmd): Download OSM data with `osmnx` and use the `momepy` library to explore urban morphology.
+6. [Cityseer](6_cityseer.qmd): Use `cityseer` to calculate network centralities and landuse accessibilities.
+7. [Exploratory Data Science](7_data_science.ipynb): Use `seaborn` plotting library for exploratory data science.
+8. [Modeling & ML](8_models.ipynb): A very brief introduction to data modelling techniques.
