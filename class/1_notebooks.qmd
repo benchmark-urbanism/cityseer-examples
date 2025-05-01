@@ -40,24 +40,6 @@ x = 5
 print(x)
 ```
 
-## Comments
-
-Use `#` to add comments, which are ignored by Python. Comments help explain your code.
-
-```{python}
-# This is a comment
-print("Hello, World!")  # Print a greeting
-```
-
-Multiline comments can be added using triple quotes:
-
-```python
-"""
-This is a multiline comment.
-It can span multiple lines.
-"""
-```
-
 ## Implicit Output
 
 In notebooks, the last line of a code cell automatically displays its value:

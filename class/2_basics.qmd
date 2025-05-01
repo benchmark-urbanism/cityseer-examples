@@ -6,7 +6,27 @@ editor:
 
 Python is a versatile language, widely used for urban analysis and data science. This guide introduces its foundational concepts.
 
-The best way to learn Python is by trying things out. Change the examples, break them, and see what happens. If you don't understand something, add a `print()` statement or try a small experiment in a new cell. The fastest way to progress is to roll up your proverbial sleeves and use the tools to solve problems and learn as you go. What follows below is a very brief and very basic introduction to Python, and if you realistically want to use it from day-to-day, you have to get hands-on and look for further resources, of which there is an abundance online. It has never been a better time to learn because large language models can speed up the process and answer most of your questions. However, be aware that they can send you down rabbit holes. Don't use them or the code they generate if you don't understand what is going on; use them instead as a way to amplify or better understand what you do, rather than to do the work completely for you. Otherwise, you will learn nothing in the process and miss the opportunities to use these tools to their greatest potential.
+The best way to learn Python is by trying things out. Change the examples, break them, and see what happens. The fastest way to progress is to roll up your proverbial sleeves and use the tools to solve problems and learn as you go.
+
+What follows below is a very brief and very basic introduction to Python, and if you realistically want to use it from day-to-day, you have to get hands-on and look for further resources, of which there is an abundance online. It has never been a better time to learn because large language models can speed up the process and answer most of your questions. However, be aware that they can send you down rabbit holes. Don't use them or the code they generate if you don't understand what is going on; use them instead as a way to amplify or better understand what you do, rather than to do the work completely for you. Otherwise, you will learn nothing in the process and miss the opportunities to use these tools to their greatest potential.
+
+### Comments
+
+Use `#` to add comments, which are ignored by Python. Comments help explain your code.
+
+```{python}
+# This is a comment
+print("Hello, World!")  # Print a greeting
+```
+
+Multiline comments can be added using triple quotes:
+
+```python
+"""
+This is a multiline comment.
+It can span multiple lines.
+"""
+```
 
 ### Variables
 
@@ -30,7 +50,7 @@ print(is_active)
 
 ### Data Types
 
-Variables can be one of several types, such as numbers (integers or floats) and text (strings). Functionality is specific to types. While some functionality is shared across types, other behaviours are type-specific. When working with variables, especially in Python, be cognisant of the type assigned to the variable. Misusing types can lead to issues and errors. For example, trying to add a string to an integer will result in an error.
+Variables can be one of several types, such as numbers (integers or floats) and text (strings). Functionality is specific to types. While some functionality is shared across types, other behaviours are type-specific.
 
 - **`str` (String):** Text, enclosed in quotes (`"` or `'`). Example: `"Urbanism"`.
 - **`int` (Integer):** Whole numbers. Example: `42`, `-7`.
@@ -40,18 +60,19 @@ Variables can be one of several types, such as numbers (integers or floats) and 
 Check a variable's type using `type()`:
 
 ```{python}
-print(True + True)
 print(type(message))   # <class 'str'>
 print(type(count))     # <class 'int'>
 print(type(price))     # <class 'float'>
 print(type(is_active)) # <class 'bool'>
 ```
 
+When working with variables, especially in Python, be cognisant of the type assigned to the variable. Misusing types can lead to issues and errors.
+
 ```python
-print(1 + 1)
-print('hello' + ' world')
-# This will raise an error
-# 1 + 'world'
+# This will raise an error because you cannot add a string to an integer
+# TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+count + message
 ```
 
 ### Arithmetic
@@ -80,6 +101,16 @@ print(result)  # Output: 12.5
 
 Use brackets explicitly to make your intention clear if you are in any way uncertain about the order of operations.
 
+```{python}
+result = (2 + 3) * 4 - 5 / 2
+print(result)
+```
+
+```{python}
+result = 2 + 3 * (4 - 5) / 2
+print(result)
+```
+
 ### Strings
 
 Strings are very versatile and have a number of built-in methods for common use cases.
@@ -93,7 +124,7 @@ print(full_name)  # Output: Ada Lovelace
 
 ::: {.callout-note}
 
-A method is a function (which we'll cover in detail later) that belongs to an object, like a string. For example, `str.upper()` is a method of the string class that converts a string to uppercase. You access methods using dot notation (`object.method()`) and execute them by adding parentheses. If a method requires options or parameters, they go inside the parentheses.
+A method is a function (which we'll cover in more detail later) that belongs to an object or type such as a string. For example, `str.upper()` is a method of the `str` class that converts a string to uppercase. You access methods using dot notation (`object.method()`) and execute them by using parentheses. If a method requires options or parameters, they go inside the parentheses.
 
 :::
 
@@ -103,7 +134,6 @@ Some common built-in methods include converting text to lower or upper case or r
 # String methods
 print(full_name.lower())  # Lowercase: "ada lovelace"
 print(full_name.upper())  # Uppercase: "ADA LOVELACE"
-print(full_name.strip())  # Remove leading/trailing spaces
 print(full_name.replace(" ", "_"))  # Replace spaces with underscores
 ```
 
@@ -113,7 +143,7 @@ F-strings simplify string formatting by embedding variables directly. Use `f` be
 
 ```{python}
 city = "Berlin"
-population = 3700000
+population = 3800000
 info = f"The city of {city} has a population of {population}."
 print(info)
 ```
@@ -122,13 +152,11 @@ print(info)
 
 - Create a variable for a number. Print its type using `type()`.
 - Create a variable for your name, then print a statement using an F-string to say "Hello, [your name]!".
-- Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results.
-
----
+- Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results. Experiment with brackets to change the order of operations.
 
 ## Collections
 
-Often, you need to work with multiple pieces of data at once. Python provides several ways to group data, each with its own characteristics. Choosing the right one makes your code easier to write and understand.
+Often, you need to work with multiple pieces of data at once. Python provides several ways to group data, each with its own characteristics.
 
 | Type       | Ordered | Unique       | Mutable | Example Syntax     | Use Case Example              |
 | ---------- | ------- | ------------ | ------- | ------------------ | ----------------------------- |
@@ -139,46 +167,74 @@ Often, you need to work with multiple pieces of data at once. Python provides se
 
 #### Lists
 
-Use lists when the order of items matters and you might need to change the items later. Lists are mutable, which means they behave like a row of mailboxes. You can put content into the list and take content out, but the mailbox stays where it is and can be updated in place. To access the contents of a list, use square brackets with the index of the content, where the index is based on zero for the first item. You can also reverse index by using a negative symbol, in which case `-1` represents the last item in the list, and so forth.
+Use lists when the order of items matters and you might need to change the items later. Lists are mutable, which means they behave like a row of mailboxes. You can put content into the mailbox and take content out, but the mailbox stays where it is and can be updated in place. To access the contents of a list, use square brackets with the index (address) of the list item (mailbox). The index is based on zero for the first item. You can also reverse index by using a negative symbol, in which case `-1` represents the last item in the list.
+
+Create a list using square brackets []
 
 ```{python}
-# Create a list using square brackets []
 planets = ["Mercury", "Venus", "Earth", "Mars"]
-print(planets)
 
-# Access items by index (position, starting from 0)
+planets
+```
+
+Access items by index (position, starting from 0)
+
+```{python}
 print(planets[0]) # Mercury
 print(planets[2]) # Earth
+```
 
-# Change an item
-planets[3] = "Red Planet" # Update Mars
-print(planets)
+Reverse index
 
-# Reverse index
-print(planets[-1]) # Mars
+```{python}
+planets[-1] # Mars
+```
 
-# Add an item to the end
+Add an item to the end
+
+```{python}
 planets.append("Jupiter")
-print(planets)
 
-# Get the number of items
-print(len(planets)) # Output: 5
+planets
+```
 
-# Lists are mutable (can be changed after creation)
+Get the number of items
+
+```{python}
+len(planets) # Output: 5
+```
+
+Lists are mutable (can be changed after creation)
+
+```{python}
 planets[0] = "Fast Planet" # Change the first item
-print(planets)
+planets[3] = "Red Planet" # Update Mars
 
-# Common list operations
+planets
+```
+
+Common list operations
+
+```{python}
 planets.insert(1, "New Planet") # Insert at a specific index
 print(planets)
-removed_planet = planets.pop(2) # Remove item at index 2 and get its value
+```
+
+Remove item at index 2 and get its value
+
+```{python}
+removed_planet = planets.pop(2)
 print(f"Removed: {removed_planet}")
 print(planets)
 ```
 
 #### Dictionaries
 
-Use dictionaries when you need to look up values based on a unique key (like looking up a word's definition in a dictionary). Dictionaries are powerful data structures because you can use the key to reference a value. Once you have structured data in a dictionary, you can later retrieve a particular value based on an associated key. You can also update the value associated with a key. Like lists, dictionaries use square bracket notation for indexing, but in this case, instead of using an integer for the position of an item, you use the key.
+Use dictionaries when you need to look up values based on a unique key (like looking up a word's definition in a dictionary). Dictionaries are powerful data structures because you can use the key to reference a value.
+
+Once you have structured data in a dictionary, you can later retrieve a particular value based on an associated key. You can also update the value associated with a key.
+
+Like lists, dictionaries use square bracket notation for indexing, but in this case, instead of using an integer for the position of an item, you use the key itself.
 
 **Note:** Since Python 3.7, dictionaries remember the order in which items were inserted.
 
@@ -253,8 +309,6 @@ print(set1.union(set2))        # All items from both: {1, 2, 3, 4, 5}
 print(set1.intersection(set2)) # Items in both: {3}
 print(set1.difference(set2))   # Items in set1 but not set2: {1, 2}
 ```
-
----
 
 ## Control Flow
 
@@ -359,8 +413,6 @@ Create a list of numbers from one to 10 and assign this to a variable called `Nu
 
 **Hint:** Python has an operator called the modulo (`%`) which gives the remainder after division. You can check if a number is even by seeing if the remainder when dividing by two is zero (e.g., `if number % 2 == 0:`).
 
----
-
 ## Functions
 
 Functions help organise code into logical, reusable units. This makes programs easier to read, debug, and maintain. If you find yourself copying and pasting code, consider using a function instead.
@@ -410,8 +462,6 @@ print(f"Density invalid: {density_invalid}")
 
 Functions help make code modular, easier to test, and simpler to understand. Returning a result from the function is optional but typically the case and unless the function is doing a one off task such as printing a line.
 
----
-
 ## Importing Modules
 
 No need to reinvent the wheel! Python's modules provide ready-made tools. If you see an unfamiliar function, check if it comes from an import at the top of the file.
@@ -434,8 +484,6 @@ print(f"Square root of 16 is {sqrt(16)}")
 **Key Idea:** `import module_name` makes the functions and variables within that module available, accessed via `module_name.function_name`.
 
 Later sections will heavily rely on importing powerful libraries like `pandas`, `geopandas`, and `cityseer`.
-
----
 
 ## Common Errors
 
