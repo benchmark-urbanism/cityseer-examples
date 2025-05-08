@@ -32,6 +32,12 @@ Calculate landuse accessibilities from OpenStreetMap.
 
 [Notebook](osm_accessibility.ipynb)
 
+## Parks accessibility from OSM data
+
+Calculate park accessibilities from OSM Polygon data.
+
+[Notebook](osm_accessibility_polys.ipynb)
+
 ## Calculating mixed-uses
 
 Calculate mixed land-uses.
