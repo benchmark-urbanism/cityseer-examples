@@ -4,7 +4,7 @@ editor:
   render-on-save: true
 ---
 
-The datasets used from the recipes are provided for reproducibility and further exploration per the following links. Please refer to the respective sources for the most up-to-date versions. Please use the datasets in accordance with the source licenses (these should be open, but please check) and be sure to cite the original authors of the data.
+The datasets used from the recipes are provided for reproducibility per the following links. Please refer to the respective sources for the most up-to-date versions, and use the datasets in accordance with the source licenses (these should be open, but always check), and be sure to cite the original authors of the data.
 
 Dataset preprocessing is done per the [ua-dataset-madrid](https://github.com/songololo/ua-dataset-madrid) repository, which is intended to be a source for openly reproducible urban analytics data for reproducible papers, workflows, and tutorials.
 

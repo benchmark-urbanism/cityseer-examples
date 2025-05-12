@@ -9,25 +9,21 @@ This repository contains examples for the `cityseer` package.
 - [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
 - [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
 
-## Cookbook
-
-This cookbook contains a collection of recipes to illustrate typical usage scenarios for `cityseer`.
-
 ## Datasets
 
 The datasets used from the recipes are available on the [datasets](../data/datasets.qmd) page, where you can also find information on the sources.
 
 ## Python 101
 
-If you are new to Python or computational notebooks, it is recommended to first start with the [Python 101](class/index.qmd) section.
+If you are new to Python or computational notebooks, start with the [Python 101](class/index.qmd) section.
 
 ## Recipes
 
-If you already have some experience, or if you're feeling brave, you can dive straight into the [recipes section](recipes/index.qmd), which contains practical examples and use-case scenarios for `cityseer`.
+If you already have some experience, you can dive straight into the [recipes section](recipes/index.qmd), which contains practical examples and use-cases for `cityseer`.
 
 ## Installation
 
-To install `cityseer`, you can use `pip`:
+To install `cityseer`, use `pip`:
 
 ```bash
 pip install --upgrade cityseer
@@ -39,4 +35,4 @@ Or, from a notebook:
 !pip install --upgrade cityseer
 ```
 
-The examples in this cookbook also use packages such as `geopandas`, `networkx`, and `matplotlib`. You can install them using the same method.
+The examples in this cookbook also use packages such as `geopandas`, `networkx`, and `matplotlib`. You can install these using the same method.
