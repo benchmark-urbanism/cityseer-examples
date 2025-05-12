@@ -33,7 +33,7 @@ import matplotlib.pyplot as plt
 
 [`osmnx`](https://osmnx.readthedocs.io/) is a Python package that simplifies downloading and working with geospatial data from OpenStreetMap (OSM), such as building footprints or points of interest.
 
-This example demonstrates how to download building footprints within a 1km radius of a specified location in Nicosia, Cyprus, defined by its coordinates. `osmnx` provides several methods for downloading data; here, we will use `features_from_point`.
+This example demonstrates how to download building footprints within a 1km radius of a specified location in Nicosia, Cyprus, defined by its coordinates. `osmnx` provides several methods for downloading data; here, we will use [`features_from_point`](https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_point).
 
 ```{python}
 # Define the point of interest (latitude, longitude) and distance
