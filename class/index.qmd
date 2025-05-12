@@ -12,6 +12,4 @@ If you would like to master python for spatial analysis, then you are encouraged
 3. [Spatial Data](3_spatial.qmd): Spatial data types and elementary operations using the `shapely` package.
 4. [GeoPandas](4_geopandas.qmd): Use of the `geopandas` package for handling geospatial datasets.
 5. [OSM Data & Urban Morphology](5_ecosystem.qmd): Explore the wider Python geospatial community by using the `osmnx` and `momepy` libraries to explore urban morphology.
-6. [Cityseer](6_cityseer.qmd): Use `cityseer` to calculate network centralities and landuse accessibilities.
-7. [Exploratory Data Science](7_data_science.ipynb): Use the `seaborn` plotting library for exploratory data science.
-8. [Modeling & ML](8_models.ipynb): A very brief introduction to data modelling techniques with `scikit-learn`.
+6. [Exploratory Data Science](6_data_science.ipynb): Use the `seaborn` plotting library for exploratory data science.
