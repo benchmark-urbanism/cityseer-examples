@@ -8,11 +8,11 @@ Python is a versatile language, widely used for urban analysis and data science.
 
 The best way to learn Python is by trying things out. Change the examples, break them, and see what happens. Progress comes fastest when you actively use the tools to solve problems and learn as you go.
 
-What follows is a brief introduction to Python. To use it effectively day-to-day, you need hands-on practice and further resources, which are widely available online. Large language models can help speed up the process and answer questions, but use them to amplify your understanding, not as a substitute for learning. Otherwise, you miss opportunities to fully grasp the tools' potential.
+This is a brief introduction to Python. To use it effectively day-to-day, you'll need hands-on practice and to explore further resources, which are widely available online. It's a great time to learn, as Large Language Models (LLMs) can help speed up the process and answer many of your questions. However, be mindful: use LLMs to amplify your understanding and guide your learning, not as a substitute for grasping the concepts yourself. Relying on them to do the work without understanding means you might not learn effectively and could miss out on using these tools to their full potential.
 
 ### Comments
 
-Use `#` to add comments, which Python ignores. Comments explain your code.
+Use `#` to add comments, which Python ignores. Comments help explain your code.
 
 ```{python}
 # This is a comment
@@ -30,7 +30,7 @@ It can span multiple lines.
 
 ### Variables
 
-Variables act as labeled containers for data. Assign values using `=`.
+Variables act as labelled containers for data. Assign values using `=`.
 
 ```{python}
 # Assigning values to variables
@@ -48,7 +48,7 @@ print(is_active)
 
 ### Data Types
 
-Variables can be one of several types, such as numbers (integers or floats) and text (strings). Functionality is specific to types. While some functionality is shared across types, other behaviours are type-specific.
+Variables can hold different types of data, such as numbers (integers or floats) and text (strings). The functionality available often depends on the data type, though some behaviours are shared across types.
 
 - **`str` (String):** Text, enclosed in quotes (`"` or `'`). Example: `"Urbanism"`.
 - **`int` (Integer):** Whole numbers. Example: `42`, `-7`.
@@ -90,14 +90,14 @@ print(a ** b) # Exponentiation: 1000
 print(a % b)  # Modulus (remainder): 1
 ```
 
-Python adheres to the standard order of operations: Parentheses, Exponents, Multiplication and Division (from left to right), Addition and Subtraction (from left to right). For example:
+Python follows the standard order of operations (often remembered by acronyms like BODMAS or PEMDAS). For example:
 
 ```{python}
 result = 2 + 3 * 4 - 5 / 2
 print(result)
 ```
 
-Use brackets explicitly to make your intention clear if you are in any way uncertain about the order of operations.
+If you're ever unsure about the order, it's good practice to use parentheses `()` to make your intention explicit.
 
 ```{python}
 result = (2 + 3) * 4 - 5 / 2
@@ -122,11 +122,11 @@ print(full_name)  # Output: Ada Lovelace
 
 ::: {.callout-note}
 
-A method is a function (which we'll cover in more detail later) that belongs to an object or type such as a string. For example, `str.upper()` is a method of the `str` class that converts a string to uppercase. You access methods using dot notation (`object.method()`) and execute them by using parentheses. If a method requires options or parameters, they go inside the parentheses.
+A method is like a function that's associated with a particular object or type (like a string). For example, `str.upper()` is a method of the `str` class that converts a string to uppercase. You access methods using dot notation (`object.method()`) and execute them by using parentheses. If a method requires options or parameters, they go inside the parentheses.
 
 :::
 
-Some common built-in methods include converting text to lower or upper case or removing leading or trailing characters.
+Common built-in methods include converting text to lower or upper case, or removing leading/trailing whitespace and characters.
 
 ```{python}
 # String methods
@@ -137,7 +137,7 @@ print(full_name.replace(" ", "_"))  # Replace spaces with underscores
 
 #### F-Strings
 
-F-strings simplify string formatting by embedding variables directly. Use `f` before the opening quote and `{}` for variable placeholders, which will be replaced with the variable's value when the string is printed.
+F-strings (formatted string literals) offer a convenient way to embed expressions inside string literals for formatting. Simply prefix the string with an `f` and write expressions in `{}`.
 
 ```{python}
 city = "Berlin"
@@ -150,13 +150,13 @@ print(info)
 
 - Create a variable for a number. Print its type using `type()`.
 - Create a variable for your name, then print a statement using an F-string to say "Hello, [your name]!".
-- Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results. Experiment with brackets to change the order of operations.
+- Perform all basic arithmetic operations (+, -, \*, /, %) on two numbers and print the results. Experiment with parentheses `()` to change the order of operations.
 
 ## Collections
 
 Often, you need to work with multiple pieces of data at once. Python provides several ways to group data, each with its own characteristics.
 
-| Type       | Ordered | Unique       | Mutable | Example Syntax     | Use Case Example              |
+| Type       | Ordered | Unique       | Mutable | Example Syntax     | Example Use Case              |
 | ---------- | ------- | ------------ | ------- | ------------------ | ----------------------------- |
 | List       | Yes     | No           | Yes     | `[1, 2, 3]`        | Shopping list, coordinates    |
 | Tuple      | Yes     | No           | No      | `(1, 2, 3)`        | Fixed coordinates, RGB colour |
@@ -165,7 +165,7 @@ Often, you need to work with multiple pieces of data at once. Python provides se
 
 ### Lists
 
-Use lists when the order of items matters and you might need to change the items later. Lists are mutable, which means they behave like a row of mailboxes. You can put content into the mailbox and take content out, but the mailbox stays where it is and can be updated in place. To access the contents of a list, use square brackets with the index (address) of the list item (mailbox). The index is based on zero for the first item. You can also reverse index by using a negative symbol, in which case `-1` represents the last item in the list.
+Use lists when the order of items is important and you might need to change them later. Lists are _mutable_ (meaning they can be changed after creation). Think of them like a row of mailboxes: you can change what's inside a mailbox. Access items using their _index_ (position, starting from 0) in square brackets `[]`. Negative indexing is also handy, where `-1` refers to the last item, `-2` to the second last, and so on.
 
 Create a list using square brackets []:
 
@@ -199,7 +199,7 @@ planets
 
 ::: {.callout-note}
 
-Python contains several built-in methods, one of those is called `len` which we will use below: it returns the length of an item such as a list or a string.
+Python has several useful built-in functions. One is `len()`, which we'll use below. It returns the length (i.e., the number of items) of an object like a list or a string.
 
 :::
 
@@ -235,13 +235,13 @@ print(planets)
 
 ### Dictionaries
 
-Use dictionaries when you need to look up values based on a unique key (like looking up a word's definition in a dictionary). Dictionaries are powerful data structures because you can use the key to reference a value.
+Use dictionaries when you need to associate _values_ with unique _keys_ (like looking up a word in a dictionary to find its definition). They are very efficient for retrieving values when you know the key.
 
-Once you have structured data in a dictionary, you can later retrieve a particular value based on the associated key, or update the value associated with a key. This is similar to how you would look up a word in a dictionary to find its definition. The key is the word, and the value is the definition.
+Once data is stored, you can easily retrieve or update a value using its key.
 
 Dictionaries are defined using curly braces `{}`. Each item is a key-value pair, separated by a colon `:`. The key is on the left, and the value is on the right.
 
-Like lists, dictionaries use square bracket notation for indexing, but in this case, instead of using an integer for the position of an item, you use the key itself.
+Similar to lists, dictionaries use square brackets `[]` to access values, but instead of a numerical index, you use the key.
 
 ```{python}
 # Create a dictionary using curly braces {}
@@ -282,7 +282,7 @@ print(building_info.get("address", "Not specified")) # Get value, provide defaul
 
 ### Tuples
 
-Use tuples when you have a fixed collection of items whose order matters and should not change after creation (like coordinates). Tuples are immutable, meaning they cannot be changed after creation.
+Use tuples for ordered collections of items that shouldn't change after creation (e.g., coordinates). Tuples are _immutable_, meaning they cannot be altered once created.
 
 ```{python}
 # A tuple of coordinates
@@ -309,7 +309,7 @@ print(f"Latitude: {lat}, Longitude: {lon}")
 
 ### Sets
 
-Use sets when you only care about the presence or absence of unique items, and order doesn't matter.
+Use sets when you need a collection of unique items, and the order of those items isn't important.
 
 ```{python}
  # Duplicate "London" is ignored
@@ -340,7 +340,7 @@ print(set1.difference(set2))   # Items in set1 but not set2: {1, 2}
 
 ## Control Flow
 
-Control flow structures are the backbone of programming logic. They let you make decisions based on data (`if`/`elif`/`else`) and repeat actions (`for`/`while`).
+Control flow structures are fundamental to programming. They allow your code to make decisions (using `if`/`elif`/`else`) and repeat actions (using `for`/`while` loops).
 
 ### Conditionals
 
@@ -360,7 +360,7 @@ print(5 <= 3) # Less than or equal to: False
 
 ### Indentation
 
-Indentation is non-negotiable in Python. It indicates which code belongs to which block. Use consistent spaces or tabs (not both) to indent code inside conditionals, loops, and functions. Typically, either two or four spaces are used—whichever you pick, be consistent. You will also notice that blocks are introduced with colons (`:`), which indicate the starting point of an indented block. There can be nested indentation in cases where multiple loops or conditions are nested.
+Indentation is non-negotiable in Python: it defines code blocks. Always use consistent spacing (the common convention is 4 spaces per indentation level) and avoid mixing spaces with tabs. Code blocks are introduced by a colon (`:`) and can be nested.
 
 ```{python}
 # Example of indentation
@@ -373,7 +373,7 @@ for i in range(3):
 
 :::
 
-Use `if`, `elif` (else if), and `else` to control which code runs. You can further use the `or` and `and` statements to combine conditionals, or the `is` and `is not` to check if a value is `True`, `False`, or `None`.
+Use `if`, `elif` (short for 'else if'), and `else` to direct the flow of execution. Conditions can be combined using `and` and `or`. For identity checks (e.g., if a value `is None`), use `is` and `is not`.
 
 ```{python}
 population_density = 5000 # people per sq km
@@ -406,15 +406,15 @@ else:
     print(f"Data found: {maybe_data}")
 ```
 
-Conditional logic allows your program to adapt its behaviour based on different situations.
+This conditional logic enables your program to adapt its behaviour to various situations.
 
 ### Loops
 
-Loops save you from writing the same code over and over. They are indispensable for working with collections and can be combined with conditionals to selectively apply logic based on the value of the currently iterated item.
+Loops are fantastic for avoiding repetitive code. They are essential for processing items in collections and can be combined with conditionals to apply logic selectively to each item.
 
 #### `for` Loops
 
-Use `for` to go through each item in a sequence (like a list, tuple, string, or dictionary keys/items). In each iteration of the loop, the variable specified after `for` (e.g., `planet` in the example below) is automatically updated to hold the current item from the sequence.
+Use `for` loops to iterate over each item in a sequence (such as a list, tuple, or string). In each pass (iteration), the loop variable (e.g., `planet` in the example below) takes the value of the current item from the sequence.
 
 ```{python}
 # Loop through a list
@@ -424,7 +424,7 @@ for planet in planets:
 
 #### `while` Loops
 
-Use `while` when you don't know exactly how many times to loop in advance, but you know the condition under which the loop should continue running.
+Use `while` loops when you don't know exactly how many times to loop in advance, but you know the condition under which the loop should continue running.
 
 ```{python}
 # Countdown
@@ -440,21 +440,21 @@ print("Blast off!")
 
 ### Exercise
 
-Create a list of numbers from one to 10 and assign this to a variable called `numbers`. Then, loop through your list of numbers. For each number, check if it is even. If it is, print the number.
+Create a list named `numbers` containing the integers from 1 to 10. Then, write a loop that iterates through this list. For each number, if it is even, print the number.
 
-**Hint:** Python has an operator called the modulo (`%`) which gives the remainder after division. You can check if a number is even by seeing if the remainder when dividing by two is zero (e.g., `if number % 2 == 0: do something`).
+**Hint:** The modulo operator (`%`) gives the remainder of a division. A number is even if `number % 2 == 0`.
 
 ## Functions
 
-Functions help organise code into logical, reusable units. This makes programs easier to read, debug, and maintain. If you find yourself copying and pasting code, consider using a function instead.
+Functions help you organise your code into logical, reusable blocks. This improves readability, makes debugging easier, and simplifies maintenance. If you find yourself copying and pasting code, that's often a good sign you could write a function instead.
 
 ```{python}
 # Define a function with parameters (inputs)
 def calculate_density(population, area, unit="sq km"):
     """Calculates population density.
 
-    It is good practice to use a documentation block or string to explain what
-    parameters your function expects, what it does, and what types of values it returns.
+    It's good practice to include a *docstring* (documentation string) right after
+    the def line to explain what the function does, its parameters, and what it returns.
 
     Args:
         population (int): The total population.
@@ -504,18 +504,18 @@ print(f"Density invalid: {density_invalid}")
 
 **Key Ideas:**
 
-- **Parameters:** Variables listed inside the parentheses in the function definition (`population`, `area`, `unit`).
-- **Arguments:** Values passed to the function when it is called (`1000000`, `50`).
-- **Default Arguments:** Parameters can have default values (`unit="sq km"`). If an argument isn't provided for it when calling, the default is used.
-- **Scope:** Variables defined _inside_ a function (like `density`) generally only exist within that function.
-- **Docstrings:** The triple-quoted string `"""..."""` right after the `def` line is a docstring. It explains what the function does, its arguments (`Args:`), and what it returns (`Returns:`). Writing good docstrings is crucial for understandable code.
-- **Return Statement:** The `return` statement sends a value back to the caller. If no return is specified, the function returns `None`.
+- **Parameters:** These are the names listed in the function definition's parentheses (e.g., `population`, `area`).
+- **Arguments:** These are the actual values you pass to the function when you call it.
+- **Default Arguments:** You can give parameters default values (e.g., `unit="sq km"`). If you don't provide an argument for that parameter when calling the function, the default value is used.
+- **Scope:** Variables defined inside a function are typically _local_ to that function, meaning they only exist and can be accessed within that function.
+- **Docstrings:** As mentioned, the triple-quoted string `"""..."""` right after the `def` line. They are used to document what the function does, its arguments (often listed under an `Args:` section), and what it returns (under a `Returns:` section). Good docstrings are vital for writing understandable and maintainable code.
+- **Return Statement:** The `return` statement is used to send a value back from the function to the place where it was called. If a function doesn't have a `return` statement, or if the `return` statement is used without a value, it implicitly returns `None`.
 
-Functions help make code modular, easier to test, and simpler to understand. Returning a result from the function is optional but typically the case and unless the function is doing a one off task such as printing a line.
+Functions make your code modular, which means it's broken down into smaller, manageable pieces. This makes it easier to test and understand. While functions don't always have to return a value (e.g., a function that just prints something), they often do.
 
 ## Importing Modules
 
-No need to reinvent the wheel! Python's modules provide ready-made tools. If you see an unfamiliar function, check if it comes from an import at the top of the file.
+Python has a vast collection of _modules_ that provide ready-to-use tools – so you often don't need to reinvent the wheel! If you encounter an unfamiliar function, it's a good idea to check the `import` statements, usually found at the top of the file, as the function might come from an imported module.
 
 ```{python}
 import math # Import the built-in math module
@@ -538,11 +538,11 @@ print(f"Square root of 16 is {sqrt(16)}")
 
 **Key Idea:** `import module_name` makes the functions and variables within that module available, accessed via `module_name.function_name`.
 
-Later sections will heavily rely on importing powerful libraries like `pandas`, `geopandas`, and `cityseer`.
+In later sections, we'll be making extensive use of powerful libraries such as `pandas`, `geopandas`, and `cityseer`, which are all imported as modules.
 
 ## Common Errors
 
-Errors are normal! Learning to read the messages is key to fixing them. If you get stuck, try searching for the error message online—-chances are, someone else has had the same problem. Alternatively, ask a Large Language Model (LLM) to help decipher the error messages.
+Don't worry, errors are a normal part of programming! Learning to read and understand error messages is a key skill for fixing them. If you get stuck, searching for the error message online is often helpful – chances are, someone else has encountered the same problem. You can also ask an LLM to help explain what an error message means.
 
 - **`NameError: name '...' is not defined`**: You tried to use a variable before assigning a value to it, or you misspelled the variable name.
 - **`TypeError: unsupported operand type(s) for ...`**: You tried to perform an operation on incompatible data types (e.g., adding a string to an integer: `"Hello" + 5`).
@@ -550,4 +550,4 @@ Errors are normal! Learning to read the messages is key to fixing them. If you g
 - **`IndexError: list index out of range`**: You tried to access an item in a list using an index that doesn't exist (e.g., accessing `my_list[5]` when the list only has 3 items).
 - **`ImportError: No module named '...'` or `ModuleNotFoundError: No module named '...'`**: You tried to import a module that Python can't find. It might be misspelled or not installed.
 
-**Debugging Tip:** If you get an error, read the _last_ line first (it usually has the specific error type and message). Then look at the line numbers mentioned to trace where the problem occurred. Use `print()` statements inside your code to check the values of variables at different points. If you fix one error and another appears, that's normal—fix errors one at a time.
+**Debugging Tip:** When you encounter an error, the last line of the message usually tells you the specific type of error. The lines mentioned in the traceback help you find where the problem occurred in your code. Sprinkling `print()` statements in your code to check the values of variables at different stages can also be a very effective way to debug. And remember, it's common to fix one error only to find another – just tackle them one by one.

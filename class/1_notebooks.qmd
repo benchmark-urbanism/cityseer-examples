@@ -4,11 +4,11 @@ editor:
   render-on-save: true
 ---
 
-A computational notebook is an interactive environment where code, results, and explanations coexist. It is ideal for iterative workflows like data analysis, allowing step-by-step testing and documentation alongside code. Setup is automatic, feedback is direct, and experimentation is intuitive, making it an approachable way to learn Python compared to older methods.
+Computational notebooks provide an interactive environment for combining code, its results, and explanatory text. They are particularly well-suited for iterative tasks such as data analysis, as they allow you to test and document your work step-by-step. Features like automatic setup, immediate feedback, and the ease of experimentation make notebooks an accessible way to learn Python, especially when compared to more traditional programming approaches.
 
 ## Google Colab
 
-Google Colab is a cloud-based platform for running notebooks without local setup. It is great for exploring datasets or prototyping workflows.
+Google Colab is a cloud-based platform that lets you run notebooks without any local installation. This makes it useful for quickly exploring datasets or prototyping analytical workflows.
 
 ### Getting Started
 
@@ -18,14 +18,14 @@ Google Colab is a cloud-based platform for running notebooks without local setup
 
 ## Overview
 
-A notebook consists of cells, which can be code or text.
+A notebook is made up of cells, which can contain either executable code or formatted text.
 
 - **Code Cells:** For Python code execution. Outputs appear below the cell.
 - **Text Cells:** Markdown-based cells for documentation or context.
 
 ## Running Code
 
-Run a code cell by selecting it and pressing `Shift+Enter` or clicking the play button. For example:
+To run a code cell, select it and then either press `Shift+Enter` or click the play button. Here's an example:
 
 ```{python}
 2 + 2
@@ -42,7 +42,7 @@ print(x)
 
 ## Implicit Output
 
-In notebooks, the last line of a code cell automatically displays its value:
+A handy feature of notebooks is that the value of the last expression in a code cell is automatically displayed as output:
 
 ```{python}
 # The value of 'x' will be displayed
@@ -50,7 +50,7 @@ x = 42
 x
 ```
 
-For printing additional variables that are not on the last line of a cell, use `print()`:
+If you need to display the values of other variables, or variables that aren't on the last line of a cell, use the `print()` function:
 
 ```{python}
 # Explicitly displaying values
@@ -63,39 +63,39 @@ y  # Automatically displayed
 
 ## Editing and Rerunning
 
-Notebooks allow iterative modification. Update a code cell and rerun it to see the changes. This flexibility is central to notebook workflows.
+Notebooks are designed for iterative work. You can easily update and rerun code cells to see the impact of your changes. This flexibility is a core advantage of using notebooks.
 
 ### Variables and Memory State
 
-Variables persist across cells within an active session. This enables flexibility because later cells can use information from earlier cells. However, this can also lead to confusion when cells are executed out of order or when changes are made to earlier cells without re-running the later cells that depend on them.
+In an active notebook session, variables defined in one cell remain available in subsequent cells. This allows later cells to build upon the work of earlier ones. While this is a powerful feature, it's important to be aware that running cells out of sequence, or changing earlier cells without rerunning those that depend on them, can lead to confusion or errors.
 
 ### How Variables Persist
 
-Variables defined in one cell remain accessible in subsequent cells:
+As mentioned, variables you define in one cell can be accessed by other cells that are run later:
 
 ```{python}
 # Define a variable
 city_name = "Madrid"
 ```
 
-Now that the `city_name` variable has been defined, it can be used in subsequent cells without redefining it each time.
+Once the `city_name` variable is defined by running its cell, other cells can use it without needing to define it again.
 
 ```{python}
 print("The selected city is:", city_name)
 ```
 
-If the first cell is not executed, the second will raise an error because it can't find `city_name`.
+If the defining cell is not run, a subsequent cell using `city_name` will raise an error.
 
 ### Modifying Variables
 
-Changing a variable will not update its value in memory unless the cell is re-run.
+If you change the value of a variable, you must rerun the cell where it's defined to update its value in the notebook's memory.
 
 ```{python}
 # Update the variable
 city_name = "Barcelona"
 ```
 
-Subsequent cells can then make use of the newly updated variable:
+Subsequent cells will then use the updated variable:
 
 ```{python}
 print("The selected city is now:", city_name)
@@ -103,7 +103,7 @@ print("The selected city is now:", city_name)
 
 ### Execution Order and State
 
-Execution order determines the notebook's state. Running cells out of order can lead to errors or unexpected results.
+The order in which you execute cells is crucial as it determines the notebook's current state. Running cells out of their logical order can lead to errors or unexpected outcomes.
 
 To avoid such issues:
 
@@ -113,7 +113,7 @@ To avoid such issues:
 
 ### Execution Order Matters
 
-The order of execution directly impacts the notebook's environment. Variables, functions, and imports are only available if their defining cells have been run. For example:
+The execution order directly affects the notebook's environment. Variables, functions, and imported libraries become available only after their respective defining cells have been executed. For instance:
 
 ```{python}
 # Define a variable
@@ -121,26 +121,26 @@ x = 10
 x
 ```
 
-The `x` variable is now defined and can be used in subsequent cells:
+The `x` variable is now defined and available for subsequent cells:
 
 ```{python}
 y = x * 2
 y
 ```
 
-If you change the value of `x` in the first cell, then you also need to rerun the second cell to persist the correct value:
+If `x`'s value is changed in its defining cell, dependent cells must be rerun to use the new value:
 
 ```{python}
 z = y + 5
 z
 ```
 
-The third cell will not work if the previous cell has not been executed.
-Likewise, if the second cell is modified (e.g., `y = x * 3`), the third cell must be rerun to reflect the updated value. Failing to do so results in outdated or invalid data.
+The third cell will fail if the preceding cell (defining `y`) has not been run.
+Similarly, if the cell defining `y` is modified (e.g., `y = x * 3`), the cell using `z` must be rerun. Otherwise, `z` will be based on an outdated `y`.
 
 ## Adding Text
 
-Text cells use [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. Markup has built-in support for formatting text through the use of characters: you can create headings, bolded text, italicised text, numbered or bulleted lists, even tables. See the linked formatting guide for more information:
+Text cells use [Markdown](https://www.markdownguide.org/basic-syntax/), which is a lightweight markup language. Markdown employs simple characters for formatting, enabling you to create headings, bold or italic text, lists, and tables. For a comprehensive guide, please refer to the linked documentation.
 
 ```markdown
 ### Observations
@@ -152,5 +152,5 @@ This notebook _demonstrates the basics_ of using computational notebooks for int
 
 - **Troubleshooting Errors:** Ensure all preceding cells have been run.
 - **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
-- **Saving Progress:** Regularly save work to Google Drive via "File > Save a Copy in Drive."
-- **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset and rerun all cells.
+- **Saving Progress:** Regularly save your work to Google Drive via "File > Save a Copy in Drive."
+- **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset the notebook's state and rerun all cells from the beginning.
