@@ -4,34 +4,34 @@ editor:
   render-on-save: true
 ---
 
-A computational notebook is an interactive environment where code, results, and explanations coexist. It is particularly useful for iterative workflows, such as data analysis, where one can test ideas step-by-step and document the process alongside the code. This is much more conducive to learning because setup is automatic and feedback is direct and interactive, allowing for intuitive experimentation guided by embedded documentation. This presents a much more approachable on-ramp for learning Python when compared to previous approaches.
+A computational notebook is an interactive environment where code, results, and explanations coexist. It is ideal for iterative workflows like data analysis, allowing step-by-step testing and documentation alongside code. Setup is automatic, feedback is direct, and experimentation is intuitive, making it an approachable way to learn Python compared to older methods.
 
 ## Google Colab
 
-Google Colab provides a cloud-based platform for running notebooks without any need for local setup. It is particularly suited for exploring datasets or prototyping workflows.
+Google Colab is a cloud-based platform for running notebooks without local setup. It is great for exploring datasets or prototyping workflows.
 
 ### Getting Started
 
 - **Access:** Visit [Google Colab](https://colab.research.google.com/) and sign in with a Google account.
-- **Create a New Notebook:** Click on "File > New Notebook" to start a new notebook.
-- **Upload an Existing Notebook:** If you already have a `.ipynb` file, upload it via "File > Upload Notebook."
+- **Create a New Notebook:** Click "File > New Notebook."
+- **Upload an Existing Notebook:** Upload a `.ipynb` file via "File > Upload Notebook."
 
 ## Overview
 
-A notebook consists of cells, which can be either code or text.
+A notebook consists of cells, which can be code or text.
 
-- **Code Cells:** Blocks for Python code execution. Outputs appear directly below the cell.
-- **Text Cells:** Markdown-based cells for adding documentation, explanations, or context.
+- **Code Cells:** For Python code execution. Outputs appear below the cell.
+- **Text Cells:** Markdown-based cells for documentation or context.
 
 ## Running Code
 
-Execute a code cell by selecting it and pressing `Shift+Enter`, or pressing the play button. For example:
+Run a code cell by selecting it and pressing `Shift+Enter` or clicking the play button. For example:
 
 ```{python}
 2 + 2
 ```
 
-The output appears immediately below the cell, showing the result.
+The output appears below the cell.
 
 Another example:
 
@@ -58,7 +58,7 @@ x = 42
 print(x)  # This will show the value of 'x'
 
 y = x * 2
-y
+y  # Automatically displayed
 ```
 
 ## Editing and Rerunning
@@ -67,7 +67,7 @@ Notebooks allow iterative modification. Update a code cell and rerun it to see t
 
 ### Variables and Memory State
 
-Variables persist across cells within an active session. This enables flexibility Because later cells can use information from earlier cells; but, for the same reason, this can also lead to confusion when cells are executed out of order or when changes are made to earlier cells without re-running the later cells that depend on them.
+Variables persist across cells within an active session. This enables flexibility because later cells can use information from earlier cells. However, this can also lead to confusion when cells are executed out of order or when changes are made to earlier cells without re-running the later cells that depend on them.
 
 ### How Variables Persist
 
@@ -88,7 +88,7 @@ If the first cell is not executed, the second will raise an error because it can
 
 ### Modifying Variables
 
-Redefining a variable will not update its value in memory unless the cell is re-run.
+Changing a variable will not update its value in memory unless the cell is re-run.
 
 ```{python}
 # Update the variable
@@ -140,7 +140,7 @@ Likewise, if the second cell is modified (e.g., `y = x * 3`), the third cell mus
 
 ## Adding Text
 
-Text cells use [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. Markup has built-in support for formatting text through the use of characters: you can create headings, bold text, italicise text, create numbered or bulleted lists, even create tables. See the linked formatting guide for more information:
+Text cells use [Markdown](https://www.markdownguide.org/basic-syntax/), a lightweight markup language. Markup has built-in support for formatting text through the use of characters: you can create headings, bolded text, italicised text, numbered or bulleted lists, even tables. See the linked formatting guide for more information:
 
 ```markdown
 ### Observations
@@ -150,7 +150,7 @@ This notebook _demonstrates the basics_ of using computational notebooks for int
 
 ## Tips
 
-- **Troubleshooting Errors:** Ensure all prerequisite cells have been run.
+- **Troubleshooting Errors:** Ensure all preceding cells have been run.
 - **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
 - **Saving Progress:** Regularly save work to Google Drive via "File > Save a Copy in Drive."
 - **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset and rerun all cells.
