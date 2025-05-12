@@ -1,0 +1,169 @@
+---
+title: Geospatial Ecosystem
+editor:
+  render-on-save: true
+---
+
+Building upon our previous explorations of Python, Shapely, and GeoPandas, this lesson introduces the broader Python geospatial ecosystem. We will focus on two particularly useful libraries: `osmnx` for acquiring urban data from OpenStreetMap, and `momepy` for conducting urban morphology analysis.
+
+### Prerequisites and Setup
+
+Ensure you have `osmnx` and `momepy` installed in your Python environment. If you are following along with a notebook, you can install these using pip.
+
+```bash
+# Use an exclamation mark to run in notebooks
+!pip install osmnx momepy
+```
+
+Packages such as `matplotlib` and `geopandas` are often already installed by default but, if necessary, you can install them in the same way.
+
+### Importing Libraries
+
+Let's import the necessary packages:
+
+```{python}
+import geopandas as gpd
+# use an alias for convenience
+import osmnx as ox
+import momepy
+import matplotlib.pyplot as plt
+```
+
+## osmnx
+
+[`osmnx`](https://osmnx.readthedocs.io/) is a Python package that simplifies downloading and working with geospatial data from OpenStreetMap (OSM), such as building footprints or points of interest.
+
+This example demonstrates how to download building footprints within a 1km radius of a specified location in Nicosia, Cyprus, defined by its coordinates. `osmnx` provides several methods for downloading data; here, we will use `features_from_point`.
+
+```{python}
+# Define the point of interest (latitude, longitude) and distance
+center_point = (35.17526, 33.36402)
+distance_m = 1000
+
+# Download building footprints
+gdf_buildings = ox.features_from_point(
+    center_point, tags={"building": True}, dist=distance_m
+)
+```
+
+`osmnx` returns GeoDataFrames which, as shown in the previous lesson, are ideal for spatial analysis in Python. Note the `tags={"building": True}` argument, which instructs `osmnx` to fetch all features tagged as buildings in OSM. By changing these tags, you can also download other types of features, such as roads or parks.
+
+It is good practice to inspect the data you have downloaded. The `head()` function displays the first few rows of the GeoDataFrame, allowing you to quickly check the data structure and attributes.
+
+```{python}
+# Display the first few rows of the buildings GeoDataFrame
+gdf_buildings.head()
+```
+
+You can also plot the downloaded data:
+
+```{python}
+# Set up a plot
+fig, ax = plt.subplots(figsize=(10, 10))
+
+# Plot the buildings
+gdf_buildings.plot(ax=ax)
+
+# Set the title and remove the axis for a cleaner look
+ax.set_title(f"Buildings around {center_point} ({distance_m}m radius)")
+ax.axis("off")
+```
+
+For more detailed information on different ways to query OSM features data, refer to the `osmnx` [features documentation](https://osmnx.readthedocs.io/en/stable/user-reference.html#module-osmnx.features).
+
+## Data Preparation
+
+To streamline the subsequent analysis, it is advisable to first filter for the types of geometry you intend to work with. In this instance, we are interested in polygon or multi-polygon geometries and will discard other types, such as points or linestrings.
+
+```{python}
+# Filter out non-polygon geometries
+gdf_buildings = gdf_buildings[
+    gdf_buildings.geometry.type.isin(['Polygon', 'MultiPolygon'])
+]
+
+gdf_buildings.head()
+```
+
+Secondly, we will reset the index so that all features are neatly indexed from zero upwards, without duplicates.
+
+```{python}
+# Reset the index
+gdf_buildings = gdf_buildings.reset_index(drop=True)
+
+gdf_buildings.head()
+```
+
+Thirdly, we will drop any columns not relevant to our analysis. In this case, we will retain the geometry column and the `building` column.
+
+```{python}
+gdf_buildings = gdf_buildings[['geometry', 'building']]
+
+gdf_buildings.head()
+```
+
+Before performing morphological analysis, it is necessary to ensure your data is in a **projected Coordinate Reference System (CRS)**. Morphological metrics often involve measurements of distance and area, which are only accurate in a projected CRS. For Nicosia, we will use EPSG:3035 (ETRS89 / LAEA Europe), a European projection.
+
+```{python}
+# Set the target CRS
+gdf_buildings_proj = gdf_buildings.to_crs(3035)
+```
+
+Let's replot the building data to ensure everything is in order.
+
+```{python}
+# Set up a plot
+fig, ax = plt.subplots(figsize=(10, 10))
+
+# Plot the buildings
+gdf_buildings_proj.plot(ax=ax)
+
+# Set the title and remove axis
+ax.set_title(f"Buildings around {center_point} ({distance_m}m radius)")
+ax.axis("off")
+```
+
+## momepy
+
+[`momepy`](https://momepy.readthedocs.io/) is a library for the quantitative analysis of urban form – also known as urban morphology. It operates primarily on GeoDataFrames and provides a range of functions for calculating various morphological metrics.
+
+By way of example, we will explore two of these functions.
+
+### Building Orientations
+
+`momepy` can calculate the orientation of building footprints using the [`orientation`](https://docs.momepy.org/en/stable/api/momepy.orientation.html) function.
+
+```{python}
+# Calculate building orientation
+gdf_buildings_proj['orientation'] = momepy.orientation(gdf_buildings_proj)
+
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf_buildings_proj.plot(ax=ax, column='orientation', cmap='Spectral')
+ax.set_title(f"Building orientations")
+ax.axis("off")
+```
+
+### Shared Walls
+
+`momepy` can calculate shared wall lengths between buildings using the [`shared_walls`](https://docs.momepy.org/en/stable/api/momepy.shared_walls.html) function.
+
+```{python}
+# Calculate shared wall lengths
+gdf_buildings_proj['shared_wall_length'] = momepy.shared_walls(gdf_buildings_proj)
+
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf_buildings_proj.plot(ax=ax, column='shared_wall_length', cmap='hot')
+ax.set_title(f"Building shared wall lengths")
+ax.axis("off")
+```
+
+Many other functions are available in `momepy` for calculating various morphological metrics. For a comprehensive list, please refer to the [momepy documentation](https://docs.momepy.org/en/stable/api.html).
+
+## Summary
+
+This has been a brief exploration of the broader Python geospatial ecosystem, focusing on `osmnx` for downloading urban data from OpenStreetMap and `momepy` for conducting urban morphology analysis. This is just a small sample of what these and other tools can achieve.
+
+Remember that with GeoPandas, you can export your data. So, after downloading data and running any variety of metrics using available Python packages, you can then export the file, which can be further visualised or manipulated with packages such as QGIS. For example, you can export your data to a GeoPackage file using the `to_file` method:
+
+```python
+gdf_buildings_proj.to_file("nicosia_buildings_metrics.gpkg", driver="GPKG")
+```
