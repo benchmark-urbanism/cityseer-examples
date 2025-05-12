@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c7538e8d5032dc20429959a11a992779.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -195,25 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/5_ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5_ecosystem.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/6_cityseer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6_cityseer.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/7_data_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7_data_science.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/8_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8_models.html</span></a>
+ <span class="menu-text">Geospatial Ecosystem</span></a>
   </div>
 </li>
       </ul>
@@ -297,20 +279,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+<pre><code>100%|██████████| 47155/47155 [00:08&lt;00:00, 5764.16it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 47129/47129 [00:00&lt;00:00, 162081.41it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
+100%|██████████| 47129/47129 [00:01&lt;00:00, 39057.30it/s]
+INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
+100%|██████████| 47129/47129 [02:17&lt;00:00, 343.36it/s]</code></pre>
 </div>
 </div>
 <p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell">
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.</code></pre>
+<pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
+100%|██████████| 47129/47129 [00:01&lt;00:00, 30901.97it/s]
+100%|██████████| 47129/47129 [00:28&lt;00:00, 1630.40it/s]
+INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest"><code>node_centrality_shortest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest metric distance centralities. The function requires a <code>NetworkStructure</code> and nodes <code>GeoDataFrame</code> prepared with the <code>network_structure_from_nx</code> function in the previous step.</p>
@@ -326,6 +315,7 @@ INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</c
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:10&lt;00:00, 4689.31it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
 INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</code></pre>
@@ -576,6 +566,7 @@ Name: cc_betweenness_2000, dtype: float64</code></pre>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:05&lt;00:00, 9381.59it/s] 
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.</code></pre>
 </div>
@@ -632,6 +623,7 @@ INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:03&lt;00:00, 15627.02it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</code></pre>
 </div>

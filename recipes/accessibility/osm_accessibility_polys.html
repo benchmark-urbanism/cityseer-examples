@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Landuse accessibility from OSM data – Cityseer Guide</title>
+<title>Park accessibility from OSM data – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Landuse accessibility from OSM data</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Park accessibility from OSM data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Landuse accessibility from OSM data</h1>
+<h1 class="title">Park accessibility from OSM data</h1>
 </div>
 
 
@@ -265,8 +265,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate landuse accessibilities from OSM data.</p>
-<p>This examples calculates landuse accessibility to pubs and restaurants for London using OpenStreetMap data.</p>
+<p>Calculate park accessibilities from OSM data.</p>
+<p>This examples calculates park accessibility for London using OpenStreetMap Polygon data.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
@@ -287,156 +287,157 @@ WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 24137/24137 [00:00&lt;00:00, 32175.89it/s]
+100%|██████████| 24145/24145 [00:00&lt;00:00, 40425.07it/s]
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 22415/22415 [00:00&lt;00:00, 458947.15it/s]
+100%|██████████| 22421/22421 [00:00&lt;00:00, 1121652.77it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 24137/24137 [00:03&lt;00:00, 7254.89it/s] 
+100%|██████████| 24145/24145 [00:01&lt;00:00, 17382.42it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 22415/22415 [00:01&lt;00:00, 13879.86it/s]
+100%|██████████| 22421/22421 [00:00&lt;00:00, 22910.69it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 12164/12164 [00:00&lt;00:00, 796221.95it/s]
-100%|██████████| 12164/12164 [00:01&lt;00:00, 6485.78it/s]
+100%|██████████| 12164/12164 [00:00&lt;00:00, 1199245.79it/s]
+100%|██████████| 12164/12164 [00:01&lt;00:00, 9660.49it/s] 
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 10442/10442 [00:00&lt;00:00, 39344.82it/s]
-100%|██████████| 7384/7384 [00:00&lt;00:00, 170909.83it/s]
+100%|██████████| 10440/10440 [00:00&lt;00:00, 56795.28it/s]
+100%|██████████| 7388/7388 [00:00&lt;00:00, 299816.34it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 9004/9004 [00:00&lt;00:00, 542374.17it/s]
+100%|██████████| 9003/9003 [00:00&lt;00:00, 706783.44it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6651/6651 [00:00&lt;00:00, 1062635.83it/s]
+100%|██████████| 6656/6656 [00:00&lt;00:00, 1207129.65it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 91584.00it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 141390.97it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6660/6660 [00:00&lt;00:00, 114239.01it/s]
+100%|██████████| 6665/6665 [00:00&lt;00:00, 134299.78it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6611/6611 [00:00&lt;00:00, 601226.01it/s]
+100%|██████████| 6616/6616 [00:00&lt;00:00, 1419122.19it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 14552.14it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 35527.37it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6667/6667 [00:00&lt;00:00, 34978.63it/s]
+100%|██████████| 6672/6672 [00:00&lt;00:00, 59759.71it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6657/6657 [00:00&lt;00:00, 620298.17it/s]
+100%|██████████| 6662/6662 [00:00&lt;00:00, 1381306.70it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 66320.97it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 133356.40it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6658/6658 [00:00&lt;00:00, 260882.79it/s]
+100%|██████████| 6663/6663 [00:00&lt;00:00, 424721.09it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6658/6658 [00:00&lt;00:00, 461428.88it/s]
+100%|██████████| 6663/6663 [00:00&lt;00:00, 1121724.63it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 62305.63it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 85316.10it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6659/6659 [00:00&lt;00:00, 133573.11it/s]
+100%|██████████| 6664/6664 [00:00&lt;00:00, 441791.80it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5270/5270 [00:00&lt;00:00, 23229.99it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 49655.34it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5270/5270 [00:01&lt;00:00, 4358.35it/s] 
+100%|██████████| 5274/5274 [00:00&lt;00:00, 6443.98it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6607/6607 [00:00&lt;00:00, 140421.52it/s]
+100%|██████████| 6612/6612 [00:00&lt;00:00, 224302.31it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5230/5230 [00:00&lt;00:00, 219775.28it/s]
+100%|██████████| 5234/5234 [00:00&lt;00:00, 377555.89it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5158/5158 [00:00&lt;00:00, 16874.80it/s]
+100%|██████████| 5162/5162 [00:00&lt;00:00, 47760.01it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5158/5158 [00:13&lt;00:00, 379.10it/s]
+100%|██████████| 5162/5162 [00:07&lt;00:00, 730.07it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6062/6062 [00:00&lt;00:00, 35120.64it/s]
+100%|██████████| 6067/6067 [00:00&lt;00:00, 71531.13it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4801/4801 [00:00&lt;00:00, 199766.41it/s]
+100%|██████████| 4805/4805 [00:00&lt;00:00, 425262.83it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4765/4765 [00:00&lt;00:00, 6171.92it/s]
+100%|██████████| 4769/4769 [00:00&lt;00:00, 54261.06it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4765/4765 [00:03&lt;00:00, 1360.04it/s]
+100%|██████████| 4769/4769 [00:01&lt;00:00, 3164.51it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5857/5857 [00:00&lt;00:00, 89795.70it/s]
+100%|██████████| 5862/5862 [00:00&lt;00:00, 166349.87it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4713/4713 [00:00&lt;00:00, 61984.59it/s]
+100%|██████████| 4717/4717 [00:00&lt;00:00, 433985.52it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4698/4698 [00:00&lt;00:00, 25120.17it/s]
+100%|██████████| 4702/4702 [00:00&lt;00:00, 33487.20it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4698/4698 [00:04&lt;00:00, 948.92it/s] 
+100%|██████████| 4702/4702 [00:02&lt;00:00, 1902.17it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5715/5715 [00:00&lt;00:00, 114634.64it/s]
+100%|██████████| 5720/5720 [00:00&lt;00:00, 246774.52it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4617/4617 [00:00&lt;00:00, 396281.78it/s]
+100%|██████████| 4621/4621 [00:00&lt;00:00, 603890.91it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4602/4602 [00:00&lt;00:00, 25589.26it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 52581.06it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5692/5692 [00:00&lt;00:00, 794105.19it/s]
+100%|██████████| 5697/5697 [00:00&lt;00:00, 1399083.66it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 4602/4602 [00:00&lt;00:00, 7457.33it/s] 
+100%|██████████| 4606/4606 [00:00&lt;00:00, 17467.62it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5889/5889 [00:00&lt;00:00, 421297.59it/s]
+100%|██████████| 5895/5895 [00:00&lt;00:00, 1611511.57it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 4602/4602 [00:00&lt;00:00, 6607.16it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 15205.69it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6779/6779 [00:00&lt;00:00, 134301.25it/s]
+100%|██████████| 6783/6783 [00:00&lt;00:00, 345400.69it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 5098/5098 [00:00&lt;00:00, 370254.40it/s]
+100%|██████████| 5101/5101 [00:00&lt;00:00, 666702.34it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4298/4298 [00:00&lt;00:00, 13844.61it/s]
+100%|██████████| 4301/4301 [00:00&lt;00:00, 31614.77it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4818/4818 [00:00&lt;00:00, 224824.85it/s]
+100%|██████████| 4821/4821 [00:00&lt;00:00, 967869.98it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3138/3138 [00:00&lt;00:00, 3590.38it/s]
+100%|██████████| 3140/3140 [00:00&lt;00:00, 10759.43it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4857/4857 [00:00&lt;00:00, 54270.50it/s]
+100%|██████████| 4862/4862 [00:00&lt;00:00, 104319.59it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3138/3138 [00:00&lt;00:00, 26443.35it/s]
+100%|██████████| 3140/3140 [00:00&lt;00:00, 51642.04it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3138/3138 [00:22&lt;00:00, 141.32it/s]
+100%|██████████| 3140/3140 [00:11&lt;00:00, 268.60it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3881/3881 [00:00&lt;00:00, 12165.07it/s]
+100%|██████████| 3880/3880 [00:00&lt;00:00, 42523.80it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3682/3682 [00:00&lt;00:00, 399168.43it/s]
+100%|██████████| 3681/3681 [00:00&lt;00:00, 1656570.07it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2476/2476 [00:00&lt;00:00, 5052.38it/s]
+100%|██████████| 2475/2475 [00:00&lt;00:00, 12262.67it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3692/3692 [00:00&lt;00:00, 151398.78it/s]
+100%|██████████| 3691/3691 [00:00&lt;00:00, 358842.34it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2476/2476 [00:00&lt;00:00, 22488.45it/s]
+100%|██████████| 2475/2475 [00:00&lt;00:00, 52322.04it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2476/2476 [00:13&lt;00:00, 179.61it/s]
+100%|██████████| 2475/2475 [00:06&lt;00:00, 383.79it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3168/3168 [00:00&lt;00:00, 27905.77it/s]
+100%|██████████| 3167/3167 [00:00&lt;00:00, 54885.61it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2030/2030 [00:00&lt;00:00, 44400.60it/s]
+100%|██████████| 2028/2028 [00:00&lt;00:00, 81357.11it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2934/2934 [00:00&lt;00:00, 66311.14it/s]
+100%|██████████| 2929/2929 [00:00&lt;00:00, 143003.17it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2916/2916 [00:00&lt;00:00, 10649.15it/s]
+100%|██████████| 2911/2911 [00:00&lt;00:00, 21519.45it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2905/2905 [00:00&lt;00:00, 230295.10it/s]
+100%|██████████| 2900/2900 [00:00&lt;00:00, 380275.17it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 1890/1890 [00:00&lt;00:00, 218296.93it/s]
+100%|██████████| 1887/1887 [00:00&lt;00:00, 938867.34it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1872/1872 [00:00&lt;00:00, 103038.46it/s]
+100%|██████████| 1869/1869 [00:00&lt;00:00, 254501.47it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 2854/2854 [00:00&lt;00:00, 19984.88it/s]
+100%|██████████| 2849/2849 [00:00&lt;00:00, 41237.27it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 2854/2854 [00:08&lt;00:00, 339.47it/s]
+100%|██████████| 2849/2849 [00:04&lt;00:00, 704.53it/s]
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 2854/2854 [00:00&lt;00:00, 30413.74it/s]
-100%|██████████| 2854/2854 [00:01&lt;00:00, 2058.32it/s]
-INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
+100%|██████████| 2849/2849 [00:00&lt;00:00, 19640.14it/s]
+100%|██████████| 2849/2849 [00:00&lt;00:00, 4356.11it/s]
+INFO:cityseer.graph:Edge R-tree built successfully with 6712 items.</code></pre>
 </div>
 </div>
-<p>Prepare the amenities GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>amenity</code> type of either <code>pub</code> or <code>restaurant</code>. You can use the same idea to extract other features or land use types.</p>
+<p>Prepare the parks GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as a <code>leisure</code> type of <code>park</code>. You can use the same idea to extract other features or land use types.</p>
 <p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
 <div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    poly_wgs, tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(nodes_gdf.crs)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>data_gdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"leisure"</span>: [<span class="st">"park"</span>]})</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(nodes_gdf.crs)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data_gdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -445,31 +446,29 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">geometry</th>
-<th data-quarto-table-cell-role="th">addr:city</th>
-<th data-quarto-table-cell-role="th">addr:country</th>
-<th data-quarto-table-cell-role="th">addr:housenumber</th>
-<th data-quarto-table-cell-role="th">addr:postcode</th>
-<th data-quarto-table-cell-role="th">addr:street</th>
-<th data-quarto-table-cell-role="th">amenity</th>
-<th data-quarto-table-cell-role="th">check_date</th>
-<th data-quarto-table-cell-role="th">contact:email</th>
-<th data-quarto-table-cell-role="th">contact:phone</th>
+<th data-quarto-table-cell-role="th">GBV</th>
+<th data-quarto-table-cell-role="th">barrier</th>
+<th data-quarto-table-cell-role="th">leisure</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">wikidata</th>
+<th data-quarto-table-cell-role="th">wikimedia_commons</th>
+<th data-quarto-table-cell-role="th">wikipedia</th>
+<th data-quarto-table-cell-role="th">access</th>
+<th data-quarto-table-cell-role="th">opening_hours</th>
 <th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">access:conditional</th>
-<th data-quarto-table-cell-role="th">note:access</th>
-<th data-quarto-table-cell-role="th">name:gsw</th>
-<th data-quarto-table-cell-role="th">note:name:en</th>
-<th data-quarto-table-cell-role="th">note:name:zh</th>
-<th data-quarto-table-cell-role="th">website:en</th>
-<th data-quarto-table-cell-role="th">serving_system:buffet</th>
-<th data-quarto-table-cell-role="th">building:use</th>
-<th data-quarto-table-cell-role="th">floor</th>
+<th data-quarto-table-cell-role="th">bottle</th>
+<th data-quarto-table-cell-role="th">historic</th>
+<th data-quarto-table-cell-role="th">loc_name</th>
+<th data-quarto-table-cell-role="th">name:cy</th>
+<th data-quarto-table-cell-role="th">name:zh</th>
+<th data-quarto-table-cell-role="th">foot</th>
+<th data-quarto-table-cell-role="th">name:ja</th>
+<th data-quarto-table-cell-role="th">alt_name</th>
 <th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">surface</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">element</th>
 <th data-quarto-table-cell-role="th">id</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -496,18 +495,65 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">node</td>
-<td data-quarto-table-cell-role="th">21593236</td>
-<td>POINT (699869.619 5711280.678)</td>
-<td>London</td>
-<td>GB</td>
-<td>12</td>
-<td>WC2A 3HP</td>
-<td>Gate Street</td>
-<td>pub</td>
-<td>2023-04-18</td>
-<td>info@theshiptavern.co.uk</td>
-<td>+44 20 7405 1992</td>
+<td data-quarto-table-cell-role="th">5579381</td>
+<td>POLYGON ((699189.384 5709943.8, 699189.043 570...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>grass</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3241371</td>
+<td>POLYGON ((699470.032 5711728.944, 699463.775 5...</td>
+<td>Active</td>
+<td>fence</td>
+<td>park</td>
+<td>Russell Square</td>
+<td>Q1346906</td>
+<td>Category:Russell_Square_Gardens</td>
+<td>en:Russell Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3241840</td>
+<td>POLYGON ((699136.323 5712190.801, 699139.55 57...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Tavistock Square</td>
+<td>Q1936696</td>
+<td>NaN</td>
+<td>en:Tavistock Square</td>
+<td>permissive</td>
+<td>07:30-sunset</td>
 <td>...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -521,14 +567,206 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">25471087</td>
-<td>POINT (699749.16 5710787.29)</td>
-<td>London</td>
+<td data-quarto-table-cell-role="th">4075108</td>
+<td>POLYGON ((700241.772 5711256.088, 700243.597 5...</td>
 <td>NaN</td>
-<td>39</td>
 <td>NaN</td>
-<td>Bow Street</td>
-<td>pub</td>
+<td>park</td>
+<td>Lincoln's Inn</td>
+<td>Q69482</td>
+<td>NaN</td>
+<td>en:Lincoln's Inn</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4081049</td>
+<td>POLYGON ((697602.375 5710597.115, 697665.44 57...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Grosvenor Square</td>
+<td>Q932992</td>
+<td>NaN</td>
+<td>en:Grosvenor Square</td>
+<td>yes</td>
+<td>Mo-Su 07:30-dusk</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4082589</td>
+<td>POLYGON ((699169.133 5710522.521, 699170.334 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Leicester Square</td>
+<td>Q848912</td>
+<td>NaN</td>
+<td>en:Leicester Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4253286</td>
+<td>POLYGON ((699082.827 5711964.714, 699083.941 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Woburn Square</td>
+<td>Q8028979</td>
+<td>NaN</td>
+<td>en:Woburn Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4253288</td>
+<td>POLYGON ((698963.988 5712061.606, 698963.808 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Gordon Square</td>
+<td>Q5585854</td>
+<td>NaN</td>
+<td>en:Gordon Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4253646</td>
+<td>POLYGON ((699584.927 5711815.931, 699611.882 5...</td>
+<td>Active</td>
+<td>fence</td>
+<td>park</td>
+<td>Queen Square Gardens</td>
+<td>Q3414013</td>
+<td>NaN</td>
+<td>en:Queen Square, London</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4253657</td>
+<td>POLYGON ((699910.437 5711532.233, 699874.943 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Red Lion Square</td>
+<td>Q7304535</td>
+<td>NaN</td>
+<td>en:Red Lion Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4253887</td>
+<td>POLYGON ((698115.449 5710348.292, 698119.405 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Berkeley Square</td>
+<td>Q127212</td>
+<td>NaN</td>
+<td>en:Berkeley Square</td>
+<td>yes</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4253932</td>
+<td>POLYGON ((699870.898 5710562.893, 699873.608 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -545,14 +783,62 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">25475914</td>
-<td>POINT (699606.322 5711699.239)</td>
+<td data-quarto-table-cell-role="th">4254099</td>
+<td>POLYGON ((699716.747 5710187.296, 699727.176 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Victoria Embankment Gardens</td>
+<td>Q7926695</td>
+<td>Category:Victoria_Embankment_Gardens</td>
+<td>en:Victoria Embankment Gardens</td>
+<td>yes</td>
+<td>Jan 01-Feb 15 08:30-16:30,Feb 16-Feb 29 08:30-...</td>
+<td>...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>pub</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4256229</td>
+<td>POLYGON ((698615.632 5710615.991, 698633.72 57...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Golden Square</td>
+<td>Q5579811</td>
+<td>NaN</td>
+<td>en:Golden Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4256950</td>
+<td>POLYGON ((699673.205 5710055.344, 699673.178 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Whitehall Garden</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -569,15 +855,15 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">25746185</td>
-<td>POINT (700308.36 5710758.42)</td>
-<td>London</td>
+<td data-quarto-table-cell-role="th">4256953</td>
+<td>POLYGON ((699632.625 5709861.45, 699609.71 570...</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>WC2R 3LD</td>
+<td>park</td>
+<td>Whitehall Garden</td>
+<td>Q18901051</td>
 <td>NaN</td>
-<td>pub</td>
-<td>NaN</td>
+<td>en:Privy Garden of the Palace of Whitehall</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -593,15 +879,15 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">26699558</td>
-<td>POINT (699071.215 5711168.671)</td>
+<td data-quarto-table-cell-role="th">4272920</td>
+<td>POLYGON ((698780.057 5711434.937, 698778.086 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Crabtree Fields</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>pub</td>
-<td>2024-09-10</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -617,41 +903,87 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">4358458</td>
+<td>POLYGON ((698780.409 5710065.433, 698774.297 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>St James's Square Gardens</td>
+<td>Q500529</td>
+<td>NaN</td>
+<td>en:St James's Square</td>
+<td>permissive</td>
+<td>Mo-Fr 10:00-16:30</td>
 <td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
-<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">way</td>
-<td data-quarto-table-cell-role="th">995954627</td>
-<td>POLYGON ((699270.101 5710540.727, 699277.571 5...</td>
-<td>London</td>
+<td data-quarto-table-cell-role="th">4373996</td>
+<td>POLYGON ((699943.843 5709744.706, 699930.88 57...</td>
 <td>NaN</td>
-<td>24</td>
-<td>WC2H 0HX</td>
-<td>Charing Cross Road</td>
-<td>restaurant</td>
-<td>2024-10-07</td>
+<td>NaN</td>
+<td>park</td>
+<td>Jubilee Gardens</td>
+<td>Q2290816</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>permissive</td>
+<td>24/7</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4393572</td>
+<td>POLYGON ((699597.511 5711517.797, 699598.705 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Bloomsbury Square Gardens</td>
+<td>Q885408</td>
+<td>NaN</td>
+<td>en:Bloomsbury Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30131571</td>
+<td>POLYGON ((698717.644 5711636.424, 698722.347 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Whitfield Gardens</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -667,15 +999,15 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1016903732</td>
-<td>POLYGON ((699039.571 5710804.095, 699036.453 5...</td>
+<td data-quarto-table-cell-role="th">30613392</td>
+<td>POLYGON ((700001.375 5711083.483, 699989.142 5...</td>
 <td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Lincoln's Inn Fields</td>
+<td>Q2736153</td>
 <td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>restaurant</td>
-<td>NaN</td>
+<td>en:Lincoln's Inn Fields</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -691,15 +1023,15 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1060462032</td>
-<td>POLYGON ((700144.125 5710144.723, 700142.327 5...</td>
-<td>London</td>
+<td data-quarto-table-cell-role="th">38310101</td>
+<td>POLYGON ((698169.651 5710815.626, 698174.877 5...</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>SE1 8XX</td>
-<td>Belvedere Road</td>
-<td>restaurant</td>
+<td>park</td>
+<td>Hanover Square</td>
+<td>Q3783111</td>
 <td>NaN</td>
+<td>en:Hanover Square, Westminster</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -710,22 +1042,22 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>retail</td>
+<td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1072559143</td>
-<td>POLYGON ((699383.906 5710631.863, 699382.376 5...</td>
-<td>London</td>
-<td>NaN</td>
-<td>17</td>
-<td>WC2E 9AX</td>
-<td>Garrick Street</td>
-<td>restaurant</td>
+<td data-quarto-table-cell-role="th">38318550</td>
+<td>POLYGON ((697694.563 5710327.204, 697699.041 5...</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>+44 20 3675 0930</td>
+<td>park</td>
+<td>Mount Street Gardens</td>
+<td>Q6923901</td>
+<td>NaN</td>
+<td>en:Mount Street Gardens</td>
+<td>NaN</td>
+<td>Mo-Sa 08:00-17:00; Su,PH 09:00-17:00</td>
 <td>...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -739,17 +1071,17 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1194233515</td>
-<td>POLYGON ((700109.233 5711375.71, 700111.379 57...</td>
-<td>London</td>
+<td data-quarto-table-cell-role="th">40879988</td>
+<td>POLYGON ((698941.172 5710700.987, 698972.984 5...</td>
 <td>NaN</td>
-<td>283-288</td>
-<td>WC1V 7HP</td>
-<td>High Holborn</td>
-<td>pub</td>
-<td>2023-08-03</td>
 <td>NaN</td>
-<td>+44 20 7242 5669</td>
+<td>park</td>
+<td>St Anne's Churchyard</td>
+<td>Q18748717</td>
+<td>NaN</td>
+<td>en:St Anne's Churchyard</td>
+<td>NaN</td>
+<td>week 1-13 Mo-Su 10:00-16:00; week 14-43 10:00-...</td>
 <td>...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -759,89 +1091,420 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6722 items.</code></pre>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>Ground</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41117901</td>
+<td>POLYGON ((699231.843 5710970.608, 699225.581 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">55736532</td>
+<td>POLYGON ((699677.177 5712135.764, 699677.997 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Brunswick Square Gardens</td>
+<td>Q4979544</td>
+<td>NaN</td>
+<td>en:Brunswick Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">55737057</td>
+<td>POLYGON ((699889.676 5712020.139, 699885.9 571...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Coram's Fields</td>
+<td>Q1131898</td>
+<td>Category:Coram's Fields</td>
+<td>en:Coram's Fields</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>no</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">87079253</td>
+<td>POLYGON ((698284.966 5709536.508, 698293.537 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148004650</td>
+<td>POLYGON ((698126.464 5711132.172, 698126.288 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Cavendish Square</td>
+<td>Q5055036</td>
+<td>NaN</td>
+<td>en:Cavendish Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">154116823</td>
+<td>POLYGON ((697490.773 5711412.593, 697470.912 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Paddington Street Gardens South</td>
+<td>Q15265011</td>
+<td>NaN</td>
+<td>en:Paddington Street Gardens</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">161024051</td>
+<td>POLYGON ((700293.75 5710609.096, 700295.862 57...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Victoria Embankment Gardens</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">368199014</td>
+<td>POLYGON ((698984.135 5711072.821, 698985.147 5...</td>
+<td>NaN</td>
+<td>fence</td>
+<td>park</td>
+<td>Soho Square Gardens</td>
+<td>Q2705335</td>
+<td>Category:Soho_Square</td>
+<td>en:Soho Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">374960368</td>
+<td>POLYGON ((698635.692 5709611.129, 698652.371 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>St. James's Park</td>
+<td>Q216914</td>
+<td>NaN</td>
+<td>en:St James's Park</td>
+<td>yes</td>
+<td>Mo-Su 05:00-00:00</td>
+<td>...</td>
+<td>NaN</td>
+<td>park</td>
+<td>St. James's Park</td>
+<td>Parc Iago Sant</td>
+<td>圣詹姆士公园</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">374969316</td>
+<td>POLYGON ((698857.167 5709732.666, 698824.199 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">383999575</td>
+<td>POLYGON ((698502.689 5711443.431, 698530.335 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Pearson Square</td>
+<td>Q67199266</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">747150853</td>
+<td>POLYGON ((698874.805 5711610.457, 698884.695 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Alfred Place Gardens</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">803099035</td>
+<td>POLYGON ((699279.695 5712391.179, 699278.264 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>Cartwright Gardens</td>
+<td>Q19600673</td>
+<td>NaN</td>
+<td>en:Cartwright Gardens</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>カートライト・ガーデンズ</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">863554956</td>
+<td>POLYGON ((698548.21 5709661.801, 698533.411 57...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>The Green Park</td>
+<td>Q119892</td>
+<td>NaN</td>
+<td>en:Green Park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>绿园</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Green Park</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1066129483</td>
+<td>POLYGON ((697725.772 5710203.851, 697729.543 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1098763494</td>
+<td>POLYGON ((698632.144 5711655.736, 698650.639 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>park</td>
+<td>The Poets' Park</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>NaN</td>
 </tr>
 </tbody>
 </table>
 
-<p>1431 rows × 253 columns</p>
+<p>41 rows × 50 columns</p>
 </div>
 </div>
 </div>
-<p>Some preparatory data cleaning is typically necessary. This example extracts the particular rows and columns of interest for the subsequent steps of analysis.</p>
+<p>Once the data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame. Use the <code>max_netw_assign_dist</code> parameter to configurethe distance for network assignment.</p>
 <div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract nodes</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.loc[<span class="st">"node"</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extract relevant columns</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf[[<span class="st">"amenity"</span>, <span class="st">"geometry"</span>]]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">amenity</th>
-<th data-quarto-table-cell-role="th">geometry</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>pub</td>
-<td>POINT (699869.619 5711280.678)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>pub</td>
-<td>POINT (699749.16 5710787.29)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>pub</td>
-<td>POINT (699606.322 5711699.239)</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>pub</td>
-<td>POINT (700308.36 5710758.42)</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>pub</td>
-<td>POINT (699071.215 5711168.671)</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Once the land use and network data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    data_gdf,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"amenity"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    accessibility_keys<span class="op">=</span>[<span class="st">"pub"</span>, <span class="st">"restaurant"</span>],</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    data_gdf,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"leisure"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    accessibility_keys<span class="op">=</span>[<span class="st">"park"</span>],</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: pub, restaurant
+<pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: park
 INFO:cityseer.metrics.layers:Assigning data to network.
-INFO:cityseer.data:Assigning 701 data entries to network nodes (max_dist: 400).
-INFO:cityseer.data:Collected 1154 potential node assignments from data entries.
-INFO:cityseer.data:Finished assigning data. 1154 assignments added to 692 nodes.
+INFO:cityseer.data:Assigning 41 data entries to network nodes (max_dist: 100).
+INFO:cityseer.data:Collected 325 potential node assignments from data entries.
+INFO:cityseer.data:Finished assigning data. 325 assignments added to 306 nodes.
 INFO:cityseer.graph:Barriers unset and R-tree cleared.
-100%|██████████| 2854/2854 [00:01&lt;00:00, 2841.05it/s]
+100%|██████████| 2849/2849 [00:01&lt;00:00, 2792.29it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
@@ -851,76 +1514,43 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 <p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
 <p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_pub_100_nw', 'cc_pub_100_wt', 'cc_pub_200_nw',
-       'cc_pub_200_wt', 'cc_pub_400_nw', 'cc_pub_400_wt', 'cc_pub_800_nw',
-       'cc_pub_800_wt', 'cc_pub_nearest_max_800', 'cc_restaurant_100_nw',
-       'cc_restaurant_100_wt', 'cc_restaurant_200_nw', 'cc_restaurant_200_wt',
-       'cc_restaurant_400_nw', 'cc_restaurant_400_wt', 'cc_restaurant_800_nw',
-       'cc_restaurant_800_wt', 'cc_restaurant_nearest_max_800'],
+       'dual_node', 'cc_park_100_nw', 'cc_park_100_wt', 'cc_park_200_nw',
+       'cc_park_200_wt', 'cc_park_400_nw', 'cc_park_400_wt', 'cc_park_800_nw',
+       'cc_park_800_wt', 'cc_park_nearest_max_800'],
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;pycharm&quot;,&quot;value&quot;:{&quot;name&quot;:&quot;#%%\n&quot;}}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_restaurant_400_wt"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>data_gdf[data_gdf[<span class="st">"amenity"</span>] <span class="op">==</span> <span class="st">"restaurant"</span>].plot(</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"white"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;pycharm&quot;,&quot;value&quot;:{&quot;name&quot;:&quot;#%%\n&quot;}}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_park_nearest_max_800"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis_r"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>data_gdf.plot(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"grey"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(np.float64(697035.8123208123),
  np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+ np.float64(5709138.304744158),
+ np.float64(5712549.39964246))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="osm_accessibility_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-14" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_pub_nearest_max_800"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis_r"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>data_gdf[data_gdf[<span class="st">"amenity"</span>] <span class="op">==</span> <span class="st">"pub"</span>].plot(</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    markersize<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"white"</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709196.42405734),
- np.float64(5712635.724144622))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="osm_accessibility_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="osm_accessibility_polys_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

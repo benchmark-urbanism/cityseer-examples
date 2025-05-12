@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c7538e8d5032dc20429959a11a992779.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -195,25 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/5_ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5_ecosystem.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/6_cityseer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6_cityseer.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/7_data_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7_data_science.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/8_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8_models.html</span></a>
+ <span class="menu-text">Geospatial Ecosystem</span></a>
   </div>
 </li>
       </ul>
@@ -294,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<pre><code>/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm</code></pre>
 </div>
 </div>
@@ -313,147 +295,148 @@ WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 24093/24093 [00:00&lt;00:00, 52053.70it/s]
+100%|██████████| 24145/24145 [00:00&lt;00:00, 46421.16it/s]
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
 INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 22376/22376 [00:00&lt;00:00, 824367.32it/s]
+100%|██████████| 22421/22421 [00:00&lt;00:00, 1110224.90it/s]
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 24093/24093 [00:01&lt;00:00, 17619.79it/s]
+100%|██████████| 24145/24145 [00:01&lt;00:00, 16175.74it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 22376/22376 [00:00&lt;00:00, 23764.97it/s]
+100%|██████████| 22421/22421 [00:00&lt;00:00, 22510.93it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 12155/12155 [00:00&lt;00:00, 1504508.21it/s]
-100%|██████████| 12155/12155 [00:01&lt;00:00, 10579.17it/s]
+100%|██████████| 12164/12164 [00:00&lt;00:00, 1121603.80it/s]
+100%|██████████| 12164/12164 [00:01&lt;00:00, 9687.27it/s] 
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 10438/10438 [00:00&lt;00:00, 64006.25it/s]
-100%|██████████| 7386/7386 [00:00&lt;00:00, 306039.25it/s]
+100%|██████████| 10440/10440 [00:00&lt;00:00, 59741.81it/s]
+100%|██████████| 7388/7388 [00:00&lt;00:00, 316092.72it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 9004/9004 [00:00&lt;00:00, 902121.52it/s]
+100%|██████████| 9003/9003 [00:00&lt;00:00, 739591.42it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6652/6652 [00:00&lt;00:00, 1451714.98it/s]
+100%|██████████| 6656/6656 [00:00&lt;00:00, 1232823.47it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 90093.47it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 143576.96it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6661/6661 [00:00&lt;00:00, 52171.12it/s]
+100%|██████████| 6665/6665 [00:00&lt;00:00, 143090.59it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6612/6612 [00:00&lt;00:00, 1670043.24it/s]
+100%|██████████| 6616/6616 [00:00&lt;00:00, 1356546.50it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 38631.24it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 34780.63it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6668/6668 [00:00&lt;00:00, 329042.43it/s]
+100%|██████████| 6672/6672 [00:00&lt;00:00, 60350.74it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6658/6658 [00:00&lt;00:00, 70240.20it/s]
+100%|██████████| 6662/6662 [00:00&lt;00:00, 1500185.40it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 147680.84it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 114766.37it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6659/6659 [00:00&lt;00:00, 492746.73it/s]
+100%|██████████| 6663/6663 [00:00&lt;00:00, 401584.22it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 6659/6659 [00:00&lt;00:00, 1442882.18it/s]
+100%|██████████| 6663/6663 [00:00&lt;00:00, 1109346.12it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 96024.53it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 82581.44it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6660/6660 [00:00&lt;00:00, 428962.91it/s]
+100%|██████████| 6664/6664 [00:00&lt;00:00, 436554.55it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5270/5270 [00:00&lt;00:00, 61706.08it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 50825.33it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5270/5270 [00:00&lt;00:00, 6486.51it/s]
+100%|██████████| 5274/5274 [00:00&lt;00:00, 7370.89it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6608/6608 [00:00&lt;00:00, 265646.49it/s]
+100%|██████████| 6612/6612 [00:00&lt;00:00, 229613.66it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 5230/5230 [00:00&lt;00:00, 437909.69it/s]
+100%|██████████| 5234/5234 [00:00&lt;00:00, 396313.38it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 5158/5158 [00:00&lt;00:00, 61966.97it/s]
+100%|██████████| 5162/5162 [00:00&lt;00:00, 52166.18it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 5158/5158 [00:06&lt;00:00, 789.33it/s] 
+100%|██████████| 5162/5162 [00:07&lt;00:00, 732.22it/s] 
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6060/6060 [00:00&lt;00:00, 81597.58it/s]
+100%|██████████| 6067/6067 [00:00&lt;00:00, 73367.03it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4798/4798 [00:00&lt;00:00, 622637.62it/s]
+100%|██████████| 4805/4805 [00:00&lt;00:00, 488572.87it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4762/4762 [00:00&lt;00:00, 58029.97it/s]
+100%|██████████| 4769/4769 [00:00&lt;00:00, 48548.79it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4762/4762 [00:01&lt;00:00, 3430.03it/s]
+100%|██████████| 4769/4769 [00:01&lt;00:00, 3130.02it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5851/5851 [00:00&lt;00:00, 209652.49it/s]
+100%|██████████| 5862/5862 [00:00&lt;00:00, 186883.93it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4708/4708 [00:00&lt;00:00, 924951.20it/s]
+100%|██████████| 4717/4717 [00:00&lt;00:00, 653321.40it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4694/4694 [00:00&lt;00:00, 26154.54it/s]
+100%|██████████| 4702/4702 [00:00&lt;00:00, 51671.50it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 4694/4694 [00:02&lt;00:00, 2148.87it/s]
+100%|██████████| 4702/4702 [00:02&lt;00:00, 1965.22it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 5710/5710 [00:00&lt;00:00, 279914.40it/s]
+100%|██████████| 5720/5720 [00:00&lt;00:00, 271669.65it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4613/4613 [00:00&lt;00:00, 767943.02it/s]
+100%|██████████| 4621/4621 [00:00&lt;00:00, 714987.41it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 4598/4598 [00:00&lt;00:00, 56333.59it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 50758.30it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5687/5687 [00:00&lt;00:00, 1612452.30it/s]
+100%|██████████| 5697/5697 [00:00&lt;00:00, 1619447.64it/s]
 INFO:cityseer.tools.graphs:Snapping gapped endings.
-100%|██████████| 4598/4598 [00:00&lt;00:00, 18176.86it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 17154.05it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 5888/5888 [00:00&lt;00:00, 1752985.66it/s]
+100%|██████████| 5895/5895 [00:00&lt;00:00, 50307.17it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 4598/4598 [00:00&lt;00:00, 16131.24it/s]
+100%|██████████| 4606/4606 [00:00&lt;00:00, 14788.51it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 6766/6766 [00:00&lt;00:00, 442655.76it/s]
+100%|██████████| 6783/6783 [00:00&lt;00:00, 350667.00it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 5088/5088 [00:00&lt;00:00, 645277.54it/s]
+100%|██████████| 5101/5101 [00:00&lt;00:00, 710448.11it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 4287/4287 [00:00&lt;00:00, 32714.52it/s]
+100%|██████████| 4301/4301 [00:00&lt;00:00, 30221.51it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 4808/4808 [00:00&lt;00:00, 1453001.92it/s]
+100%|██████████| 4821/4821 [00:00&lt;00:00, 1399359.14it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 3131/3131 [00:00&lt;00:00, 11904.13it/s]
+100%|██████████| 3140/3140 [00:00&lt;00:00, 10304.31it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 4848/4848 [00:00&lt;00:00, 128808.62it/s]
+100%|██████████| 4862/4862 [00:00&lt;00:00, 108884.21it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 3131/3131 [00:00&lt;00:00, 61487.45it/s]
+100%|██████████| 3140/3140 [00:00&lt;00:00, 45960.64it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 3131/3131 [00:10&lt;00:00, 295.17it/s] 
+100%|██████████| 3140/3140 [00:11&lt;00:00, 271.78it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3874/3874 [00:00&lt;00:00, 44290.41it/s]
+100%|██████████| 3880/3880 [00:00&lt;00:00, 39217.24it/s]
 INFO:cityseer.tools.util:Creating edges STR tree.
-100%|██████████| 3678/3678 [00:00&lt;00:00, 1361695.66it/s]
+100%|██████████| 3681/3681 [00:00&lt;00:00, 1665505.18it/s]
 INFO:cityseer.tools.graphs:Splitting opposing edges.
-100%|██████████| 2472/2472 [00:00&lt;00:00, 12715.47it/s]
+100%|██████████| 2475/2475 [00:00&lt;00:00, 11360.25it/s]
 INFO:cityseer.tools.graphs:Squashing opposing nodes
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3688/3688 [00:00&lt;00:00, 401000.47it/s]
+100%|██████████| 3691/3691 [00:00&lt;00:00, 361574.55it/s]
 INFO:cityseer.tools.util:Creating nodes STR tree
-100%|██████████| 2472/2472 [00:00&lt;00:00, 56345.58it/s]
+100%|██████████| 2475/2475 [00:00&lt;00:00, 18504.25it/s]
 INFO:cityseer.tools.graphs:Consolidating nodes.
-100%|██████████| 2472/2472 [00:06&lt;00:00, 363.22it/s]
+100%|██████████| 2475/2475 [00:07&lt;00:00, 348.21it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-100%|██████████| 3165/3165 [00:00&lt;00:00, 56212.72it/s]
+100%|██████████| 3166/3166 [00:00&lt;00:00, 47492.42it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 2028/2028 [00:00&lt;00:00, 106089.56it/s]
+100%|██████████| 2028/2028 [00:00&lt;00:00, 80215.47it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-100%|██████████| 2930/2930 [00:00&lt;00:00, 137809.62it/s]
+100%|██████████| 2929/2929 [00:00&lt;00:00, 125610.83it/s]
 INFO:cityseer.tools.graphs:Ironing edges.
-100%|██████████| 2911/2911 [00:00&lt;00:00, 22077.08it/s]
+100%|██████████| 2911/2911 [00:00&lt;00:00, 19943.68it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 2898/2898 [00:00&lt;00:00, 440705.30it/s]
+100%|██████████| 2900/2900 [00:00&lt;00:00, 422621.92it/s]
 INFO:cityseer.tools.graphs:Removing dangling nodes.
-100%|██████████| 1887/1887 [00:00&lt;00:00, 709706.93it/s]
+100%|██████████| 1887/1887 [00:00&lt;00:00, 630297.97it/s]
 INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 1869/1869 [00:00&lt;00:00, 305108.56it/s]
+100%|██████████| 1869/1869 [00:00&lt;00:00, 274682.16it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 50.
-100%|██████████| 2845/2845 [00:00&lt;00:00, 3897.41it/s]
+100%|██████████| 2849/2849 [00:00&lt;00:00, 3419.86it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 5001/5001 [00:00&lt;00:00, 43693.58it/s]
+100%|██████████| 5001/5001 [00:00&lt;00:00, 38701.72it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 5001/5001 [00:05&lt;00:00, 882.45it/s] 
+100%|██████████| 5001/5001 [00:06&lt;00:00, 795.13it/s] 
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 5001/5001 [00:00&lt;00:00, 57807.11it/s]
-100%|██████████| 5001/5001 [00:00&lt;00:00, 6341.88it/s]</code></pre>
+100%|██████████| 5001/5001 [00:00&lt;00:00, 53375.90it/s]
+100%|██████████| 5001/5001 [00:00&lt;00:00, 5193.63it/s]
+INFO:cityseer.graph:Edge R-tree built successfully with 8883 items.</code></pre>
 </div>
 </div>
 <p>Prepare the buildings GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>building</code>.</p>
@@ -522,8 +505,56 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <tbody>
 <tr class="odd">
 <td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">way</td>
-<td data-quarto-table-cell-role="th">1376078547</td>
-<td>POLYGON ((700109.929 5711088.531, 700109.345 5...</td>
+<td data-quarto-table-cell-role="th">1374498886</td>
+<td>POLYGON ((699072.276 5711987.717, 699073.651 5...</td>
+<td>London</td>
+<td>WC1H 0PD</td>
+<td>Gordon Square</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>kiosk</td>
+<td>NaN</td>
+<td>Garden Kiosk</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1374681344</td>
+<td>POLYGON ((700334.357 5710842.473, 700337.684 5...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>commercial</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1374681345</td>
+<td>POLYGON ((700347.126 5710850.783, 700337.684 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -546,63 +577,15 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1376143786</td>
-<td>POLYGON ((699629.646 5710126.422, 699636.667 5...</td>
+<td data-quarto-table-cell-role="th">1374681346</td>
+<td>POLYGON ((700335.868 5710827.778, 700339.655 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>yes</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1376223154</td>
-<td>POLYGON ((698717.576 5711621.834, 698721.937 5...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>yes</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1376708981</td>
-<td>POLYGON ((699087.434 5711425.131, 699087.697 5...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>yes</td>
+<td>commercial</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -618,15 +601,15 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1377426683</td>
-<td>POLYGON ((699683.471 5710178.415, 699687.2 571...</td>
+<td data-quarto-table-cell-role="th">1374820282</td>
+<td>POLYGON ((699547.129 5710318.314, 699559.064 5...</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
-<td>stall</td>
+<td>yes</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>...</td>
@@ -810,23 +793,14 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing statistics.
 INFO:cityseer.metrics.layers:Assigning data to network.
-100%|██████████| 9767/9767 [00:00&lt;00:00, 1000922.77it/s]
-100%|██████████| 5001/5001 [00:01&lt;00:00, 4926.64it/s]
+INFO:cityseer.data:Assigning 9768 data entries to network nodes (max_dist: 100).
+INFO:cityseer.data:Collected 89659 potential node assignments from data entries.
+INFO:cityseer.data:Finished assigning data. 89659 assignments added to 4853 nodes.
+INFO:cityseer.graph:Barriers unset and R-tree cleared.
+100%|██████████| 5001/5001 [00:01&lt;00:00, 4818.67it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
-INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)</code></pre>
+INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.</code></pre>
 </div>
 </div>
 <p>This will generate a set of columns containing <code>count</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, and <code>var</code>, in unweighted <code>nw</code> and weighted <code>wt</code> versions (where applicable) for each of the input distance thresholds.</p>
@@ -860,7 +834,7 @@ INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
 </div>
 </div>
 </div>
-<div id="90a20dfe" class="cell" data-execution_count="12">
+<div id="90a20dfe" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_area_mean_100_wt"</span>,</span>
@@ -882,11 +856,11 @@ INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>(np.float64(697129.6654319772),
- np.float64(700565.4282649271),
- np.float64(5709114.974765815),
- np.float64(5712534.021335888))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>(np.float64(697102.5282020274),
+ np.float64(700585.1041845226),
+ np.float64(5709114.861675241),
+ np.float64(5712536.396237949))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

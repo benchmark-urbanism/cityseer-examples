@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c7538e8d5032dc20429959a11a992779.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -195,25 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/5_ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5_ecosystem.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/6_cityseer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6_cityseer.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/7_data_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7_data_science.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../class/8_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8_models.html</span></a>
+ <span class="menu-text">Geospatial Ecosystem</span></a>
   </div>
 </li>
       </ul>
@@ -300,19 +282,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 47155/47155 [00:06&lt;00:00, 6967.44it/s]
+<pre><code>100%|██████████| 47155/47155 [00:06&lt;00:00, 7216.48it/s]
 INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 47129/47129 [00:00&lt;00:00, 183089.20it/s]
+100%|██████████| 47129/47129 [00:00&lt;00:00, 122034.52it/s]
 INFO:cityseer.tools.graphs:Decomposing graph to maximum edge lengths of 50.
-100%|██████████| 47129/47129 [00:21&lt;00:00, 2236.45it/s]
+100%|██████████| 47129/47129 [00:22&lt;00:00, 2072.16it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 137778/137778 [00:03&lt;00:00, 42819.25it/s]
+100%|██████████| 137778/137778 [00:03&lt;00:00, 36067.12it/s]
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 137778/137778 [02:11&lt;00:00, 1051.62it/s]
+100%|██████████| 137778/137778 [02:29&lt;00:00, 924.29it/s] 
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 137778/137778 [00:02&lt;00:00, 50751.69it/s]
-100%|██████████| 137778/137778 [00:21&lt;00:00, 6268.15it/s] </code></pre>
+100%|██████████| 137778/137778 [00:02&lt;00:00, 56625.43it/s]
+100%|██████████| 137778/137778 [00:20&lt;00:00, 6756.26it/s] 
+INFO:cityseer.graph:Edge R-tree built successfully with 195313 items.</code></pre>
 </div>
 </div>
 <p>Read-in the dataset from the source Geopackage or Shapefile Geopandas.</p>
@@ -442,23 +425,14 @@ INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing statistics.
 INFO:cityseer.metrics.layers:Assigning data to network.
-100%|██████████| 135302/135302 [00:00&lt;00:00, 761483.31it/s]
-100%|██████████| 137778/137778 [02:06&lt;00:00, 1089.38it/s]
+INFO:cityseer.data:Assigning 135302 data entries to network nodes (max_dist: 100).
+INFO:cityseer.data:Collected 1282627 potential node assignments from data entries.
+INFO:cityseer.data:Finished assigning data. 1282627 assignments added to 89639 nodes.
+INFO:cityseer.graph:Barriers unset and R-tree cleared.
+100%|██████████| 137778/137778 [01:27&lt;00:00, 1573.99it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
-INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)
-/Users/gareth/dev/cityseer-examples/.venv/lib/python3.11/site-packages/geopandas/geodataframe.py:1819: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  super().__setitem__(key, value)</code></pre>
+INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.</code></pre>
 </div>
 </div>
 <p>This will generate a set of columns containing <code>count</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, and <code>var</code>, in unweighted <code>nw</code> and weighted <code>wt</code> versions (where applicable) for each of the input distance thresholds.</p>

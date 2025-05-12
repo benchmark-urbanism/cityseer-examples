@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ecosystem – Cityseer Guide</title>
+<title>Geospatial Ecosystem – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,17 +20,52 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../class/6_cityseer.html" rel="next">
+<link href="../class/6_cityseer.qmd" rel="next">
 <link href="../class/4_geopandas.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -38,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c7538e8d5032dc20429959a11a992779.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -68,6 +103,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom-style.css">
@@ -94,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/index.html">Python 101</a></li><li class="breadcrumb-item"><a href="../class/5_ecosystem.html">5_ecosystem.html</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/index.html">Python 101</a></li><li class="breadcrumb-item"><a href="../class/5_ecosystem.html">Geospatial Ecosystem</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -159,25 +197,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class/5_ecosystem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">5_ecosystem.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../class/6_cityseer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6_cityseer.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../class/7_data_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7_data_science.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../class/8_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8_models.html</span></a>
+ <span class="menu-text">Geospatial Ecosystem</span></a>
   </div>
 </li>
       </ul>
@@ -222,17 +242,809 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#prerequisites-and-setup" id="toc-prerequisites-and-setup" class="nav-link active" data-scroll-target="#prerequisites-and-setup">Prerequisites and Setup</a></li>
+  <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries">Importing Libraries</a></li>
+  <li><a href="#osmnx" id="toc-osmnx" class="nav-link" data-scroll-target="#osmnx">osmnx</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#momepy" id="toc-momepy" class="nav-link" data-scroll-target="#momepy">momepy</a>
+  <ul class="collapse">
+  <li><a href="#building-orientations" id="toc-building-orientations" class="nav-link" data-scroll-target="#building-orientations">Building Orientations</a></li>
+  <li><a href="#shared-walls" id="toc-shared-walls" class="nav-link" data-scroll-target="#shared-walls">Shared Walls</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/index.html">Python 101</a></li><li class="breadcrumb-item"><a href="../class/5_ecosystem.html">5_ecosystem.html</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/index.html">Python 101</a></li><li class="breadcrumb-item"><a href="../class/5_ecosystem.html">Geospatial Ecosystem</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Geospatial Ecosystem</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Building upon our previous explorations of Python, Shapely, and GeoPandas, this lesson introduces the broader Python geospatial ecosystem. We will focus on two particularly useful libraries: <code>osmnx</code> for acquiring urban data from OpenStreetMap, and <code>momepy</code> for conducting urban morphology analysis.</p>
+<section id="prerequisites-and-setup" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-and-setup">Prerequisites and Setup</h3>
+<p>Ensure you have <code>osmnx</code> and <code>momepy</code> installed in your Python environment. If you are following along with a notebook, you can install these using pip.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an exclamation mark to run in notebooks</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">!pip</span> install osmnx momepy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Packages such as <code>matplotlib</code> and <code>geopandas</code> are often already installed by default but, if necessary, you can install them in the same way.</p>
+</section>
+<section id="importing-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="importing-libraries">Importing Libraries</h3>
+<p>Let’s import the necessary packages:</p>
+<div id="df09ba6b" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use an alias for convenience</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/cityseer-examples/cityseer-examples/.venv/lib/python3.13/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+</div>
+</section>
+<section id="osmnx" class="level2">
+<h2 class="anchored" data-anchor-id="osmnx">osmnx</h2>
+<p><a href="https://osmnx.readthedocs.io/"><code>osmnx</code></a> is a Python package that simplifies downloading and working with geospatial data from OpenStreetMap (OSM), such as building footprints or points of interest.</p>
+<p>This example demonstrates how to download building footprints within a 1km radius of a specified location in Nicosia, Cyprus, defined by its coordinates. <code>osmnx</code> provides several methods for downloading data; here, we will use <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_point"><code>features_from_point</code></a>.</p>
+<div id="063d0764" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the point of interest (latitude, longitude) and distance</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>center_point <span class="op">=</span> (<span class="fl">35.17526</span>, <span class="fl">33.36402</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>distance_m <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Download building footprints</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> ox.features_from_point(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    center_point, tags<span class="op">=</span>{<span class="st">"building"</span>: <span class="va">True</span>}, dist<span class="op">=</span>distance_m</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>osmnx</code> returns GeoDataFrames which, as shown in the previous lesson, are ideal for spatial analysis in Python. Note the <code>tags={"building": True}</code> argument, which instructs <code>osmnx</code> to fetch all features tagged as buildings in OSM. By changing these tags, you can also download other types of features, such as roads or parks.</p>
+<p>It is good practice to inspect the data you have downloaded. The <code>head()</code> function displays the first few rows of the GeoDataFrame, allowing you to quickly check the data structure and attributes.</p>
+<div id="66d91665" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the buildings GeoDataFrame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">amenity</th>
+<th data-quarto-table-cell-role="th">building</th>
+<th data-quarto-table-cell-role="th">bus</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">public_transport</th>
+<th data-quarto-table-cell-role="th">addr:city</th>
+<th data-quarto-table-cell-role="th">addr:housenumber</th>
+<th data-quarto-table-cell-role="th">addr:postcode</th>
+<th data-quarto-table-cell-role="th">addr:street</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">indoor_seating</th>
+<th data-quarto-table-cell-role="th">tomb</th>
+<th data-quarto-table-cell-role="th">name:hy</th>
+<th data-quarto-table-cell-role="th">wikipedia:hy</th>
+<th data-quarto-table-cell-role="th">construction</th>
+<th data-quarto-table-cell-role="th">theatre:type</th>
+<th data-quarto-table-cell-role="th">association</th>
+<th data-quarto-table-cell-role="th">house</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">inscription</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">element</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">node</td>
+<td data-quarto-table-cell-role="th">4338033483</td>
+<td>POINT (33.36625 35.18368)</td>
+<td>bus_station</td>
+<td>yes</td>
+<td>yes</td>
+<td>İtimat (Lefkoşa Mağusa Servis)</td>
+<td>station</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5206675859</td>
+<td>POINT (33.35992 35.17344)</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12027040593</td>
+<td>POINT (33.35773 35.17435)</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Apostolic Nunciature to Cyprus</td>
+<td>NaN</td>
+<td>Nicosia</td>
+<td>1</td>
+<td>1010</td>
+<td>Pafou</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">relation</td>
+<td data-quarto-table-cell-role="th">2580980</td>
+<td>POLYGON ((33.36224 35.17641, 33.3628 35.17652,...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Büyük Han</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>OTTOMAN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2785751</td>
+<td>POLYGON ((33.36028 35.17739, 33.36019 35.17701...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Müftü Raci Sokak</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 170 columns</p>
+</div>
+</div>
+</div>
+<p>You can also plot the downloaded data:</p>
+<div id="58fd22a8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a plot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the buildings</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>gdf_buildings.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and remove the axis for a cleaner look</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Buildings around </span><span class="sc">{</span>center_point<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>distance_m<span class="sc">}</span><span class="ss">m radius)"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>(np.float64(33.351370125),
+ np.float64(33.376489175),
+ np.float64(35.164918945000004),
+ np.float64(35.185606754999995))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_ecosystem_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For more detailed information on different ways to query OSM features data, refer to the <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#module-osmnx.features">features documentation</a>.</p>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>To streamline the subsequent analysis, it is advisable to first filter for the types of geometry you intend to work with. In this instance, we are interested in polygon or multi-polygon geometries and will discard other types, such as points or linestrings.</p>
+<div id="aabcbd05" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out non-polygon geometries</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings[</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    gdf_buildings.geometry.<span class="bu">type</span>.isin([<span class="st">'Polygon'</span>, <span class="st">'MultiPolygon'</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">amenity</th>
+<th data-quarto-table-cell-role="th">building</th>
+<th data-quarto-table-cell-role="th">bus</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">public_transport</th>
+<th data-quarto-table-cell-role="th">addr:city</th>
+<th data-quarto-table-cell-role="th">addr:housenumber</th>
+<th data-quarto-table-cell-role="th">addr:postcode</th>
+<th data-quarto-table-cell-role="th">addr:street</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">indoor_seating</th>
+<th data-quarto-table-cell-role="th">tomb</th>
+<th data-quarto-table-cell-role="th">name:hy</th>
+<th data-quarto-table-cell-role="th">wikipedia:hy</th>
+<th data-quarto-table-cell-role="th">construction</th>
+<th data-quarto-table-cell-role="th">theatre:type</th>
+<th data-quarto-table-cell-role="th">association</th>
+<th data-quarto-table-cell-role="th">house</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">inscription</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">element</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">relation</td>
+<td data-quarto-table-cell-role="th">2580980</td>
+<td>POLYGON ((33.36224 35.17641, 33.3628 35.17652,...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Büyük Han</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>OTTOMAN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2785751</td>
+<td>POLYGON ((33.36028 35.17739, 33.36019 35.17701...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Müftü Raci Sokak</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3403727</td>
+<td>POLYGON ((33.36277 35.17718, 33.36274 35.17688...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Kumarcılar Hanı</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8756098</td>
+<td>POLYGON ((33.36483 35.17161, 33.36483 35.17161...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8762332</td>
+<td>POLYGON ((33.36003 35.17852, 33.36002 35.17849...</td>
+<td>NaN</td>
+<td>house</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 170 columns</p>
+</div>
+</div>
+</div>
+<p>Secondly, we will reset the index so that all features are neatly indexed from zero upwards, without duplicates.</p>
+<div id="11b4901a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the index</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">amenity</th>
+<th data-quarto-table-cell-role="th">building</th>
+<th data-quarto-table-cell-role="th">bus</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">public_transport</th>
+<th data-quarto-table-cell-role="th">addr:city</th>
+<th data-quarto-table-cell-role="th">addr:housenumber</th>
+<th data-quarto-table-cell-role="th">addr:postcode</th>
+<th data-quarto-table-cell-role="th">addr:street</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">indoor_seating</th>
+<th data-quarto-table-cell-role="th">tomb</th>
+<th data-quarto-table-cell-role="th">name:hy</th>
+<th data-quarto-table-cell-role="th">wikipedia:hy</th>
+<th data-quarto-table-cell-role="th">construction</th>
+<th data-quarto-table-cell-role="th">theatre:type</th>
+<th data-quarto-table-cell-role="th">association</th>
+<th data-quarto-table-cell-role="th">house</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">inscription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>POLYGON ((33.36224 35.17641, 33.3628 35.17652,...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Büyük Han</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>OTTOMAN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>POLYGON ((33.36028 35.17739, 33.36019 35.17701...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Müftü Raci Sokak</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>POLYGON ((33.36277 35.17718, 33.36274 35.17688...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>Kumarcılar Hanı</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>POLYGON ((33.36483 35.17161, 33.36483 35.17161...</td>
+<td>NaN</td>
+<td>yes</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>POLYGON ((33.36003 35.17852, 33.36002 35.17849...</td>
+<td>NaN</td>
+<td>house</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>multipolygon</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 170 columns</p>
+</div>
+</div>
+</div>
+<p>Thirdly, we will drop any columns not relevant to our analysis. In this case, we will retain the geometry column and the <code>building</code> column.</p>
+<div id="a1c43d3b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings[[<span class="st">'geometry'</span>, <span class="st">'building'</span>]]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">building</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>POLYGON ((33.36224 35.17641, 33.3628 35.17652,...</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>POLYGON ((33.36028 35.17739, 33.36019 35.17701...</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>POLYGON ((33.36277 35.17718, 33.36274 35.17688...</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>POLYGON ((33.36483 35.17161, 33.36483 35.17161...</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>POLYGON ((33.36003 35.17852, 33.36002 35.17849...</td>
+<td>house</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Before performing morphological analysis, it is necessary to ensure your data is in a <strong>projected Coordinate Reference System (CRS)</strong>. Morphological metrics often involve measurements of distance and area, which are only accurate in a projected CRS. For Nicosia, we will use EPSG:3035 (ETRS89 / LAEA Europe), a European projection.</p>
+<div id="7082750d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the target CRS</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj <span class="op">=</span> gdf_buildings.to_crs(<span class="dv">3035</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s replot the building data to ensure everything is in order.</p>
+<div id="cd67cd01" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a plot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the buildings</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the title and remove axis</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Buildings around </span><span class="sc">{</span>center_point<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>distance_m<span class="sc">}</span><span class="ss">m radius)"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>(np.float64(6433775.66431334),
+ np.float64(6436461.588935598),
+ np.float64(1669215.3095963916),
+ np.float64(1672018.7854921184))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_ecosystem_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="momepy" class="level2">
+<h2 class="anchored" data-anchor-id="momepy">momepy</h2>
+<p><a href="https://momepy.readthedocs.io/"><code>momepy</code></a> is a library for the quantitative analysis of urban form – also known as urban morphology. It operates primarily on GeoDataFrames and provides a range of functions for calculating various morphological metrics.</p>
+<p>By way of example, we will explore two of these functions.</p>
+<section id="building-orientations" class="level3">
+<h3 class="anchored" data-anchor-id="building-orientations">Building Orientations</h3>
+<p><code>momepy</code> can calculate the orientation of building footprints using the <a href="https://docs.momepy.org/en/stable/api/momepy.orientation.html"><code>orientation</code></a> function.</p>
+<div id="e9c45628" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate building orientation</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj[<span class="st">'orientation'</span>] <span class="op">=</span> momepy.orientation(gdf_buildings_proj)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj.plot(ax<span class="op">=</span>ax, column<span class="op">=</span><span class="st">'orientation'</span>, cmap<span class="op">=</span><span class="st">'Spectral'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Building orientations"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(np.float64(6433775.66431334),
+ np.float64(6436461.588935598),
+ np.float64(1669215.3095963916),
+ np.float64(1672018.7854921184))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_ecosystem_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="shared-walls" class="level3">
+<h3 class="anchored" data-anchor-id="shared-walls">Shared Walls</h3>
+<p><code>momepy</code> can calculate shared wall lengths between buildings using the <a href="https://docs.momepy.org/en/stable/api/momepy.shared_walls.html"><code>shared_walls</code></a> function.</p>
+<div id="e78525a6" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate shared wall lengths</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj[<span class="st">'shared_wall_length'</span>] <span class="op">=</span> momepy.shared_walls(gdf_buildings_proj)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj.plot(ax<span class="op">=</span>ax, column<span class="op">=</span><span class="st">'shared_wall_length'</span>, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Building shared wall lengths"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>(np.float64(6433775.66431334),
+ np.float64(6436461.588935598),
+ np.float64(1669215.3095963916),
+ np.float64(1672018.7854921184))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_ecosystem_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Many other functions are available in <code>momepy</code> for calculating various morphological metrics. For a comprehensive list, please refer to the <a href="https://docs.momepy.org/en/stable/api.html">momepy documentation</a>.</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This has been a brief exploration of the broader Python geospatial ecosystem, focusing on <code>osmnx</code> for downloading urban data from OpenStreetMap and <code>momepy</code> for conducting urban morphology analysis. This is just a small sample of what these and other tools can achieve.</p>
+<p>Remember that with GeoPandas, you can export your data. So, after downloading data and running any variety of metrics using available Python packages, you can then export the file, which can be further visualised or manipulated with packages such as QGIS. For example, you can export your data to a GeoPackage file using the <code>to_file</code> method:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj.to_file(<span class="st">"nicosia_buildings_metrics.gpkg"</span>, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -641,8 +1453,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../class/6_cityseer.html" class="pagination-link" aria-label="6_cityseer.html">
-        <span class="nav-page-text">6_cityseer.html</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../class/6_cityseer.qmd" class="pagination-link" aria-label="">
+        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
