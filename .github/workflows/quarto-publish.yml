@@ -43,3 +43,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # helps quarto find the right python env
           QUARTO_PYTHON: .venv/bin/python
+          CITYSEER_QUIET_MODE: 1
