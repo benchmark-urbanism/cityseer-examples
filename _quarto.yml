@@ -26,7 +26,7 @@ website:
           - href: class/2_basics.qmd
           - href: class/3_spatial.qmd
           - href: class/4_geopandas.qmd
-          - href: class/5_ecosystem.qmd
+          - href: class/5_urban.qmd
           - href: class/6_data_science.qmd
       - text: Cityseer Recipes
         href: recipes/index.qmd
