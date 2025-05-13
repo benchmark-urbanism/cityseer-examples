@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-848915fdb8d662bd90a943bc583e2b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -288,14 +288,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 47155/47155 [00:07&lt;00:00, 6023.09it/s]
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-100%|██████████| 47129/47129 [00:00&lt;00:00, 118331.57it/s]
+<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-100%|██████████| 47129/47129 [00:01&lt;00:00, 36421.77it/s]
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
-100%|██████████| 47129/47129 [01:31&lt;00:00, 512.39it/s]</code></pre>
+INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
 </div>
 </div>
 <div id="cell-2" class="cell" data-execution_count="2">
@@ -303,12 +299,10 @@ INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-100%|██████████| 47129/47129 [00:01&lt;00:00, 35443.57it/s]
-100%|██████████| 47129/47129 [00:15&lt;00:00, 3138.60it/s]
 INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="14">
+<div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
@@ -320,7 +314,6 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        nodes_gdf[<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_not"</span>] <span class="op">=</span> nodes_gdf[col]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 47129/47129 [03:38&lt;00:00, 215.64it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
 INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.
@@ -337,7 +330,7 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <pre><code>INFO:cityseer.tools.io:Loading GTFS data from data/madrid_gtfs/madrid_metro
 INFO:cityseer.tools.io:Loaded 1272 stops and 2360 stop times
 INFO:cityseer.tools.io:Adding GTFS stops to network nodes (with street linking logic).
-  0%|          | 0/1272 [00:00&lt;?, ?it/s]INFO:cityseer.graph:Linking transport node 47129 to street node 29983 with distance 43.50581422044226.
+INFO:cityseer.graph:Linking transport node 47129 to street node 29983 with distance 43.50581422044226.
 INFO:cityseer.graph:Linking transport node 47129 to street node 29984 with distance 58.006310179264204.
 INFO:cityseer.graph:Added transport node 47129 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47130 to street node 29983 with distance 52.29819803214955.
@@ -724,7 +717,7 @@ INFO:cityseer.graph:Added transport node 47273 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 47274 to street node 28102 with distance 21.243324792161655.
 INFO:cityseer.graph:Linking transport node 47274 to street node 28105 with distance 24.35026936232934.
 INFO:cityseer.graph:Added transport node 47274 and created 4 link edges.
- 11%|█▏        | 146/1272 [00:00&lt;00:00, 1458.59it/s]INFO:cityseer.graph:Linking transport node 47275 to street node 28093 with distance 10.346103987621472.
+INFO:cityseer.graph:Linking transport node 47275 to street node 28093 with distance 10.346103987621472.
 INFO:cityseer.graph:Added transport node 47275 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 47276 to street node 33212 with distance 44.85722866034253.
 INFO:cityseer.graph:Linking transport node 47276 to street node 33216 with distance 14.073698618567304.
@@ -1121,7 +1114,7 @@ INFO:cityseer.graph:Added transport node 47419 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47420 to street node 42157 with distance 142.84363713468667.
 INFO:cityseer.graph:Linking transport node 47420 to street node 42159 with distance 13.849893456114609.
 INFO:cityseer.graph:Added transport node 47420 and created 4 link edges.
- 23%|██▎       | 292/1272 [00:00&lt;00:01, 941.79it/s] INFO:cityseer.graph:Linking transport node 47421 to street node 30028 with distance 297.6590924063352.
+INFO:cityseer.graph:Linking transport node 47421 to street node 30028 with distance 297.6590924063352.
 INFO:cityseer.graph:Linking transport node 47421 to street node 30030 with distance 120.88308039487296.
 INFO:cityseer.graph:Added transport node 47421 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47422 to street node 42157 with distance 179.39345878850054.
@@ -1405,7 +1398,7 @@ INFO:cityseer.graph:Added transport node 47524 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47525 to street node 31862 with distance 84.63699841102434.
 INFO:cityseer.graph:Linking transport node 47525 to street node 31866 with distance 9.30343809889562.
 INFO:cityseer.graph:Added transport node 47525 and created 4 link edges.
- 31%|███       | 397/1272 [00:00&lt;00:01, 708.83it/s]INFO:cityseer.graph:Linking transport node 47526 to street node 36356 with distance 47.21227501480724.
+INFO:cityseer.graph:Linking transport node 47526 to street node 36356 with distance 47.21227501480724.
 INFO:cityseer.graph:Linking transport node 47526 to street node 36359 with distance 68.4034801418333.
 INFO:cityseer.graph:Added transport node 47526 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47527 to street node 36356 with distance 18.18795695758339.
@@ -1622,7 +1615,7 @@ INFO:cityseer.graph:Added transport node 47604 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47605 to street node 39404 with distance 34.289663109879015.
 INFO:cityseer.graph:Linking transport node 47605 to street node 39410 with distance 39.759470883896135.
 INFO:cityseer.graph:Added transport node 47605 and created 4 link edges.
- 38%|███▊      | 477/1272 [00:00&lt;00:01, 658.63it/s]INFO:cityseer.graph:Linking transport node 47606 to street node 39410 with distance 25.15837744826737.
+INFO:cityseer.graph:Linking transport node 47606 to street node 39410 with distance 25.15837744826737.
 INFO:cityseer.graph:Linking transport node 47606 to street node 45687 with distance 54.81962750277273.
 INFO:cityseer.graph:Added transport node 47606 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47607 to street node 39401 with distance 56.809604113088206.
@@ -1816,7 +1809,7 @@ INFO:cityseer.graph:Added transport node 47675 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 47676 to street node 31614 with distance 11.58304119190847.
 INFO:cityseer.graph:Linking transport node 47676 to street node 35831 with distance 49.16903114821216.
 INFO:cityseer.graph:Added transport node 47676 and created 4 link edges.
- 43%|████▎     | 548/1272 [00:00&lt;00:01, 566.67it/s]INFO:cityseer.graph:Linking transport node 47677 to street node 42721 with distance 23.504928132368622.
+INFO:cityseer.graph:Linking transport node 47677 to street node 42721 with distance 23.504928132368622.
 INFO:cityseer.graph:Added transport node 47677 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 47678 to street node 20738 with distance 57.92679146247755.
 INFO:cityseer.graph:Linking transport node 47678 to street node 42721 with distance 26.981726201053075.
@@ -2064,7 +2057,7 @@ INFO:cityseer.graph:Added transport node 47769 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47770 to street node 32253 with distance 60.62004199452851.
 INFO:cityseer.graph:Linking transport node 47770 to street node 32265 with distance 29.93230331476729.
 INFO:cityseer.graph:Added transport node 47770 and created 4 link edges.
- 50%|█████     | 642/1272 [00:00&lt;00:00, 653.85it/s]INFO:cityseer.graph:Linking transport node 47771 to street node 36813 with distance 61.420898742524976.
+INFO:cityseer.graph:Linking transport node 47771 to street node 36813 with distance 61.420898742524976.
 INFO:cityseer.graph:Linking transport node 47771 to street node 36814 with distance 0.6805866857073952.
 INFO:cityseer.graph:Added transport node 47771 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47772 to street node 36813 with distance 19.865171401645558.
@@ -2269,7 +2262,7 @@ INFO:cityseer.graph:Added transport node 47841 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47842 to street node 31394 with distance 30.037243986647848.
 INFO:cityseer.graph:Linking transport node 47842 to street node 31395 with distance 34.06524040886234.
 INFO:cityseer.graph:Added transport node 47842 and created 4 link edges.
- 56%|█████▌    | 714/1272 [00:01&lt;00:01, 487.08it/s]INFO:cityseer.graph:Linking transport node 47843 to street node 25780 with distance 15.541713100370332.
+INFO:cityseer.graph:Linking transport node 47843 to street node 25780 with distance 15.541713100370332.
 INFO:cityseer.graph:Linking transport node 47843 to street node 31394 with distance 34.9752128132047.
 INFO:cityseer.graph:Added transport node 47843 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47844 to street node 22062 with distance 13.732848451099544.
@@ -2428,7 +2421,7 @@ INFO:cityseer.graph:Added transport node 47899 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47900 to street node 35327 with distance 23.33898550041462.
 INFO:cityseer.graph:Linking transport node 47900 to street node 35329 with distance 38.541445001977515.
 INFO:cityseer.graph:Added transport node 47900 and created 4 link edges.
- 61%|██████    | 772/1272 [00:01&lt;00:01, 492.69it/s]INFO:cityseer.graph:Linking transport node 47901 to street node 25644 with distance 11.351588834522548.
+INFO:cityseer.graph:Linking transport node 47901 to street node 25644 with distance 11.351588834522548.
 INFO:cityseer.graph:Linking transport node 47901 to street node 35326 with distance 51.25574361410983.
 INFO:cityseer.graph:Added transport node 47901 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47902 to street node 35325 with distance 27.907266077466943.
@@ -2584,7 +2577,7 @@ INFO:cityseer.graph:Added transport node 47962 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47963 to street node 43409 with distance 57.41744111231197.
 INFO:cityseer.graph:Linking transport node 47963 to street node 43410 with distance 109.11976191626428.
 INFO:cityseer.graph:Added transport node 47963 and created 4 link edges.
- 66%|██████▌   | 835/1272 [00:01&lt;00:00, 521.93it/s]INFO:cityseer.graph:Linking transport node 47964 to street node 43409 with distance 69.80469159378023.
+INFO:cityseer.graph:Linking transport node 47964 to street node 43409 with distance 69.80469159378023.
 INFO:cityseer.graph:Linking transport node 47964 to street node 43410 with distance 122.57292079001292.
 INFO:cityseer.graph:Added transport node 47964 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 47965 to street node 43459 with distance 29.336789534103062.
@@ -2892,7 +2885,7 @@ INFO:cityseer.graph:Added transport node 48077 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 48078 to street node 38454 with distance 36.46257431025911.
 INFO:cityseer.graph:Linking transport node 48078 to street node 41390 with distance 60.1123232489042.
 INFO:cityseer.graph:Added transport node 48078 and created 4 link edges.
- 75%|███████▍  | 950/1272 [00:01&lt;00:00, 671.42it/s]INFO:cityseer.graph:Linking transport node 48079 to street node 21473 with distance 60.221604318092.
+INFO:cityseer.graph:Linking transport node 48079 to street node 21473 with distance 60.221604318092.
 INFO:cityseer.graph:Added transport node 48079 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 48080 to street node 21477 with distance 10.975115991350103.
 INFO:cityseer.graph:Added transport node 48080 and created 2 link edges.
@@ -3114,7 +3107,7 @@ INFO:cityseer.graph:Linking transport node 48169 to street node 7568 with distan
 INFO:cityseer.graph:Added transport node 48169 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 48170 to street node 31303 with distance 24.90743632932002.
 INFO:cityseer.graph:Added transport node 48170 and created 2 link edges.
- 82%|████████▏ | 1042/1272 [00:01&lt;00:00, 670.97it/s]INFO:cityseer.graph:Linking transport node 48171 to street node 7717 with distance 44.642498570697185.
+INFO:cityseer.graph:Linking transport node 48171 to street node 7717 with distance 44.642498570697185.
 INFO:cityseer.graph:Added transport node 48171 and created 2 link edges.
 INFO:cityseer.graph:Added transport node 48172 and created 0 link edges.
 INFO:cityseer.graph:Added transport node 48173 and created 0 link edges.
@@ -3240,7 +3233,7 @@ INFO:cityseer.graph:Linking transport node 48242 to street node 26323 with dista
 INFO:cityseer.graph:Added transport node 48242 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 48243 to street node 24483 with distance 54.39460371697825.
 INFO:cityseer.graph:Added transport node 48243 and created 2 link edges.
- 88%|████████▊ | 1115/1272 [00:01&lt;00:00, 672.30it/s]INFO:cityseer.graph:Linking transport node 48244 to street node 25202 with distance 49.72689914890222.
+INFO:cityseer.graph:Linking transport node 48244 to street node 25202 with distance 49.72689914890222.
 INFO:cityseer.graph:Added transport node 48244 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 48245 to street node 9275 with distance 34.56101475350672.
 INFO:cityseer.graph:Linking transport node 48245 to street node 25204 with distance 50.62168472961263.
@@ -3392,7 +3385,7 @@ INFO:cityseer.graph:Added transport node 48344 and created 2 link edges.
 INFO:cityseer.graph:Linking transport node 48345 to street node 11997 with distance 239.30318734808912.
 INFO:cityseer.graph:Linking transport node 48345 to street node 11998 with distance 262.15409348668595.
 INFO:cityseer.graph:Added transport node 48345 and created 4 link edges.
- 96%|█████████▌| 1217/1272 [00:01&lt;00:00, 761.71it/s]INFO:cityseer.graph:Linking transport node 48346 to street node 11998 with distance 237.7384107889812.
+INFO:cityseer.graph:Linking transport node 48346 to street node 11998 with distance 237.7384107889812.
 INFO:cityseer.graph:Linking transport node 48346 to street node 44215 with distance 148.28770182771547.
 INFO:cityseer.graph:Added transport node 48346 and created 4 link edges.
 INFO:cityseer.graph:Added transport node 48347 and created 0 link edges.
@@ -3458,10 +3451,8 @@ INFO:cityseer.graph:Added transport node 48399 and created 4 link edges.
 INFO:cityseer.graph:Linking transport node 48400 to street node 18004 with distance 57.485535761447196.
 INFO:cityseer.graph:Linking transport node 48400 to street node 39030 with distance 65.27668037407327.
 INFO:cityseer.graph:Added transport node 48400 and created 4 link edges.
-100%|██████████| 1272/1272 [00:01&lt;00:00, 654.86it/s]
 INFO:cityseer.tools.io:Generating segment durations between stops.
 INFO:cityseer.tools.io:Adding GTFS segments to network edges.
-100%|██████████| 279/279 [00:00&lt;00:00, 66094.93it/s]
 INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
 </div>
 </div>
@@ -4010,7 +4001,6 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-100%|██████████| 47129/47129 [03:47&lt;00:00, 206.88it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
 INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.
@@ -4104,10 +4094,10 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    nodes_gdf[<span class="st">"cc_betweenness_2000"</span>] <span class="op">-</span> nodes_gdf[<span class="st">"cc_betweenness_2000_not"</span>]</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="13">
+<div id="cell-15" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Shortest path centrality"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Shortest path centrality - Metro difference"</span>,</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">10</span>,</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#ddd"</span>,</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
