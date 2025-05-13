@@ -1,0 +1,282 @@
+---
+title: Data Science
+editor:
+  render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
+---
+
+Data science encompasses a wide array of methods to extract insights and knowledge from data. Broadly, these methods can be categorised:
+
+1. **Exploratory Data Analysis:** This involves examining datasets to summarise their main characteristics, often with visual methods. It's a first step to understand data distributions, relationships between variables, and to identify anomalies or patterns.
+2. **Unsupervised Learning:** This type of machine learning aims to find hidden patterns or intrinsic structures in input data without pre-existing labels.
+   - **Dimensionality Reduction:** Simplifies complex datasets by reducing the number of variables (features) while preserving underlying information.
+   - **Clustering:** Groups data points based on their similarity, helping to identify distinct segments or typologies within the data.
+3. **Supervised Learning:** This involves training a model on a labelled dataset, where the desired output is already known. The goal is to predict the output for new, unseen data. Regression (predicting continuous values) and classification (predicting discrete categories) are common supervised tasks.
+
+This notebook will briefly demonstrate an example of dimensionality reduction using PCA to understand latent structures in street network centrality measures, and an example of supervised learning using a Random Forest Regressor to predict restaurant accessibility. This is a high-level introduction, and you are encouraged to explore these powerful techniques further.
+
+First, we import the necessary Python packages.
+
+```{python}
+import matplotlib.pyplot as plt
+import osmnx as ox
+from cityseer.metrics import layers, networks
+from cityseer.tools import graphs, io, plot
+```
+
+First, we define the geographical area of interest (Nicosia, Cyprus) using longitude and latitude coordinates, and a buffer radius. Then, we use `cityseer` to:
+
+1. Create a buffered polygon area around the center point.
+2. Download and simplify the street network within this polygon from OpenStreetMap.
+3. Convert the primal graph (intersections and streets) to its dual representation (streets as nodes, intersections as edges) so that calculations can be expressed relative to streets.
+4. Extract the network structure (nodes and edges) into GeoDataFrames.
+5. Calculate various node centrality measures (network density, harmonic closeness, betweenness) at different distances (500m, 1000m, 2000m, 5000m) using angular analysis (considering turning angles). These measures help quantify the importance or connectivity of each node within the network.
+
+To learn more about these methods, look at the [Cityseer Recipes](../recipes/index.qmd) section.
+
+```{python}
+lng, lat = 33.36402, 35.17526
+buffer = 2000
+
+poly_wgs, epsg_code = io.buffered_point_poly(lng, lat, buffer)
+G = io.osm_graph_from_poly(poly_wgs, to_crs_code=3035)
+G_dual = graphs.nx_to_dual(G)
+nodes_gdf, _edges_gdf, network_structure = io.network_structure_from_nx(
+    G_dual,
+)
+nodes_gdf = networks.node_centrality_simplest(
+    network_structure=network_structure,
+    nodes_gdf=nodes_gdf,
+    distances=[500, 1000, 2000, 5000],
+)
+nodes_gdf.head()
+```
+
+Next, we use `osmnx` to acquire data about restaurants within the previously defined polygonal area (`poly_wgs`).
+
+1. `ox.features_from_polygon` queries OpenStreetMap for features tagged with `"amenity": "restaurant"`.
+2. `.to_crs(epsg=3035)` reprojects the downloaded restaurant data to the ETRS89 / LAEA Europe projected coordinate system (EPSG:3035) to ensure consistency with the street network data and enable accurate spatial calculations.
+3. `gdf_rest[["amenity", "geometry"]]` filters out the `amenity` and `geometry` columns.
+4. `.reset_index(drop=True)` resets the DataFrame index for cleaner data handling.
+
+```{python}
+gdf_rest = ox.features_from_polygon(poly_wgs, tags={"amenity": "restaurant"})
+gdf_rest = gdf_rest.to_crs(epsg=3035)
+gdf_rest = gdf_rest[["amenity", "geometry"]]
+gdf_rest = gdf_rest.reset_index(drop=True)
+gdf_rest.head()
+```
+
+We can then use `cityseer` once again to calculate accessibility to restaurants from each node in the street network.
+
+1. `layers.compute_accessibilities` is a function that takes the restaurant locations (`gdf_rest`) and the street network nodes (`nodes_gdf`) as input.
+2. `landuse_column_label="amenity"` specifies that the 'amenity' column in `gdf_rest` identifies the type of feature (restaurants in this case).
+3. `accessibility_keys=["restaurant"]` tells the function to calculate accessibility specifically for features labellieed as 'restaurant'.
+4. `network_structure` provides the pre-calculated network graph and its properties.
+5. `distances=[200, 400, 800]` specifies the distance thresholds (in meters) at which accessibility should be measured. For each node, this will count how many restaurants are reachable within 200m, 400m, and 800m along the network.
+
+The function updates `nodes_gdf` by adding new columns representing these accessibility scores (e.g., `cc_restaurant_200_wt` - weighted count of restaurants within 200m, `cc_restaurant_200_nw` - raw count of restaurants within 200m, etc.).
+
+```{python}
+nodes_gdf, gdf_rest = layers.compute_accessibilities(
+    gdf_rest,
+    landuse_column_label="amenity",
+    accessibility_keys=["restaurant"],
+    nodes_gdf=nodes_gdf,
+    network_structure=network_structure,
+    distances=[200, 400, 800],
+)
+```
+
+We now arrive at the Data Science section, which performs Principal Component Analysis (PCA), a dimensionality reduction technique, on the street network centrality measures. The goal is to identify underlying patterns or latent dimensions within these (often correlated) centrality metrics.
+
+1. `StandardScaler()` is initialised to standardise the data. PCA is sensitive to the scale of variables, so standardisation (transforming data to have zero mean and unit variance) is a necessary preprocessing step.
+2. `X_scaled = scaler.fit_transform(...)` selects the twelve centrality columns (density, harmonic, and betweenness at four different distances) from `nodes_gdf` and applies the standardisation.
+3. `pca = PCA(n_components=4)` initialises PCA to extract the top 4 principal components. These components are new, uncorrelated variables that capture the maximum possible variance from the original data.
+4. `X_pca = pca.fit_transform(X_scaled)` applies PCA to the scaled centrality data.
+5. The next four lines add these four principal components as new columns (`pca_1`, `pca_2`, `pca_3`, `pca_4`) to the `nodes_gdf` GeoDataFrame.
+6. The subsequent code sets up a 3x1 plot to visualise the spatial distribution of the first three principal components. Each subplot shows the nodes coloured by their score on a principal component. The title of each subplot indicates the percentage of the original data's variance that is explained by that component. This helps in understanding how much information is retained by each component.
+
+```{python}
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Standardise the data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(
+    nodes_gdf[
+        [
+            "cc_density_500_ang",
+            "cc_density_1000_ang",
+            "cc_density_2000_ang",
+            "cc_density_5000_ang",
+            "cc_harmonic_500_ang",
+            "cc_harmonic_1000_ang",
+            "cc_harmonic_2000_ang",
+            "cc_harmonic_5000_ang",
+            "cc_betweenness_500_ang",
+            "cc_betweenness_1000_ang",
+            "cc_betweenness_2000_ang",
+            "cc_betweenness_5000_ang",
+        ]
+    ]
+)
+
+# Perform PCA
+pca = PCA(n_components=4)
+X_pca = pca.fit_transform(X_scaled)
+
+# Add PCA components to the DataFrame
+nodes_gdf["pca_1"] = X_pca[:, 0]
+nodes_gdf["pca_2"] = X_pca[:, 1]
+nodes_gdf["pca_3"] = X_pca[:, 2]
+nodes_gdf["pca_4"] = X_pca[:, 3]
+
+# plot explained variance
+fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+nodes_gdf.plot(
+    column="pca_1",
+    cmap="Reds",
+    legend=False,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title(
+    "PCA 1 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[0])
+)
+
+nodes_gdf.plot(
+    column="pca_2",
+    cmap="Reds",
+    legend=False,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title(
+    "PCA 2 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[1])
+)
+
+nodes_gdf.plot(
+    column="pca_3",
+    cmap="Reds",
+    legend=False,
+    ax=ax[2],
+)
+ax[2].set_xlim(6433800, 6433800 + 2700)
+ax[2].set_ylim(1669400, 1669400 + 2700)
+ax[2].axis(False)
+ax[2].set_title(
+    "PCA 3 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[2])
+)
+```
+
+This cell uses `seaborn`, a statistical data visualisation library, to create a histogram and a joint plot.
+
+Histograms are useful for visualising the distribution of a single variable, while joint plots allow for the visualisation of the relationship between two variables along with their individual distributions.
+
+The histogram shows the distribution of restaurant accessibility within 800 meters (`cc_restaurant_800_wt`). The x-axis represents the accessibility values, while the y-axis shows the frequency of these values. The `bins=50` argument specifies that the data should be divided into 50 bins for the histogram.
+
+The joint plot visualises the relationship between the first principal component (`pca_1`) and restaurant accessibility within 800 meters (`cc_restaurant_800_wt`).
+
+```{python}
+import seaborn as sns
+
+sns.histplot(
+    data=nodes_gdf,
+    x="cc_restaurant_800_wt",
+    bins=50,
+)
+sns.jointplot(
+    data=nodes_gdf,
+    x="pca_1",
+    y="cc_restaurant_800_wt",
+    kind="kde",
+)
+```
+
+This cell demonstrates use of a Random Forest Regressor model to predict restaurant accessibility (`cc_restaurant_800_wt`) based on the four principal components (`pca_1` to `pca_4`) derived from the network centrality measures. This is an example of supervised learning.
+
+1. `X` is defined as the DataFrame containing the predictor variables (the four PCA components).
+2. `y` is defined as the target variable (restaurant accessibility at 800m).
+3. `train_test_split(X, y, ...)` splits the data into training (80%) and testing (20%) sets. The model will be trained on the training set and evaluated on the unseen testing set. `random_state=42` ensures reproducibility of the split.
+4. `regressor = RandomForestRegressor(...)` initialises a Random Forest Regressor model. `n_estimators=100` means it will use 100 decision trees. `criterion="squared_error"` specifies the function to measure the quality of a split.
+5. `regressor.fit(X_train, y_train)` trains the model using the training data.
+6. `y_pred = regressor.predict(X_test)` makes predictions on the test set.
+7. `r2 = r2_score(y_test, y_pred)` calculates the R-squared score, a measure of how well the model's predictions fit the actual values in the test set. An R2 score closer to 1 indicates a better fit. Increasing the size of the training set generally improves the model's performance, as it has more data to learn from.
+8. The model then predicts accessibility for all nodes using `regressor.predict(X)` and stores these predictions in a new column `cc_restaurant_800_wt_pred`.
+9. `nodes_gdf["cc_restaurant_800_residuals"]` calculates the residuals (the difference between predicted and actual accessibility values).
+10. The final part of the cell sets up a 3x1 plot to visualise:
+    - The actual restaurant accessibility.
+    - The predicted restaurant accessibility (with the R2 score in the title).
+    - The residuals of the regression, showing where the model over or under-predicts accessibility. A good model would have residuals randomly scattered around zero.
+
+```{python}
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
+
+X = nodes_gdf[["pca_1", "pca_2", "pca_3", "pca_4"]]
+y = nodes_gdf["cc_restaurant_800_wt"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+regressor = RandomForestRegressor(
+    n_estimators=100, random_state=42, criterion="squared_error"
+)
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+
+# R2 score
+r2 = r2_score(y_test, y_pred)
+print("R2 score: ", r2)
+
+# plot residuals
+nodes_gdf["cc_restaurant_800_wt_pred"] = regressor.predict(X)
+nodes_gdf["cc_restaurant_800_residuals"] = (
+    nodes_gdf["cc_restaurant_800_wt_pred"] - nodes_gdf["cc_restaurant_800_wt"]
+)
+
+fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt",
+    cmap="magma",
+    legend=True,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title("Restaurant Accessibility")
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt_pred",
+    cmap="magma",
+    legend=True,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title("Predicted Restaurant Accessibility - R2 score: {:.2f}".format(r2))
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_residuals",
+    cmap="coolwarm",
+    vmax=4,
+    vmin=-4,
+    legend=True,
+    ax=ax[2],
+)
+ax[2].set_xlim(6433800, 6433800 + 2700)
+ax[2].set_ylim(1669400, 1669400 + 2700)
+ax[2].axis(False)
+ax[2].set_title("Residuals of Random Forest Regression")
+plt.tight_layout()
+```

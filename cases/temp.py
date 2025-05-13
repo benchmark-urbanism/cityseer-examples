@@ -17,73 +17,164 @@ nodes_gdf, _edges_gdf, network_structure = io.network_structure_from_nx(
 nodes_gdf = networks.node_centrality_simplest(
     network_structure=network_structure,
     nodes_gdf=nodes_gdf,
-    distances=[1000],
+    distances=[500, 1000, 2000, 5000],
 )
 nodes_gdf.head()
 
 # %%
-fig, ax = plt.subplots(1, 1, figsize=(8, 6), facecolor="#1d1d1d")
-nodes_gdf.plot(
-    column="cc_harmonic_1000_ang",
-    cmap="magma",
-    legend=False,
-    ax=ax,
-)
-ax.set_xlim(6433800, 6433800 + 2700)
-ax.set_ylim(1669400, 1669400 + 2700)
-ax.axis(False)
+gdf_restraunts = ox.features_from_polygon(poly_wgs, tags={"amenity": "restaurant"})
+gdf_restraunts = gdf_restraunts.to_crs(epsg=3035)
+gdf_restraunts = gdf_restraunts[["amenity", "geometry"]]
+gdf_restraunts = gdf_restraunts.reset_index(drop=True)
+gdf_restraunts.head()
 
 # %%
-gdf_buildings = ox.features_from_polygon(poly_wgs, tags={"building": True})
-gdf_buildings = gdf_buildings.to_crs(epsg=3035)
-gdf_buildings = gdf_buildings[["building", "geometry"]]
-gdf_buildings = gdf_buildings.reset_index(drop=True)
-gdf_buildings["area"] = gdf_buildings.geometry.area
-gdf_buildings = gdf_buildings[gdf_buildings["area"] > 10]
-gdf_buildings.head()
-
-# %%
-nodes_gdf, gdf_green = layers.compute_stats(
-    gdf_buildings,
-    stats_column_labels=["area"],
+nodes_gdf, gdf_restraunts = layers.compute_accessibilities(
+    gdf_restraunts,
+    landuse_column_label="amenity",
+    accessibility_keys=["restaurant"],
     nodes_gdf=nodes_gdf,
     network_structure=network_structure,
-    distances=[400],
+    distances=[200, 400, 800],
 )
 
 # %%
-fig, ax = plt.subplots(1, 1, figsize=(8, 6), facecolor="#1d1d1d")
-gdf_buildings.plot(
-    column="area",
-    cmap="magma",
-    legend=False,
-    ax=ax,
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Standardize the data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(
+    nodes_gdf[
+        [
+            "cc_density_500_ang",
+            "cc_density_1000_ang",
+            "cc_density_2000_ang",
+            "cc_density_5000_ang",
+            "cc_harmonic_500_ang",
+            "cc_harmonic_1000_ang",
+            "cc_harmonic_2000_ang",
+            "cc_harmonic_5000_ang",
+            "cc_betweenness_500_ang",
+            "cc_betweenness_1000_ang",
+            "cc_betweenness_2000_ang",
+            "cc_betweenness_5000_ang",
+        ]
+    ]
 )
+
+# Perform PCA
+pca = PCA(n_components=4)
+X_pca = pca.fit_transform(X_scaled)
+
+# Add PCA components to the DataFrame
+nodes_gdf["pca_1"] = X_pca[:, 0]
+nodes_gdf["pca_2"] = X_pca[:, 1]
+nodes_gdf["pca_3"] = X_pca[:, 2]
+nodes_gdf["pca_4"] = X_pca[:, 3]
+
+# plot explained variance
+fig, ax = plt.subplots(2, 1, figsize=(8, 10), facecolor="#1d1d1d")
 nodes_gdf.plot(
-    column="cc_area_sum_400_wt",
+    column="pca_1",
     cmap="magma",
     legend=False,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title(
+    "PCA 1 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[0])
+)
+
+nodes_gdf.plot(
+    column="pca_2",
+    cmap="magma",
+    legend=False,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title(
+    "PCA 2 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[1])
+)
+
+# %%
+# seaborn scatterplot with hexbin
+import seaborn as sns
+
+sns.jointplot(
+    data=nodes_gdf,
+    x="pca_1",
+    y="cc_restaurant_800_wt",
+    cmap="magma",
+    kind="kde",
     ax=ax,
 )
-ax.set_xlim(6433800, 6433800 + 2700)
-ax.set_ylim(1669400, 1669400 + 2700)
-ax.axis(False)
 
 # %%
-gdf_green = ox.features_from_polygon(poly_wgs, tags={"leisure": ["park"]})
-gdf_green = gdf_green.to_crs(epsg=3035)
-gdf_green = gdf_green[["leisure", "geometry"]]
-gdf_green = gdf_green.reset_index(drop=True)
-gdf_green.head()
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
 
-# %%
-nodes_gdf, gdf_green = layers.compute_accessibilities(
-    gdf_green,
-    landuse_column_label="leisure",
-    accessibility_keys=["park"],
-    nodes_gdf=nodes_gdf,
-    network_structure=network_structure,
-    distances=[800],
+X = nodes_gdf[["pca_1", "pca_2", "pca_3", "pca_4"]]
+y = nodes_gdf["cc_restaurant_800_wt"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
 )
+regressor = RandomForestRegressor(
+    n_estimators=100, random_state=42, criterion="squared_error"
+)
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+
+# R2 score
+r2 = r2_score(y_test, y_pred)
+print("R2 score: ", r2)
+
+# plot residuals
+nodes_gdf["cc_restaurant_800_wt_pred"] = regressor.predict(X)
+nodes_gdf["cc_restaurant_800_residuals"] = (
+    nodes_gdf["cc_restaurant_800_wt_pred"] - nodes_gdf["cc_restaurant_800_wt"]
+)
+
+fig, ax = plt.subplots(3, 1, figsize=(8, 12), facecolor="#1d1d1d")
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt",
+    cmap="magma",
+    legend=True,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title("Restaurant Accessibility")
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt_pred",
+    cmap="magma",
+    legend=True,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title("Predicted Restaurant Accessibility - R2 score: {:.2f}".format(r2))
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_residuals",
+    cmap="coolwarm",
+    vmax=4,
+    vmin=-4,
+    legend=True,
+    ax=ax[2],
+)
+ax[2].set_xlim(6433800, 6433800 + 2700)
+ax[2].set_ylim(1669400, 1669400 + 2700)
+ax[2].axis(False)
+ax[2].set_title("Residuals of Random Forest Regression")
+plt.tight_layout()
 
 # %%
