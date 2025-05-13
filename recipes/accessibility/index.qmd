@@ -43,3 +43,11 @@ Calculate park accessibilities from OSM Polygon data.
 Calculate mixed land-uses.
 
 [Notebook](gpd_mixed_uses.ipynb)
+
+## Adding GTFS transport data
+
+> GTFS transport data support is still experimental.
+
+Add GTFS transportation data to the network.
+
+[Notebook](accessibility_metro.ipynb)
