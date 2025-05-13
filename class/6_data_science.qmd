@@ -1,0 +1,224 @@
+---
+title: Data Science
+editor:
+  render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
+---
+
+Data science methods help us explore and understand data on one hand it can be used to explore inherent structures with in the data such as data distributions or how one form of variable relates to another. These kind of exploratory methods can also be beneficial when it comes to clustering or dimensionality reduction on the other hand data science is also used to predict variables based on other input variables in this notebook we will show very briefly one example of each how principal component analysis can be used to extract Laighton dimensions and the second example will show how one variable can be predicted based on other input variables for emphasis. This is a very high-level and brief introduction and your encouraged to look further and how they can be used
+
+First import the packages
+
+```{python}
+import matplotlib.pyplot as plt
+import osmnx as ox
+from cityseer.metrics import layers, networks
+from cityseer.tools import graphs, io
+```
+
+We will now extract the street network and calculate street networks similarities using angular methods on the dual representation for further information. See the corresponding network recipes in the CC recipes section.
+
+```{python}
+lng, lat = 33.36402, 35.17526
+buffer = 3000
+
+poly_wgs, epsg_code = io.buffered_point_poly(lng, lat, buffer)
+G = io.osm_graph_from_poly(poly_wgs, to_crs_code=3035)
+G_dual = graphs.nx_to_dual(G)
+nodes_gdf, _edges_gdf, network_structure = io.network_structure_from_nx(
+    G_dual,
+)
+nodes_gdf = networks.node_centrality_simplest(
+    network_structure=network_structure,
+    nodes_gdf=nodes_gdf,
+    distances=[500, 1000, 2000, 5000],
+)
+nodes_gdf.head()
+```
+
+We will now extract restaurant locations for Cyprus so that we can look at the relationship between the restaurant and the street network
+
+```{python}
+gdf_rest = ox.features_from_polygon(poly_wgs, tags={"amenity": "restaurant"})
+gdf_rest = gdf_rest.to_crs(epsg=3035)
+gdf_rest = gdf_rest[["amenity", "geometry"]]
+gdf_rest = gdf_rest.reset_index(drop=True)
+gdf_rest.head()
+```
+
+Once the restaurants have been extracted using OSMNX we will then calculate restaurant accessibility over the street network
+
+```{python}
+nodes_gdf, gdf_rest = layers.compute_accessibilities(
+    gdf_rest,
+    landuse_column_label="amenity",
+    accessibility_keys=["restaurant"],
+    nodes_gdf=nodes_gdf,
+    network_structure=network_structure,
+    distances=[200, 400, 800],
+)
+```
+
+Let's first use the dimensionality reduction to understand what the latent features are for the network similarities and many cases higher dimensional data sets can be represented in lower dimensional representations and this is what is made possible by PCA. It pulls out overlapping will share regions of variants between the input dimensions and further explanat. We can then visualise these late dimensions and see how much of the original invariant is explained by each principal component. The first principal component explains the most variance and the second principal component explains the second most variance and so on. The first few components can be used to represent the data in a lower dimensional space. This is useful for visualisation and can also be used as input features for machine learning algorithms.
+
+```{python}
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Standardize the data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(
+    nodes_gdf[
+        [
+            "cc_density_500_ang",
+            "cc_density_1000_ang",
+            "cc_density_2000_ang",
+            "cc_density_5000_ang",
+            "cc_harmonic_500_ang",
+            "cc_harmonic_1000_ang",
+            "cc_harmonic_2000_ang",
+            "cc_harmonic_5000_ang",
+            "cc_betweenness_500_ang",
+            "cc_betweenness_1000_ang",
+            "cc_betweenness_2000_ang",
+            "cc_betweenness_5000_ang",
+        ]
+    ]
+)
+
+# Perform PCA
+pca = PCA(n_components=4)
+X_pca = pca.fit_transform(X_scaled)
+
+# Add PCA components to the DataFrame
+nodes_gdf["pca_1"] = X_pca[:, 0]
+nodes_gdf["pca_2"] = X_pca[:, 1]
+nodes_gdf["pca_3"] = X_pca[:, 2]
+nodes_gdf["pca_4"] = X_pca[:, 3]
+
+# plot explained variance
+fig, ax = plt.subplots(3, 1, figsize=(12, 8))
+nodes_gdf.plot(
+    column="pca_1",
+    cmap="Reds",
+    legend=False,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title(
+    "PCA 1 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[0])
+)
+
+nodes_gdf.plot(
+    column="pca_2",
+    cmap="Reds",
+    legend=False,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title(
+    "PCA 2 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[1])
+)
+
+nodes_gdf.plot(
+    column="pca_3",
+    cmap="Reds",
+    legend=False,
+    ax=ax[2],
+)
+ax[2].set_xlim(6433800, 6433800 + 2700)
+ax[2].set_ylim(1669400, 1669400 + 2700)
+ax[2].axis(False)
+ax[2].set_title(
+    "PCA 3 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[2])
+)
+```
+
+Next we will do some basic plots, firstly exploring the relationship between the first principal component and access to restaurants
+
+```{python}
+import seaborn as sns
+
+sns.jointplot(
+    data=nodes_gdf,
+    x="pca_1",
+    y="cc_restaurant_800_wt",
+    kind="kde",
+    ax=ax,
+)
+```
+
+Let's use a random pirate regressor to train a machine learning model to protect the number of restaurants based on the networks centrality of the street network. We can then compare the existing number of restaurant to the predicted number of restaurant and we can look at the differential the difference between the predicted number and the actual number to understand where the model has overall or underpredicted this can be useful for understanding areas which may have greater or lesser potential for restaurants than might otherwise be expected alternative period can point to the need for additional sources of information to make the model more robust. We have used the small data set so the output will not be perfect however there is a clear relationship
+
+```{python}
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
+
+X = nodes_gdf[["pca_1", "pca_2", "pca_3", "pca_4"]]
+y = nodes_gdf["cc_restaurant_800_wt"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+regressor = RandomForestRegressor(
+    n_estimators=100, random_state=42, criterion="squared_error"
+)
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+
+# R2 score
+r2 = r2_score(y_test, y_pred)
+print("R2 score: ", r2)
+
+# plot residuals
+nodes_gdf["cc_restaurant_800_wt_pred"] = regressor.predict(X)
+nodes_gdf["cc_restaurant_800_residuals"] = (
+    nodes_gdf["cc_restaurant_800_wt_pred"] - nodes_gdf["cc_restaurant_800_wt"]
+)
+
+fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt",
+    cmap="magma",
+    legend=True,
+    ax=ax[0],
+)
+ax[0].set_xlim(6433800, 6433800 + 2700)
+ax[0].set_ylim(1669400, 1669400 + 2700)
+ax[0].axis(False)
+ax[0].set_title("Restaurant Accessibility")
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_wt_pred",
+    cmap="magma",
+    legend=True,
+    ax=ax[1],
+)
+ax[1].set_xlim(6433800, 6433800 + 2700)
+ax[1].set_ylim(1669400, 1669400 + 2700)
+ax[1].axis(False)
+ax[1].set_title("Predicted Restaurant Accessibility - R2 score: {:.2f}".format(r2))
+
+nodes_gdf.plot(
+    column="cc_restaurant_800_residuals",
+    cmap="coolwarm",
+    vmax=4,
+    vmin=-4,
+    legend=True,
+    ax=ax[2],
+)
+ax[2].set_xlim(6433800, 6433800 + 2700)
+ax[2].set_ylim(1669400, 1669400 + 2700)
+ax[2].axis(False)
+ax[2].set_title("Residuals of Random Forest Regression")
+plt.tight_layout()
+```
+
+Hopefully they have provided a stimulating overview of what is possible with data science. This is the tip of the iceberg and you're encouraged to further explore.
