@@ -10,8 +10,8 @@ This repository contains examples for the `cityseer-api` package.
 
 ## Development
 
-- `brew install pdm`
-- `pdm install`
+- `brew install uv`
+- `uv sync`
 - `brew install quarto`.
 - Install the `vscode` `quarto` extension.
 
