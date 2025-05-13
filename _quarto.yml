@@ -27,9 +27,7 @@ website:
           - href: class/3_spatial.qmd
           - href: class/4_geopandas.qmd
           - href: class/5_ecosystem.qmd
-          - href: class/6_cityseer.qmd
-          - href: class/7_data_science.ipynb
-          - href: class/8_models.ipynb
+          - href: class/6_data_science.qmd
       - text: Cityseer Recipes
         href: recipes/index.qmd
         contents:
