@@ -136,7 +136,7 @@ nodes_gdf["pca_3"] = X_pca[:, 2]
 nodes_gdf["pca_4"] = X_pca[:, 3]
 
 # plot explained variance
-fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+fig, ax = plt.subplots(3, 1, figsize=(8, 24))
 nodes_gdf.plot(
     column="pca_1",
     cmap="Reds",
@@ -175,9 +175,10 @@ ax[2].axis(False)
 ax[2].set_title(
     "PCA 3 - explained variance: {:.0%}".format(pca.explained_variance_ratio_[2])
 )
+plt.tight_layout()
 ```
 
-This cell uses `seaborn`, a statistical data visualisation library, to create a histogram and a joint plot.
+The next cell uses `seaborn`, a statistical data visualisation library, to create a histogram and a joint plot.
 
 Histograms are useful for visualising the distribution of a single variable, while joint plots allow for the visualisation of the relationship between two variables along with their individual distributions.
 
@@ -243,7 +244,7 @@ nodes_gdf["cc_restaurant_800_residuals"] = (
     nodes_gdf["cc_restaurant_800_wt_pred"] - nodes_gdf["cc_restaurant_800_wt"]
 )
 
-fig, ax = plt.subplots(3, 1, figsize=(8, 12))
+fig, ax = plt.subplots(3, 1, figsize=(8, 24))
 nodes_gdf.plot(
     column="cc_restaurant_800_wt",
     cmap="magma",
