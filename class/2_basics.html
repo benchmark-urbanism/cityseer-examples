@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4195ef4103bd2543d8f8c84ad0144b2f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-848915fdb8d662bd90a943bc583e2b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="comments" class="level3">
 <h3 class="anchored" data-anchor-id="comments">Comments</h3>
 <p>Use <code>#</code> to add comments, which Python ignores. Comments help explain your code.</p>
-<div id="cc99664b" class="cell" data-execution_count="1">
+<div id="faacf67d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, World!"</span>)  <span class="co"># Print a greeting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="variables" class="level3">
 <h3 class="anchored" data-anchor-id="variables">Variables</h3>
 <p>Variables act as labelled containers for data. Assign values using <code>=</code>.</p>
-<div id="ec083cfd" class="cell" data-execution_count="2">
+<div id="f6094d05" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigning values to variables</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Hello, Python!"</span>  <span class="co"># Text (string)</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">10</span>                  <span class="co"># Whole number (integer)</span></span>
@@ -349,7 +349,7 @@ False</code></pre>
 <li><strong><code>bool</code> (Boolean):</strong> Logical values, <code>True</code> or <code>False</code> (capitalised).</li>
 </ul>
 <p>Check a variable’s type using <code>type()</code>:</p>
-<div id="b798638f" class="cell" data-execution_count="3">
+<div id="1478b8cf" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(message))   <span class="co"># &lt;class 'str'&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(count))     <span class="co"># &lt;class 'int'&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(price))     <span class="co"># &lt;class 'float'&gt;</span></span>
@@ -370,7 +370,7 @@ False</code></pre>
 <section id="arithmetic" class="level3">
 <h3 class="anchored" data-anchor-id="arithmetic">Arithmetic</h3>
 <p>Python supports standard arithmetic operations:</p>
-<div id="bce765b1" class="cell" data-execution_count="4">
+<div id="2cbbe922" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arithmetic operators: +, -, *, /, **, %</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>
@@ -391,7 +391,7 @@ False</code></pre>
 </div>
 </div>
 <p>Python follows the standard order of operations (often remembered by acronyms like BODMAS or PEMDAS). For example:</p>
-<div id="c55c38f6" class="cell" data-execution_count="5">
+<div id="be8780a1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">-</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -399,14 +399,14 @@ False</code></pre>
 </div>
 </div>
 <p>If you’re ever unsure about the order, it’s good practice to use parentheses <code>()</code> to make your intention explicit.</p>
-<div id="114d686e" class="cell" data-execution_count="6">
+<div id="dee3c745" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> (<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span> <span class="op">-</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>17.5</code></pre>
 </div>
 </div>
-<div id="4c170b15" class="cell" data-execution_count="7">
+<div id="f4b2386e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">5</span>) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -417,7 +417,7 @@ False</code></pre>
 <section id="strings" class="level3">
 <h3 class="anchored" data-anchor-id="strings">Strings</h3>
 <p>Strings are very versatile and have a number of built-in methods for common use cases.</p>
-<div id="7355507d" class="cell" data-execution_count="8">
+<div id="a1f8ef5c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">"Ada"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> <span class="st">"Lovelace"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>full_name <span class="op">=</span> first_name <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> last_name</span>
@@ -440,7 +440,7 @@ Note
 </div>
 </div>
 <p>Common built-in methods include converting text to lower or upper case, or removing leading/trailing whitespace and characters.</p>
-<div id="9b8cfacf" class="cell" data-execution_count="9">
+<div id="34e49ff3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># String methods</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_name.lower())  <span class="co"># Lowercase: "ada lovelace"</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_name.upper())  <span class="co"># Uppercase: "ADA LOVELACE"</span></span>
@@ -454,7 +454,7 @@ Ada_Lovelace</code></pre>
 <section id="f-strings" class="level4">
 <h4 class="anchored" data-anchor-id="f-strings">F-Strings</h4>
 <p>F-strings (formatted string literals) offer a convenient way to embed expressions inside string literals for formatting. Simply prefix the string with an <code>f</code> and write expressions in <code>{}</code>.</p>
-<div id="545f89b2" class="cell" data-execution_count="10">
+<div id="1396aa91" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>city <span class="op">=</span> <span class="st">"Berlin"</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> <span class="dv">3800000</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> <span class="ss">f"The city of </span><span class="sc">{</span>city<span class="sc">}</span><span class="ss"> has a population of </span><span class="sc">{</span>population<span class="sc">}</span><span class="ss">."</span></span>
@@ -534,7 +534,7 @@ Ada_Lovelace</code></pre>
 <h3 class="anchored" data-anchor-id="lists">Lists</h3>
 <p>Use lists when the order of items is important and you might need to change them later. Lists are <em>mutable</em> (meaning they can be changed after creation). Think of them like a row of mailboxes: you can change what’s inside a mailbox. Access items using their <em>index</em> (position, starting from 0) in square brackets <code>[]</code>. Negative indexing is also handy, where <code>-1</code> refers to the last item, <code>-2</code> to the second last, and so on.</p>
 <p>Create a list using square brackets []:</p>
-<div id="ca4c6dd8" class="cell" data-execution_count="11">
+<div id="abe18215" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>planets <span class="op">=</span> [<span class="st">"Mercury"</span>, <span class="st">"Venus"</span>, <span class="st">"Earth"</span>, <span class="st">"Mars"</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>planets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,7 +543,7 @@ Ada_Lovelace</code></pre>
 </div>
 </div>
 <p>Access items by index (position, starting from 0)</p>
-<div id="81dec611" class="cell" data-execution_count="12">
+<div id="dc4567bd" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets[<span class="dv">0</span>]) <span class="co"># Mercury</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets[<span class="dv">2</span>]) <span class="co"># Earth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -552,7 +552,7 @@ Earth</code></pre>
 </div>
 </div>
 <p>Reverse index</p>
-<div id="4f9a5b30" class="cell" data-execution_count="13">
+<div id="8f691730" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>planets[<span class="op">-</span><span class="dv">1</span>] <span class="co"># Mars</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>planets[<span class="op">-</span><span class="dv">3</span>] <span class="co"># Venus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -560,7 +560,7 @@ Earth</code></pre>
 </div>
 </div>
 <p>Add an item to the end</p>
-<div id="555e4652" class="cell" data-execution_count="14">
+<div id="2d8e7d8e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>planets.append(<span class="st">"Jupiter"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>planets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,14 +582,14 @@ Note
 </div>
 </div>
 <p>Get the number of items</p>
-<div id="08f7026d" class="cell" data-execution_count="15">
+<div id="7224b39b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(planets) <span class="co"># Output: 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>5</code></pre>
 </div>
 </div>
 <p>Lists are mutable (can be changed after creation)</p>
-<div id="b5930f88" class="cell" data-execution_count="16">
+<div id="247fd94e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>planets[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"Fast Planet"</span> <span class="co"># Change the first item</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>planets[<span class="dv">3</span>] <span class="op">=</span> <span class="st">"Red Planet"</span> <span class="co"># Update Mars</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -599,7 +599,7 @@ Note
 </div>
 </div>
 <p>Common list operations</p>
-<div id="16ab5a3c" class="cell" data-execution_count="17">
+<div id="79b60296" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>planets.insert(<span class="dv">1</span>, <span class="st">"New Planet"</span>) <span class="co"># Insert at a specific index</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -607,7 +607,7 @@ Note
 </div>
 </div>
 <p>Remove item at index 2 and get its value</p>
-<div id="68c659eb" class="cell" data-execution_count="18">
+<div id="ecf263a9" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>removed_planet <span class="op">=</span> planets.pop(<span class="dv">2</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Removed: </span><span class="sc">{</span>removed_planet<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -623,7 +623,7 @@ Note
 <p>Once data is stored, you can easily retrieve or update a value using its key.</p>
 <p>Dictionaries are defined using curly braces <code>{}</code>. Each item is a key-value pair, separated by a colon <code>:</code>. The key is on the left, and the value is on the right.</p>
 <p>Similar to lists, dictionaries use square brackets <code>[]</code> to access values, but instead of a numerical index, you use the key.</p>
-<div id="ded941f2" class="cell" data-execution_count="19">
+<div id="2f370c93" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dictionary using curly braces {}</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Format: {key1: value1, key2: value2}</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>building_info <span class="op">=</span> {</span>
@@ -636,7 +636,7 @@ Note
 <pre><code>{'type': 'Residential', 'floors': 5, 'year_built': 1998}</code></pre>
 </div>
 </div>
-<div id="30ebf958" class="cell" data-execution_count="20">
+<div id="1b88696f" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access values using keys</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info[<span class="st">"type"</span>]) <span class="co"># Residential</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info[<span class="st">"floors"</span>]) <span class="co"># 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -645,7 +645,7 @@ Note
 5</code></pre>
 </div>
 </div>
-<div id="2f71da01" class="cell" data-execution_count="21">
+<div id="0ca06f43" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new key-value pair</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>building_info[<span class="st">"has_elevator"</span>] <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -653,7 +653,7 @@ Note
 <pre><code>{'type': 'Residential', 'floors': 5, 'year_built': 1998, 'has_elevator': True}</code></pre>
 </div>
 </div>
-<div id="11772c1c" class="cell" data-execution_count="22">
+<div id="d16a9791" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionaries are mutable</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>building_info[<span class="st">"year_built"</span>] <span class="op">=</span> <span class="dv">2000</span> <span class="co"># Update a value</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -661,7 +661,7 @@ Note
 <pre><code>{'type': 'Residential', 'floors': 5, 'year_built': 2000, 'has_elevator': True}</code></pre>
 </div>
 </div>
-<div id="516b96ef" class="cell" data-execution_count="23">
+<div id="cc9c26f1" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common dictionary operations</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info.keys())   <span class="co"># Get all keys</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(building_info.values()) <span class="co"># Get all values</span></span>
@@ -676,7 +676,7 @@ Not specified</code></pre>
 <section id="tuples" class="level3">
 <h3 class="anchored" data-anchor-id="tuples">Tuples</h3>
 <p>Use tuples for ordered collections of items that shouldn’t change after creation (e.g., coordinates). Tuples are <em>immutable</em>, meaning they cannot be altered once created.</p>
-<div id="3932eec6" class="cell" data-execution_count="24">
+<div id="a92c5082" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tuple of coordinates</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>point <span class="op">=</span> (<span class="fl">10.5</span>, <span class="fl">25.3</span>)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point)</span>
@@ -687,12 +687,12 @@ Not specified</code></pre>
 </div>
 </div>
 <div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># point[0] = 11.0 # This would cause a TypeError! Tuples are immutable.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cf52a804" class="cell" data-execution_count="25">
+<div id="08f785ae" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tuples are often used to return multiple values from functions or for unpacking</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_coordinates():</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">10.5</span>, <span class="fl">25.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8d56b386" class="cell" data-execution_count="26">
+<div id="9ce2b7ca" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> get_coordinates()</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>lat, lon <span class="op">=</span> coords <span class="co"># Tuple unpacking</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Latitude: </span><span class="sc">{</span>lat<span class="sc">}</span><span class="ss">, Longitude: </span><span class="sc">{</span>lon<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -704,31 +704,31 @@ Not specified</code></pre>
 <section id="sets" class="level3">
 <h3 class="anchored" data-anchor-id="sets">Sets</h3>
 <p>Use sets when you need a collection of unique items, and the order of those items isn’t important.</p>
-<div id="7e3e2496" class="cell" data-execution_count="27">
+<div id="419f8c69" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Duplicate "London" is ignored</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>unique_cities <span class="op">=</span> {<span class="st">"London"</span>, <span class="st">"Paris"</span>, <span class="st">"Berlin"</span>, <span class="st">"London"</span>}</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output might be in any order, e.g., {'Berlin', 'London', 'Paris'}</span></span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique_cities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Paris', 'London', 'Berlin'}</code></pre>
+<pre><code>{'Berlin', 'Paris', 'London'}</code></pre>
 </div>
 </div>
-<div id="364de2f1" class="cell" data-execution_count="28">
+<div id="c1bcb836" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for membership</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Paris"</span> <span class="kw">in</span> unique_cities) <span class="co"># True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="40271177" class="cell" data-execution_count="29">
+<div id="dd9e1ad1" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add an item</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>unique_cities.add(<span class="st">"Rome"</span>)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique_cities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Rome', 'Paris', 'London', 'Berlin'}</code></pre>
+<pre><code>{'Rome', 'Berlin', 'Paris', 'London'}</code></pre>
 </div>
 </div>
-<div id="5af66501" class="cell" data-execution_count="30">
+<div id="276ab071" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set operations</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>set1 <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>set2 <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
@@ -749,7 +749,7 @@ Not specified</code></pre>
 <section id="conditionals" class="level3">
 <h3 class="anchored" data-anchor-id="conditionals">Conditionals</h3>
 <p>Conditionals allow your program to execute different blocks of code based on whether certain conditions are <code>True</code> or <code>False</code>. They use comparison operators to evaluate conditions.</p>
-<div id="fef28353" class="cell" data-execution_count="31">
+<div id="3434b7e0" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison operators return boolean values</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="op">==</span> <span class="dv">5</span>) <span class="co"># Equal to: True</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="op">!=</span> <span class="dv">3</span>) <span class="co"># Not equal to: True</span></span>
@@ -777,7 +777,7 @@ Indentation
 </div>
 <div class="callout-body-container callout-body">
 <p>Indentation is non-negotiable in Python: it defines code blocks. Always use consistent spacing (the common convention is 4 spaces per indentation level) and avoid mixing spaces with tabs. Code blocks are introduced by a colon (<code>:</code>) and can be nested.</p>
-<div id="6606d36c" class="cell" data-execution_count="32">
+<div id="260ad369" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of indentation</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">2</span>:</span>
@@ -793,7 +793,7 @@ Indentation
 </div>
 </div>
 <p>Use <code>if</code>, <code>elif</code> (short for ‘else if’), and <code>else</code> to direct the flow of execution. Conditions can be combined using <code>and</code> and <code>or</code>. For identity checks (e.g., if a value <code>is None</code>), use <code>is</code> and <code>is not</code>.</p>
-<div id="7f3b5b3b" class="cell" data-execution_count="33">
+<div id="daef41c2" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>population_density <span class="op">=</span> <span class="dv">5000</span> <span class="co"># people per sq km</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> population_density <span class="op">&gt;</span> <span class="dv">10000</span>:</span>
@@ -808,7 +808,7 @@ Indentation
 <pre><code>High density</code></pre>
 </div>
 </div>
-<div id="586bf7d9" class="cell" data-execution_count="34">
+<div id="0c5281e3" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining conditions with 'and', 'or'</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>floors <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -818,7 +818,7 @@ Indentation
 <pre><code>High density and tall buildings</code></pre>
 </div>
 </div>
-<div id="46d1ac7d" class="cell" data-execution_count="35">
+<div id="4734e3eb" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for None (often used for missing data)</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>maybe_data <span class="op">=</span> <span class="va">None</span> <span class="co"># Represents absence of a value</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -838,7 +838,7 @@ Indentation
 <section id="for-loops" class="level4">
 <h4 class="anchored" data-anchor-id="for-loops"><code>for</code> Loops</h4>
 <p>Use <code>for</code> loops to iterate over each item in a sequence (such as a list, tuple, or string). In each pass (iteration), the loop variable (e.g., <code>planet</code> in the example below) takes the value of the current item from the sequence.</p>
-<div id="c8db5753" class="cell" data-execution_count="36">
+<div id="44b213eb" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through a list</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> planet <span class="kw">in</span> planets:</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Checking planet: </span><span class="sc">{</span>planet<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -854,7 +854,7 @@ Checking planet: Jupiter</code></pre>
 <section id="while-loops" class="level4">
 <h4 class="anchored" data-anchor-id="while-loops"><code>while</code> Loops</h4>
 <p>Use <code>while</code> loops when you don’t know exactly how many times to loop in advance, but you know the condition under which the loop should continue running.</p>
-<div id="d1bc1b2f" class="cell" data-execution_count="37">
+<div id="73cf1750" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countdown</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>countdown <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> countdown <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -881,7 +881,7 @@ Blast off!</code></pre>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Functions help you organise your code into logical, reusable blocks. This improves readability, makes debugging easier, and simplifies maintenance. If you find yourself copying and pasting code, that’s often a good sign you could write a function instead.</p>
-<div id="f4eac13a" class="cell" data-execution_count="38">
+<div id="2ce6e7dd" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function with parameters (inputs)</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_density(population, area, unit<span class="op">=</span><span class="st">"sq km"</span>):</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculates population density.</span></span>
@@ -920,7 +920,7 @@ Area must be positive to calculate density.
 Density invalid: 0</code></pre>
 </div>
 </div>
-<div id="97098b0e" class="cell" data-execution_count="39">
+<div id="0d08e7d0" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function with arguments (values for the parameters)</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>density1 <span class="op">=</span> calculate_density(<span class="dv">1000000</span>, <span class="dv">50</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Density 1: </span><span class="sc">{</span>density1<span class="sc">:.2f}</span><span class="ss"> people per sq km"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -928,7 +928,7 @@ Density invalid: 0</code></pre>
 <pre><code>Density 1: 20000.00 people per sq km</code></pre>
 </div>
 </div>
-<div id="5e100b0b" class="cell" data-execution_count="40">
+<div id="8f015cc9" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Can name arguments</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>density2 <span class="op">=</span> calculate_density(</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>    population<span class="op">=</span><span class="dv">500000</span>, area<span class="op">=</span><span class="dv">100</span>, unit<span class="op">=</span><span class="st">"square kilometres"</span></span>
@@ -938,7 +938,7 @@ Density invalid: 0</code></pre>
 <pre><code>Density 2: 5000.00 people per square kilometres</code></pre>
 </div>
 </div>
-<div id="f0e26a46" class="cell" data-execution_count="41">
+<div id="908e6696" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of invalid input</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>density_invalid <span class="op">=</span> calculate_density(<span class="dv">1000</span>, <span class="dv">0</span>)</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Density invalid: </span><span class="sc">{</span>density_invalid<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -961,7 +961,7 @@ Density invalid: 0</code></pre>
 <section id="importing-modules" class="level2">
 <h2 class="anchored" data-anchor-id="importing-modules">Importing Modules</h2>
 <p>Python has a vast collection of <em>modules</em> that provide ready-to-use tools – so you often don’t need to reinvent the wheel! If you encounter an unfamiliar function, it’s a good idea to check the <code>import</code> statements, usually found at the top of the file, as the function might come from an imported module.</p>
-<div id="68e74941" class="cell" data-execution_count="42">
+<div id="b5281284" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math <span class="co"># Import the built-in math module</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>radius <span class="op">=</span> <span class="dv">5</span></span>
@@ -971,14 +971,14 @@ Density invalid: 0</code></pre>
 <pre><code>Circle Area: 78.54</code></pre>
 </div>
 </div>
-<div id="26aded2a" class="cell" data-execution_count="43">
+<div id="e7a09ff4" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>circumference <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> radius</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Circle Circumference: </span><span class="sc">{</span>circumference<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Circle Circumference: 31.42</code></pre>
 </div>
 </div>
-<div id="16f642d9" class="cell" data-execution_count="44">
+<div id="72de2785" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also import specific methods from a module</span></span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt <span class="co"># Import only the square root function</span></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Square root of 16 is </span><span class="sc">{</span>sqrt(<span class="dv">16</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
