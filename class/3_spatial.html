@@ -281,12 +281,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Shapely is a Python library for creating and manipulating geometric objects such as points, lines, and polygons. It offers an intuitive way to work with these shapes within a Cartesian coordinate system. Widely used in spatial analysis, Shapely also underpins other libraries like GeoPandas, which is designed for handling geospatial data.</p>
-<p>Why is Shapely useful?</p>
+<p>In a nutshell, Shapely allows you to:</p>
 <ul>
-<li><strong>Geometry Creation</strong>: Easily create points, lines, and polygons.</li>
-<li><strong>Spatial Relationships</strong>: Analyse spatial relationships such as containment, intersection, and proximity.</li>
-<li><strong>Geometric Operations</strong>: Carry out geometric operations like buffering, union, and intersection.</li>
-<li><strong>Integration</strong>: Seamlessly integrates with libraries such as GeoPandas for more advanced geospatial tasks.</li>
+<li>Create points, lines, and polygons.</li>
+<li>Analyse spatial relationships such as containment, intersection, and proximity.</li>
+<li>Carry out geometric operations like buffering, union, and intersection.</li>
+<li>Integrate with libraries such as GeoPandas for more advanced geospatial tasks.</li>
 </ul>
 <p>For more comprehensive details, please refer to the <a href="https://shapely.readthedocs.io/en/stable/">Shapely API documentation</a>.</p>
 <p>In this lesson, we’ll explore the fundamentals of Shapely and its applications in urban contexts. You’ll learn how to model spatial relationships and perform various geometric operations using this library.</p>
@@ -308,7 +308,7 @@ Note
 <h3 class="anchored" data-anchor-id="basic-geometry">Basic Geometry</h3>
 <p>Shapely uses its <code>geometry</code> module to construct basic geometric shapes.</p>
 <p>Points are the most fundamental geometric objects in Shapely, serving as the building blocks for more complex shapes.</p>
-<div id="421a47b1" class="cell" data-execution_count="1">
+<div id="f87c2945" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point, LineString, Polygon</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pt <span class="op">=</span> Point(<span class="dv">0</span>, <span class="dv">0</span>)</span>
@@ -322,7 +322,7 @@ Note
 </div>
 </div>
 <p>Linestrings represent sequences of connected points. You can define them using a series of XY coordinate pairs or a list of Point objects.</p>
-<div id="5cd73ed8" class="cell" data-execution_count="2">
+<div id="9f8ddd46" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> LineString([(<span class="dv">0</span>, <span class="dv">5</span>), (<span class="dv">5</span>, <span class="dv">0</span>), (<span class="dv">10</span>, <span class="dv">5</span>)])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -335,7 +335,7 @@ Note
 </div>
 </div>
 <p>Polygons are closed shapes defined by a sequence of coordinates. Similar to linestrings, you can create them from a list of points or coordinate tuples.</p>
-<div id="3b81f8e2" class="cell" data-execution_count="3">
+<div id="e6ff52a0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> Polygon([(<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">10</span>), (<span class="dv">10</span>, <span class="dv">10</span>), (<span class="dv">10</span>, <span class="dv">0</span>)])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -347,21 +347,21 @@ Note
 </div>
 </div>
 <p>Shapely geometries come with useful properties that provide common information. For instance, you can easily retrieve a polygon’s area:</p>
-<div id="eeacbac5" class="cell" data-execution_count="4">
+<div id="b7d177ac" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>poly.area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>100.0</code></pre>
 </div>
 </div>
 <p>Similarly, you can get the length of a linestring:</p>
-<div id="249f69da" class="cell" data-execution_count="5">
+<div id="c2f67d50" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>line.length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>14.142135623730951</code></pre>
 </div>
 </div>
 <p>Other handy properties include centroids, x and y coordinates, and WKT (Well-Known Text) representations:</p>
-<div id="6b77fd3a" class="cell" data-execution_count="6">
+<div id="17bfe397" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>poly.centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -371,13 +371,13 @@ Note
 </div>
 </div>
 </div>
-<div id="90624f2a" class="cell" data-execution_count="7">
+<div id="990baf7f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pt.x, pt.y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>(0.0, 0.0)</code></pre>
 </div>
 </div>
-<div id="b7574a74" class="cell" data-execution_count="8">
+<div id="4708eaec" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>line.wkt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>'LINESTRING (0 5, 5 0, 10 5)'</code></pre>
@@ -387,7 +387,7 @@ Note
 <section id="operations-and-predicates" class="level3">
 <h3 class="anchored" data-anchor-id="operations-and-predicates">Operations and Predicates</h3>
 <p>Shapely supports a range of typical GIS spatial operations and predicates. For example, you can measure the distance between two spatial objects:</p>
-<div id="f5535b34" class="cell" data-execution_count="9">
+<div id="7be25946" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pt.distance(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>3.5355339059327378</code></pre>
@@ -395,7 +395,7 @@ Note
 </div>
 <p>Crucially, Shapely operates using Cartesian coordinates. For accurate distance calculations or predicate operations, ensure your geometries are in a projected coordinate reference system and share the same system. Objects must share the same coordinate system for accurate results.</p>
 <p>The Shapely documentation provides comprehensive details on all available operations and predicates. For instance, the <a href="https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point"><code>geometry.Point</code></a> page describes everything related to point geometries.</p>
-<div id="80e2cc73" class="cell" data-execution_count="10">
+<div id="aabf2949" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pt_buff <span class="op">=</span> pt.<span class="bu">buffer</span>(<span class="dv">2</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pt_buff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -409,14 +409,14 @@ Note
 </div>
 <p>As an example, the documentation shows that the <code>Point</code> geometry has a <code>buffer</code> method. This method accepts a distance parameter and returns a polygon representing the buffered area.</p>
 <p>Common spatial predicates are also readily available. For example, you can use the <code>within</code> method to check if a point is located inside a polygon:</p>
-<div id="49c140b3" class="cell" data-execution_count="11">
+<div id="dd28c982" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pt.within(poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>If a point is on a polygon’s boundary, <code>within</code> returns <code>False</code>, but <code>intersects</code> returns <code>True</code>.</p>
-<div id="3d838b2e" class="cell" data-execution_count="12">
+<div id="702a2bf6" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>poly.intersects(pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>True</code></pre>
@@ -426,7 +426,7 @@ Note
 <section id="buffers-unions-and-differencing" class="level3">
 <h3 class="anchored" data-anchor-id="buffers-unions-and-differencing">Buffers, Unions, and Differencing</h3>
 <p>Other common geometric operations include <code>buffer</code>. For instance, let’s create a buffer around a linestring:</p>
-<div id="d26caf06" class="cell" data-execution_count="13">
+<div id="3cdbf84c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>line_buff <span class="op">=</span> line.<span class="bu">buffer</span>(<span class="dv">2</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>line_buff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -439,7 +439,7 @@ Note
 </div>
 </div>
 <p>You can use the <code>union</code> method to combine two polygons into a single, unified geometry:</p>
-<div id="c0ee9622" class="cell" data-execution_count="14">
+<div id="0fabb001" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>poly2 <span class="op">=</span> Polygon([(<span class="dv">5</span>, <span class="dv">5</span>), (<span class="dv">5</span>, <span class="dv">15</span>), (<span class="dv">15</span>, <span class="dv">15</span>), (<span class="dv">15</span>, <span class="dv">5</span>)])</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>union_poly <span class="op">=</span> poly.union(poly2)</span>
@@ -454,7 +454,7 @@ Note
 </div>
 </div>
 <p>Operations like <code>difference</code> also behave intuitively, as you might expect from GIS software:</p>
-<div id="776f7593" class="cell" data-execution_count="15">
+<div id="649eb5fa" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diff_poly <span class="op">=</span> poly.difference(pt_buff)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>diff_poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,7 +467,7 @@ Note
 </div>
 </div>
 <p>Some operations offer configurable parameters for finer control. For example, the <code>buffer</code> method includes <code>cap_style</code> and <code>join_style</code> parameters, which allow you to control the appearance of the buffer’s ends and joins around a line.</p>
-<div id="7a2070ef" class="cell" data-execution_count="16">
+<div id="f35c6b47" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>buffer_round <span class="op">=</span> line.<span class="bu">buffer</span>(<span class="dv">2</span>, cap_style<span class="op">=</span><span class="dv">1</span>, join_style<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>buffer_round</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -484,7 +484,7 @@ Note
 <h3 class="anchored" data-anchor-id="workflows">Workflows</h3>
 <p>Shapely’s spatial operations and predicates closely mirror those found in GIS software like QGIS. This means tasks you might perform in a graphical user interface (UI) can often be replicated in Python, and vice-versa. Python becomes particularly advantageous for complex or lengthy workflows, as scripting enables advanced processing that can be cumbersome or difficult to achieve through a UI.</p>
 <p>Let’s consider a simple example: modelling streets and checking if they are within a specified distance threshold of particular land uses.</p>
-<div id="d65f3360" class="cell" data-execution_count="17">
+<div id="f22d49d2" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>street <span class="op">=</span> LineString([(<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">10</span>, <span class="dv">0</span>)])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>street_buffer <span class="op">=</span> street.<span class="bu">buffer</span>(<span class="dv">5</span>, cap_style<span class="op">=</span><span class="dv">1</span>, join_style<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -497,7 +497,7 @@ Note
 </div>
 </div>
 </div>
-<div id="6dd4c727" class="cell" data-execution_count="18">
+<div id="31d59e5c" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>land_use <span class="op">=</span> Point(<span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>land_use</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -508,14 +508,14 @@ Note
 </div>
 </div>
 </div>
-<div id="62ff997d" class="cell" data-execution_count="19">
+<div id="dff604e7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>is_within <span class="op">=</span> land_use.within(street_buffer)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>is_within</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="b6d047e2" class="cell" data-execution_count="20">
+<div id="c10f458e" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>distance_to_street <span class="op">=</span> land_use.distance(street)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>distance_to_street</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
