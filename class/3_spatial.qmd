@@ -10,12 +10,12 @@ execute:
 
 Shapely is a Python library for creating and manipulating geometric objects such as points, lines, and polygons. It offers an intuitive way to work with these shapes within a Cartesian coordinate system. Widely used in spatial analysis, Shapely also underpins other libraries like GeoPandas, which is designed for handling geospatial data.
 
-Why is Shapely useful?
+In a nutshell, Shapely allows you to:
 
-- **Geometry Creation**: Easily create points, lines, and polygons.
-- **Spatial Relationships**: Analyse spatial relationships such as containment, intersection, and proximity.
-- **Geometric Operations**: Carry out geometric operations like buffering, union, and intersection.
-- **Integration**: Seamlessly integrates with libraries such as GeoPandas for more advanced geospatial tasks.
+- Create points, lines, and polygons.
+- Analyse spatial relationships such as containment, intersection, and proximity.
+- Carry out geometric operations like buffering, union, and intersection.
+- Integrate with libraries such as GeoPandas for more advanced geospatial tasks.
 
 For more comprehensive details, please refer to the [Shapely API documentation](https://shapely.readthedocs.io/en/stable/).
 
