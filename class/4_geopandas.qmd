@@ -2,13 +2,17 @@
 title: GeoPandas
 editor:
   render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
 ---
 
 In urban analysis, working with spatial data often means handling numerous geographic features simultaneously, such as buildings, streets, or administrative boundaries. While processing each feature individually is possible, it's considerably more efficient to manage and analyse them collectively within a structured format.
 
 For general data analysis in Python, the `pandas` library is the standard tool. Pandas provides the `DataFrame`, a powerful table-like structure where rows represent observations (e.g., individual buildings) and columns store their attributes (e.g., height, area, land use). This structure is conceptually similar to attribute tables found in GIS software such as QGIS or ArcGIS.
 
-[**GeoPandas**](https://geopandas.org/en/stable/) extends pandas by incorporating first-class support for geographic data. It introduces the `GeoDataFrame`, which is effectively a pandas `DataFrame` enhanced with a dedicated column for storing geometry objects (such as points, lines, or polygons). This integration allows you to seamlessly combine tabular data analysis with spatial operations.
+[**GeoPandas**](https://geopandas.org/en/stable/) extends pandas by incorporating first-class support for geographic data. It introduces the `GeoDataFrame`, which is effectively a pandas `DataFrame` enhanced with a dedicated column for storing geometry objects (such as points, lines, or polygons). This integration allows you to combine tabular data analysis with spatial operations.
 
 Key features of GeoPandas include:
 
@@ -22,7 +26,7 @@ Key features of GeoPandas include:
 
 Although you'll frequently load spatial data directly from files, knowing how to create a `GeoDataFrame` manually is beneficial. To do this, you typically need:
 
-1. Tabular data (like a list of dictionaries or a pandas DataFrame).
+1. Tabular data (like a list of dictionaries).
 2. Corresponding geometry objects.
 3. A Coordinate Reference System (CRS) identifier.
 
@@ -33,7 +37,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 ```
 
-First, we'll define some tabular data as a list of dictionaries. Each dictionary will represent a city, storing its name and approximate coordinates (longitude, latitude).
+First, we'll define some data as a list of dictionaries. Each dictionary will represent a city, storing its name and approximate coordinates (longitude, latitude).
 
 ```{python}
 data = [
@@ -57,21 +61,19 @@ for city in data:
 locations
 ```
 
-With the tabular data and geometry prepared, the final component is the CRS. Given that the coordinates are longitude and latitude, the appropriate CRS is WGS 84, identified by the EPSG code 4326.
+With the structured data and geometry prepared, the final component is the CRS. Given that the coordinates are longitude and latitude, the appropriate CRS is WGS 84, identified by the EPSG code 4326.
 
 We can now construct the `GeoDataFrame`:
 
 ```{python}
 gdf_cities = gpd.GeoDataFrame(
-    data,  # The tabular data
-    geometry=locations,  # The Shapely geometry objects
-    crs="EPSG:4326"  # Coordinate Reference System (WGS 84)
+    data,  # The list of dictionaries
+    geometry=locations,  # The Shapely Points
+    crs=4326  # Coordinate Reference System (WGS 84)
 )
 
 gdf_cities
 ```
-
-Notice that GeoPandas automatically recognised the `geometry` list as the active geometry column. (You can also specify a different column name if needed.)
 
 ## Indexing
 
@@ -83,7 +85,7 @@ gdf_cities = gdf_cities.set_index("city")
 gdf_cities
 ```
 
-You can access a row using its index. Pandas provides a special indexing method, `loc[]`, which allows you to access rows by their index label. This is especially useful when you've set a meaningful index, such as city names.
+You can access a row using its index. Pandas provides a special indexing method, `.loc[]`, which allows you to access rows by their index label. This is particularly useful when you've set a meaningful index, such as city names.
 
 ```{python}
 gdf_cities.loc["Madrid"]
@@ -123,13 +125,13 @@ As shown, only two rows are returned because Valencia, the third city, has a lat
 
 GeoDataFrames possess special properties stemming from their spatial nature.
 
-For instance, GeoPandas is aware of which column contains the spatial data. You can access this column directly using the `.geometry` attribute, which returns a `GeoSeries`.
+GeoPandas formally designates a particular column as the geometry; this is typically done during the creation of the GeoDataFrame. The geometry column contains Shapely geometry objects, which can be points, lines, or polygons. This column is often called `geometry`, but this is not always the case.
 
 ```{python}
 gdf_cities.geometry
 ```
 
-Similarly, it knows the CRS, accessible via the `.crs` attribute.
+Similarly, GeoPandas formally associates the geometry with a given CRS, accessible via the `.crs` attribute.
 
 ```{python}
 gdf_cities.crs
@@ -143,7 +145,7 @@ gdf_cities.plot()
 
 ### Coordinate Transformations
 
-GeoPandas makes CRS transformation straightforward with the `to_crs()` method. Ensure you use a projected coordinate reference system when performing detailed spatial analysis. Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
+GeoPandas makes CRS transformation very easy with the `to_crs()` method. Ensure you use a projected coordinate reference system when performing detailed spatial analysis. Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
 
 ```{python}
 gdf_cities_proj = gdf_cities.to_crs(3035)
@@ -188,9 +190,7 @@ gdf_cities_proj.geometry.distance(pt)
 
 ### Creating and Updating Columns
 
-Creating or updating column values in a DataFrame is straightforward.
-
-For example, if we wished to create a new column named 'easting' and assign it the x-coordinate of the geometry, we could proceed as follows:
+If we wished to create a new column named 'easting' and assign it the x-coordinate of the geometry, we could proceed as follows:
 
 ```{python}
 gdf_cities_proj['easting'] = gdf_cities_proj.geometry.centroid.x

@@ -2,6 +2,10 @@
 title: Urban Analytics
 editor:
   render-on-save: true
+execute:
+  enabled: true
+  cache: true
+  freeze: auto
 ---
 
 Building upon our previous explorations of Python, Shapely, and GeoPandas, this lesson introduces the broader Python geospatial ecosystem. We will focus on two particularly useful libraries: `osmnx` for acquiring urban data from OpenStreetMap, and `momepy` for conducting urban morphology analysis.
