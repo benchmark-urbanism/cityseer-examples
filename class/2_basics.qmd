@@ -185,8 +185,8 @@ print(planets[2]) # Earth
 Reverse index
 
 ```{python}
-planets[-1] # Mars
-planets[-3] # Venus
+print(planets[-1]) # Mars
+print(planets[-3]) # Venus
 ```
 
 Add an item to the end
@@ -277,7 +277,8 @@ print(building_info)
 # Common dictionary operations
 print(building_info.keys())   # Get all keys
 print(building_info.values()) # Get all values
-print(building_info.get("address", "Not specified")) # Get value, provide default if key not found
+print(building_info.get("floors")) # Get value
+print(building_info.get("address"))  # Returns None
 ```
 
 ### Tuples
@@ -292,19 +293,36 @@ print(point[0]) # Access items like lists
 ```
 
 ```python
-# point[0] = 11.0 # This would cause a TypeError! Tuples are immutable.
+# This would cause a TypeError! Tuples are immutable.
+point[0] = 11.0
 ```
 
+Tuples are often used to return multiple values from functions or for unpacking (we will explain functions later).
+
 ```{python}
-# Tuples are often used to return multiple values from functions or for unpacking
 def get_coordinates():
     return (10.5, 25.3)
 ```
+
+This is a common pattern in Python, especially when dealing with functions that return multiple values. You can unpack the tuple into separate variables.
 
 ```{python}
 coords = get_coordinates()
 lat, lon = coords # Tuple unpacking
 print(f"Latitude: {lat}, Longitude: {lon}")
+```
+
+The above can also be done directly:
+
+```{python}
+lat, lon = get_coordinates()
+print(f"Latitude: {lat}, Longitude: {lon}")
+```
+
+The below would raise an error because the tuple only has two items, but we are trying to unpack it into three variables:
+
+```python
+lat, lon, z = get_coordinates()
 ```
 
 ### Sets
@@ -344,7 +362,7 @@ Control flow structures are fundamental to programming. They allow your code to 
 
 ### Conditionals
 
-Conditionals allow your program to execute different blocks of code based on whether certain conditions are `True` or `False`. They use comparison operators to evaluate conditions.
+Conditionals allow your program to execute different blocks of code based on whether certain conditions are `True` or `False`. They use comparison operators to evaluate conditions. This conditional logic enables your program to adapt its behaviour to various situations.
 
 ```{python}
 # Comparison operators return boolean values
@@ -363,9 +381,11 @@ print(5 <= 3) # Less than or equal to: False
 Indentation is non-negotiable in Python: it defines code blocks. Always use consistent spacing (the common convention is 4 spaces per indentation level) and avoid mixing spaces with tabs. Code blocks are introduced by a colon (`:`) and can be nested.
 
 ```{python}
-# Example of indentation
+# FYI - we will explain loops next
 for i in range(3):
+    # Example of indentation
     if i == 2:
+        # Example of nested indentation
         print(f"{i} is two")
     else:
         print(f"{i} is not two")
@@ -373,7 +393,7 @@ for i in range(3):
 
 :::
 
-Use `if`, `elif` (short for 'else if'), and `else` to direct the flow of execution. Conditions can be combined using `and` and `or`. For identity checks (e.g., if a value `is None`), use `is` and `is not`.
+Use `if`, `elif` (short for 'else if'), and `else` to direct the flow of execution.
 
 ```{python}
 population_density = 5000 # people per sq km
@@ -388,6 +408,8 @@ else:
     print("Low density")
 ```
 
+Conditions can be combined using `and` and `or`.
+
 ```{python}
 # Combining conditions with 'and', 'or'
 floors = 12
@@ -395,6 +417,8 @@ floors = 12
 if population_density > 3000 and floors > 10:
     print("High density and tall buildings")
 ```
+
+For identity checks (e.g., if a value `is None`), use `is` and `is not`.
 
 ```{python}
 # Checking for None (often used for missing data)
@@ -406,7 +430,16 @@ else:
     print(f"Data found: {maybe_data}")
 ```
 
-This conditional logic enables your program to adapt its behaviour to various situations.
+For checking if a value is in a collection (like a list or set), use `in` and `not in`.
+
+```{python}
+# Check if a value is in a list
+cities = ["London", "Paris", "Berlin"]
+if "Paris" in cities:
+    print("Paris is in the list of cities.")
+if "Rome" not in cities:
+    print("Rome is not in the list of cities.")
+```
 
 ### Loops
 
@@ -470,23 +503,23 @@ def calculate_density(population, area, unit="sq km"):
     density = population / area
     return density
 
-# Call the function with arguments (values for the parameters)
-density1 = calculate_density(1000000, 50)
-print(f"Density 1: {density1:.2f} people per sq km")
-
-density2 = calculate_density(population=500000, area=100, unit="square kilometres") # Can name arguments
-print(f"Density 2: {density2:.2f} people per square kilometres")
-
-# Example of invalid input
-density_invalid = calculate_density(1000, 0)
-print(f"Density invalid: {density_invalid}")
 ```
+
+- **Parameters:** These are the names listed in the function definition's parentheses (e.g., `population`, `area`).
+- **Arguments:** These are the actual values you pass to the function when you call it.
+- **Default Arguments:** You can give parameters default values (e.g., `unit="sq km"`). If you don't provide an argument for that parameter when calling the function, the default value is used.
+- **Scope:** Variables defined inside a function are typically _local_ to that function, meaning they only exist and can be accessed within that function.
+- **Docstrings:** As mentioned, the optional triple-quoted string `"""..."""` right after the `def` line. They are used to document what the function does, its arguments (often listed under an `Args:` section), and what it returns (under a `Returns:` section).
+- **Return Statement:** The `return` statement is used to send a value back from the function to the place where it was called. If a function doesn't have a `return` statement, or if the `return` statement is used without a value, it implicitly returns `None`.
+
+Call the function with arguments (values for the parameters)
 
 ```{python}
-# Call the function with arguments (values for the parameters)
 density1 = calculate_density(1000000, 50)
 print(f"Density 1: {density1:.2f} people per sq km")
 ```
+
+Calling the function with explicit named arguments allows you to specify which parameter each value corresponds to, making your code clearer and more readable. This is especially useful when a function has many parameters or some have default values.
 
 ```{python}
 # Can name arguments
@@ -496,26 +529,13 @@ density2 = calculate_density(
 print(f"Density 2: {density2:.2f} people per square kilometres")
 ```
 
-```{python}
-# Example of invalid input
-density_invalid = calculate_density(1000, 0)
-print(f"Density invalid: {density_invalid}")
-```
-
-**Key Ideas:**
-
-- **Parameters:** These are the names listed in the function definition's parentheses (e.g., `population`, `area`).
-- **Arguments:** These are the actual values you pass to the function when you call it.
-- **Default Arguments:** You can give parameters default values (e.g., `unit="sq km"`). If you don't provide an argument for that parameter when calling the function, the default value is used.
-- **Scope:** Variables defined inside a function are typically _local_ to that function, meaning they only exist and can be accessed within that function.
-- **Docstrings:** As mentioned, the triple-quoted string `"""..."""` right after the `def` line. They are used to document what the function does, its arguments (often listed under an `Args:` section), and what it returns (under a `Returns:` section). Good docstrings are vital for writing understandable and maintainable code.
-- **Return Statement:** The `return` statement is used to send a value back from the function to the place where it was called. If a function doesn't have a `return` statement, or if the `return` statement is used without a value, it implicitly returns `None`.
-
-Functions make your code modular, which means it's broken down into smaller, manageable pieces. This makes it easier to test and understand. While functions don't always have to return a value (e.g., a function that just prints something), they often do.
+While functions don't always have to return a value (e.g., a function that just prints something), they often do.
 
 ## Importing Modules
 
 Python has a vast collection of _modules_ that provide ready-to-use tools – so you often don't need to reinvent the wheel! If you encounter an unfamiliar function, it's a good idea to check the `import` statements, usually found at the top of the file, as the function might come from an imported module.
+
+`import module_name` makes the functions and variables within that module available, accessed via `module_name.function_name`.
 
 ```{python}
 import math # Import the built-in math module
@@ -536,13 +556,11 @@ from math import sqrt # Import only the square root function
 print(f"Square root of 16 is {sqrt(16)}")
 ```
 
-**Key Idea:** `import module_name` makes the functions and variables within that module available, accessed via `module_name.function_name`.
-
-In later sections, we'll be making extensive use of powerful libraries such as `pandas`, `geopandas`, and `cityseer`, which are all imported as modules.
+In later sections, we'll be making extensive use of powerful libraries such as `geopandas` and `numpy`, which are imported as modules.
 
 ## Common Errors
 
-Don't worry, errors are a normal part of programming! Learning to read and understand error messages is a key skill for fixing them. If you get stuck, searching for the error message online is often helpful – chances are, someone else has encountered the same problem. You can also ask an LLM to help explain what an error message means.
+Errors are a normal part of programming! Learning to read and understand error messages is a key skill for fixing them. If you get stuck, searching for the error message online is often helpful – chances are, someone else has encountered the same problem. You can also ask an LLM to help explain what an error message means.
 
 - **`NameError: name '...' is not defined`**: You tried to use a variable before assigning a value to it, or you misspelled the variable name.
 - **`TypeError: unsupported operand type(s) for ...`**: You tried to perform an operation on incompatible data types (e.g., adding a string to an integer: `"Hello" + 5`).

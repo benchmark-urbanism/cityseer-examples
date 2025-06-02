@@ -109,10 +109,14 @@ Common spatial predicates are also readily available. For example, you can use t
 pt.within(poly)
 ```
 
-If a point is on a polygon's boundary, `within` returns `False`, but `intersects` returns `True`.
+If a point is on a polygon's boundary, `within` returns `False`, but `intersects` or `touches` return `True`.
 
 ```{python}
-poly.intersects(pt)
+pt.intersects(poly)
+```
+
+```{python}
+pt.touches(poly)
 ```
 
 ### Buffers, Unions, and Differencing

@@ -5,7 +5,7 @@ editor:
 
 This section provides introductory examples on the usage of Python and computational notebooks. These are high-level snapshots to give a basic indication of how these tools might typically be used; for more detailed examples, please refer to the online documentation for the libraries used.
 
-If you would like to master python for spatial analysis, then you are encouraged to avail yourself of online resources and roll up your proverbial sleeves: getting your hands dirty is the only reliable way to familiarise yourself with geospatial python and its capabilities.
+If you would like to master python for spatial analysis, you are encouraged to avail yourself of online resources and roll up your proverbial sleeves: getting your hands dirty is the only reliable way to familiarise yourself with geospatial python and its capabilities.
 
 1. [Notebooks](1_notebooks.qmd): Learn what computational notebooks are and how to use them.
 2. [Python Basics](2_basics.qmd): Python basics in a nutshell, touching on variables, data types, and simple operations.

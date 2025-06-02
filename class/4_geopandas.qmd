@@ -14,7 +14,7 @@ For general data analysis in Python, the `pandas` library is the standard tool. 
 
 [**GeoPandas**](https://geopandas.org/en/stable/) extends pandas by incorporating first-class support for geographic data. It introduces the `GeoDataFrame`, which is effectively a pandas `DataFrame` enhanced with a dedicated column for storing geometry objects (such as points, lines, or polygons). This integration allows you to combine tabular data analysis with spatial operations.
 
-Key features of GeoPandas include:
+Benefits of using GeoPandas include:
 
 - Storing geometric data alongside other attributes.
 - Reading and writing various spatial file formats (Shapefile, GeoPackage, GeoJSON, etc.).
@@ -26,7 +26,7 @@ Key features of GeoPandas include:
 
 Although you'll frequently load spatial data directly from files, knowing how to create a `GeoDataFrame` manually is beneficial. To do this, you typically need:
 
-1. Tabular data (like a list of dictionaries).
+1. Tabular data (often a list of dictionaries).
 2. Corresponding geometry objects.
 3. A Coordinate Reference System (CRS) identifier.
 
@@ -56,7 +56,10 @@ Next, we need to create the corresponding geometry objects. As these are coordin
 locations = []
 
 for city in data:
-    locations.append(Point(city["x"], city["y"]))
+    x = city["x"]
+    y = city["y"]
+    geom = Point(x, y)
+    locations.append(geom)
 
 locations
 ```
@@ -101,6 +104,12 @@ To retrieve all rows for a specific column, use the `:` operator. For example, t
 
 ```{python}
 gdf_cities.loc[:, "y"]
+```
+
+An alternative way to access columns is by using the column name directly:
+
+```{python}
+gdf_cities["y"]
 ```
 
 A particularly powerful feature of GeoDataFrames is the ability to filter rows based on their properties. To do this, you create a boolean mask, which can then be used to exclude rows you are not interested in. For instance, if you want to filter the cities to include only those with a latitude greater than 40, you can proceed as follows:
