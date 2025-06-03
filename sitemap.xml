@@ -2,154 +2,154 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/continuity/continuity_os_open.html</loc>
-    <lastmod>2025-06-02T08:14:20.618Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.955Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.677Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.014Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.531Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.867Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/gpd_mixed_uses.html</loc>
-    <lastmod>2025-06-02T08:14:20.530Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.867Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/osm_accessibility.html</loc>
-    <lastmod>2025-06-02T08:14:20.535Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.872Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/network_simplification.html</loc>
-    <lastmod>2025-06-02T08:14:20.713Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.050Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/osmnx_to_cityseer.html</loc>
-    <lastmod>2025-06-02T08:14:20.715Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.052Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/create_from_buffered_point.html</loc>
-    <lastmod>2025-06-02T08:14:20.688Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.025Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/network_from_relation_id.html</loc>
-    <lastmod>2025-06-02T08:14:20.693Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.030Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/create_dual_graph.html</loc>
-    <lastmod>2025-06-02T08:14:20.681Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.018Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/save_to_file.html</loc>
-    <lastmod>2025-06-02T08:14:20.716Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.053Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/centrality/gpd_angular_centrality.html</loc>
-    <lastmod>2025-06-02T08:14:20.551Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.888Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/centrality/osm_centrality.html</loc>
-    <lastmod>2025-06-02T08:14:20.562Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.899Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/stats/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.721Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.058Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/stats/gpd_stats.html</loc>
-    <lastmod>2025-06-02T08:14:20.721Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.058Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/4_geopandas.html</loc>
-    <lastmod>2025-06-02T08:14:19.937Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.274Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/2_basics.html</loc>
-    <lastmod>2025-06-02T08:14:19.937Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.274Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/3_spatial.html</loc>
-    <lastmod>2025-06-02T08:14:19.937Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.274Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/5_urban.html</loc>
-    <lastmod>2025-06-02T08:14:19.937Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.275Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/data/datasets.html</loc>
-    <lastmod>2025-06-02T08:14:19.938Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.275Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/6_data_science.html</loc>
-    <lastmod>2025-06-02T08:14:19.938Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.275Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/1_notebooks.html</loc>
-    <lastmod>2025-06-02T08:14:19.937Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.274Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/class/index.html</loc>
-    <lastmod>2025-06-02T08:14:19.938Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.275Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.509Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.845Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/stats/osm_stats.html</loc>
-    <lastmod>2025-06-02T08:14:20.725Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.062Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/centrality/centrality_metro.html</loc>
-    <lastmod>2025-06-02T08:14:20.546Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.883Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/centrality/gpd_metric_centrality.html</loc>
-    <lastmod>2025-06-02T08:14:20.559Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.895Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/centrality/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.559Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.896Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/create_from_bbox.html</loc>
-    <lastmod>2025-06-02T08:14:20.686Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.023Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/network_from_bounds.html</loc>
-    <lastmod>2025-06-02T08:14:20.692Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.029Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/momepy_to_cityseer.html</loc>
-    <lastmod>2025-06-02T08:14:20.688Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.026Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/index.html</loc>
-    <lastmod>2025-06-02T08:14:20.688Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.025Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/networks/network_from_streets.html</loc>
-    <lastmod>2025-06-02T08:14:20.695Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.032Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/live_nodes.html</loc>
-    <lastmod>2025-06-02T08:14:20.679Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.016Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/gpd_accessibility.html</loc>
-    <lastmod>2025-06-02T08:14:20.526Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.864Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/osm_accessibility_polys.html</loc>
-    <lastmod>2025-06-02T08:14:20.538Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.874Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/accessibility/accessibility_metro.html</loc>
-    <lastmod>2025-06-02T08:14:20.519Z</lastmod>
+    <lastmod>2025-06-03T08:36:59.855Z</lastmod>
   </url>
   <url>
     <loc>https://benchmark-urbanism.github.io/cityseer-examples/recipes/continuity/continuity_osm.html</loc>
-    <lastmod>2025-06-02T08:14:20.676Z</lastmod>
+    <lastmod>2025-06-03T08:37:00.013Z</lastmod>
   </url>
 </urlset>
