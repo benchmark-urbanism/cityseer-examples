@@ -312,12 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A Coordinate Reference System (CRS) identifier.</li>
 </ol>
 <p>Let’s begin with a simple example.</p>
-<div id="90242f4c" class="cell" data-execution_count="1">
+<div id="a01888b1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First, we’ll define some data as a list of dictionaries. Each dictionary will represent a city, storing its name and approximate coordinates (longitude, latitude).</p>
-<div id="2a8a941d" class="cell" data-execution_count="2">
+<div id="407e409f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"city"</span>: <span class="st">"Madrid"</span>, <span class="st">"x"</span>: <span class="op">-</span><span class="fl">3.7038</span>, <span class="st">"y"</span>: <span class="fl">40.4168</span>},</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"city"</span>: <span class="st">"Barcelona"</span>, <span class="st">"x"</span>: <span class="fl">2.1734</span>, <span class="st">"y"</span>: <span class="fl">41.3851</span>},</span>
@@ -332,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Next, we need to create the corresponding geometry objects. As these are coordinates, <code>Point</code> objects are suitable. We can generate a list of <code>Point</code> objects directly from our data.</p>
-<div id="dbe8a634" class="cell" data-execution_count="3">
+<div id="477c784f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Point geometries from the x and y columns</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>locations <span class="op">=</span> []</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>With the structured data and geometry prepared, the final component is the CRS. Given that the coordinates are longitude and latitude, the appropriate CRS is WGS 84, identified by the EPSG code 4326.</p>
 <p>We can now construct the <code>GeoDataFrame</code>:</p>
-<div id="74d1d654" class="cell" data-execution_count="4">
+<div id="77f6b109" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gdf_cities <span class="op">=</span> gpd.GeoDataFrame(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    data,  <span class="co"># The list of dictionaries</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>locations,  <span class="co"># The Shapely Points</span></span>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="indexing" class="level2">
 <h2 class="anchored" data-anchor-id="indexing">Indexing</h2>
 <p>Similar to pandas DataFrames, GeoDataFrames possess an index. By default, this is a range of integers. You can assign a more meaningful index using one of the columns (e.g., the city name) with the <code>set_index()</code> method. This often simplifies data selection.</p>
-<div id="99df4b22" class="cell" data-execution_count="5">
+<div id="7fba5b60" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gdf_cities <span class="op">=</span> gdf_cities.set_index(<span class="st">"city"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gdf_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -452,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You can access a row using its index. Pandas provides a special indexing method, <code>.loc[]</code>, which allows you to access rows by their index label. This is particularly useful when you’ve set a meaningful index, such as city names.</p>
-<div id="401f78da" class="cell" data-execution_count="6">
+<div id="39214fe5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.loc[<span class="st">"Madrid"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>x                           -3.7038
@@ -462,14 +462,14 @@ Name: Madrid, dtype: object</code></pre>
 </div>
 </div>
 <p>You can also specify a column name. For instance, to retrieve the latitude of Barcelona:</p>
-<div id="547ca2b9" class="cell" data-execution_count="7">
+<div id="672c48b7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.loc[<span class="st">'Barcelona'</span>, <span class="st">"y"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>np.float64(41.3851)</code></pre>
 </div>
 </div>
 <p>To retrieve all rows for a specific column, use the <code>:</code> operator. For example, to get all rows for the <code>y</code> column:</p>
-<div id="b0c06a7e" class="cell" data-execution_count="8">
+<div id="a88463aa" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.loc[:, <span class="st">"y"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>city
@@ -480,7 +480,7 @@ Name: y, dtype: float64</code></pre>
 </div>
 </div>
 <p>An alternative way to access columns is by using the column name directly:</p>
-<div id="59a21bdb" class="cell" data-execution_count="9">
+<div id="09d1ee4e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gdf_cities[<span class="st">"y"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>city
@@ -491,7 +491,7 @@ Name: y, dtype: float64</code></pre>
 </div>
 </div>
 <p>A particularly powerful feature of GeoDataFrames is the ability to filter rows based on their properties. To do this, you create a boolean mask, which can then be used to exclude rows you are not interested in. For instance, if you want to filter the cities to include only those with a latitude greater than 40, you can proceed as follows:</p>
-<div id="ef759551" class="cell" data-execution_count="10">
+<div id="50e1b365" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boolean mask</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> gdf_cities[<span class="st">"y"</span>] <span class="op">&gt;</span> <span class="dv">40</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -505,7 +505,7 @@ Name: y, dtype: bool</code></pre>
 </div>
 </div>
 <p>This mask is a pandas Series of boolean values, where <code>True</code> indicates that the condition (y &gt; 40) is met, and <code>False</code> indicates it is not. You can now apply this mask to filter the rows in the original GeoDataFrame.</p>
-<div id="5b42e489" class="cell" data-execution_count="11">
+<div id="aa48d459" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the mask to filter the rows</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gdf_cities.loc[mask]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -552,7 +552,7 @@ Name: y, dtype: bool</code></pre>
 <h2 class="anchored" data-anchor-id="geospatial">Geospatial</h2>
 <p>GeoDataFrames possess special properties stemming from their spatial nature.</p>
 <p>GeoPandas formally designates a particular column as the geometry; this is typically done during the creation of the GeoDataFrame. The geometry column contains Shapely geometry objects, which can be points, lines, or polygons. This column is often called <code>geometry</code>, but this is not always the case.</p>
-<div id="4fdffe55" class="cell" data-execution_count="12">
+<div id="f7e0debc" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.geometry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>city
@@ -563,7 +563,7 @@ Name: geometry, dtype: geometry</code></pre>
 </div>
 </div>
 <p>Similarly, GeoPandas formally associates the geometry with a given CRS, accessible via the <code>.crs</code> attribute.</p>
-<div id="41eb01e9" class="cell" data-execution_count="13">
+<div id="125711cb" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>&lt;Geographic 2D CRS: EPSG:4326&gt;
@@ -580,7 +580,7 @@ Datum: World Geodetic System 1984 ensemble
 </div>
 </div>
 <p>GeoPandas conveniently integrates with <code>matplotlib</code> for straightforward plotting. Calling <code>.plot()</code> on a GeoDataFrame will render its geometries.</p>
-<div id="fc73dcc9" class="cell" data-execution_count="14">
+<div id="b482372c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gdf_cities.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -593,7 +593,7 @@ Datum: World Geodetic System 1984 ensemble
 <section id="coordinate-transformations" class="level3">
 <h3 class="anchored" data-anchor-id="coordinate-transformations">Coordinate Transformations</h3>
 <p>GeoPandas makes CRS transformation very easy with the <code>to_crs()</code> method. Ensure you use a projected coordinate reference system when performing detailed spatial analysis. Let’s convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).</p>
-<div id="53d004b7" class="cell" data-execution_count="15">
+<div id="6614789c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj <span class="op">=</span> gdf_cities.to_crs(<span class="dv">3035</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -642,7 +642,7 @@ Datum: World Geodetic System 1984 ensemble
 </div>
 </div>
 <p>Notice how the <code>x</code> and <code>y</code> columns no longer match the geometry, as the geometry is now in metres according to EPSG:3035. The <code>.crs</code> attribute reflects this change:</p>
-<div id="8be6fb52" class="cell" data-execution_count="16">
+<div id="f3029997" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>&lt;Projected CRS: EPSG:3035&gt;
@@ -662,7 +662,7 @@ Datum: European Terrestrial Reference System 1989 ensemble
 </div>
 </div>
 <p>Plotting the transformed data shows the locations relative to the new projected coordinate system.</p>
-<div id="d6ad518b" class="cell" data-execution_count="17">
+<div id="b080b7c2" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -677,7 +677,7 @@ Datum: European Terrestrial Reference System 1989 ensemble
 <h3 class="anchored" data-anchor-id="spatial-operations">Spatial Operations</h3>
 <p>GeoPandas enables you to apply spatial operations directly to <code>GeoDataFrames</code> or <code>GeoSeries</code>. These operations are applied element-wise.</p>
 <p>For instance, to create a 100km buffer around each city:</p>
-<div id="ccd7c483" class="cell" data-execution_count="18">
+<div id="27d34e1a" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The buffer distance is in the units of the CRS (metres for EPSG:3035)</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj[<span class="st">"geometry"</span>] <span class="op">=</span> gdf_cities_proj.geometry.<span class="bu">buffer</span>(<span class="dv">100000</span>)  <span class="co"># 100km buffer</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -691,7 +691,7 @@ Datum: European Terrestrial Reference System 1989 ensemble
 </div>
 </div>
 <p>Alternatively, you can calculate the distance from each feature in a GeoDataFrame to a single Shapely geometry object. Let’s determine the distance from each city buffer to a specific point (also defined in EPSG:3035 coordinates):</p>
-<div id="4bd121f9" class="cell" data-execution_count="19">
+<div id="08d1f359" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a point in the same CRS (EPSG:3035)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>pt <span class="op">=</span> Point(<span class="dv">3300000</span>, <span class="dv">2000000</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -709,7 +709,7 @@ dtype: float64</code></pre>
 <section id="creating-and-updating-columns" class="level3">
 <h3 class="anchored" data-anchor-id="creating-and-updating-columns">Creating and Updating Columns</h3>
 <p>If we wished to create a new column named ‘easting’ and assign it the x-coordinate of the geometry, we could proceed as follows:</p>
-<div id="3a0347b8" class="cell" data-execution_count="20">
+<div id="51068c4c" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj[<span class="st">'easting'</span>] <span class="op">=</span> gdf_cities_proj.geometry.centroid.x</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -764,7 +764,7 @@ dtype: float64</code></pre>
 </div>
 <p>Each geometry row in the DataFrame is a Shapely geometry, so you can use standard Shapely syntax to access properties such as the centroid or its x-coordinate.</p>
 <p>If you decide instead to update the existing <code>x</code> and <code>y</code> columns, you can reference them directly:</p>
-<div id="692a6823" class="cell" data-execution_count="21">
+<div id="30830223" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj[<span class="st">'x'</span>] <span class="op">=</span> gdf_cities_proj.geometry.centroid.x</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj[<span class="st">'y'</span>] <span class="op">=</span> gdf_cities_proj.geometry.centroid.y</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -819,7 +819,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>DataFrames offer an extensive variety of useful methods; here, we will use the <code>drop</code> method to remove the column we no longer wish to retain:</p>
-<div id="0c34a557" class="cell" data-execution_count="22">
+<div id="51405374" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj <span class="op">=</span> gdf_cities_proj.drop(columns<span class="op">=</span>[<span class="st">'easting'</span>])</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>gdf_cities_proj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -874,7 +874,7 @@ dtype: float64</code></pre>
 <section id="reading-data" class="level3">
 <h3 class="anchored" data-anchor-id="reading-data">Reading Data</h3>
 <p>GeoPandas can read various spatial data formats, such as Shapefiles, GeoPackages, and GeoJSON files. The <code>read_file()</code> function is the primary method for this. Note that the file path in the example below must be adjusted to point to the actual location of the file on your computer.</p>
-<div id="55cab441" class="cell" data-execution_count="23">
+<div id="9814542d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mad_bldgs <span class="op">=</span> gpd.read_file(<span class="st">'../data/madrid_buildings/madrid_bldgs.gpkg'</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>mad_bldgs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -987,7 +987,7 @@ dtype: float64</code></pre>
 <section id="plotting" class="level3">
 <h3 class="anchored" data-anchor-id="plotting">Plotting</h3>
 <p>Let’s plot the data.</p>
-<div id="805cfe0a" class="cell" data-execution_count="24">
+<div id="187d5e0d" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mad_bldgs.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -998,7 +998,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>To zoom in when plotting, you can set your x and y-axis limits. For a cleaner plot, it is also generally preferable to turn off the axes so that the coordinates do not render.</p>
-<div id="e5e9e869" class="cell" data-execution_count="25">
+<div id="05cecc86" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mad_bldgs.plot()</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">439000</span>, <span class="dv">442000</span>)</span>
@@ -1019,7 +1019,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Let’s create a new column named <code>area</code>, which we will set to the value of each geometry’s area. Then, we will plot the data again, this time rendering the colour according to the building’s area.</p>
-<div id="e9b5b203" class="cell" data-execution_count="26">
+<div id="2242ea08" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mad_bldgs[<span class="st">'area'</span>] <span class="op">=</span> mad_bldgs.geometry.area</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mad_bldgs.plot(</span>
