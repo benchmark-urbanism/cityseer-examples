@@ -11,7 +11,7 @@ This repository contains examples for the `cityseer` package.
 
 ## Datasets
 
-The datasets used from the recipes are available on the [datasets](../data/datasets.qmd) page, where you can also find information on the sources.
+The datasets used from the recipes are available on the [datasets](data/datasets.qmd) page, where you can also find information on the sources.
 
 ## Python 101
 
