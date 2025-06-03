@@ -22,6 +22,18 @@ Origin of the data: Madrid City Council (or, where appropriate, administrative b
 
 Description: Delimitation of the 131 neighborhoods of the municipality of Madrid. The names and codes of each neighborhood and the districts to which they belong are indicated. The initial delimitation corresponds to the territorial restructuring of 1987.
 
+## Boundary
+
+[GeoPackage](./madrid_bounds/madrid_bounds.gpkg)
+
+Derived from the [neighbourhoods](./madrid_nbhds/madrid_nbhds.gpkg) dataset.
+
+[License](https://datos.madrid.es/egob/catalogo/aviso-legal)
+
+Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
+
+Description: Delimitation of the 131 neighborhoods of the municipality of Madrid. The names and codes of each neighborhood and the districts to which they belong are indicated. The initial delimitation corresponds to the territorial restructuring of 1987.
+
 ## Blocks
 
 [GeoPackage](./madrid_blocks/madrid_blocks.gpkg)
