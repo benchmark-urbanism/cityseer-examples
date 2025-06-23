@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Angular distance network centrality – Cityseer Guide</title>
+<title>VGA from GeoPandas data – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Angular distance network centrality</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">VGA from GeoPandas data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Angular distance network centrality</h1>
+<h1 class="title">VGA from GeoPandas data</h1>
 </div>
 
 
@@ -277,55 +277,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate angular (geometric or “simplest”) distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<p>Generate a visual graph analysis (VGA) from GeoPandas data (or a file opened with GeoPandas).</p>
+<div id="a46c909a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> visibility</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Prepare the network as shown in other examples. Working with the dual graph is recommended.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(reset_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-INFO:cityseer.tools.graphs:Converting graph to dual.
-INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
-</div>
-</div>
-<p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
-</div>
-</div>
-<p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-simplest"><code>node_centrality_simplest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest angular (geometric or “simplest”) distance centralities. The function requires a <code>NetworkStructure</code> and nodes <code>GeoDataFrame</code> prepared with the <code>network_structure_from_nx</code> function in the previous step.</p>
-<p>The function can calculate centralities for numerous distances at once via the <code>distances</code> parameter, which accepts a list of distances.</p>
-<p>The function returns the nodes <code>GeoDataFrame</code> with the outputs of the centralities added as columns. The columns are named <code>cc_{centrality}_{distance}_ang</code>. Standard <code>geopandas</code> functionality can be used to explore, visualise, or save the results. See the documentation for more information on the available centrality formulations.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_simplest(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
-INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<p>Open a GeoPandas dataset.</p>
+<div id="e519f84d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bldgs_gdf <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_buildings/madrid_bldgs.gpkg"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bldgs_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -333,143 +294,95 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ns_node_idx</th>
-<th data-quarto-table-cell-role="th">x</th>
-<th data-quarto-table-cell-role="th">y</th>
-<th data-quarto-table-cell-role="th">live</th>
-<th data-quarto-table-cell-role="th">weight</th>
-<th data-quarto-table-cell-role="th">primal_edge</th>
-<th data-quarto-table-cell-role="th">primal_edge_node_a</th>
-<th data-quarto-table-cell-role="th">primal_edge_node_b</th>
-<th data-quarto-table-cell-role="th">primal_edge_idx</th>
-<th data-quarto-table-cell-role="th">dual_node</th>
-<th data-quarto-table-cell-role="th">cc_density_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_density_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_hillier_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_hillier_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_farness_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_farness_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_2000_ang</th>
+<th data-quarto-table-cell-role="th">mean_height</th>
+<th data-quarto-table-cell-role="th">area</th>
+<th data-quarto-table-cell-role="th">perimeter</th>
+<th data-quarto-table-cell-role="th">compactness</th>
+<th data-quarto-table-cell-role="th">orientation</th>
+<th data-quarto-table-cell-role="th">volume</th>
+<th data-quarto-table-cell-role="th">floor_area_ratio</th>
+<th data-quarto-table-cell-role="th">form_factor</th>
+<th data-quarto-table-cell-role="th">corners</th>
+<th data-quarto-table-cell-role="th">shape_index</th>
+<th data-quarto-table-cell-role="th">fractal_dimension</th>
+<th data-quarto-table-cell-role="th">geometry</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">x454839.5-y4476885.3_x454855.9-y4476818.6_k0</td>
-<td>0</td>
-<td>454848.067543</td>
-<td>4.476852e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454855.9 4476818.6, 454849.1 44768...</td>
-<td>x454855.9-y4476818.6</td>
-<td>x454839.5-y4476885.3</td>
-<td>0</td>
-<td>POINT (454848.067543 4476852.042507)</td>
-<td>30.0</td>
-<td>124.0</td>
-<td>12.848804</td>
-<td>26.465605</td>
-<td>10.168567</td>
-<td>18.186932</td>
-<td>88.508049</td>
-<td>845.442261</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">x454833.6-y4476910.5_x454839.5-y4476885.3_k0</td>
-<td>1</td>
-<td>454836.577015</td>
-<td>4.476898e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454839.5 4476885.3, 454838 4476891...</td>
-<td>x454839.5-y4476885.3</td>
-<td>x454833.6-y4476910.5</td>
-<td>0</td>
-<td>POINT (454836.577015 4476897.9067)</td>
-<td>36.0</td>
-<td>127.0</td>
-<td>14.853752</td>
-<td>28.316143</td>
-<td>10.232138</td>
-<td>18.836437</td>
-<td>126.659744</td>
-<td>856.265991</td>
-<td>136.0</td>
-<td>968.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">x454839.5-y4476885.3_x454877.1-y4476893.6_k0</td>
-<td>2</td>
-<td>454858.300000</td>
-<td>4.476889e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454839.5 4476885.3, 454877.1 44768...</td>
-<td>x454839.5-y4476885.3</td>
-<td>x454877.1-y4476893.6</td>
-<td>0</td>
-<td>POINT (454858.3 4476889.45)</td>
-<td>33.0</td>
-<td>125.0</td>
-<td>12.366441</td>
-<td>24.028734</td>
-<td>9.009537</td>
-<td>16.524494</td>
-<td>120.871918</td>
-<td>945.566040</td>
-<td>106.0</td>
-<td>752.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">x454823.1-y4476952.1_x454833.6-y4476910.5_k0</td>
-<td>3</td>
-<td>454828.362585</td>
-<td>4.476931e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454833.6 4476910.5, 454830.4 44769...</td>
-<td>x454833.6-y4476910.5</td>
-<td>x454823.1-y4476952.1</td>
-<td>0</td>
-<td>POINT (454828.362585 4476931.303206)</td>
-<td>36.0</td>
-<td>124.0</td>
-<td>15.039588</td>
-<td>28.382860</td>
-<td>10.302912</td>
-<td>18.803555</td>
-<td>125.789688</td>
-<td>817.717712</td>
-<td>165.0</td>
-<td>1180.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">x454758.1-y4476894.6_x454833.6-y4476910.5_k0</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>NaN</td>
+<td>187.418714</td>
+<td>58.669276</td>
+<td>0.491102</td>
+<td>40.235999</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 <td>4</td>
-<td>454795.845199</td>
-<td>4.476903e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454758.1 4476894.6, 454769.8 44768...</td>
-<td>x454833.6-y4476910.5</td>
-<td>x454758.1-y4476894.6</td>
-<td>0</td>
-<td>POINT (454795.845199 4476902.571916)</td>
-<td>33.0</td>
-<td>125.0</td>
-<td>9.605127</td>
-<td>21.297651</td>
-<td>8.002337</td>
-<td>16.290869</td>
-<td>136.085236</td>
-<td>959.126282</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>0.700787</td>
+<td>1.026350</td>
+<td>POLYGON ((448688.642 4492911, 448678.351 44928...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.0</td>
+<td>39.082821</td>
+<td>26.992208</td>
+<td>0.472874</td>
+<td>10.252128</td>
+<td>273.579749</td>
+<td>78.165643</td>
+<td>5.410857</td>
+<td>4</td>
+<td>0.687658</td>
+<td>1.041691</td>
+<td>POLYGON ((440862.665 4482604.017, 440862.64 44...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.0</td>
+<td>39.373412</td>
+<td>27.050303</td>
+<td>0.475086</td>
+<td>10.252128</td>
+<td>275.613883</td>
+<td>78.746824</td>
+<td>5.400665</td>
+<td>4</td>
+<td>0.689265</td>
+<td>1.040760</td>
+<td>POLYGON ((440862.681 4482608.269, 440862.665 4...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>7.5</td>
+<td>37.933979</td>
+<td>26.739878</td>
+<td>0.464266</td>
+<td>10.252129</td>
+<td>284.504846</td>
+<td>75.867959</td>
+<td>5.513124</td>
+<td>4</td>
+<td>0.681371</td>
+<td>1.045072</td>
+<td>POLYGON ((440862.705 4482612.365, 440862.681 4...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7.0</td>
+<td>39.013701</td>
+<td>26.972641</td>
+<td>0.472468</td>
+<td>10.183618</td>
+<td>273.095907</td>
+<td>78.027402</td>
+<td>5.412350</td>
+<td>4</td>
+<td>0.687363</td>
+<td>1.041798</td>
+<td>POLYGON ((440880.29 4482607.963, 440880.274 44...</td>
 </tr>
 </tbody>
 </table>
@@ -477,136 +390,131 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_density_500_ang', 'cc_density_2000_ang',
-       'cc_harmonic_500_ang', 'cc_harmonic_2000_ang', 'cc_hillier_500_ang',
-       'cc_hillier_2000_ang', 'cc_farness_500_ang', 'cc_farness_2000_ang',
-       'cc_betweenness_500_ang', 'cc_betweenness_2000_ang'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_betweenness_2000_ang"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>count     47129.000000
-mean       8083.850098
-std       15415.607422
-min           0.000000
-25%         374.000000
-50%        2210.000000
-75%        8528.000000
-max      227236.000000
-Name: cc_betweenness_2000_ang, dtype: float64</code></pre>
-</div>
-</div>
-<div id="cell-11" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_500_ang"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1bdfa7fc" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bldgs_gdf.crs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_2000_ang"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
-</figure>
+<pre><code>&lt;Projected CRS: EPSG:25830&gt;
+Name: ETRS89 / UTM zone 30N
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- name: Europe between 6°W and 0°W: Faroe Islands offshore; Ireland - offshore; Jan Mayen - offshore; Norway including Svalbard - offshore; Spain - mainland - onshore and offshore.
+- bounds: (-6.0, 35.26, 0.01, 80.49)
+Coordinate Operation:
+- name: UTM zone 30N
+- method: Transverse Mercator
+Datum: European Terrestrial Reference System 1989 ensemble
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich</code></pre>
 </div>
 </div>
-</div>
-<p>Alternatively, you can define the distance thresholds using a list of <code>minutes</code> instead.</p>
-<div id="cell-14" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_simplest(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    minutes<span class="op">=</span>[<span class="dv">15</span>],</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the visibility module to create a VGA from GeoPandas data. The VGA will be generated based on the GeoPandas data provided to the <code>visibility_graph</code> method.</p>
+<p>Pay particular attention to:</p>
+<ul>
+<li>The <code>bounds</code> parameter, which defines the geographical area in the same CRS as your dataset. The order is Left, Bottom, Right, Top.</li>
+<li>The <code>out_path</code> parameter, which specifies where to save the output files. The filepath must exist. The extension of the output file will be <code>.tif</code> and the file will be saved in GeoTIFF format, which can be opened in QGIS.</li>
+<li>The <code>from_crs_code</code> parameter, which specifies the coordinate reference system (CRS) to use for the input data. This should match the CRS of your GeoPandas dataset. If you are unsure, you can check the CRS of your GeoDataFrame using <code>.crs</code>.</li>
+<li>The <code>to_crs_code</code> parameter, which specifies the coordinate reference system (CRS) to use for the output. The default is the local UTM, but you can change it to any valid CRS code.</li>
+<li>The <code>view_distance</code> and <code>resolution</code> parameters, which control the analysis granularity.</li>
+</ul>
+<p>There is a performance trade-off for the bounds, view_distance, and resolution. A larger view_distance or higher resolution will result in a more detailed graph but may take longer to compute and require more memory.</p>
+<div id="08d04c8d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>visibility.visibility_graph(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    bldgs_gdf,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>(<span class="dv">439658</span>, <span class="dv">4473632</span>, <span class="dv">440914</span>, <span class="dv">4474972</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    out_path<span class="op">=</span><span class="st">"recipes/viewshed/images/madrid_vis"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    from_crs_code<span class="op">=</span><span class="dv">25830</span>,  <span class="co"># manually set CRS if needed</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    to_crs_code<span class="op">=</span><span class="dv">25830</span>,  <span class="co"># manually set CRS if needed</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    view_distance<span class="op">=</span><span class="dv">150</span>,  <span class="co"># can use a larger view distance - but slower</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    resolution<span class="op">=</span><span class="dv">1</span>,  <span class="co"># can use a higher resolution - but slower</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.</code></pre>
+<pre><code>INFO:cityseer.metrics.visibility:Preparing buildings raster.
+INFO:cityseer.metrics.visibility:Running visibility.
+100%|██████████| 1683040/1683040 [14:50&lt;00:00, 1889.31it/s]
+INFO:rasterio._env:GDAL signalled an error: err_no=4, msg="Attempt to create new tiff file `/Users/gareth/dev/cityseer-examples/recipes/viewshed/images/madrid_vis_density_dist_150_res_1.tif' failed: No such file or directory"</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">CPLE_OpenFailedError</span>                      Traceback (most recent call last)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">rasterio/_io.pyx:1530</span>, in <span class="ansi-cyan-fg">rasterio._io.DatasetWriterBase.__init__</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">rasterio/_err.pyx:359</span>, in <span class="ansi-cyan-fg">rasterio._err.exc_wrap_pointer</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">CPLE_OpenFailedError</span>: Attempt to create new tiff file '/Users/gareth/dev/cityseer-examples/recipes/viewshed/images/madrid_vis_density_dist_150_res_1.tif' failed: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">RasterioIOError</span>                           Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">visibility</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">visibility_graph</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">bldgs_gdf</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">bounds</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">439658</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">4473632</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">440914</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">4474972</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">out_path</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">recipes/viewshed/images/madrid_vis</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">from_crs_code</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">25830</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># manually set CRS if needed</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">to_crs_code</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">25830</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># manually set CRS if needed</span>
+<span class="ansi-green-fg">      7</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">view_distance</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">150</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># can use a larger view distance - but slower</span>
+<span class="ansi-green-fg">      8</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">resolution</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># can use a higher resolution - but slower</span>
+<span class="ansi-green-fg">      9</span> <span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/dev/cityseer-examples/.venv/lib/python3.12/site-packages/cityseer/metrics/visibility.py:150</span>, in <span class="ansi-cyan-fg">visibility_graph</span><span class="ansi-blue-fg">(bldgs_gdf, bounds, out_path, from_crs_code, to_crs_code, view_distance, resolution)</span>
+<span class="ansi-green-fg">    148</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> band_idx, key <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">enumerate</span>([<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">density</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">farness</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">harmonic</span><span class="ansi-yellow-fg">"</span>]):
+<span class="ansi-green-fg">    149</span>     path = Path(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>write_path<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">_</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>key<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">_dist_</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>view_distance<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">_res_</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>resolution<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>).with_suffix(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">.tif</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">150</span>     <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span class="ansi-yellow-bg">rasterio</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    151</span> <span class="ansi-yellow-bg">        </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">str</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">path</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">resolve</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    152</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">w</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    153</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">driver</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">GTiff</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    154</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">height</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">bldgs_rast</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">shape</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># type: ignore</span>
+<span class="ansi-green-fg">    155</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">width</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">bldgs_rast</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">shape</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># type: ignore</span>
+<span class="ansi-green-fg">    156</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">count</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    157</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">np</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">float32</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    158</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">crs</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">to_crs_code</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    159</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">transform</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">transform</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    160</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> dst:
+<span class="ansi-green-fg">    161</span>         dst.write(bands[band_idx], <span class="ansi-green-fg">1</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/dev/cityseer-examples/.venv/lib/python3.12/site-packages/rasterio/env.py:463</span>, in <span class="ansi-cyan-fg">ensure_env_with_credentials.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwds)</span>
+<span class="ansi-green-fg">    460</span>     session = DummySession()
+<span class="ansi-green-fg">    462</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> env_ctor(session=session):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">463</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwds</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/dev/cityseer-examples/.venv/lib/python3.12/site-packages/rasterio/__init__.py:366</span>, in <span class="ansi-cyan-fg">open</span><span class="ansi-blue-fg">(fp, mode, driver, width, height, count, crs, transform, dtype, nodata, sharing, opener, **kwargs)</span>
+<span class="ansi-green-fg">    364</span> writer = get_writer_for_driver(driver)
+<span class="ansi-green-fg">    365</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> writer <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">366</span>     dataset = <span class="ansi-yellow-bg">writer</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    367</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">path</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    368</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    369</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">driver</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">driver</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    370</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">width</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">width</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    371</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">height</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">height</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    372</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">count</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">count</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    373</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">crs</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">crs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    374</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">transform</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">transform</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    375</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    376</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">nodata</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">nodata</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    377</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">sharing</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">sharing</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    378</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span>
+<span class="ansi-green-fg">    379</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    380</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    381</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> DriverCapabilityError(
+<span class="ansi-green-fg">    382</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Writer does not exist for driver: </span><span style="font-weight:bold;color:rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">"</span> % <span style="color:rgb(0,135,0)">str</span>(driver)
+<span class="ansi-green-fg">    383</span>     )
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">rasterio/_io.pyx:1542</span>, in <span class="ansi-cyan-fg">rasterio._io.DatasetWriterBase.__init__</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">RasterioIOError</span>: Attempt to create new tiff file '/Users/gareth/dev/cityseer-examples/recipes/viewshed/images/madrid_vis_density_dist_150_res_1.tif' failed: No such file or directory</pre>
 </div>
 </div>
-<p>The function will map the minutes values into the equivalent distances, which are reported in the logged output.</p>
-<div id="cell-16" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_density_500_ang', 'cc_density_2000_ang',
-       'cc_harmonic_500_ang', 'cc_harmonic_2000_ang', 'cc_hillier_500_ang',
-       'cc_hillier_2000_ang', 'cc_farness_500_ang', 'cc_farness_2000_ang',
-       'cc_betweenness_500_ang', 'cc_betweenness_2000_ang',
-       'cc_density_1200_ang', 'cc_harmonic_1200_ang', 'cc_hillier_1200_ang',
-       'cc_farness_1200_ang', 'cc_betweenness_1200_ang'],
-      dtype='object')</code></pre>
 </div>
-</div>
-<p>As per the function logging outputs, 15 minutes has been mapped to 1200m at default <code>speed_m_s</code>, so the corresponding outputs can be visualised using the 1200m columns. Use the configurable <code>speed_m_s</code> parameter to set a custom metres per second walking speed.</p>
-<div id="cell-18" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_1200_ang"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>The output will generate three files:</p>
+<ul>
+<li>A <code>density</code> measure - the number of visible pixels.</li>
+<li>A <code>farness</code> measure - the average distance to visible pixels.</li>
+<li>A <code>harmonic</code> closeness measure - the harmonic inverse of the distance to visible pixels.</li>
+</ul>
+<p><img src="images/madrid_farness_150_1.png" style="width:100%;"></p>
 
 
 

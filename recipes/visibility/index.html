@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Angular distance network centrality – Cityseer Guide</title>
+<title>Visibility – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,51 +20,17 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../recipes/stats/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -101,9 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../custom-style.css">
@@ -130,7 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Angular distance network centrality</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recipes/index.html">Cityseer Recipes</a></li><li class="breadcrumb-item"><a href="../../recipes/visibility/index.html">Visibility</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -241,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/visibility/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../recipes/visibility/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
@@ -252,15 +215,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#visibility-from-osm-data" id="toc-visibility-from-osm-data" class="nav-link active" data-scroll-target="#visibility-from-osm-data">Visibility from OSM data</a></li>
+  <li><a href="#visibility-from-geopandas-data" id="toc-visibility-from-geopandas-data" class="nav-link" data-scroll-target="#visibility-from-geopandas-data">Visibility from geopandas data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recipes/index.html">Cityseer Recipes</a></li><li class="breadcrumb-item"><a href="../../recipes/visibility/index.html">Visibility</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Angular distance network centrality</h1>
+<h1 class="title">Visibility</h1>
 </div>
 
 
@@ -277,338 +247,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate angular (geometric or “simplest”) distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Prepare the network as shown in other examples. Working with the dual graph is recommended.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(reset_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-INFO:cityseer.tools.graphs:Converting graph to dual.
-INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
-</div>
-</div>
-<p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
-</div>
-</div>
-<p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-simplest"><code>node_centrality_simplest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest angular (geometric or “simplest”) distance centralities. The function requires a <code>NetworkStructure</code> and nodes <code>GeoDataFrame</code> prepared with the <code>network_structure_from_nx</code> function in the previous step.</p>
-<p>The function can calculate centralities for numerous distances at once via the <code>distances</code> parameter, which accepts a list of distances.</p>
-<p>The function returns the nodes <code>GeoDataFrame</code> with the outputs of the centralities added as columns. The columns are named <code>cc_{centrality}_{distance}_ang</code>. Standard <code>geopandas</code> functionality can be used to explore, visualise, or save the results. See the documentation for more information on the available centrality formulations.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_simplest(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
-INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
+<p>These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.</p>
+<blockquote class="blockquote">
+<p>Requires <code>cityseer</code> version 4.21.3 or later.</p>
+</blockquote>
+<section id="visibility-from-osm-data" class="level2">
+<h2 class="anchored" data-anchor-id="visibility-from-osm-data">Visibility from OSM data</h2>
+<p>Calculate visibility metrics for OSM from bounding box coordinates.</p>
+<p><a href="../../recipes/visibility/vga_osm.html">Notebook</a></p>
+</section>
+<section id="visibility-from-geopandas-data" class="level2">
+<h2 class="anchored" data-anchor-id="visibility-from-geopandas-data">Visibility from geopandas data</h2>
+<p>Calculate visibility metrics from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
+<p><a href="../../recipes/visibility/vga_gpd.html">Notebook</a></p>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ns_node_idx</th>
-<th data-quarto-table-cell-role="th">x</th>
-<th data-quarto-table-cell-role="th">y</th>
-<th data-quarto-table-cell-role="th">live</th>
-<th data-quarto-table-cell-role="th">weight</th>
-<th data-quarto-table-cell-role="th">primal_edge</th>
-<th data-quarto-table-cell-role="th">primal_edge_node_a</th>
-<th data-quarto-table-cell-role="th">primal_edge_node_b</th>
-<th data-quarto-table-cell-role="th">primal_edge_idx</th>
-<th data-quarto-table-cell-role="th">dual_node</th>
-<th data-quarto-table-cell-role="th">cc_density_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_density_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_harmonic_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_hillier_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_hillier_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_farness_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_farness_2000_ang</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_500_ang</th>
-<th data-quarto-table-cell-role="th">cc_betweenness_2000_ang</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">x454839.5-y4476885.3_x454855.9-y4476818.6_k0</td>
-<td>0</td>
-<td>454848.067543</td>
-<td>4.476852e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454855.9 4476818.6, 454849.1 44768...</td>
-<td>x454855.9-y4476818.6</td>
-<td>x454839.5-y4476885.3</td>
-<td>0</td>
-<td>POINT (454848.067543 4476852.042507)</td>
-<td>30.0</td>
-<td>124.0</td>
-<td>12.848804</td>
-<td>26.465605</td>
-<td>10.168567</td>
-<td>18.186932</td>
-<td>88.508049</td>
-<td>845.442261</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">x454833.6-y4476910.5_x454839.5-y4476885.3_k0</td>
-<td>1</td>
-<td>454836.577015</td>
-<td>4.476898e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454839.5 4476885.3, 454838 4476891...</td>
-<td>x454839.5-y4476885.3</td>
-<td>x454833.6-y4476910.5</td>
-<td>0</td>
-<td>POINT (454836.577015 4476897.9067)</td>
-<td>36.0</td>
-<td>127.0</td>
-<td>14.853752</td>
-<td>28.316143</td>
-<td>10.232138</td>
-<td>18.836437</td>
-<td>126.659744</td>
-<td>856.265991</td>
-<td>136.0</td>
-<td>968.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">x454839.5-y4476885.3_x454877.1-y4476893.6_k0</td>
-<td>2</td>
-<td>454858.300000</td>
-<td>4.476889e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454839.5 4476885.3, 454877.1 44768...</td>
-<td>x454839.5-y4476885.3</td>
-<td>x454877.1-y4476893.6</td>
-<td>0</td>
-<td>POINT (454858.3 4476889.45)</td>
-<td>33.0</td>
-<td>125.0</td>
-<td>12.366441</td>
-<td>24.028734</td>
-<td>9.009537</td>
-<td>16.524494</td>
-<td>120.871918</td>
-<td>945.566040</td>
-<td>106.0</td>
-<td>752.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">x454823.1-y4476952.1_x454833.6-y4476910.5_k0</td>
-<td>3</td>
-<td>454828.362585</td>
-<td>4.476931e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454833.6 4476910.5, 454830.4 44769...</td>
-<td>x454833.6-y4476910.5</td>
-<td>x454823.1-y4476952.1</td>
-<td>0</td>
-<td>POINT (454828.362585 4476931.303206)</td>
-<td>36.0</td>
-<td>124.0</td>
-<td>15.039588</td>
-<td>28.382860</td>
-<td>10.302912</td>
-<td>18.803555</td>
-<td>125.789688</td>
-<td>817.717712</td>
-<td>165.0</td>
-<td>1180.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">x454758.1-y4476894.6_x454833.6-y4476910.5_k0</td>
-<td>4</td>
-<td>454795.845199</td>
-<td>4.476903e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (454758.1 4476894.6, 454769.8 44768...</td>
-<td>x454833.6-y4476910.5</td>
-<td>x454758.1-y4476894.6</td>
-<td>0</td>
-<td>POINT (454795.845199 4476902.571916)</td>
-<td>33.0</td>
-<td>125.0</td>
-<td>9.605127</td>
-<td>21.297651</td>
-<td>8.002337</td>
-<td>16.290869</td>
-<td>136.085236</td>
-<td>959.126282</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_density_500_ang', 'cc_density_2000_ang',
-       'cc_harmonic_500_ang', 'cc_harmonic_2000_ang', 'cc_hillier_500_ang',
-       'cc_hillier_2000_ang', 'cc_farness_500_ang', 'cc_farness_2000_ang',
-       'cc_betweenness_500_ang', 'cc_betweenness_2000_ang'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_betweenness_2000_ang"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>count     47129.000000
-mean       8083.850098
-std       15415.607422
-min           0.000000
-25%         374.000000
-50%        2210.000000
-75%        8528.000000
-max      227236.000000
-Name: cc_betweenness_2000_ang, dtype: float64</code></pre>
-</div>
-</div>
-<div id="cell-11" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_500_ang"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_2000_ang"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Alternatively, you can define the distance thresholds using a list of <code>minutes</code> instead.</p>
-<div id="cell-14" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_simplest(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    minutes<span class="op">=</span>[<span class="dv">15</span>],</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing simplest path node centrality.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.</code></pre>
-</div>
-</div>
-<p>The function will map the minutes values into the equivalent distances, which are reported in the logged output.</p>
-<div id="cell-16" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
-       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node', 'cc_density_500_ang', 'cc_density_2000_ang',
-       'cc_harmonic_500_ang', 'cc_harmonic_2000_ang', 'cc_hillier_500_ang',
-       'cc_hillier_2000_ang', 'cc_farness_500_ang', 'cc_farness_2000_ang',
-       'cc_betweenness_500_ang', 'cc_betweenness_2000_ang',
-       'cc_density_1200_ang', 'cc_harmonic_1200_ang', 'cc_hillier_1200_ang',
-       'cc_farness_1200_ang', 'cc_betweenness_1200_ang'],
-      dtype='object')</code></pre>
-</div>
-</div>
-<p>As per the function logging outputs, 15 minutes has been mapped to 1200m at default <code>speed_m_s</code>, so the corresponding outputs can be visualised using the 1200m columns. Use the configurable <code>speed_m_s</code> parameter to set a custom metres per second walking speed.</p>
-<div id="cell-18" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_harmonic_1200_ang"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>(np.float64(438500.0),
- np.float64(442000.0),
- np.float64(4472500.0),
- np.float64(4476000.0))</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gpd_angular_centrality_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1010,6 +664,15 @@ INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../recipes/stats/index.html" class="pagination-link" aria-label="Statistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Statistics</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

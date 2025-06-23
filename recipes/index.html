@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b65e0acc1123cb31b45e68ef6c5ac2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1c1298d4aec20b932e1c4c12e9ecd263.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e527a2aa67f29d6f5fe0d1d2967aeb26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6126e48d937f4bd83d89946cf038e224.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -203,6 +203,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Statistics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../recipes/visibility/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visibility</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -272,8 +278,12 @@ ul.task-list li input[type="checkbox"] {
 <p>When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should — for the same reasons — cover these buffered extents as well.</p>
 <p>The <code>live=True</code> node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the <code>live=False</code> nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both <code>live=True</code> and <code>live=False</code> nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for <code>live=True</code> nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to <code>live=True</code>.</p>
 <p>Here is an example of how to <a href="../recipes/live_nodes.html">set node status to live or not</a> based on whether it intersects the original boundary.</p>
+<section id="visibility" class="level4">
+<h4 class="anchored" data-anchor-id="visibility">Visibility</h4>
+<p>See the <a href="../recipes/visibility/index.html">Visibility</a> page for examples of how to calculate visibility metrics for OSM and GeoPandas sources of building footprints data.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
