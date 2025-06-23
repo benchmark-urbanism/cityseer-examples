@@ -21,7 +21,7 @@ If you are new to Python or computational notebooks, start with the [Python 101]
 
 If you already have some experience, you can dive straight into the [recipes section](recipes/index.qmd), which contains practical examples and use-cases for `cityseer`.
 
-## Installation
+## InstallationA
 
 To install `cityseer`, use `pip`:
 

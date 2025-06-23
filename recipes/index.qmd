@@ -56,3 +56,7 @@ When calculating network or layer metrics, the network has to be buffered by a d
 The `live=True` node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the `live=False` nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both `live=True` and `live=False` nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for `live=True` nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to `live=True`.
 
 Here is an example of how to [set node status to live or not](live_nodes.ipynb) based on whether it intersects the original boundary.
+
+#### Visibility
+
+See the [Visibility](visibility/index.qmd) page for examples of how to calculate visibility metrics for OSM and GeoPandas sources of building footprints data.

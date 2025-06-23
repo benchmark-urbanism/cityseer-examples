@@ -35,6 +35,7 @@ website:
           - href: recipes/centrality/index.qmd
           - href: recipes/accessibility/index.qmd
           - href: recipes/stats/index.qmd
+          - href: recipes/visibility/index.qmd
 format:
   html:
     theme: simplex

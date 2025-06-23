@@ -1,0 +1,21 @@
+---
+title: Visibility
+editor:
+  render-on-save: true
+---
+
+These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.
+
+> Requires `cityseer` version 4.21.3 or later.
+
+## Visibility from OSM data
+
+Calculate visibility metrics for OSM from bounding box coordinates.
+
+[Notebook](vga_osm.ipynb)
+
+## Visibility from geopandas data
+
+Calculate visibility metrics from a `geopandas` `GeoDataFrame`.
+
+[Notebook](vga_gpd.ipynb)
