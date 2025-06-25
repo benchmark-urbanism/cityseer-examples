@@ -304,8 +304,8 @@ INFO:cityseer.metrics.visibility:Running visibility.
 <p>The output will generate three files:</p>
 <ul>
 <li>A <code>density</code> measure - the number of visible pixels.</li>
-<li>A <code>farness</code> measure - the average distance to visible pixels.</li>
-<li>A <code>harmonic</code> closeness measure - the harmonic inverse of the distance to visible pixels.</li>
+<li>A <code>farness</code> measure - the summed distance to visible pixels - favours farther views (up to <code>view_distance</code>).</li>
+<li>A <code>harmonic</code> closeness measure - the summed inverse of the distance to visible pixels - favours close adjacency to open spaces.</li>
 </ul>
 <p><img src="images/ct_farness_100_2.png" style="width:100%;"></p>
 
