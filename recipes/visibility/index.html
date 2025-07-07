@@ -222,6 +222,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#visibility-from-osm-data" id="toc-visibility-from-osm-data" class="nav-link active" data-scroll-target="#visibility-from-osm-data">Visibility from OSM data</a></li>
   <li><a href="#visibility-from-geopandas-data" id="toc-visibility-from-geopandas-data" class="nav-link" data-scroll-target="#visibility-from-geopandas-data">Visibility from geopandas data</a></li>
+  <li><a href="#visibility-from-raster-data" id="toc-visibility-from-raster-data" class="nav-link" data-scroll-target="#visibility-from-raster-data">Visibility from raster data</a></li>
   </ul>
 </nav>
     </div>
@@ -249,17 +250,22 @@ ul.task-list li input[type="checkbox"] {
 
 <p>These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.</p>
 <blockquote class="blockquote">
-<p>Requires <code>cityseer</code> version 4.21.3 or later.</p>
+<p>Requires <code>cityseer</code> version 4.21.4 or later.</p>
 </blockquote>
 <section id="visibility-from-osm-data" class="level2">
 <h2 class="anchored" data-anchor-id="visibility-from-osm-data">Visibility from OSM data</h2>
 <p>Calculate visibility metrics for OSM from bounding box coordinates.</p>
-<p><a href="../../recipes/visibility/vga_osm.html">Notebook</a></p>
+<p><a href="../../recipes/visibility/vis_osm.html">Notebook</a></p>
 </section>
 <section id="visibility-from-geopandas-data" class="level2">
 <h2 class="anchored" data-anchor-id="visibility-from-geopandas-data">Visibility from geopandas data</h2>
 <p>Calculate visibility metrics from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<p><a href="../../recipes/visibility/vga_gpd.html">Notebook</a></p>
+<p><a href="../../recipes/visibility/vis_gpd.html">Notebook</a></p>
+</section>
+<section id="visibility-from-raster-data" class="level2">
+<h2 class="anchored" data-anchor-id="visibility-from-raster-data">Visibility from raster data</h2>
+<p>Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take elevation into account.</p>
+<p><a href="../../recipes/visibility/vis_raster.html">Notebook</a></p>
 
 
 </section>

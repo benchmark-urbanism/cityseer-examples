@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importing-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="importing-libraries">Importing Libraries</h3>
 <p>Let’s import the necessary packages:</p>
-<div id="24f76288" class="cell" data-execution_count="1">
+<div id="579e6566" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use an alias for convenience</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="osmnx">osmnx</h2>
 <p><a href="https://osmnx.readthedocs.io/"><code>osmnx</code></a> is a Python package that simplifies downloading and working with geospatial data from OpenStreetMap (OSM), such as building footprints or points of interest.</p>
 <p>This example demonstrates how to download building footprints within a 1km radius of a specified location in Nicosia, Cyprus, defined by its coordinates. <code>osmnx</code> provides several methods for downloading data; here, we will use <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_point"><code>features_from_point</code></a>.</p>
-<div id="5ec589d8" class="cell" data-execution_count="2">
+<div id="3e768bf3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the point of interest (latitude, longitude) and distance</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>center_point <span class="op">=</span> (<span class="fl">35.17526</span>, <span class="fl">33.36402</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>distance_m <span class="op">=</span> <span class="dv">1000</span></span>
@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>osmnx</code> returns GeoDataFrames which, as shown in the previous lesson, are ideal for spatial analysis in Python. Note the <code>tags={"building": True}</code> argument, which instructs <code>osmnx</code> to fetch all features tagged as buildings in OSM. By changing these tags, you can also download other types of features, such as roads or parks.</p>
 <p>It is good practice to inspect the data you have downloaded. The <code>head()</code> function displays the first few rows of the GeoDataFrame, allowing you to quickly check the data structure and attributes.</p>
-<div id="bb83f35d" class="cell" data-execution_count="3">
+<div id="b46d77c9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the buildings GeoDataFrame</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -524,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You can also plot the downloaded data:</p>
-<div id="e8fad2fc" class="cell" data-execution_count="4">
+<div id="eae199fd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a plot</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
 <p>To streamline the subsequent analysis, it is advisable to first filter for the types of geometry you intend to work with. In this instance, we are interested in polygon or multi-polygon geometries and will discard other types, such as points or linestrings.</p>
-<div id="8fe8b547" class="cell" data-execution_count="5">
+<div id="bbd98448" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out non-polygon geometries</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings[</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    gdf_buildings.geometry.<span class="bu">type</span>.isin([<span class="st">'Polygon'</span>, <span class="st">'MultiPolygon'</span>])</span>
@@ -747,7 +747,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Secondly, we will reset the index so that all features are neatly indexed from zero upwards, without duplicates.</p>
-<div id="35fdeb1b" class="cell" data-execution_count="6">
+<div id="1170491d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the index</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -912,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Thirdly, we will drop any columns not relevant to our analysis. In this case, we will retain the geometry column and the <code>building</code> column.</p>
-<div id="1909939c" class="cell" data-execution_count="7">
+<div id="283c1b2b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gdf_buildings <span class="op">=</span> gdf_buildings[[<span class="st">'geometry'</span>, <span class="st">'building'</span>]]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gdf_buildings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -961,12 +961,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Before performing morphological analysis, it is necessary to ensure your data is in a <strong>projected Coordinate Reference System (CRS)</strong>. Morphological metrics often involve measurements of distance and area, which are only accurate in a projected CRS. For Nicosia, we will use EPSG:3035 (ETRS89 / LAEA Europe), a European projection.</p>
-<div id="8b0daa14" class="cell" data-execution_count="8">
+<div id="0566596c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the target CRS</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj <span class="op">=</span> gdf_buildings.to_crs(<span class="dv">3035</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s replot the building data to ensure everything is in order.</p>
-<div id="acb311de" class="cell" data-execution_count="9">
+<div id="0e54d968" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a plot</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -998,7 +998,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="building-orientations" class="level3">
 <h3 class="anchored" data-anchor-id="building-orientations">Building Orientations</h3>
 <p><code>momepy</code> can calculate the orientation of building footprints using the <a href="https://docs.momepy.org/en/stable/api/momepy.orientation.html"><code>orientation</code></a> function.</p>
-<div id="d4383f68" class="cell" data-execution_count="10">
+<div id="1b7d950b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate building orientation</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj[<span class="st">'orientation'</span>] <span class="op">=</span> momepy.orientation(gdf_buildings_proj)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1024,7 +1024,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="shared-walls" class="level3">
 <h3 class="anchored" data-anchor-id="shared-walls">Shared Walls</h3>
 <p><code>momepy</code> can calculate shared wall lengths between buildings using the <a href="https://docs.momepy.org/en/stable/api/momepy.shared_walls.html"><code>shared_walls</code></a> function.</p>
-<div id="ad0e4dbd" class="cell" data-execution_count="11">
+<div id="db737581" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate shared wall lengths</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gdf_buildings_proj[<span class="st">'shared_wall_length'</span>] <span class="op">=</span> momepy.shared_walls(gdf_buildings_proj)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
