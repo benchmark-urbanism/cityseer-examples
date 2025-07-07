@@ -33,7 +33,7 @@ This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurban
 
 Once you've prepared the `NetworkStructure` object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the `NetworkStructure` object.
 
-Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) the primal edges. The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
+Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) as well as the primal edges (street geometries). The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
 
 Note that distances used when computing accessibilities, statistics, or other measures are all based on distances over the network. In the case of weighted variants, the distances used for the weighting process are the distances from each point of measure to the individual data points (such as land uses) under consideration.
 

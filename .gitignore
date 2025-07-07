@@ -1,6 +1,10 @@
 # mac
 .DS_Store
 
+# files
+*.aux.xml
+*.pgw
+
 # Quarto
 /output/
 .quarto/

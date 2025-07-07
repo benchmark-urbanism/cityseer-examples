@@ -6,16 +6,22 @@ editor:
 
 These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.
 
-> Requires `cityseer` version 4.21.3 or later.
+> Requires `cityseer` version 4.21.4 or later.
 
 ## Visibility from OSM data
 
 Calculate visibility metrics for OSM from bounding box coordinates.
 
-[Notebook](vga_osm.ipynb)
+[Notebook](vis_osm.ipynb)
 
 ## Visibility from geopandas data
 
 Calculate visibility metrics from a `geopandas` `GeoDataFrame`.
 
-[Notebook](vga_gpd.ipynb)
+[Notebook](vis_gpd.ipynb)
+
+## Visibility from raster data
+
+Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take elevation into account.
+
+[Notebook](vis_raster.ipynb)

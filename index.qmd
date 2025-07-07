@@ -6,12 +6,14 @@ editor:
 
 This repository contains examples for the `cityseer` package.
 
-- [cityseer main repository](https://github.com/benchmark-urbanism/cityseer-api)
+Follow the links below if you're instead looking for the main repository or the API documentation:
+
+- [cityseer Github repository](https://github.com/benchmark-urbanism/cityseer-api)
 - [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
 
 ## Datasets
 
-The datasets used from the recipes are available on the [datasets](data/datasets.qmd) page, where you can also find information on the sources.
+The datasets used from the example recipes are available on the [datasets](data/datasets.qmd) page, where you can also find information on the sources.
 
 ## Python 101
 
@@ -21,7 +23,7 @@ If you are new to Python or computational notebooks, start with the [Python 101]
 
 If you already have some experience, you can dive straight into the [recipes section](recipes/index.qmd), which contains practical examples and use-cases for `cityseer`.
 
-## InstallationA
+## Installation
 
 To install `cityseer`, use `pip`:
 
