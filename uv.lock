@@ -254,7 +254,11 @@ wheels = [
 
 [[package]]
 name = "cityseer"
+<<<<<<< HEAD
 version = "4.21.4"
+=======
+version = "4.22.1"
+>>>>>>> b2dfbaf (refresh)
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fiona" },
@@ -269,6 +273,7 @@ dependencies = [
     { name = "shapely" },
     { name = "tqdm" },
 ]
+<<<<<<< HEAD
 sdist = { url = "https://files.pythonhosted.org/packages/40/ac/69f3b357b74abb09aaf69c68fdbf3c9aba89c1db01bc8f6852642d262af3/cityseer-4.21.4.tar.gz", hash = "sha256:5a6ac23d428eedba48ee4ba84bfabf84024d79a71edc3a3ba003f64c5cd2e0f2", size = 123277, upload-time = "2025-07-07T14:44:27.046Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/74/92/ada0d0036c6f892ddc330c88359ef9d384d9e7e13316c2d5c9712d5a0c3d/cityseer-4.21.4-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:1958c6ac4ea39357e90edc8bee51c96e655c4250c8815831a77abc45c49f1460", size = 822939, upload-time = "2025-07-07T14:44:09.658Z" },
@@ -299,6 +304,38 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/d4/2e/7840faac494ef598db0dcf36e73d4eb22372c807a7a86378566562360cf2/cityseer-4.21.4-pp311-pypy311_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4d6a021a224b3d4d9887b38ff34aea39662a6d863d7cd337b3cfe96afe51a458", size = 865834, upload-time = "2025-07-07T14:44:03.809Z" },
     { url = "https://files.pythonhosted.org/packages/ed/11/6e0a4cca17926e1a2be3e643f99052914c10c077373dc4996a70525d3c16/cityseer-4.21.4-pp311-pypy311_pp73-musllinux_1_2_aarch64.whl", hash = "sha256:ddab39e30d77c075271cd6f6f7dcd023dcb6c8ffe28dc31d30557a9f8ff40f3f", size = 1014648, upload-time = "2025-07-07T14:44:19.051Z" },
     { url = "https://files.pythonhosted.org/packages/68/32/43af024545c050bddf0abe2d2abeb34b19a084e57e97cb6a32ff0c366451/cityseer-4.21.4-pp311-pypy311_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:9b7d9a6fda1b2e3060ff7fd0483380e653852c47659fe4baa9989bd40e2e14e7", size = 1035268, upload-time = "2025-07-07T14:44:25.929Z" },
+=======
+sdist = { url = "https://files.pythonhosted.org/packages/38/79/3dadee9478ba317fb906ce28f293d9f3d773a59ad9f83d7ddbe11fc0d52d/cityseer-4.22.1.tar.gz", hash = "sha256:d02e1cca35e263d110bbd157f546332e3fb6bb48c2388cfcc1f513f8937f18f0", size = 124138, upload-time = "2025-08-16T17:25:49.597Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/08/01/a6a6769ee976f7208fd152a4b497a1724309c79177d2dba8a89041564ded/cityseer-4.22.1-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:007cd28ab3256de1ffdf0d38db17c158a20f2bb9170c0e40da6ea21170e189aa", size = 837874, upload-time = "2025-08-16T17:25:32.002Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/89/92afff6ebc21bb16d383122a9dd18b6251456e0ec31772fb086353920008/cityseer-4.22.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:8461369f9415261549977137ea5f474955019d5a7663007221cb13e212dea284", size = 789546, upload-time = "2025-08-16T17:25:27.821Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/6e/369942e5cdc89ad2b9ef5f80bd70c27c17275b1ba0da7a095371c7e84d5d/cityseer-4.22.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:dcf8ca5ea46e754cb194a3e645cbadf350eaf5604b27e5841fe81c58057922d7", size = 851708, upload-time = "2025-08-16T17:25:12.778Z" },
+    { url = "https://files.pythonhosted.org/packages/b1/83/5761ebc1bde10d3de9ef017a8235c4fe96c1bca8ecc5b1d0b85a6a080a13/cityseer-4.22.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c1bf1e28a6f4132757ac3d5c5c9cd1944dbbb756ddaf543bbf727eb7b78b0087", size = 880309, upload-time = "2025-08-16T17:25:21.951Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/bf/2810cdcae2836a7e4c0f8844904fbf080bbf12447a0866b08b0cf6acc731/cityseer-4.22.1-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:b3b8ae041203becfc6a2e732542a29321bf5346450409ba11dd625df68f0fbc4", size = 1030020, upload-time = "2025-08-16T17:25:36.357Z" },
+    { url = "https://files.pythonhosted.org/packages/bd/9e/9b44460444820e853a4f2e0d9c4bddf7d2f4eeea85b1ae073975ecd4802d/cityseer-4.22.1-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:fb7610323be47f282ec7573c9ec9efb25d8a6ca9b5155c68556ecb8b695b86a1", size = 1052849, upload-time = "2025-08-16T17:25:43.006Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/a5/c64e89161a8024abeb9c2ed1dfc702187381e48afc016a80037e1b02a505/cityseer-4.22.1-cp311-cp311-win_amd64.whl", hash = "sha256:0be068674a84c226e8289bc56084d49333db0580f420b76a7ceb5d1b4d0f1018", size = 670902, upload-time = "2025-08-16T17:25:50.759Z" },
+    { url = "https://files.pythonhosted.org/packages/14/8c/82bf060e3e95427dd4ee4e8d517aa4481bec3f5e83210a1997e96a51228e/cityseer-4.22.1-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:661be24448b058ba0f15c0ac1da9339bf0c11ae5c53388325f3258a8f4813856", size = 828849, upload-time = "2025-08-16T17:25:33.62Z" },
+    { url = "https://files.pythonhosted.org/packages/46/d7/dcda90fe3fe0872674e6356f2ef3ee79c56483d218cbfbce2495d35774da/cityseer-4.22.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:d0650129f339bcde90ad837e67a274ec88df419163391b21ba3a3aa563dff05a", size = 784885, upload-time = "2025-08-16T17:25:29.175Z" },
+    { url = "https://files.pythonhosted.org/packages/43/e4/09666a20dcd9d16250d0c07f51fe56ab51c3b38bfdfba81f80e9af7bf7df/cityseer-4.22.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b4874ada82b127309a4bb3aa968af304fd47512283e080d81beb748ce6f71292", size = 852026, upload-time = "2025-08-16T17:25:16.438Z" },
+    { url = "https://files.pythonhosted.org/packages/28/50/b23877d83a606f461d76727e7ad6fcda332c1375fcbaae8220469c1ba1ae/cityseer-4.22.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:46f51f5ea2bc479722cb26e1cdab31122110a5455455bcbc43e9195783d6894d", size = 879935, upload-time = "2025-08-16T17:25:23.563Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/c6/ac35cd07ad5ab3b51dfe6345025cfaf910dbb6e2ce163a865b0c851670fd/cityseer-4.22.1-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:6842bfe6a72f18db539d0ab9ac5d7c851aae2396f89ddf8697cc01c41dc9d869", size = 1029268, upload-time = "2025-08-16T17:25:37.841Z" },
+    { url = "https://files.pythonhosted.org/packages/74/2d/93102bb0cab9593ef2acf408f12d881d199124e75e33821c5ef67168a718/cityseer-4.22.1-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:fe08fef8ce592bec2457814e8a9637cbc9c035609da169ed48db35977ebda997", size = 1051103, upload-time = "2025-08-16T17:25:44.648Z" },
+    { url = "https://files.pythonhosted.org/packages/29/f8/663865f0bfb9f0c481cd0ac6e6f0afafbaee64bc62d826040fc1ff2c5aef/cityseer-4.22.1-cp312-cp312-win_amd64.whl", hash = "sha256:53d06a2ba6af6ee52183cb77a002e8784058155b0e66ac588454ee2f3d0fd820", size = 671656, upload-time = "2025-08-16T17:25:52.324Z" },
+    { url = "https://files.pythonhosted.org/packages/33/83/78eb7f9919c790b7f8369b69bdb8b3d85306384737bb3324e5fa86e156f1/cityseer-4.22.1-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:6f69c3a6cc1f0011ebfefa6f33453f9739f98a2c797e07825b1d5e1f4f3b9db7", size = 828426, upload-time = "2025-08-16T17:25:35.121Z" },
+    { url = "https://files.pythonhosted.org/packages/90/2d/c5baf8826d6c0dc2680873eda6e09860ce05bb15a0254e32b99b2f9348b2/cityseer-4.22.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:5490be5442aa2d84b0996520636a72739fed2e7d9fb713cc8913081238587a41", size = 784957, upload-time = "2025-08-16T17:25:30.412Z" },
+    { url = "https://files.pythonhosted.org/packages/e7/d0/ce9d3a4d97cc00b6ed0c5a5c3fc400d05a756b7c0e6b154fd51b4325b4f3/cityseer-4.22.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:676fda7064603a6e0d6b4c935cd854b09ff79a2943e8dd4dbd866f540ef422b1", size = 851053, upload-time = "2025-08-16T17:25:17.762Z" },
+    { url = "https://files.pythonhosted.org/packages/e8/df/d2a27bfec1269c285cc8ee2d6dd56687bbce55976fc49500cf11561582f0/cityseer-4.22.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:538711b7b89cdbb2a4616c598aed4f44ff6a720d749cd369bebee379b12ed5f0", size = 878933, upload-time = "2025-08-16T17:25:24.613Z" },
+    { url = "https://files.pythonhosted.org/packages/fb/fa/677d1b6d1418d15f2e3a14a9b84abcc086cc0e70cfc6f9a7ad24eddb8d00/cityseer-4.22.1-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:f669f8b5a12c7c5c05523c5070afba7d4c5a71d0fd9872d5e9ba5b17971cb7b2", size = 1027806, upload-time = "2025-08-16T17:25:39.045Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/e1/e94c3b905a5a73e2dfd7a934d5ec0b55b285d071e2fc59c37174dfadfcb0/cityseer-4.22.1-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:3d52afcc4f9e86a251fa52d948419a50208bd5424ee21a5e3780ab848b883758", size = 1050491, upload-time = "2025-08-16T17:25:45.861Z" },
+    { url = "https://files.pythonhosted.org/packages/24/6d/5ef6a34566ccfcc69ece832e5f23581c026815ae3cea3bbf75abfbf3d430/cityseer-4.22.1-cp313-cp313-win_amd64.whl", hash = "sha256:c8bcfc9b84c7b8f99c0e2b872718ab862c7d1de55d6fb78d6ec05aa391c280a8", size = 671521, upload-time = "2025-08-16T17:25:53.434Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/68/8d7e4c1fb3344b5a23037c570ba62379ba3f461dc332363294d27660d34b/cityseer-4.22.1-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:075a74589597a2b1ce0a027252e32b99a3104b7889cfd7a8e2db4752e1579c4e", size = 850022, upload-time = "2025-08-16T17:25:19.17Z" },
+    { url = "https://files.pythonhosted.org/packages/fb/3a/6e1a53002d9e7e9238e51b719624ddaddbde6672382888559fbb2af0194f/cityseer-4.22.1-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:87ff5c26174bb61f751e0eef52eef00795269eacd649d173dd0df22200fc77b2", size = 1026674, upload-time = "2025-08-16T17:25:40.221Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/d6/bd775cc51b3a68bd41400cc1f261060878710e3b38d7637ae1b197df7f1c/cityseer-4.22.1-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:6eb59911c09aaa72363d2817387f895f24a2de9cfd9c4e3ca3397cd89143ff0d", size = 1050730, upload-time = "2025-08-16T17:25:47.156Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/8c/6f411d9ccd22933c7d9ddbbf0f0c061d02b71019cd0852c9c09818805a74/cityseer-4.22.1-pp311-pypy311_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8bbcb46c17446fed1eb4089f51dd19955c6d11d82c572362812cbd617ec230ac", size = 852192, upload-time = "2025-08-16T17:25:20.58Z" },
+    { url = "https://files.pythonhosted.org/packages/e6/0f/d6024fb8baa8d29f3422e796002756f8ae3536bce0f5bfb772b5275a7d49/cityseer-4.22.1-pp311-pypy311_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2a820b07263e9aab0cebc581b0e810400b948620a245b137e85135fca31e04b9", size = 882965, upload-time = "2025-08-16T17:25:26.436Z" },
+    { url = "https://files.pythonhosted.org/packages/72/eb/9ffa5c1b1dd579ded01d6deca3109f7e62836e92f822bec560ad67107782/cityseer-4.22.1-pp311-pypy311_pp73-musllinux_1_2_aarch64.whl", hash = "sha256:16efb2ef45597c23c67e3e9afbfd7f0208213f128e4f61262a4b09e080ec1890", size = 1029323, upload-time = "2025-08-16T17:25:41.517Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/17/2d0c46a91a66a9da9a828ee85c3af98b01baf24dcd052a395112aaf15fdc/cityseer-4.22.1-pp311-pypy311_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:f2c9b11bffc3857df3a91c8c47633d5be771e501df72afdd6c552b5a267bd49e", size = 1053690, upload-time = "2025-08-16T17:25:48.471Z" },
+>>>>>>> b2dfbaf (refresh)
 ]
 
 [[package]]
@@ -325,7 +362,11 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+<<<<<<< HEAD
     { name = "cityseer", specifier = ">=4.21.4" },
+=======
+    { name = "cityseer", specifier = ">=4.22.1" },
+>>>>>>> b2dfbaf (refresh)
     { name = "geopandas", specifier = ">=0.14.3" },
     { name = "ipykernel", specifier = ">=6.26.0" },
     { name = "jupyter-cache", specifier = ">=1.0.1" },
