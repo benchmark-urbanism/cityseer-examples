@@ -4,11 +4,7 @@ version = "0.0.1"
 description = ""
 authors = [{ name = "Gareth Simons", email = "info@benchmarkurbanism.com" }]
 dependencies = [
-<<<<<<< HEAD
     "cityseer>=4.21.4",
-=======
-    "cityseer>=4.22.1",
->>>>>>> b2dfbaf (refresh)
     "pyproj>=3.6.1",
     "shapely>=2.0.3",
     "geopandas>=0.14.3",
