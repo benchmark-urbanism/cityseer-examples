@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-08d50f59ac844be3c3a2ce926f50873d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5d4073339ea55b1ad5ce071f10a273ff.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fcc643c9201999021d2ab9133213449.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -142,7 +143,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -280,19 +282,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Calculate park accessibilities from OSM data.</p>
 <p>This examples calculates park accessibility for London using OpenStreetMap Polygon data.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> osmnx <span class="im">import</span> features</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To start, follow the same approach as shown in the network examples to create the network.</p>
 <div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;pycharm&quot;,&quot;value&quot;:{&quot;name&quot;:&quot;#%%\n&quot;}}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
 WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
@@ -377,17 +379,17 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <p>Prepare the parks GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as a <code>leisure</code> type of <code>park</code>. You can use the same idea to extract other features or land use types.</p>
 <p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
 <div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"leisure"</span>: [<span class="st">"park"</span>]})</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"leisure"</span>: [<span class="st">"park"</span>]})</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(nodes_gdf.crs)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data_gdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data_gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -440,7 +442,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">5579381</td>
+<th data-quarto-table-cell-role="th">5579381</th>
 <td>POLYGON ((699189.384 5709943.8, 699189.043 570...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -464,7 +466,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>grass</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3241371</td>
+<th data-quarto-table-cell-role="th">3241371</th>
 <td>POLYGON ((699470.032 5711728.944, 699463.775 5...</td>
 <td>Active</td>
 <td>fence</td>
@@ -488,7 +490,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">3241840</td>
+<th data-quarto-table-cell-role="th">3241840</th>
 <td>POLYGON ((699136.323 5712190.801, 699139.55 57...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -512,7 +514,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4075108</td>
+<th data-quarto-table-cell-role="th">4075108</th>
 <td>POLYGON ((700241.772 5711256.088, 700243.597 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -536,7 +538,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4081049</td>
+<th data-quarto-table-cell-role="th">4081049</th>
 <td>POLYGON ((697602.375 5710597.115, 697665.44 57...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -560,7 +562,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4082589</td>
+<th data-quarto-table-cell-role="th">4082589</th>
 <td>POLYGON ((699169.133 5710522.521, 699170.334 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -584,7 +586,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4253286</td>
+<th data-quarto-table-cell-role="th">4253286</th>
 <td>POLYGON ((699082.827 5711964.714, 699083.941 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -608,7 +610,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4253288</td>
+<th data-quarto-table-cell-role="th">4253288</th>
 <td>POLYGON ((698963.988 5712061.606, 698963.808 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -632,7 +634,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4253646</td>
+<th data-quarto-table-cell-role="th">4253646</th>
 <td>POLYGON ((699584.927 5711815.931, 699611.882 5...</td>
 <td>Active</td>
 <td>fence</td>
@@ -656,7 +658,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4253657</td>
+<th data-quarto-table-cell-role="th">4253657</th>
 <td>POLYGON ((699910.437 5711532.233, 699874.943 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -680,7 +682,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4253887</td>
+<th data-quarto-table-cell-role="th">4253887</th>
 <td>POLYGON ((698115.449 5710348.292, 698119.405 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -704,7 +706,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4253932</td>
+<th data-quarto-table-cell-role="th">4253932</th>
 <td>POLYGON ((699870.898 5710562.893, 699873.608 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -728,7 +730,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4254099</td>
+<th data-quarto-table-cell-role="th">4254099</th>
 <td>POLYGON ((699716.747 5710187.296, 699727.176 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -752,7 +754,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4256229</td>
+<th data-quarto-table-cell-role="th">4256229</th>
 <td>POLYGON ((698615.632 5710615.991, 698633.72 57...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -776,7 +778,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4256950</td>
+<th data-quarto-table-cell-role="th">4256950</th>
 <td>POLYGON ((699673.205 5710055.344, 699673.178 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -800,7 +802,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4256953</td>
+<th data-quarto-table-cell-role="th">4256953</th>
 <td>POLYGON ((699632.625 5709861.45, 699609.71 570...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -824,7 +826,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4272920</td>
+<th data-quarto-table-cell-role="th">4272920</th>
 <td>POLYGON ((698780.057 5711434.937, 698778.086 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -848,7 +850,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4358458</td>
+<th data-quarto-table-cell-role="th">4358458</th>
 <td>POLYGON ((698780.409 5710065.433, 698774.297 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -872,7 +874,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4373996</td>
+<th data-quarto-table-cell-role="th">4373996</th>
 <td>POLYGON ((699943.843 5709744.706, 699930.88 57...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -896,7 +898,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4393572</td>
+<th data-quarto-table-cell-role="th">4393572</th>
 <td>POLYGON ((699597.511 5711517.797, 699598.705 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -920,7 +922,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">30131571</td>
+<th data-quarto-table-cell-role="th">30131571</th>
 <td>POLYGON ((698717.644 5711636.424, 698722.347 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -944,7 +946,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">30613392</td>
+<th data-quarto-table-cell-role="th">30613392</th>
 <td>POLYGON ((700001.375 5711083.483, 699989.142 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -968,7 +970,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">38310101</td>
+<th data-quarto-table-cell-role="th">38310101</th>
 <td>POLYGON ((698169.651 5710815.626, 698174.877 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -992,7 +994,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">38318550</td>
+<th data-quarto-table-cell-role="th">38318550</th>
 <td>POLYGON ((697694.563 5710327.204, 697699.041 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1016,7 +1018,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">40879988</td>
+<th data-quarto-table-cell-role="th">40879988</th>
 <td>POLYGON ((698941.172 5710700.987, 698972.984 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1040,7 +1042,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">41117901</td>
+<th data-quarto-table-cell-role="th">41117901</th>
 <td>POLYGON ((699231.843 5710970.608, 699225.581 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1064,7 +1066,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">55736532</td>
+<th data-quarto-table-cell-role="th">55736532</th>
 <td>POLYGON ((699677.177 5712135.764, 699677.997 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1088,7 +1090,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">55737057</td>
+<th data-quarto-table-cell-role="th">55737057</th>
 <td>POLYGON ((699889.676 5712020.139, 699885.9 571...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1112,7 +1114,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">87079253</td>
+<th data-quarto-table-cell-role="th">87079253</th>
 <td>POLYGON ((698284.966 5709536.508, 698293.537 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1136,7 +1138,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">148004650</td>
+<th data-quarto-table-cell-role="th">148004650</th>
 <td>POLYGON ((698126.464 5711132.172, 698126.288 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1160,7 +1162,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">154116823</td>
+<th data-quarto-table-cell-role="th">154116823</th>
 <td>POLYGON ((697490.773 5711412.593, 697470.912 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1184,7 +1186,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">161024051</td>
+<th data-quarto-table-cell-role="th">161024051</th>
 <td>POLYGON ((700293.75 5710609.096, 700295.862 57...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -1208,7 +1210,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">368199014</td>
+<th data-quarto-table-cell-role="th">368199014</th>
 <td>POLYGON ((698984.135 5711072.821, 698985.147 5...</td>
 <td>NaN</td>
 <td>fence</td>
@@ -1232,7 +1234,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">374960368</td>
+<th data-quarto-table-cell-role="th">374960368</th>
 <td>POLYGON ((698635.692 5709611.129, 698652.371 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1256,7 +1258,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">374969316</td>
+<th data-quarto-table-cell-role="th">374969316</th>
 <td>POLYGON ((698857.167 5709732.666, 698824.199 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1280,7 +1282,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">383999575</td>
+<th data-quarto-table-cell-role="th">383999575</th>
 <td>POLYGON ((698502.689 5711443.431, 698530.335 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1304,7 +1306,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">747150853</td>
+<th data-quarto-table-cell-role="th">747150853</th>
 <td>POLYGON ((698874.805 5711610.457, 698884.695 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1328,7 +1330,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">803099035</td>
+<th data-quarto-table-cell-role="th">803099035</th>
 <td>POLYGON ((699279.695 5712391.179, 699278.264 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1352,7 +1354,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">863554956</td>
+<th data-quarto-table-cell-role="th">863554956</th>
 <td>POLYGON ((698548.21 5709661.801, 698533.411 57...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1376,7 +1378,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1066129483</td>
+<th data-quarto-table-cell-role="th">1066129483</th>
 <td>POLYGON ((697725.772 5710203.851, 697729.543 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1400,7 +1402,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">1098763494</td>
+<th data-quarto-table-cell-role="th">1098763494</th>
 <td>POLYGON ((698632.144 5711655.736, 698650.639 5...</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1432,7 +1434,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 </div>
 <p>Once the data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame. Use the <code>max_netw_assign_dist</code> parameter to configurethe distance for network assignment.</p>
 <div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    data_gdf,</span>
@@ -1441,7 +1443,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: park
 INFO:cityseer.metrics.layers:Assigning data to network.
@@ -1459,7 +1461,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
 <p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
 <div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
@@ -1470,7 +1472,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 </div>
 <div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;pycharm&quot;,&quot;value&quot;:{&quot;name&quot;:&quot;#%%\n&quot;}}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_park_nearest_max_800"</span>,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis_r"</span>,</span>
@@ -1484,7 +1486,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(np.float64(697035.8123208123),
  np.float64(700647.6928482385),
@@ -1554,13 +1556,14 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
