@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5d4073339ea55b1ad5ce071f10a273ff.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>This notebook will briefly demonstrate an example of dimensionality reduction using PCA to understand latent structures in street network centrality measures, and an example of supervised learning using a Random Forest Regressor to predict restaurant accessibility. This is a high-level introduction, and you are encouraged to explore these powerful techniques further.</p>
 <p>First, we import the necessary Python packages.</p>
-<div id="8c3ea4d3" class="cell" data-execution_count="1">
+<div id="3ce9487c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers, networks</span>
@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Calculate various node centrality measures (network density, harmonic closeness, betweenness) at different distances (500m, 1000m, 2000m, 5000m) using angular analysis (considering turning angles). These measures help quantify the importance or connectivity of each node within the network.</li>
 </ol>
 <p>To learn more about these methods, look at the <a href="../recipes/index.html">Cityseer Recipes</a> section.</p>
-<div id="ee44036b" class="cell" data-execution_count="2">
+<div id="bae60625" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="fl">33.36402</span>, <span class="fl">35.17526</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">2000</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -400,7 +400,7 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 8579 items.
+INFO:cityseer.graph:Edge R-tree built successfully with 8622 items.
 INFO:cityseer.metrics.networks:Computing simplest path node centrality.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
@@ -453,19 +453,19 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <td>0</td>
 <td>POINT (6433811.251957 1668937.860386)</td>
 <td>...</td>
-<td>83.882408</td>
-<td>309.019318</td>
-<td>69.133865</td>
-<td>736.602722</td>
-<td>4024.216797</td>
-<td>46188.968750</td>
+<td>83.529800</td>
+<td>311.116669</td>
+<td>90.426491</td>
+<td>740.873657</td>
+<td>4224.073242</td>
+<td>46780.601562</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1946128965_1946128965±48726326±12726|35720_k0</th>
+<th data-quarto-table-cell-role="th">1946128965_1946128965±48726326±94915|58326_k0</th>
 <td>1</td>
 <td>6.433855e+06</td>
 <td>1.668739e+06</td>
@@ -473,23 +473,23 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <td>1</td>
 <td>LINESTRING (6433793.279 1668640.985, 6433820.1...</td>
 <td>1946128965</td>
-<td>1946128965±48726326±12726|35720</td>
+<td>1946128965±48726326±94915|58326</td>
 <td>0</td>
 <td>POINT (6433855.006634 1668738.564623)</td>
 <td>...</td>
-<td>114.161179</td>
-<td>383.650055</td>
+<td>116.188087</td>
+<td>372.573486</td>
 <td>41.707508</td>
-<td>678.102600</td>
-<td>2826.039551</td>
-<td>39625.175781</td>
+<td>842.095337</td>
+<td>4145.312988</td>
+<td>39722.121094</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">12726|58326±94915|35720_9491513922_k0</th>
+<th data-quarto-table-cell-role="th">9491513922_94915|35720±12726|58326_k0</th>
 <td>2</td>
 <td>6.433850e+06</td>
 <td>1.668725e+06</td>
@@ -497,68 +497,68 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <td>1</td>
 <td>LINESTRING (6434031.51 1668984.727, 6434026.22...</td>
 <td>9491513922</td>
-<td>12726|58326±94915|35720</td>
+<td>94915|35720±12726|58326</td>
 <td>0</td>
 <td>POINT (6433850.464923 1668725.469355)</td>
 <td>...</td>
-<td>112.256584</td>
-<td>381.102203</td>
-<td>38.250740</td>
-<td>663.260864</td>
-<td>2833.651123</td>
-<td>39787.847656</td>
+<td>115.478050</td>
+<td>372.528198</td>
+<td>38.250732</td>
+<td>706.970581</td>
+<td>3669.970215</td>
+<td>39582.507812</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">33755185_5125635691_k0</th>
-<td>3</td>
-<td>6.433199e+06</td>
-<td>1.669437e+06</td>
-<td>True</td>
-<td>1</td>
-<td>LINESTRING (6433477.844 1669569.725, 6433441.0...</td>
-<td>5125635691</td>
-<td>33755185</td>
-<td>0</td>
-<td>POINT (6433199.422437 1669436.611537)</td>
-<td>...</td>
-<td>82.161064</td>
-<td>344.996521</td>
-<td>32.031712</td>
-<td>372.132355</td>
-<td>2240.002686</td>
-<td>38955.628906</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
 <th data-quarto-table-cell-role="th">48726544_60183417_k0</th>
-<td>4</td>
+<td>3</td>
 <td>6.433674e+06</td>
 <td>1.669100e+06</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (6433584.449 1669178.412, 6433594.5...</td>
+<td>LINESTRING (6433792.573 1669070.557, 6433760.5...</td>
 <td>48726544</td>
 <td>60183417</td>
 <td>0</td>
-<td>POINT (6433674.373437 1669099.548174)</td>
+<td>POINT (6433674.372114 1669099.544806)</td>
 <td>...</td>
-<td>79.234314</td>
-<td>320.940491</td>
-<td>127.994461</td>
-<td>842.180603</td>
-<td>2567.082275</td>
-<td>42956.152344</td>
-<td>46.0</td>
-<td>636.0</td>
-<td>2793.0</td>
-<td>6960.0</td>
+<td>77.611053</td>
+<td>321.971802</td>
+<td>150.436203</td>
+<td>735.699768</td>
+<td>2632.408447</td>
+<td>45298.253906</td>
+<td>39.0</td>
+<td>567.0</td>
+<td>2421.0</td>
+<td>6384.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">48726544_5125635684_k0</th>
+<td>4</td>
+<td>6.433514e+06</td>
+<td>1.669124e+06</td>
+<td>True</td>
+<td>1</td>
+<td>LINESTRING (6433584.449 1669178.412, 6433502.0...</td>
+<td>48726544</td>
+<td>5125635684</td>
+<td>0</td>
+<td>POINT (6433513.812668 1669124.248801)</td>
+<td>...</td>
+<td>94.698082</td>
+<td>349.975220</td>
+<td>98.591858</td>
+<td>643.600281</td>
+<td>2273.499023</td>
+<td>40632.707031</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
 </tr>
 </tbody>
 </table>
@@ -574,7 +574,7 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <li><code>gdf_rest[["amenity", "geometry"]]</code> filters out the <code>amenity</code> and <code>geometry</code> columns.</li>
 <li><code>.reset_index(drop=True)</code> resets the DataFrame index for cleaner data handling.</li>
 </ol>
-<div id="be971711" class="cell" data-execution_count="3">
+<div id="bd6b59bf" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gdf_rest <span class="op">=</span> ox.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"amenity"</span>: <span class="st">"restaurant"</span>})</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gdf_rest <span class="op">=</span> gdf_rest.to_crs(epsg<span class="op">=</span><span class="dv">3035</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gdf_rest <span class="op">=</span> gdf_rest[[<span class="st">"amenity"</span>, <span class="st">"geometry"</span>]]</span>
@@ -633,7 +633,7 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <li><code>distances=[200, 400, 800]</code> specifies the distance thresholds (in meters) at which accessibility should be measured. For each node, this will count how many restaurants are reachable within 200m, 400m, and 800m along the network.</li>
 </ol>
 <p>The function updates <code>nodes_gdf</code> by adding new columns representing these accessibility scores (e.g., <code>cc_restaurant_200_wt</code> - weighted count of restaurants within 200m, <code>cc_restaurant_200_nw</code> - raw count of restaurants within 200m, etc.).</p>
-<div id="eca28e72" class="cell" data-execution_count="4">
+<div id="84187fb4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf, gdf_rest <span class="op">=</span> layers.compute_accessibilities(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    gdf_rest,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"amenity"</span>,</span>
@@ -645,8 +645,8 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: restaurant
 INFO:cityseer.metrics.layers:Assigning data to network.
-INFO:cityseer.data:Assigning 195 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Finished assigning data. 422 assignments added to 343 nodes.
+INFO:cityseer.data:Assigning 197 data entries to network nodes (max_dist: 100).
+INFO:cityseer.data:Finished assigning data. 426 assignments added to 345 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
 INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.
@@ -662,7 +662,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <li>The next four lines add these four principal components as new columns (<code>pca_1</code>, <code>pca_2</code>, <code>pca_3</code>, <code>pca_4</code>) to the <code>nodes_gdf</code> GeoDataFrame.</li>
 <li>The subsequent code sets up a 3x1 plot to visualise the spatial distribution of the first three principal components. Each subplot shows the nodes coloured by their score on a principal component. The title of each subplot indicates the percentage of the original data’s variance that is explained by that component. This helps in understanding how much information is retained by each component.</li>
 </ol>
-<div id="2fe61376" class="cell" data-execution_count="5">
+<div id="4926e954" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -750,7 +750,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <p>Histograms are useful for visualising the distribution of a single variable, while joint plots allow for the visualisation of the relationship between two variables along with their individual distributions.</p>
 <p>The histogram shows the distribution of restaurant accessibility within 800 meters (<code>cc_restaurant_800_wt</code>). The x-axis represents the accessibility values, while the y-axis shows the frequency of these values. The <code>bins=50</code> argument specifies that the data should be divided into 50 bins for the histogram.</p>
 <p>The joint plot visualises the relationship between the first principal component (<code>pca_1</code>) and restaurant accessibility within 800 meters (<code>cc_restaurant_800_wt</code>).</p>
-<div id="846dc392" class="cell" data-execution_count="6">
+<div id="4bd1350f" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(</span>
@@ -774,7 +774,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6_data_science_files/figure-html/cell-7-output-2.png" width="562" height="566" class="figure-img"></p>
+<p><img src="6_data_science_files/figure-html/cell-7-output-2.png" width="565" height="566" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -797,7 +797,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <li>The residuals of the regression, showing where the model over or under-predicts accessibility. A good model would have residuals randomly scattered around zero.</li>
 </ul></li>
 </ol>
-<div id="94bf399c" class="cell" data-execution_count="7">
+<div id="b6937531" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -860,12 +860,12 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">"Residuals of Random Forest Regression"</span>)</span>
 <span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R2 score:  0.7733181852323958</code></pre>
+<pre><code>R2 score:  0.7519832394519568</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6_data_science_files/figure-html/cell-8-output-2.png" width="714" height="2294" class="figure-img"></p>
+<p><img src="6_data_science_files/figure-html/cell-8-output-2.png" width="713" height="2294" class="figure-img"></p>
 </figure>
 </div>
 </div>

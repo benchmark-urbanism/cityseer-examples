@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5d4073339ea55b1ad5ce071f10a273ff.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -254,8 +254,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#adaptive-centrality-for-larger-distances" id="toc-adaptive-centrality-for-larger-distances" class="nav-link active" data-scroll-target="#adaptive-centrality-for-larger-distances">Adaptive centrality for larger distances</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -293,10 +299,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+<pre><code>100%|██████████| 47155/47155 [00:03&lt;00:00, 12037.10it/s]
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+100%|██████████| 47129/47129 [00:00&lt;00:00, 172336.30it/s]
 INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
-INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
+100%|██████████| 47129/47129 [00:00&lt;00:00, 82516.86it/s]
+INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
+100%|██████████| 47129/47129 [00:24&lt;00:00, 1911.70it/s]</code></pre>
 </div>
 </div>
 <p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
@@ -307,6 +317,8 @@ INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</c
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
+100%|██████████| 47129/47129 [00:00&lt;00:00, 112602.24it/s]
+100%|██████████| 47129/47129 [00:08&lt;00:00, 5319.38it/s]
 INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
 </div>
 </div>
@@ -323,6 +335,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:06&lt;00:00, 6999.56it/s] 
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
 INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</code></pre>
@@ -373,7 +386,7 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <td>POINT (454848.067543 4476852.042507)</td>
 <td>...</td>
 <td>7418.207031</td>
-<td>163780.625000</td>
+<td>163780.609375</td>
 <td>0.199088</td>
 <td>0.315512</td>
 <td>0.121323</td>
@@ -396,7 +409,7 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <td>0</td>
 <td>POINT (454836.577015 4476897.9067)</td>
 <td>...</td>
-<td>10061.338867</td>
+<td>10061.340820</td>
 <td>162550.625000</td>
 <td>0.294068</td>
 <td>0.401464</td>
@@ -444,8 +457,8 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <td>0</td>
 <td>POINT (454828.362585 4476931.303206)</td>
 <td>...</td>
-<td>10452.838867</td>
-<td>161802.000000</td>
+<td>10452.841797</td>
+<td>161801.937500</td>
 <td>0.281164</td>
 <td>0.389349</td>
 <td>0.153068</td>
@@ -468,8 +481,8 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <td>0</td>
 <td>POINT (454795.845199 4476902.571916)</td>
 <td>...</td>
-<td>9720.206055</td>
-<td>166860.140625</td>
+<td>9720.205078</td>
+<td>166860.078125</td>
 <td>0.197214</td>
 <td>0.307718</td>
 <td>0.126026</td>
@@ -504,7 +517,7 @@ INFO:cityseer.config:Distance: 2000m, Beta: 0.002, Walking Time: 25.0 minutes.</
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_betweenness_2000"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>count     47129.000000
-mean       9697.500000
+mean       9697.498047
 std       14681.911133
 min           0.000000
 25%         701.000000
@@ -573,6 +586,7 @@ Name: cc_betweenness_2000, dtype: float64</code></pre>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:03&lt;00:00, 15229.30it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.</code></pre>
 </div>
@@ -629,6 +643,7 @@ INFO:cityseer.config:Distance: 1200m, Beta: 0.00333, Walking Time: 15.0 minutes.
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
+100%|██████████| 47129/47129 [00:01&lt;00:00, 35545.61it/s]
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</code></pre>
 </div>
@@ -677,8 +692,90 @@ INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</cod
 </div>
 </div>
 </div>
+<section id="adaptive-centrality-for-larger-distances" class="level2">
+<h2 class="anchored" data-anchor-id="adaptive-centrality-for-larger-distances">Adaptive centrality for larger distances</h2>
+<p>For larger distance thresholds, the computational cost increases substantially. The <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest-adaptive"><code>node_centrality_shortest_adaptive</code></a> function uses an adaptive sampling strategy to compute centralities more efficiently at larger scales while maintaining statistical accuracy.</p>
+<p>The <code>target_rho</code> parameter controls the correlation target between the sampled and full computations. A value of 0.95 means the function aims for at least 95% correlation with the exact computation. The function automatically determines which distances require sampling versus full computation, and reports the expected correlation for each distance.</p>
+<div id="cell-24" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest_adaptive(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>distances,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    target_rho<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:cityseer.metrics.networks:Computing adaptive shortest path node centrality.
+INFO:cityseer.metrics.networks:Probing reachability (50 samples)...
+INFO:cityseer.config:
+INFO:cityseer.config:Adaptive sampling plan (target ρ ≥ 0.95, internal target 0.97 for both metrics):
+INFO:cityseer.config:  Distance │  Reach │ Sample p │ Expected ρ
+INFO:cityseer.config:  ─────────┼────────┼──────────┼───────────
+INFO:cityseer.config:      500m │     94 │     full │ 1.00 (exact)
+INFO:cityseer.config:     2000m │   1099 │     full │ 1.00 (exact)
+INFO:cityseer.config:     5000m │   5843 │     27% │ 0.97 (eff_n=1561)
+INFO:cityseer.config:    10000m │  20334 │      8% │ 0.97 (eff_n=1561)
+INFO:cityseer.metrics.networks:Running per-distance centrality...
+INFO:cityseer.metrics.networks:  500m: full...
+INFO:cityseer.metrics.networks:  2000m: full...
+INFO:cityseer.metrics.networks:  5000m: p=27%...
+INFO:cityseer.metrics.networks:    actual: reach=6458, eff_n=1725, expected ρ=0.97
+INFO:cityseer.metrics.networks:  10000m: p=8%...
+INFO:cityseer.metrics.networks:    actual: reach=21647, eff_n=1662, expected ρ=0.97
+INFO:cityseer.metrics.networks:Adaptive centrality complete.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+       'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
+       'dual_node', 'cc_beta_500', 'cc_beta_2000', 'cc_cycles_500',
+       'cc_cycles_2000', 'cc_density_500', 'cc_density_2000', 'cc_farness_500',
+       'cc_farness_2000', 'cc_harmonic_500', 'cc_harmonic_2000',
+       'cc_hillier_500', 'cc_hillier_2000', 'cc_betweenness_500',
+       'cc_betweenness_2000', 'cc_betweenness_beta_500',
+       'cc_betweenness_beta_2000', 'cc_beta_1200', 'cc_cycles_1200',
+       'cc_density_1200', 'cc_farness_1200', 'cc_harmonic_1200',
+       'cc_hillier_1200', 'cc_betweenness_1200', 'cc_betweenness_beta_1200',
+       'cc_beta_400', 'cc_cycles_400', 'cc_density_400', 'cc_farness_400',
+       'cc_harmonic_400', 'cc_hillier_400', 'cc_betweenness_400',
+       'cc_betweenness_beta_400', 'cc_beta_5000', 'cc_beta_10000',
+       'cc_cycles_5000', 'cc_cycles_10000', 'cc_density_5000',
+       'cc_density_10000', 'cc_farness_5000', 'cc_farness_10000',
+       'cc_harmonic_5000', 'cc_harmonic_10000', 'cc_hillier_5000',
+       'cc_hillier_10000', 'cc_betweenness_5000', 'cc_betweenness_10000',
+       'cc_betweenness_beta_5000', 'cc_betweenness_beta_10000'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>The adaptive function reports the sampling plan during execution, showing which distances use full computation versus sampling. For shorter distances where the number of reachable nodes is small, full computation is used. For larger distances, the function applies sampling to achieve the target correlation efficiently.</p>
+<div id="cell-26" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_10000"</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">438500</span>, <span class="dv">438500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4472500</span>, <span class="dv">4472500</span> <span class="op">+</span> <span class="dv">3500</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(np.float64(438500.0),
+ np.float64(442000.0),
+ np.float64(4472500.0),
+ np.float64(4476000.0))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="gpd_metric_centrality_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
