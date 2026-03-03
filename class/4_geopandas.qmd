@@ -8,6 +8,18 @@ execute:
   freeze: auto
 ---
 
+::: {.callout-note}
+
+## Learning Objectives
+
+- Create GeoDataFrames from scratch and from spatial data files
+- Index, filter, and manipulate rows and columns in a GeoDataFrame
+- Transform between coordinate reference systems
+- Apply spatial operations like buffering and distance calculations
+- Plot and export geospatial data
+
+:::
+
 In urban analysis, working with spatial data often means handling numerous geographic features simultaneously, such as buildings, streets, or administrative boundaries. While processing each feature individually is possible, it's considerably more efficient to manage and analyse them collectively within a structured format.
 
 For general data analysis in Python, the `pandas` library is the standard tool. Pandas provides the `DataFrame`, a powerful table-like structure where rows represent observations (e.g., individual buildings) and columns store their attributes (e.g., height, area, land use). This structure is conceptually similar to attribute tables found in GIS software such as QGIS or ArcGIS.
@@ -281,3 +293,20 @@ GeoPandas can save GeoDataFrames to various formats, including Shapefiles, GeoPa
 ```python
 mad_bldgs.to_file('bldgs_w_area.gpkg', driver='GPKG')
 ```
+
+### Exercises
+
+- Load the Madrid buildings GeoPackage and filter to only buildings with an area greater than 500 square metres. How many remain?
+- Reproject the buildings GeoDataFrame to EPSG:4326 (WGS 84) and plot the result. What changes?
+- Create a new column called `perimeter` containing each building's perimeter length. Plot the buildings coloured by perimeter.
+- Create a `Point` geometry for a location of your choice and calculate the distance from each building's centroid to that point. Which building is closest?
+
+## Summary
+
+- GeoPandas extends pandas with a geometry column and CRS support, bridging tabular data analysis with spatial operations.
+- Use `.loc[]` and boolean masks to index and filter rows by attribute or spatial properties.
+- `to_crs()` transforms between coordinate reference systems — always use a projected CRS for distance and area calculations.
+- Spatial operations like `buffer` and `distance` work element-wise across the GeoDataFrame.
+- `read_file()` and `to_file()` handle common spatial formats (GeoPackage, Shapefile, GeoJSON).
+
+Next: [Urban Analytics](5_urban.qmd) introduces `osmnx` for downloading OSM data and `momepy` for morphological analysis. The skills from this chapter are used extensively in the [Network Preparation](../recipes/networks/index.qmd) and [Statistics](../recipes/stats/index.qmd) recipes.

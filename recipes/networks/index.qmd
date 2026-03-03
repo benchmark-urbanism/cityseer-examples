@@ -4,20 +4,20 @@ editor:
   render-on-save: true
 ---
 
-The below examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.
+The following examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows automatically prepare the network for you and should be sufficient for the great majority of cases.
 
-If you specifically wish to prepare the network manually:
+If you wish to prepare the network manually, note the following requirements:
 
-- The network must be a `networkx` `MultiGraph` object. This is the default for `cityseer`, but if you are using another package, such as `osmnx`, you may need to convert the graph to a `MultiGraph` first.
-- `cityseer` is focused on pedestrian networks which do not ordinarily have directionality associated. Note that if adding transportation networks, this is done at a later step in way that retains directionality for transportation networks.
-- The network must have a coordinate reference system (CRS) associated with it. If you are converting from `osmnx` or `geopandas`, then this is done automatically. Otherwise, you can define this by setting a `crs` parameter on the graph to a valid CRS code; for example `G.graph['crs'] = 27700`.
+- The network must be a `networkx` `MultiGraph` object. This is the default for `cityseer`, but if you are using another package such as `osmnx`, you may need to convert the graph to a `MultiGraph` first.
+- `cityseer` is focused on pedestrian networks, which do not ordinarily have directionality. If adding transportation networks, this is done at a later step in a way that retains directionality for those networks.
+- The network must have a coordinate reference system (CRS) associated with it. When converting from `osmnx` or `geopandas`, this is handled automatically. Otherwise, set a `crs` parameter on the graph to a valid CRS code, e.g. `G.graph['crs'] = 27700`.
 
-The network nodes require `x` and `y` attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:
+Network nodes require `x` and `y` attributes storing the coordinates in a projected coordinate system. Two optional attributes are also supported:
 
-- An optional `live` attribute indicating whether to compute metrics for a given node (`live=True`) else whether to skip calculations (`live=False`). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.
-- An optional `weight` attribute indicating the weight of the node. `cityseer` will by default assume `weight=1` when calculating centrality metrics. Advanced users may in some cases wish to use the `weight` attribute to indicate the relative importance of a node in the network.
+- `live`: indicates whether to compute metrics for a given node (`live=True`) or skip calculations (`live=False`). Set nodes to `live=False` in buffered regions of the network to prevent edge rolloff effects (see the [Edge Rolloff](../index.qmd#edge-rolloff) section).
+- `weight`: indicates the weight of the node. `cityseer` defaults to `weight=1` when calculating centrality metrics. Advanced users may use this to indicate the relative importance of a node.
 
-For edges, `cityseer` network representations contain a `geom` attribute which stores a shapely LineString geometry of the edge. `cityseer` will use the `geom` attribute to calculate properties of the network such as the lengths of streets and their angular deviations. For the best to results the topology of the graph should reflect the real world topology of the street network and should not be conflated with the geometric representation of the streets. Curvatures and turns within a street segment should be represented within the same LineString geometry rather than adding additional nodes and segments, which would otherwise distort the outcomes of centrality measures.
+For edges, `cityseer` stores a `geom` attribute containing a `shapely` `LineString` geometry. This is used to calculate properties such as street lengths and angular deviations. For best results, the topology of the graph should reflect the real-world topology of the street network and should not be conflated with the geometric representation. Curvatures and turns within a street segment should be represented within the same `LineString` geometry rather than as additional nodes and segments, which would distort centrality measures.
 
 The first several examples use the [osm_graph_from_poly](https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly) function available from the `cityseer` package's `io` module. This is a versatile function for generating networks from OSM data.
 

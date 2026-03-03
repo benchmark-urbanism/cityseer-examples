@@ -8,6 +8,17 @@ execute:
   freeze: auto
 ---
 
+::: {.callout-note}
+
+## Learning Objectives
+
+- Create point, line, and polygon geometries with Shapely
+- Access geometry properties such as area, length, and centroid
+- Test spatial relationships using predicates like `within`, `intersects`, and `touches`
+- Perform geometric operations including buffering, union, and difference
+
+:::
+
 Shapely is a Python library for creating and manipulating geometric objects such as points, lines, and polygons. It offers an intuitive way to work with these shapes within a Cartesian coordinate system. Widely used in spatial analysis, Shapely also underpins other libraries like GeoPandas, which is designed for handling geospatial data.
 
 In a nutshell, Shapely allows you to:
@@ -192,3 +203,13 @@ In real-world scenarios, GeoPandas is frequently used for such workflows. It exc
 - Create two polygons and check if they intersect.
 - Create a LineString with at least three points.
 - Create a list of points and a polygon. Check which points are inside the polygon.
+
+## Summary
+
+- Shapely provides Python objects for points, lines, and polygons with properties like area, length, and centroid.
+- Spatial predicates (`within`, `intersects`, `touches`) test relationships between geometries.
+- Operations like `buffer`, `union`, and `difference` create new geometries from existing ones.
+- Shapely uses Cartesian coordinates — ensure your geometries share the same projected coordinate system for accurate results.
+- These building blocks underpin GeoPandas, which extends them to work with collections of features.
+
+Next: [GeoPandas](4_geopandas.qmd) shows how to manage and analyse many spatial features at once.

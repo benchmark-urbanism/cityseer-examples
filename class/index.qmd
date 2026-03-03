@@ -1,15 +1,16 @@
 ---
+title: Python 101
 editor:
   render-on-save: true
 ---
 
-This section provides introductory examples on the usage of Python and computational notebooks. These are high-level snapshots to give a basic indication of how these tools might typically be used; for more detailed examples, please refer to the online documentation for the libraries used.
+This section introduces Python and computational notebooks for urban spatial analysis. These are high-level overviews of the key concepts and tools; for more depth, refer to the documentation for each library.
 
-If you would like to master python for spatial analysis, you are encouraged to avail yourself of online resources and roll up your proverbial sleeves: getting your hands dirty is the only reliable way to familiarise yourself with geospatial python and its capabilities.
+The best way to learn is by doing: experiment with the examples, break things, and consult the wider range of resources available online. Large Language Models can help accelerate your learning, but use them to deepen your understanding rather than as a substitute for it.
 
-1. [Notebooks](1_notebooks.qmd): Learn what computational notebooks are and how to use them.
-2. [Python Basics](2_basics.qmd): Python basics in a nutshell, touching on variables, data types, and simple operations.
-3. [Spatial Data](3_spatial.qmd): Spatial data types and elementary operations using the `shapely` package.
-4. [GeoPandas](4_geopandas.qmd): Use of the `geopandas` package for handling geospatial datasets.
-5. [OSM Data & Urban Morphology](5_urban.qmd): Explore the wider Python urban analytics community by using the `osmnx` and `momepy` libraries to explore urban morphology.
-6. [Exploratory Data Science](6_data_science.qmd): Use the `seaborn` plotting library and `scikit-learn` for exploratory data science and predictive analytics.
+1. [Notebooks](1_notebooks.qmd): What computational notebooks are and how to use them.
+2. [Python Basics](2_basics.qmd): Variables, data types, collections, control flow, and functions.
+3. [Spatial Data](3_spatial.qmd): Points, lines, and polygons with the `shapely` package.
+4. [GeoPandas](4_geopandas.qmd): Handling geospatial datasets with `geopandas`.
+5. [Urban Analytics](5_urban.qmd): Downloading OSM data with `osmnx` and analysing urban morphology with `momepy`.
+6. [Data Science](6_data_science.qmd): Dimensionality reduction, clustering, and prediction with `seaborn` and `scikit-learn`.

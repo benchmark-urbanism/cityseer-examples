@@ -4,6 +4,17 @@ editor:
   render-on-save: true
 ---
 
+::: {.callout-note}
+
+## Learning Objectives
+
+- Understand what computational notebooks are and why they are useful for data analysis
+- Create and run code and text cells in Google Colab
+- Manage notebook state, variables, and execution order
+- Troubleshoot common notebook issues
+
+:::
+
 Computational notebooks provide an interactive environment for combining code, its results, and explanatory text. They are particularly well-suited for iterative tasks such as data analysis, as they allow you to test and document your work step-by-step. Features like automatic setup, immediate feedback, and the ease of experimentation make notebooks an accessible way to learn Python, especially when compared to more traditional programming approaches.
 
 ## Google Colab
@@ -154,3 +165,13 @@ This notebook _demonstrates the basics_ of using computational notebooks for int
 - **Collaborating:** Share notebooks via "Share" in the top-right corner. Adjust permissions for viewing or editing.
 - **Saving Progress:** Regularly save your work to Google Drive via "File > Save a Copy in Drive."
 - **Restarting the Environment:** Use "Runtime > Restart Runtime" to reset the notebook's state and rerun all cells from the beginning.
+
+## Summary
+
+- Computational notebooks combine code, output, and explanatory text in an interactive document.
+- Google Colab lets you run notebooks in the cloud without any local installation.
+- Notebooks use code cells (for Python) and text cells (for Markdown documentation).
+- Variables persist across cells within a session, but execution order matters — always run cells from top to bottom.
+- Use "Restart & Run All" periodically to ensure your notebook runs cleanly from a fresh state.
+
+Next: [Python Basics](2_basics.qmd) covers the fundamentals of the Python language.

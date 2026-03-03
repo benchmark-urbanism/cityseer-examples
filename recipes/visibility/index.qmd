@@ -4,24 +4,30 @@ editor:
   render-on-save: true
 ---
 
-These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.
+Visibility metrics assess how enclosed or open the street environment is at each point in the network, based on the surrounding built form. These metrics are useful for understanding the spatial experience of streets and evaluating urban design qualities such as enclosure and openness.
+
+`cityseer` computes visibility by casting rays from each network node and measuring how far they travel before hitting a building or obstruction. The results characterise the visual field experienced from the street.
 
 > Requires `cityseer` version 4.21.4 or later.
 
+::: {.callout-tip}
+These examples assume a prepared network. See [Network Preparation](../networks/index.qmd) for setup.
+:::
+
 ## Visibility from OSM data
 
-Calculate visibility metrics for OSM from bounding box coordinates.
+Calculate visibility metrics using building footprints downloaded from OpenStreetMap via bounding box coordinates.
 
 [Notebook](vis_osm.ipynb)
 
 ## Visibility from geopandas data
 
-Calculate visibility metrics from a `geopandas` `GeoDataFrame`.
+Calculate visibility metrics from building footprints loaded as a `geopandas` `GeoDataFrame`, for example from a GeoPackage or Shapefile.
 
 [Notebook](vis_gpd.ipynb)
 
 ## Visibility from raster data
 
-Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take elevation into account.
+Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take terrain elevation into account.
 
 [Notebook](vis_raster.ipynb)

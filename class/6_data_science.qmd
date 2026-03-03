@@ -8,6 +8,17 @@ execute:
   freeze: auto
 ---
 
+::: {.callout-note}
+
+## Learning Objectives
+
+- Understand the distinction between unsupervised and supervised learning
+- Apply PCA for dimensionality reduction and interpret explained variance
+- Train a Random Forest Regressor and evaluate its performance with R² scores
+- Visualise and interpret model residuals
+
+:::
+
 Data science encompasses a wide array of methods to extract insights and knowledge from data. Broadly, these methods can be categorised:
 
 1. **Exploratory Data Analysis:** This involves examining datasets to summarise their main characteristics, often with visual methods. It's a first step to understand data distributions, relationships between variables, and to identify anomalies or patterns.
@@ -74,7 +85,7 @@ We can then use `cityseer` once again to calculate accessibility to restaurants 
 
 1. `layers.compute_accessibilities` is a function that takes the restaurant locations (`gdf_rest`) and the street network nodes (`nodes_gdf`) as input.
 2. `landuse_column_label="amenity"` specifies that the 'amenity' column in `gdf_rest` identifies the type of feature (restaurants in this case).
-3. `accessibility_keys=["restaurant"]` tells the function to calculate accessibility specifically for features labellieed as 'restaurant'.
+3. `accessibility_keys=["restaurant"]` tells the function to calculate accessibility specifically for features labelled as 'restaurant'.
 4. `network_structure` provides the pre-calculated network graph and its properties.
 5. `distances=[200, 400, 800]` specifies the distance thresholds (in meters) at which accessibility should be measured. For each node, this will count how many restaurants are reachable within 200m, 400m, and 800m along the network.
 
@@ -281,3 +292,19 @@ ax[2].axis(False)
 ax[2].set_title("Residuals of Random Forest Regression")
 plt.tight_layout()
 ```
+
+### Exercises
+
+- Re-run the PCA with `n_components=2` instead of 4. How much total variance is explained by just two components? Plot the results.
+- Experiment with the Random Forest parameters: try changing `n_estimators` to 50 or 200, or adjust `test_size` to 0.3. How does the R² score change?
+- Replace the `RandomForestRegressor` with a different `scikit-learn` model (e.g., `GradientBoostingRegressor` or `LinearRegression`). Compare the R² scores — which model performs best?
+
+## Summary
+
+- PCA reduces many correlated variables into a smaller set of uncorrelated principal components, each capturing a share of the original variance.
+- Standardising data before PCA is essential because PCA is sensitive to variable scales.
+- Supervised learning (e.g., Random Forest) trains on labelled data to predict outcomes for new observations.
+- R² scores measure how well predictions match actual values (1.0 = perfect, 0.0 = no better than the mean).
+- Residual maps reveal where a model over- or under-predicts, helping identify spatial patterns the model misses.
+
+These techniques combine powerfully with `cityseer` network metrics — see the [Cityseer Recipes](../recipes/index.qmd) section for practical analysis workflows.

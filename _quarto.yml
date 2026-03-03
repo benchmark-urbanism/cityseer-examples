@@ -4,7 +4,7 @@ project:
   type: website
 website:
   title: Cityseer Guide
-  description: A guide and some examples of how to use cityseer.
+  description: Tutorials and worked examples for cityseer, a Python package for pedestrian-scale network analysis and urban morphology.
   page-navigation: true
   repo-url: https://github.com/benchmark-urbanism/cityseer-examples
   navbar:
@@ -18,6 +18,7 @@ website:
     collapse-level: 2
     contents:
       - href: index.qmd
+      - href: glossary.qmd
       - href: data/datasets.qmd
       - text: Python 101
         href: class/index.qmd
@@ -36,6 +37,7 @@ website:
           - href: recipes/accessibility/index.qmd
           - href: recipes/stats/index.qmd
           - href: recipes/visibility/index.qmd
+          - href: recipes/continuity/index.qmd
 format:
   html:
     theme: simplex

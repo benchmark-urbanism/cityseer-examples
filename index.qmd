@@ -1,40 +1,58 @@
 ---
-title: Intro
+title: Cityseer Guide
 editor:
   render-on-save: true
 ---
 
-This repository contains examples for the `cityseer` package.
+`cityseer` is a Python package for pedestrian-scale network analysis and urban morphology. It computes centrality, accessibility, mixed-use, statistical, and visibility metrics over street networks, using a high-performance `rust` backend so that analyses scale to large cities.
 
-Follow the links below if you're instead looking for the main repository or the API documentation:
+This guide provides tutorials and worked examples to help you get started. If you're looking for the API reference or source code:
 
-- [cityseer Github repository](https://github.com/benchmark-urbanism/cityseer-api)
 - [cityseer API documentation](https://cityseer.benchmarkurbanism.com/)
+- [cityseer Github repository](https://github.com/benchmark-urbanism/cityseer-api)
 
-## Datasets
+## What can cityseer do?
 
-The datasets used from the example recipes are available on the [datasets](data/datasets.qmd) page, where you can also find information on the sources.
+- **[Network Centrality](recipes/centrality/index.qmd):** Identify the most connected and important streets using shortest-path and simplest-path centrality measures.
+- **[Accessibility](recipes/accessibility/index.qmd):** Quantify how easily amenities (shops, parks, restaurants) can be reached from each point in the network.
+- **[Statistics](recipes/stats/index.qmd):** Aggregate numeric properties of nearby features (e.g., building heights) over the network.
+- **[Visibility](recipes/visibility/index.qmd):** Assess street enclosure and openness from building footprints or terrain data.
+- **[Continuity](recipes/continuity/index.qmd):** Measure how consistently named routes and road classifications extend through the network.
 
-## Python 101
+## Getting Started
 
-If you are new to Python or computational notebooks, start with the [Python 101](class/index.qmd) section.
+### Python 101
 
-## Recipes
+New to Python or computational notebooks? Start with the [Python 101](class/index.qmd) section, which covers the basics of Python, spatial data with Shapely and GeoPandas, and an introduction to urban analytics with `osmnx` and `momepy`.
 
-If you already have some experience, you can dive straight into the [recipes section](recipes/index.qmd), which contains practical examples and use-cases for `cityseer`.
+### Recipes
+
+If you already have some experience with Python and `geopandas`, head to the [recipes](recipes/index.qmd) section for practical, worked examples covering network preparation, centrality, accessibility, statistics, and visibility analysis.
+
+::: {.callout-tip}
+The recipes assume familiarity with Python, `geopandas`, and projected coordinate reference systems. If any of these are new to you, start with [Python 101](class/index.qmd) first.
+:::
+
+### Datasets
+
+The datasets used in the recipes are available on the [datasets](data/datasets.qmd) page, with source links and licensing information.
+
+### Glossary
+
+Unfamiliar with terms like "dual graph" or "edge rolloff"? See the [Glossary](glossary.qmd) for definitions of key concepts.
 
 ## Installation
 
-To install `cityseer`, use `pip`:
+Install `cityseer` with `pip`:
 
 ```bash
 pip install --upgrade cityseer
 ```
 
-Or, from a notebook:
+Or from a notebook:
 
 ```python
 !pip install --upgrade cityseer
 ```
 
-The examples in this cookbook also use packages such as `geopandas`, `networkx`, and `matplotlib`. You can install these using the same method.
+The examples in this guide also use packages such as `geopandas`, `networkx`, `osmnx`, `momepy`, `matplotlib`, and `seaborn`. These can be installed in the same way, or you can install all dependencies at once by cloning the [repository](https://github.com/benchmark-urbanism/cityseer-examples) and running `uv sync` (see [uv documentation](https://docs.astral.sh/uv/)).

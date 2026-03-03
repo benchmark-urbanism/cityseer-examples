@@ -4,23 +4,29 @@ editor:
   render-on-save: true
 ---
 
-Once you have created a `cityseer` compatible `networkx` graph and the derivative `NetworkStructure`, you can calculate a variety of centrality metrics.
+Centrality metrics measure how important or connected each node (or street segment) is within the network. They are widely used in urban analytics to identify busy corridors, understand movement patterns, and evaluate the structural role of streets.
+
+`cityseer` supports both **metric** (shortest-path) and **angular** (simplest-path) centrality measures, computed at multiple distance thresholds simultaneously. Once you have created a `cityseer` compatible `networkx` graph and the derivative `NetworkStructure`, you can calculate these metrics as shown in the following examples.
+
+::: {.callout-tip}
+These examples assume you are comfortable with `geopandas` and network preparation. If not, see [Python 101](../../class/index.qmd) for background and [Network Preparation](../networks/index.qmd) for how to create a compatible network.
+:::
 
 ## Metric distance network centrality
 
-Calculate metric distance centralities from a `geopandas` `GeoDataFrame`.
+Calculate metric distance centralities (density, harmonic closeness, betweenness) from a `geopandas` `GeoDataFrame`.
 
 [Notebook](gpd_metric_centrality.ipynb)
 
 ## Angular distance network centrality
 
-Calculate angular (geometric or "simplest") distance centralities from a `geopandas` `GeoDataFrame`.
+Calculate angular (simplest-path) centralities from a `geopandas` `GeoDataFrame`. Angular analysis weights paths by cumulative turning angle rather than distance, capturing route directness.
 
 [Notebook](gpd_angular_centrality.ipynb)
 
 ## Network centrality from OSM data
 
-Calculate metric distance centralities for OSM data.
+Calculate metric distance centralities directly from OpenStreetMap data.
 
 [Notebook](osm_centrality.ipynb)
 
@@ -28,6 +34,6 @@ Calculate metric distance centralities for OSM data.
 
 > GTFS transport data support is still experimental.
 
-Add GTFS transportation data to the network.
+Add GTFS transportation data to the network to incorporate public transport connectivity into centrality calculations.
 
 [Notebook](centrality_metro.ipynb)

@@ -1,14 +1,24 @@
 ---
-title: Python 101
+title: Python Basics
 editor:
   render-on-save: true
 ---
 
-Python is a versatile language, widely used for urban analysis and data science. This guide introduces its foundational concepts.
+::: {.callout-note}
+
+## Learning Objectives
+
+- Assign and use variables with different data types (strings, integers, floats, booleans)
+- Work with Python collections: lists, dictionaries, tuples, and sets
+- Control program flow with conditionals (`if`/`elif`/`else`) and loops (`for`/`while`)
+- Define and call functions with parameters and return values
+- Import and use external modules
+
+:::
+
+Python is a versatile language, widely used for urban analysis and data science. This page introduces its foundational concepts: variables, data types, collections, control flow, functions, and modules.
 
 The best way to learn Python is by trying things out. Change the examples, break them, and see what happens. Progress comes fastest when you actively use the tools to solve problems and learn as you go.
-
-This is a brief introduction to Python. To use it effectively day-to-day, you'll need hands-on practice and to explore further resources, which are widely available online. It's a great time to learn, as Large Language Models (LLMs) can help speed up the process and answer many of your questions. However, be mindful: use LLMs to amplify your understanding and guide your learning, not as a substitute for grasping the concepts yourself. Relying on them to do the work without understanding means you might not learn effectively and could miss out on using these tools to their full potential.
 
 ### Comments
 
@@ -569,3 +579,14 @@ Errors are a normal part of programming! Learning to read and understand error m
 - **`ImportError: No module named '...'` or `ModuleNotFoundError: No module named '...'`**: You tried to import a module that Python can't find. It might be misspelled or not installed.
 
 **Debugging Tip:** When you encounter an error, the last line of the message usually tells you the specific type of error. The lines mentioned in the traceback help you find where the problem occurred in your code. Sprinkling `print()` statements in your code to check the values of variables at different stages can also be a very effective way to debug. And remember, it's common to fix one error only to find another – just tackle them one by one.
+
+## Summary
+
+- Python variables store data of different types: strings, integers, floats, and booleans.
+- Collections (lists, dictionaries, tuples, sets) let you group related data, each with different characteristics for ordering, uniqueness, and mutability.
+- Control flow with `if`/`elif`/`else` and `for`/`while` loops lets your code make decisions and repeat actions.
+- Functions organise reusable logic, accept parameters, and return results.
+- Modules extend Python's capabilities — import them to access ready-made tools.
+- Errors are normal; reading the traceback and error type is the key to debugging.
+
+Next: [Spatial Data](3_spatial.qmd) introduces geometric objects with Shapely.

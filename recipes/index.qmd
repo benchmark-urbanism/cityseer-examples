@@ -1,62 +1,83 @@
 ---
+title: Cityseer Recipes
 editor:
   render-on-save: true
 ---
 
-This cookbook contains a collection of recipes to illustrate typical usage scenarios for `cityseer`.
+This section contains a collection of recipes illustrating typical usage scenarios for `cityseer`. The recipes build on each other, so if you are wondering why or how to do something, you may find the answer in another (typically preceding) recipe.
 
-The recipes build on each other, so if you are wondering why or how to do something, you may find the answers in another (typically preceding) recipe.
+[Open an issue](https://github.com/benchmark-urbanism/cityseer-examples/issues) to request additional examples for a given use-case.
 
-Please open an issue to request the addition of further examples for a given use-case.
+::: {.callout-tip}
+New to Python or geospatial analysis? Start with the [Python 101](../class/index.qmd) section first. These recipes assume familiarity with `geopandas`, coordinate reference systems, and basic Python. See the [Glossary](../glossary.qmd) for definitions of key terms.
+:::
 
 ### Network Preparation
 
-`cityseer` uses `networkx` [`MultiGraphs`](https://networkx.org/documentation/stable/reference/classes/multigraph.html) to represent pedestrian networks. In doing so, it embeds spatial information in the graph nodes and edges so that it can accurately manipulate the graphs and calculate derivative metrics.
+`cityseer` uses `networkx` [`MultiGraphs`](https://networkx.org/documentation/stable/reference/classes/multigraph.html) to represent pedestrian networks. Spatial information is embedded in the graph nodes and edges so that `cityseer` can accurately manipulate the graphs and calculate derivative metrics.
 
 See the [Network Preparation](networks/index.qmd) page for examples of how to create a `cityseer` compatible `networkx` graph from:
 
-- OSM data using bounding boxes, radii around points, or from a custom boundary file;
-- `geopandas` data including the use of `geopandas` to open and import files such as geopackages and shapefiles;
+- OSM data using bounding boxes, radii around points, or a custom boundary file;
+- `geopandas` data including files such as GeoPackages and Shapefiles;
 - Imports from `momepy` and `osmnx`;
 - Automatic and manual network simplification;
 - Casting primal networks to dual representations to model and visualise metrics using streets instead of intersections.
 
-### Metrics
+### Computing Metrics
 
-`cityseer` converts the network into a `rust` data structure prior to computing derivative metrics. This is done to improve performance so that it can be used for larger cities with correspondingly larger data sets and networks.
+`cityseer` converts the network into a `rust` data structure prior to computing derivative metrics. This improves performance so that analyses scale to larger cities with correspondingly larger datasets and networks.
 
-This is done using [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function which is available in the `cityseer` `io` module. You will see this method used in all of the following examples. Use of this method will result in three derivative data structures:
+This conversion is done using the [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function from the `cityseer` `io` module. You will see this method used across all of the following examples. It produces three data structures:
 
-- A nodes `GeoDataFrame` with the graph's nodes. This is used for saving the outputs of calculations, and makes it easy to export the outputs of calculations to files that can be used from QGIS or other GIS software and workflows.
-- An edges `GeoDataFrame` with the graph's edges, including information that has been generated for the graph's edges such as metric and angular distances, entry and exit angles, and the overall bearing of the edge.
-- A `cityseer` `NetworkStructure` object which is used by `cityseer` for calculating the measures.
+- A **nodes** `GeoDataFrame` containing the graph's nodes. This stores the outputs of calculations and makes it easy to export results to files for use in QGIS or other GIS workflows.
+- An **edges** `GeoDataFrame` containing the graph's edges, including derived properties such as metric and angular distances, entry and exit angles, and overall bearing.
+- A **`NetworkStructure`** object used internally by `cityseer` for computing measures.
 
-Once you've prepared the `NetworkStructure` object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the `NetworkStructure` object.
+Once prepared, the `NetworkStructure` object can be reused to calculate a variety of centrality, accessibility, mixed-use, and statistical metrics over the street network. It only needs to be recreated if the input network changes.
 
-Use of the dual representation is optional, but recommended. Keep in mind that if you've converted your `networkx` network into a dual representation, then the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) as well as the primal edges (street geometries). The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.
+Use of the dual representation is optional but recommended. When using a dual representation, the nodes `GeoDataFrame` will contain both the dual nodes (midpoints of streets) and the primal edges (street geometries). The primal edges are set as the default geometry so that outputs can be visualised using street geometries.
 
-Note that distances used when computing accessibilities, statistics, or other measures are all based on distances over the network. In the case of weighted variants, the distances used for the weighting process are the distances from each point of measure to the individual data points (such as land uses) under consideration.
+Note that all distances used when computing metrics are network distances (shortest paths along the network), not Euclidean distances. For weighted variants, the weighting is based on network distance from each point of measure to the individual data points (such as land uses) under consideration.
+
+#### Distance Thresholds
+
+Most `cityseer` functions accept a `distances` parameter specifying the network distance thresholds (in metres) at which to compute metrics. You can compute multiple thresholds simultaneously. Common choices and their approximate real-world meaning:
+
+| Distance | Walking time | Typical use                    |
+| -------- | ------------ | ------------------------------ |
+| 200m     | ~2.5 min     | Immediate neighbourhood        |
+| 400m     | ~5 min       | Local walkability              |
+| 800m     | ~10 min      | Neighbourhood-scale access     |
+| 1600m    | ~20 min      | District-scale patterns        |
+| 5000m+   | ~60 min+     | City-wide structural analysis  |
+
+Computing metrics at multiple distances simultaneously reveals how urban structure varies across scales. For example, a street may be highly central at 800m (locally important) but not at 5000m (not a major through-route). The `minutes` parameter can also be used as an alternative to specifying distances directly.
 
 #### Centrality
 
-See the [Network Centrality](centrality/index.qmd) page for examples of how to calculate a variety of shortest "metric" and simplest "angular" centrality metrics.
+See the [Network Centrality](centrality/index.qmd) page for examples of how to calculate shortest-path "metric" and simplest-path "angular" centrality metrics.
 
 #### Accessibility
 
-See the [Accessibility](accessibility/index.qmd) page for examples of how to calculate a variety of landuse accessibility and mixed-use metrics.
+See the [Accessibility](accessibility/index.qmd) page for examples of how to calculate landuse accessibility and mixed-use metrics.
 
 #### Statistics
 
 See the [Statistics](stats/index.qmd) page for examples of how to calculate statistical metrics over the network.
 
-### Edge Rolloff
-
-When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should --- for the same reasons --- cover these buffered extents as well.
-
-The `live=True` node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the `live=False` nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both `live=True` and `live=False` nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for `live=True` nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to `live=True`.
-
-Here is an example of how to [set node status to live or not](live_nodes.ipynb) based on whether it intersects the original boundary.
-
 #### Visibility
 
-See the [Visibility](visibility/index.qmd) page for examples of how to calculate visibility metrics for OSM and GeoPandas sources of building footprints data.
+See the [Visibility](visibility/index.qmd) page for examples of how to calculate visibility metrics from building footprint data.
+
+### Continuity
+
+Street continuity metrics assess how consistently named routes, road classifications, or route numbers extend through the network. See the [Continuity](continuity/index.qmd) page for examples.
+
+### Edge Rolloff
+
+When calculating network or layer metrics, the network must be buffered by a distance equal to the maximum distance threshold used by the algorithms. This prevents distorted results arising from edge rolloff effects. For example, if running analysis at distances of 500, 1000, and 2000m, then the network must be buffered by at least 2000m. Data layers should cover these buffered extents as well.
+
+The `live` node attribute controls this. Nodes within the original (non-buffered) extents are set to `live=True`, while nodes in the surrounding buffer are set to `live=False`. The shortest-path algorithms have access to both, preventing edge rolloff, but derivative metrics are only computed for `live=True` nodes. This eliminates edge rolloff effects, reduces unnecessary computation, and clearly distinguishes the analysis area from the buffer zone. If boundary rolloff is not a concern, the default behaviour sets all nodes to `live=True`.
+
+Here is an example of how to [set node status to live or not](live_nodes.ipynb) based on whether it intersects the original boundary.

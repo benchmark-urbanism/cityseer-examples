@@ -4,7 +4,7 @@ version = "0.0.1"
 description = ""
 authors = [{ name = "Gareth Simons", email = "info@benchmarkurbanism.com" }]
 dependencies = [
-    "cityseer>=4.23.0b1",
+    "cityseer>=4.23.0",
     "pyproj>=3.6.1",
     "shapely>=2.0.3",
     "geopandas>=0.14.3",
@@ -23,3 +23,6 @@ dependencies = [
 requires-python = ">=3.11, <3.14"
 readme = "README.md"
 license = { text = "AGPL-3.0" }
+
+[dependency-groups]
+dev = ["ruff>=0.15.4", "ty>=0.0.20"]

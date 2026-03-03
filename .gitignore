@@ -126,3 +126,5 @@ man/
 
 
 /.quarto/
+
+**/*.quarto_ipynb

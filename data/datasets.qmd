@@ -67,6 +67,19 @@ Description: Microdata file of the census of premises and activities of the Madr
 
 Preprocessing performed per: [https://github.com/songololo/ua-dataset-madrid](https://github.com/songololo/ua-dataset-madrid).
 
+Key columns:
+
+| Column              | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| `local_distr_desc`  | District name                                                 |
+| `local_neighb_desc` | Neighbourhood name                                            |
+| `section_id`        | Activity section code (e.g., I = hospitality, R = recreation) |
+| `section_desc`      | Activity section description                                  |
+| `division_id`       | Activity division code                                        |
+| `division_desc`     | Activity division description                                 |
+| `epigraph_id`       | Specific activity code                                        |
+| `epigraph_desc`     | Specific activity description (e.g., RESTAURANTE)             |
+
 ## Overture Maps Buildings
 
 [GeoPackage](./madrid_buildings/madrid_bldgs.gpkg)
@@ -83,6 +96,22 @@ License for theme: ODbL
 - Google Open Buildings. Available under CC BY 4.0.
 - USGS 3D Elevation Program Digital Elevation Program.
 - Qian Shi, et al. A First High-quality Vector Data of Buildings in East Asian Countries Based on a Comprehensive Large-scale Mapping Framework. Zenodo, 22 July 2023, doi:10.5281/zenodo.8174931. Available under CC BY 4.0.
+
+Key columns:
+
+| Column              | Description                                                |
+| ------------------- | ---------------------------------------------------------- |
+| `mean_height`       | Average building height in metres (where available)        |
+| `area`              | Footprint area in square metres                            |
+| `perimeter`         | Footprint perimeter in metres                              |
+| `compactness`       | Compactness ratio (area relative to perimeter)             |
+| `orientation`       | Orientation angle in degrees                               |
+| `volume`            | Estimated building volume (height x area, where available) |
+| `floor_area_ratio`  | Floor area ratio                                           |
+| `form_factor`       | Building form factor                                       |
+| `corners`           | Number of corners in the footprint                         |
+| `shape_index`       | Shape index metric                                         |
+| `fractal_dimension` | Fractal dimension of the footprint boundary                |
 
 ## Overture Maps Infrastructure
 
@@ -104,15 +133,24 @@ License for theme: ODbL
 
 [GeoPackage](./madrid_streets/street_network.gpkg)
 
-[Source](https://datos.comunidad.madrid/dataset/spacm_callescm)
+[Source](https://centrodedescargas.cnig.es/CentroDescargas/index.jsp) (CNIG/IGN - Redes de Transporte - Madrid province)
 
-[License](https://creativecommons.org/licenses/by/4.0/)
+[License](https://creativecommons.org/licenses/by/4.0/legalcode.es) ([ign.es](https://www.ign.es))
 
-Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)
+Cite: Attribute IGN (Instituto Geográfico Nacional de España).
 
-Description: Set of roads officially approved by the municipalities of the Community of Madrid, ordered by different characteristics.
+Description: Road network (Red Viaria) for Madrid province from the CNIG/IGN Redes de Transporte dataset. Layer `rt_tramo_vial` containing road segments with classification, surface, lane, and naming attributes.
 
-Preprocessing and manual cleaning performed per: [https://github.com/songololo/ua-dataset-madrid](https://github.com/songololo/ua-dataset-madrid).
+Preprocessing: Download `RT_MADRID_gpkg.zip` from CNIG Centro de Descargas. Extract `red_viaria.gpkg`, layer `rt_tramo_vial`. Reproject from EPSG:4258 to EPSG:25830. Clip to 20km buffered bounds. Retain `clased` (road class) and `nombre` (road name) attributes only. Set coordinate grid precision to 1m and simplify geometries to 1m tolerance.
+
+Further preprocessing performed per: [https://github.com/songololo/ua-dataset-madrid](https://github.com/songololo/ua-dataset-madrid).
+
+Key columns:
+
+| Column   | Description                        |
+| -------- | ---------------------------------- |
+| `clased` | Road classification (e.g., Urbano) |
+| `nombre` | Street name                        |
 
 ## Census
 
