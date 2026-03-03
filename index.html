@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Intro – Cityseer Guide</title>
+<title>Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data/datasets.html" rel="next">
+<link href="./glossary.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Intro</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Cityseer Guide</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -150,7 +150,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,6 +251,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -257,9 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a></li>
+  <li><a href="#what-can-cityseer-do" id="toc-what-can-cityseer-do" class="nav-link active" data-scroll-target="#what-can-cityseer-do">What can cityseer do?</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a>
+  <ul class="collapse">
   <li><a href="#python-101" id="toc-python-101" class="nav-link" data-scroll-target="#python-101">Python 101</a></li>
   <li><a href="#recipes" id="toc-recipes" class="nav-link" data-scroll-target="#recipes">Recipes</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
   </ul>
 </nav>
@@ -269,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Intro</h1>
+<h1 class="title">Cityseer Guide</h1>
 </div>
 
 
@@ -286,31 +303,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This repository contains examples for the <code>cityseer</code> package.</p>
-<p>Follow the links below if you’re instead looking for the main repository or the API documentation:</p>
+<p><code>cityseer</code> is a Python package for pedestrian-scale network analysis and urban morphology. It computes centrality, accessibility, mixed-use, statistical, and visibility metrics over street networks, using a high-performance <code>rust</code> backend so that analyses scale to large cities.</p>
+<p>This guide provides tutorials and worked examples to help you get started. If you’re looking for the API reference or source code:</p>
 <ul>
-<li><a href="https://github.com/benchmark-urbanism/cityseer-api">cityseer Github repository</a></li>
 <li><a href="https://cityseer.benchmarkurbanism.com/">cityseer API documentation</a></li>
+<li><a href="https://github.com/benchmark-urbanism/cityseer-api">cityseer Github repository</a></li>
 </ul>
-<section id="datasets" class="level2">
-<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
-<p>The datasets used from the example recipes are available on the <a href="./data/datasets.html">datasets</a> page, where you can also find information on the sources.</p>
+<section id="what-can-cityseer-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-cityseer-do">What can cityseer do?</h2>
+<ul>
+<li><strong><a href="./recipes/centrality/index.html">Network Centrality</a>:</strong> Identify the most connected and important streets using shortest-path and simplest-path centrality measures.</li>
+<li><strong><a href="./recipes/accessibility/index.html">Accessibility</a>:</strong> Quantify how easily amenities (shops, parks, restaurants) can be reached from each point in the network.</li>
+<li><strong><a href="./recipes/stats/index.html">Statistics</a>:</strong> Aggregate numeric properties of nearby features (e.g., building heights) over the network.</li>
+<li><strong><a href="./recipes/visibility/index.html">Visibility</a>:</strong> Assess street enclosure and openness from building footprints or terrain data.</li>
+<li><strong><a href="./recipes/continuity/index.html">Continuity</a>:</strong> Measure how consistently named routes and road classifications extend through the network.</li>
+</ul>
 </section>
-<section id="python-101" class="level2">
-<h2 class="anchored" data-anchor-id="python-101">Python 101</h2>
-<p>If you are new to Python or computational notebooks, start with the <a href="./class/index.html">Python 101</a> section.</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<section id="python-101" class="level3">
+<h3 class="anchored" data-anchor-id="python-101">Python 101</h3>
+<p>New to Python or computational notebooks? Start with the <a href="./class/index.html">Python 101</a> section, which covers the basics of Python, spatial data with Shapely and GeoPandas, and an introduction to urban analytics with <code>osmnx</code> and <code>momepy</code>.</p>
 </section>
-<section id="recipes" class="level2">
-<h2 class="anchored" data-anchor-id="recipes">Recipes</h2>
-<p>If you already have some experience, you can dive straight into the <a href="./recipes/index.html">recipes section</a>, which contains practical examples and use-cases for <code>cityseer</code>.</p>
+<section id="recipes" class="level3">
+<h3 class="anchored" data-anchor-id="recipes">Recipes</h3>
+<p>If you already have some experience with Python and <code>geopandas</code>, head to the <a href="./recipes/index.html">recipes</a> section for practical, worked examples covering network preparation, centrality, accessibility, statistics, and visibility analysis.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The recipes assume familiarity with Python, <code>geopandas</code>, and projected coordinate reference systems. If any of these are new to you, start with <a href="./class/index.html">Python 101</a> first.</p>
+</div>
+</div>
+</section>
+<section id="datasets" class="level3">
+<h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
+<p>The datasets used in the recipes are available on the <a href="./data/datasets.html">datasets</a> page, with source links and licensing information.</p>
+</section>
+<section id="glossary" class="level3">
+<h3 class="anchored" data-anchor-id="glossary">Glossary</h3>
+<p>Unfamiliar with terms like “dual graph” or “edge rolloff”? See the <a href="./glossary.html">Glossary</a> for definitions of key concepts.</p>
+</section>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>To install <code>cityseer</code>, use <code>pip</code>:</p>
+<p>Install <code>cityseer</code> with <code>pip</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> cityseer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or, from a notebook:</p>
+<p>Or from a notebook:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">--</span>upgrade cityseer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The examples in this cookbook also use packages such as <code>geopandas</code>, <code>networkx</code>, and <code>matplotlib</code>. You can install these using the same method.</p>
+<p>The examples in this guide also use packages such as <code>geopandas</code>, <code>networkx</code>, <code>osmnx</code>, <code>momepy</code>, <code>matplotlib</code>, and <code>seaborn</code>. These can be installed in the same way, or you can install all dependencies at once by cloning the <a href="https://github.com/benchmark-urbanism/cityseer-examples">repository</a> and running <code>uv sync</code> (see <a href="https://docs.astral.sh/uv/">uv documentation</a>).</p>
 
 
 </section>
@@ -720,8 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data/datasets.html" class="pagination-link" aria-label="Datasets">
-        <span class="nav-page-text">Datasets</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossary">
+        <span class="nav-page-text">Glossary</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

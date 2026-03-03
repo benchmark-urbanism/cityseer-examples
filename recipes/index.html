@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – Cityseer Guide</title>
+<title>Cityseer Recipes – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +116,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -143,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,6 +217,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -224,68 +236,142 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#network-preparation" id="toc-network-preparation" class="nav-link active" data-scroll-target="#network-preparation">Network Preparation</a></li>
-  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics">Metrics</a></li>
+  <li><a href="#computing-metrics" id="toc-computing-metrics" class="nav-link" data-scroll-target="#computing-metrics">Computing Metrics</a></li>
+  <li><a href="#continuity" id="toc-continuity" class="nav-link" data-scroll-target="#continuity">Continuity</a></li>
   <li><a href="#edge-rolloff" id="toc-edge-rolloff" class="nav-link" data-scroll-target="#edge-rolloff">Edge Rolloff</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cityseer Recipes</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p>This cookbook contains a collection of recipes to illustrate typical usage scenarios for <code>cityseer</code>.</p>
-<p>The recipes build on each other, so if you are wondering why or how to do something, you may find the answers in another (typically preceding) recipe.</p>
-<p>Please open an issue to request the addition of further examples for a given use-case.</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This section contains a collection of recipes illustrating typical usage scenarios for <code>cityseer</code>. The recipes build on each other, so if you are wondering why or how to do something, you may find the answer in another (typically preceding) recipe.</p>
+<p><a href="https://github.com/benchmark-urbanism/cityseer-examples/issues">Open an issue</a> to request additional examples for a given use-case.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>New to Python or geospatial analysis? Start with the <a href="../class/index.html">Python 101</a> section first. These recipes assume familiarity with <code>geopandas</code>, coordinate reference systems, and basic Python. See the <a href="../glossary.html">Glossary</a> for definitions of key terms.</p>
+</div>
+</div>
 <section id="network-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="network-preparation">Network Preparation</h3>
-<p><code>cityseer</code> uses <code>networkx</code> <a href="https://networkx.org/documentation/stable/reference/classes/multigraph.html"><code>MultiGraphs</code></a> to represent pedestrian networks. In doing so, it embeds spatial information in the graph nodes and edges so that it can accurately manipulate the graphs and calculate derivative metrics.</p>
+<p><code>cityseer</code> uses <code>networkx</code> <a href="https://networkx.org/documentation/stable/reference/classes/multigraph.html"><code>MultiGraphs</code></a> to represent pedestrian networks. Spatial information is embedded in the graph nodes and edges so that <code>cityseer</code> can accurately manipulate the graphs and calculate derivative metrics.</p>
 <p>See the <a href="../recipes/networks/index.html">Network Preparation</a> page for examples of how to create a <code>cityseer</code> compatible <code>networkx</code> graph from:</p>
 <ul>
-<li>OSM data using bounding boxes, radii around points, or from a custom boundary file;</li>
-<li><code>geopandas</code> data including the use of <code>geopandas</code> to open and import files such as geopackages and shapefiles;</li>
+<li>OSM data using bounding boxes, radii around points, or a custom boundary file;</li>
+<li><code>geopandas</code> data including files such as GeoPackages and Shapefiles;</li>
 <li>Imports from <code>momepy</code> and <code>osmnx</code>;</li>
 <li>Automatic and manual network simplification;</li>
 <li>Casting primal networks to dual representations to model and visualise metrics using streets instead of intersections.</li>
 </ul>
 </section>
-<section id="metrics" class="level3">
-<h3 class="anchored" data-anchor-id="metrics">Metrics</h3>
-<p><code>cityseer</code> converts the network into a <code>rust</code> data structure prior to computing derivative metrics. This is done to improve performance so that it can be used for larger cities with correspondingly larger data sets and networks.</p>
-<p>This is done using <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> function which is available in the <code>cityseer</code> <code>io</code> module. You will see this method used in all of the following examples. Use of this method will result in three derivative data structures:</p>
+<section id="computing-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="computing-metrics">Computing Metrics</h3>
+<p><code>cityseer</code> converts the network into a <code>rust</code> data structure prior to computing derivative metrics. This improves performance so that analyses scale to larger cities with correspondingly larger datasets and networks.</p>
+<p>This conversion is done using the <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> function from the <code>cityseer</code> <code>io</code> module. You will see this method used across all of the following examples. It produces three data structures:</p>
 <ul>
-<li>A nodes <code>GeoDataFrame</code> with the graph’s nodes. This is used for saving the outputs of calculations, and makes it easy to export the outputs of calculations to files that can be used from QGIS or other GIS software and workflows.</li>
-<li>An edges <code>GeoDataFrame</code> with the graph’s edges, including information that has been generated for the graph’s edges such as metric and angular distances, entry and exit angles, and the overall bearing of the edge.</li>
-<li>A <code>cityseer</code> <code>NetworkStructure</code> object which is used by <code>cityseer</code> for calculating the measures.</li>
+<li>A <strong>nodes</strong> <code>GeoDataFrame</code> containing the graph’s nodes. This stores the outputs of calculations and makes it easy to export results to files for use in QGIS or other GIS workflows.</li>
+<li>An <strong>edges</strong> <code>GeoDataFrame</code> containing the graph’s edges, including derived properties such as metric and angular distances, entry and exit angles, and overall bearing.</li>
+<li>A <strong><code>NetworkStructure</code></strong> object used internally by <code>cityseer</code> for computing measures.</li>
 </ul>
-<p>Once you’ve prepared the <code>NetworkStructure</code> object, you can use it over-and-over again to calculate a variety of centrality, accessibility, mixed-uses, and statistical metrics over the street network. The exception to this is when you change the input network, in which case you need to re-create the <code>NetworkStructure</code> object.</p>
-<p>Use of the dual representation is optional, but recommended. Keep in mind that if you’ve converted your <code>networkx</code> network into a dual representation, then the nodes <code>GeoDataFrame</code> will contain both the dual nodes (midpoints of streets) as well as the primal edges (street geometries). The primal edges will be set to the default geometry so that outputs can be visualised using the primal street geometries.</p>
-<p>Note that distances used when computing accessibilities, statistics, or other measures are all based on distances over the network. In the case of weighted variants, the distances used for the weighting process are the distances from each point of measure to the individual data points (such as land uses) under consideration.</p>
+<p>Once prepared, the <code>NetworkStructure</code> object can be reused to calculate a variety of centrality, accessibility, mixed-use, and statistical metrics over the street network. It only needs to be recreated if the input network changes.</p>
+<p>Use of the dual representation is optional but recommended. When using a dual representation, the nodes <code>GeoDataFrame</code> will contain both the dual nodes (midpoints of streets) and the primal edges (street geometries). The primal edges are set as the default geometry so that outputs can be visualised using street geometries.</p>
+<p>Note that all distances used when computing metrics are network distances (shortest paths along the network), not Euclidean distances. For weighted variants, the weighting is based on network distance from each point of measure to the individual data points (such as land uses) under consideration.</p>
+<section id="distance-thresholds" class="level4">
+<h4 class="anchored" data-anchor-id="distance-thresholds">Distance Thresholds</h4>
+<p>Most <code>cityseer</code> functions accept a <code>distances</code> parameter specifying the network distance thresholds (in metres) at which to compute metrics. You can compute multiple thresholds simultaneously. Common choices and their approximate real-world meaning:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Distance</th>
+<th>Walking time</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>200m</td>
+<td>~2.5 min</td>
+<td>Immediate neighbourhood</td>
+</tr>
+<tr class="even">
+<td>400m</td>
+<td>~5 min</td>
+<td>Local walkability</td>
+</tr>
+<tr class="odd">
+<td>800m</td>
+<td>~10 min</td>
+<td>Neighbourhood-scale access</td>
+</tr>
+<tr class="even">
+<td>1600m</td>
+<td>~20 min</td>
+<td>District-scale patterns</td>
+</tr>
+<tr class="odd">
+<td>5000m+</td>
+<td>~60 min+</td>
+<td>City-wide structural analysis</td>
+</tr>
+</tbody>
+</table>
+<p>Computing metrics at multiple distances simultaneously reveals how urban structure varies across scales. For example, a street may be highly central at 800m (locally important) but not at 5000m (not a major through-route). The <code>minutes</code> parameter can also be used as an alternative to specifying distances directly.</p>
+</section>
 <section id="centrality" class="level4">
 <h4 class="anchored" data-anchor-id="centrality">Centrality</h4>
-<p>See the <a href="../recipes/centrality/index.html">Network Centrality</a> page for examples of how to calculate a variety of shortest “metric” and simplest “angular” centrality metrics.</p>
+<p>See the <a href="../recipes/centrality/index.html">Network Centrality</a> page for examples of how to calculate shortest-path “metric” and simplest-path “angular” centrality metrics.</p>
 </section>
 <section id="accessibility" class="level4">
 <h4 class="anchored" data-anchor-id="accessibility">Accessibility</h4>
-<p>See the <a href="../recipes/accessibility/index.html">Accessibility</a> page for examples of how to calculate a variety of landuse accessibility and mixed-use metrics.</p>
+<p>See the <a href="../recipes/accessibility/index.html">Accessibility</a> page for examples of how to calculate landuse accessibility and mixed-use metrics.</p>
 </section>
 <section id="statistics" class="level4">
 <h4 class="anchored" data-anchor-id="statistics">Statistics</h4>
 <p>See the <a href="../recipes/stats/index.html">Statistics</a> page for examples of how to calculate statistical metrics over the network.</p>
 </section>
+<section id="visibility" class="level4">
+<h4 class="anchored" data-anchor-id="visibility">Visibility</h4>
+<p>See the <a href="../recipes/visibility/index.html">Visibility</a> page for examples of how to calculate visibility metrics from building footprint data.</p>
+</section>
+</section>
+<section id="continuity" class="level3">
+<h3 class="anchored" data-anchor-id="continuity">Continuity</h3>
+<p>Street continuity metrics assess how consistently named routes, road classifications, or route numbers extend through the network. See the <a href="../recipes/continuity/index.html">Continuity</a> page for examples.</p>
 </section>
 <section id="edge-rolloff" class="level3">
 <h3 class="anchored" data-anchor-id="edge-rolloff">Edge Rolloff</h3>
-<p>When calculating network or layer metrics, the network has to be buffered by a distance equal to the maximum distance threshold being considered by the algorithms. This prevents problematic results arising due to edge roll-off effects. For example, if running analysis using distances of 500, 1000, 2000m, then the network must be buffered by 2000m. When using data layers, the data points should — for the same reasons — cover these buffered extents as well.</p>
-<p>The <code>live=True</code> node attribute is used for identifying nodes falling within the original non-buffered graph extents as opposed to the <code>live=False</code> nodes that fall within the surrounding buffered area. The underlying shortest-path algorithms will have access to both <code>live=True</code> and <code>live=False</code> nodes (thus preventing edge rolloff), but derivative metrics are only tabulated for <code>live=True</code> nodes. This eliminates edge roll-off effects, reduces unnecessary computation, and cleanly identifies which nodes are or are not in the buffered roll-off area. If some other post-processing step will be used for filtering the nodes, or if boundary roll-off is not being considered, then use the default behaviour where all nodes automatically set to <code>live=True</code>.</p>
+<p>When calculating network or layer metrics, the network must be buffered by a distance equal to the maximum distance threshold used by the algorithms. This prevents distorted results arising from edge rolloff effects. For example, if running analysis at distances of 500, 1000, and 2000m, then the network must be buffered by at least 2000m. Data layers should cover these buffered extents as well.</p>
+<p>The <code>live</code> node attribute controls this. Nodes within the original (non-buffered) extents are set to <code>live=True</code>, while nodes in the surrounding buffer are set to <code>live=False</code>. The shortest-path algorithms have access to both, preventing edge rolloff, but derivative metrics are only computed for <code>live=True</code> nodes. This eliminates edge rolloff effects, reduces unnecessary computation, and clearly distinguishes the analysis area from the buffer zone. If boundary rolloff is not a concern, the default behaviour sets all nodes to <code>live=True</code>.</p>
 <p>Here is an example of how to <a href="../recipes/live_nodes.html">set node status to live or not</a> based on whether it intersects the original boundary.</p>
-<section id="visibility" class="level4">
-<h4 class="anchored" data-anchor-id="visibility">Visibility</h4>
-<p>See the <a href="../recipes/visibility/index.html">Visibility</a> page for examples of how to calculate visibility metrics for OSM and GeoPandas sources of building footprints data.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

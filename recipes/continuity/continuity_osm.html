@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -149,7 +149,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -244,6 +250,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -258,7 +270,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
   <li><a href="#loading-data-from-osm" id="toc-loading-data-from-osm" class="nav-link" data-scroll-target="#loading-data-from-osm">Loading data from OSM</a></li>
-  <li><a href="#observe-continuity-metrics" id="toc-observe-continuity-metrics" class="nav-link" data-scroll-target="#observe-continuity-metrics">Observe continuity metrics</a></li>
+  <li><a href="#observe-continuity-metricswe-can-now-run-the-continuity-metrics." id="toc-observe-continuity-metricswe-can-now-run-the-continuity-metrics." class="nav-link" data-scroll-target="#observe-continuity-metricswe-can-now-run-the-continuity-metrics.">Observe continuity metricsWe can now run the continuity metrics.</a></li>
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-compute-street-continuity-metrics-from-openstreetmap-data-for-london-using-street-names-route-numbers-highway-types-and-a-hybrid-approach-to-measure-how-far-streets-extend-as-continuous-entities.-the-analysis-reveals-the-hierarchical-structure-of-the-road-network-with-major-routes-like-the-a4-and-a501-achieving-the-longest-continuous-extents.next-steps-for-continuity-from-ordnance-survey-data-see-os-open-roads-continuity." id="toc-conclusionthis-notebook-demonstrated-how-to-compute-street-continuity-metrics-from-openstreetmap-data-for-london-using-street-names-route-numbers-highway-types-and-a-hybrid-approach-to-measure-how-far-streets-extend-as-continuous-entities.-the-analysis-reveals-the-hierarchical-structure-of-the-road-network-with-major-routes-like-the-a4-and-a501-achieving-the-longest-continuous-extents.next-steps-for-continuity-from-ordnance-survey-data-see-os-open-roads-continuity." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-compute-street-continuity-metrics-from-openstreetmap-data-for-london-using-street-names-route-numbers-highway-types-and-a-hybrid-approach-to-measure-how-far-streets-extend-as-continuous-entities.-the-analysis-reveals-the-hierarchical-structure-of-the-road-network-with-major-routes-like-the-a4-and-a501-achieving-the-longest-continuous-extents.next-steps-for-continuity-from-ordnance-survey-data-see-os-open-roads-continuity.">ConclusionThis notebook demonstrated how to compute street continuity metrics from OpenStreetMap data for London, using street names, route numbers, highway types, and a hybrid approach to measure how far streets extend as continuous entities. The analysis reveals the hierarchical structure of the road network, with major routes like the A4 and A501 achieving the longest continuous extents.<strong>Next steps:</strong> For continuity from Ordnance Survey data, see OS Open Roads Continuity.</a></li>
   </ul>
 </nav>
     </div>
@@ -279,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 21, 2026</p>
+      <p class="date-modified">March 3, 2026</p>
     </div>
   </div>
     
@@ -395,9 +408,8 @@ INFO:cityseer.tools.graphs:Removing filler nodes.
 </div>
 </div>
 </section>
-<section id="observe-continuity-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="observe-continuity-metrics">Observe continuity metrics</h2>
-<p>We can now run the contunity metrics</p>
+<section id="observe-continuity-metricswe-can-now-run-the-continuity-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="observe-continuity-metricswe-can-now-run-the-continuity-metrics.">Observe continuity metricsWe can now run the continuity metrics.</h2>
 <div id="cell-6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -646,6 +658,10 @@ INFO:cityseer.tools.plot:Generating plot
 </div>
 </div>
 </div>
+<p>Longer continuous routes (brighter colours) indicate streets that maintain their name or classification over greater distances, suggesting major through-routes. Fragmented streets (darker) are typically local or residential.</p>
+</section>
+<section id="conclusionthis-notebook-demonstrated-how-to-compute-street-continuity-metrics-from-openstreetmap-data-for-london-using-street-names-route-numbers-highway-types-and-a-hybrid-approach-to-measure-how-far-streets-extend-as-continuous-entities.-the-analysis-reveals-the-hierarchical-structure-of-the-road-network-with-major-routes-like-the-a4-and-a501-achieving-the-longest-continuous-extents.next-steps-for-continuity-from-ordnance-survey-data-see-os-open-roads-continuity." class="level2">
+<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-compute-street-continuity-metrics-from-openstreetmap-data-for-london-using-street-names-route-numbers-highway-types-and-a-hybrid-approach-to-measure-how-far-streets-extend-as-continuous-entities.-the-analysis-reveals-the-hierarchical-structure-of-the-road-network-with-major-routes-like-the-a4-and-a501-achieving-the-longest-continuous-extents.next-steps-for-continuity-from-ordnance-survey-data-see-os-open-roads-continuity.">ConclusionThis notebook demonstrated how to compute street continuity metrics from OpenStreetMap data for London, using street names, route numbers, highway types, and a hybrid approach to measure how far streets extend as continuous entities. The analysis reveals the hierarchical structure of the road network, with major routes like the A4 and A501 achieving the longest continuous extents.<strong>Next steps:</strong> For continuity from Ordnance Survey data, see <a href="../../recipes/continuity/continuity_os_open.html">OS Open Roads Continuity</a>.</h2>
 
 
 </section>

@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../recipes/continuity/index.html" rel="next">
 <link href="../../recipes/stats/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -41,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,7 +116,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -142,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -210,6 +217,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -250,23 +263,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>These examples calculate visibility metrics for OSM and GeoPandas sources of building footprints data.</p>
+<p>Visibility metrics assess how enclosed or open the street environment is at each point in the network, based on the surrounding built form. These metrics are useful for understanding the spatial experience of streets and evaluating urban design qualities such as enclosure and openness.</p>
+<p><code>cityseer</code> computes visibility by casting rays from each network node and measuring how far they travel before hitting a building or obstruction. The results characterise the visual field experienced from the street.</p>
 <blockquote class="blockquote">
 <p>Requires <code>cityseer</code> version 4.21.4 or later.</p>
 </blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These examples assume a prepared network. See <a href="../../recipes/networks/index.html">Network Preparation</a> for setup.</p>
+</div>
+</div>
 <section id="visibility-from-osm-data" class="level2">
 <h2 class="anchored" data-anchor-id="visibility-from-osm-data">Visibility from OSM data</h2>
-<p>Calculate visibility metrics for OSM from bounding box coordinates.</p>
+<p>Calculate visibility metrics using building footprints downloaded from OpenStreetMap via bounding box coordinates.</p>
 <p><a href="../../recipes/visibility/vis_osm.html">Notebook</a></p>
 </section>
 <section id="visibility-from-geopandas-data" class="level2">
 <h2 class="anchored" data-anchor-id="visibility-from-geopandas-data">Visibility from geopandas data</h2>
-<p>Calculate visibility metrics from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
+<p>Calculate visibility metrics from building footprints loaded as a <code>geopandas</code> <code>GeoDataFrame</code>, for example from a GeoPackage or Shapefile.</p>
 <p><a href="../../recipes/visibility/vis_gpd.html">Notebook</a></p>
 </section>
 <section id="visibility-from-raster-data" class="level2">
 <h2 class="anchored" data-anchor-id="visibility-from-raster-data">Visibility from raster data</h2>
-<p>Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take elevation into account.</p>
+<p>Calculate visibility metrics from a raster file, such as a GeoTIFF. This permits blending building footprints with DEM data to take terrain elevation into account.</p>
 <p><a href="../../recipes/visibility/vis_raster.html">Notebook</a></p>
 
 
@@ -680,6 +707,9 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../recipes/continuity/index.html" class="pagination-link" aria-label="Continuity">
+        <span class="nav-page-text">Continuity</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

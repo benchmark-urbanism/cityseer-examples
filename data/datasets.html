@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../class/index.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../glossary.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +116,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -143,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -209,6 +215,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../recipes/visibility/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
   </div>
 </li>
       </ul>
@@ -298,6 +310,53 @@ ul.task-list li input[type="checkbox"] {
 <p>Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)</p>
 <p>Description: Microdata file of the census of premises and activities of the Madrid City Council, classified according to their type of access (street door or grouped), situation (open, closed…) and indication of the economic activity exercised and the hospitality and restaurant terraces that appear registered in said census.</p>
 <p>Preprocessing performed per: <a href="https://github.com/songololo/ua-dataset-madrid">https://github.com/songololo/ua-dataset-madrid</a>.</p>
+<p>Key columns:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>local_distr_desc</code></td>
+<td>District name</td>
+</tr>
+<tr class="even">
+<td><code>local_neighb_desc</code></td>
+<td>Neighbourhood name</td>
+</tr>
+<tr class="odd">
+<td><code>section_id</code></td>
+<td>Activity section code (e.g., I = hospitality, R = recreation)</td>
+</tr>
+<tr class="even">
+<td><code>section_desc</code></td>
+<td>Activity section description</td>
+</tr>
+<tr class="odd">
+<td><code>division_id</code></td>
+<td>Activity division code</td>
+</tr>
+<tr class="even">
+<td><code>division_desc</code></td>
+<td>Activity division description</td>
+</tr>
+<tr class="odd">
+<td><code>epigraph_id</code></td>
+<td>Specific activity code</td>
+</tr>
+<tr class="even">
+<td><code>epigraph_desc</code></td>
+<td>Specific activity description (e.g., RESTAURANTE)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="overture-maps-buildings" class="level2">
 <h2 class="anchored" data-anchor-id="overture-maps-buildings">Overture Maps Buildings</h2>
@@ -313,6 +372,65 @@ ul.task-list li input[type="checkbox"] {
 <li>USGS 3D Elevation Program Digital Elevation Program.</li>
 <li>Qian Shi, et al.&nbsp;A First High-quality Vector Data of Buildings in East Asian Countries Based on a Comprehensive Large-scale Mapping Framework. Zenodo, 22 July 2023, doi:10.5281/zenodo.8174931. Available under CC BY 4.0.</li>
 </ul>
+<p>Key columns:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mean_height</code></td>
+<td>Average building height in metres (where available)</td>
+</tr>
+<tr class="even">
+<td><code>area</code></td>
+<td>Footprint area in square metres</td>
+</tr>
+<tr class="odd">
+<td><code>perimeter</code></td>
+<td>Footprint perimeter in metres</td>
+</tr>
+<tr class="even">
+<td><code>compactness</code></td>
+<td>Compactness ratio (area relative to perimeter)</td>
+</tr>
+<tr class="odd">
+<td><code>orientation</code></td>
+<td>Orientation angle in degrees</td>
+</tr>
+<tr class="even">
+<td><code>volume</code></td>
+<td>Estimated building volume (height x area, where available)</td>
+</tr>
+<tr class="odd">
+<td><code>floor_area_ratio</code></td>
+<td>Floor area ratio</td>
+</tr>
+<tr class="even">
+<td><code>form_factor</code></td>
+<td>Building form factor</td>
+</tr>
+<tr class="odd">
+<td><code>corners</code></td>
+<td>Number of corners in the footprint</td>
+</tr>
+<tr class="even">
+<td><code>shape_index</code></td>
+<td>Shape index metric</td>
+</tr>
+<tr class="odd">
+<td><code>fractal_dimension</code></td>
+<td>Fractal dimension of the footprint boundary</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="overture-maps-infrastructure" class="level2">
 <h2 class="anchored" data-anchor-id="overture-maps-infrastructure">Overture Maps Infrastructure</h2>
@@ -331,11 +449,31 @@ ul.task-list li input[type="checkbox"] {
 <section id="streets" class="level2">
 <h2 class="anchored" data-anchor-id="streets">Streets</h2>
 <p><a href="./madrid_streets/street_network.gpkg">GeoPackage</a></p>
-<p><a href="https://datos.comunidad.madrid/dataset/spacm_callescm">Source</a></p>
-<p><a href="https://creativecommons.org/licenses/by/4.0/">License</a></p>
-<p>Origin of the data: Madrid City Council (or, where appropriate, administrative body, body or entity in question)</p>
-<p>Description: Set of roads officially approved by the municipalities of the Community of Madrid, ordered by different characteristics.</p>
-<p>Preprocessing and manual cleaning performed per: <a href="https://github.com/songololo/ua-dataset-madrid">https://github.com/songololo/ua-dataset-madrid</a>.</p>
+<p><a href="https://centrodedescargas.cnig.es/CentroDescargas/index.jsp">Source</a> (CNIG/IGN - Redes de Transporte - Madrid province)</p>
+<p><a href="https://creativecommons.org/licenses/by/4.0/legalcode.es">License</a> (<a href="https://www.ign.es">ign.es</a>)</p>
+<p>Cite: Attribute IGN (Instituto Geográfico Nacional de España).</p>
+<p>Description: Road network (Red Viaria) for Madrid province from the CNIG/IGN Redes de Transporte dataset. Layer <code>rt_tramo_vial</code> containing road segments with classification, surface, lane, and naming attributes.</p>
+<p>Preprocessing: Download <code>RT_MADRID_gpkg.zip</code> from CNIG Centro de Descargas. Extract <code>red_viaria.gpkg</code>, layer <code>rt_tramo_vial</code>. Reproject from EPSG:4258 to EPSG:25830. Clip to 20km buffered bounds. Retain <code>clased</code> (road class) and <code>nombre</code> (road name) attributes only. Set coordinate grid precision to 1m and simplify geometries to 1m tolerance.</p>
+<p>Further preprocessing performed per: <a href="https://github.com/songololo/ua-dataset-madrid">https://github.com/songololo/ua-dataset-madrid</a>.</p>
+<p>Key columns:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>clased</code></td>
+<td>Road classification (e.g., Urbano)</td>
+</tr>
+<tr class="even">
+<td><code>nombre</code></td>
+<td>Street name</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="census" class="level2">
 <h2 class="anchored" data-anchor-id="census">Census</h2>
@@ -819,8 +957,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Intro">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Intro</span>
+      <a href="../glossary.html" class="pagination-link" aria-label="Glossary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glossary</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +116,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -143,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,6 +217,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -252,20 +264,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph and the derivative <code>NetworkStructure</code>, you can calculate a variety of centrality metrics.</p>
+<p>Centrality metrics measure how important or connected each node (or street segment) is within the network. They are widely used in urban analytics to identify busy corridors, understand movement patterns, and evaluate the structural role of streets.</p>
+<p><code>cityseer</code> supports both <strong>metric</strong> (shortest-path) and <strong>angular</strong> (simplest-path) centrality measures, computed at multiple distance thresholds simultaneously. Once you have created a <code>cityseer</code> compatible <code>networkx</code> graph and the derivative <code>NetworkStructure</code>, you can calculate these metrics as shown in the following examples.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These examples assume you are comfortable with <code>geopandas</code> and network preparation. If not, see <a href="../../class/index.html">Python 101</a> for background and <a href="../../recipes/networks/index.html">Network Preparation</a> for how to create a compatible network.</p>
+</div>
+</div>
 <section id="metric-distance-network-centrality" class="level2">
 <h2 class="anchored" data-anchor-id="metric-distance-network-centrality">Metric distance network centrality</h2>
-<p>Calculate metric distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
+<p>Calculate metric distance centralities (density, harmonic closeness, betweenness) from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
 <p><a href="../../recipes/centrality/gpd_metric_centrality.html">Notebook</a></p>
 </section>
 <section id="angular-distance-network-centrality" class="level2">
 <h2 class="anchored" data-anchor-id="angular-distance-network-centrality">Angular distance network centrality</h2>
-<p>Calculate angular (geometric or “simplest”) distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
+<p>Calculate angular (simplest-path) centralities from a <code>geopandas</code> <code>GeoDataFrame</code>. Angular analysis weights paths by cumulative turning angle rather than distance, capturing route directness.</p>
 <p><a href="../../recipes/centrality/gpd_angular_centrality.html">Notebook</a></p>
 </section>
 <section id="network-centrality-from-osm-data" class="level2">
 <h2 class="anchored" data-anchor-id="network-centrality-from-osm-data">Network centrality from OSM data</h2>
-<p>Calculate metric distance centralities for OSM data.</p>
+<p>Calculate metric distance centralities directly from OpenStreetMap data.</p>
 <p><a href="../../recipes/centrality/osm_centrality.html">Notebook</a></p>
 </section>
 <section id="adding-gtfs-transport-data" class="level2">
@@ -273,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>GTFS transport data support is still experimental.</p>
 </blockquote>
-<p>Add GTFS transportation data to the network.</p>
+<p>Add GTFS transportation data to the network to incorporate public transport connectivity into centrality calculations.</p>
 <p><a href="../../recipes/centrality/centrality_metro.html">Notebook</a></p>
 
 

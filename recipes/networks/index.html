@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +116,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -143,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,6 +217,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -258,19 +270,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The below examples illustrate how to create <code>cityseer</code> compatible <code>networkx</code> graphs from various data sources, including OpenStreetMap (OSM) data and <code>geopandas</code> <code>GeoDataFrames</code>. These workflows will automatically prepare the network for you, and this should be sufficient for the great majority of cases.</p>
-<p>If you specifically wish to prepare the network manually:</p>
+<p>The following examples illustrate how to create <code>cityseer</code> compatible <code>networkx</code> graphs from various data sources, including OpenStreetMap (OSM) data and <code>geopandas</code> <code>GeoDataFrames</code>. These workflows automatically prepare the network for you and should be sufficient for the great majority of cases.</p>
+<p>If you wish to prepare the network manually, note the following requirements:</p>
 <ul>
-<li>The network must be a <code>networkx</code> <code>MultiGraph</code> object. This is the default for <code>cityseer</code>, but if you are using another package, such as <code>osmnx</code>, you may need to convert the graph to a <code>MultiGraph</code> first.</li>
-<li><code>cityseer</code> is focused on pedestrian networks which do not ordinarily have directionality associated. Note that if adding transportation networks, this is done at a later step in way that retains directionality for transportation networks.</li>
-<li>The network must have a coordinate reference system (CRS) associated with it. If you are converting from <code>osmnx</code> or <code>geopandas</code>, then this is done automatically. Otherwise, you can define this by setting a <code>crs</code> parameter on the graph to a valid CRS code; for example <code>G.graph['crs'] = 27700</code>.</li>
+<li>The network must be a <code>networkx</code> <code>MultiGraph</code> object. This is the default for <code>cityseer</code>, but if you are using another package such as <code>osmnx</code>, you may need to convert the graph to a <code>MultiGraph</code> first.</li>
+<li><code>cityseer</code> is focused on pedestrian networks, which do not ordinarily have directionality. If adding transportation networks, this is done at a later step in a way that retains directionality for those networks.</li>
+<li>The network must have a coordinate reference system (CRS) associated with it. When converting from <code>osmnx</code> or <code>geopandas</code>, this is handled automatically. Otherwise, set a <code>crs</code> parameter on the graph to a valid CRS code, e.g.&nbsp;<code>G.graph['crs'] = 27700</code>.</li>
 </ul>
-<p>The network nodes require <code>x</code> and <code>y</code> attributes storing the coordinates of the node in a projected coordinate system. You can also optionally add the following two attributes:</p>
+<p>Network nodes require <code>x</code> and <code>y</code> attributes storing the coordinates in a projected coordinate system. Two optional attributes are also supported:</p>
 <ul>
-<li>An optional <code>live</code> attribute indicating whether to compute metrics for a given node (<code>live=True</code>) else whether to skip calculations (<code>live=False</code>). The latter case is for when you wish to include a buffered region of the network to prevent edge roll-off effects.</li>
-<li>An optional <code>weight</code> attribute indicating the weight of the node. <code>cityseer</code> will by default assume <code>weight=1</code> when calculating centrality metrics. Advanced users may in some cases wish to use the <code>weight</code> attribute to indicate the relative importance of a node in the network.</li>
+<li><code>live</code>: indicates whether to compute metrics for a given node (<code>live=True</code>) or skip calculations (<code>live=False</code>). Set nodes to <code>live=False</code> in buffered regions of the network to prevent edge rolloff effects (see the <a href="../../recipes/index.html#edge-rolloff">Edge Rolloff</a> section).</li>
+<li><code>weight</code>: indicates the weight of the node. <code>cityseer</code> defaults to <code>weight=1</code> when calculating centrality metrics. Advanced users may use this to indicate the relative importance of a node.</li>
 </ul>
-<p>For edges, <code>cityseer</code> network representations contain a <code>geom</code> attribute which stores a shapely LineString geometry of the edge. <code>cityseer</code> will use the <code>geom</code> attribute to calculate properties of the network such as the lengths of streets and their angular deviations. For the best to results the topology of the graph should reflect the real world topology of the street network and should not be conflated with the geometric representation of the streets. Curvatures and turns within a street segment should be represented within the same LineString geometry rather than adding additional nodes and segments, which would otherwise distort the outcomes of centrality measures.</p>
+<p>For edges, <code>cityseer</code> stores a <code>geom</code> attribute containing a <code>shapely</code> <code>LineString</code> geometry. This is used to calculate properties such as street lengths and angular deviations. For best results, the topology of the graph should reflect the real-world topology of the street network and should not be conflated with the geometric representation. Curvatures and turns within a street segment should be represented within the same <code>LineString</code> geometry rather than as additional nodes and segments, which would distort centrality measures.</p>
 <p>The first several examples use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function available from the <code>cityseer</code> package’s <code>io</code> module. This is a versatile function for generating networks from OSM data.</p>
 <section id="osm-network-from-a-bounding-box" class="level2">
 <h2 class="anchored" data-anchor-id="osm-network-from-a-bounding-box">OSM network from a bounding box</h2>

@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -152,7 +152,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -254,8 +266,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." id="toc-exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." class="nav-link active" data-scroll-target="#exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values.">Exploring the resultsThe centrality function adds new columns to the <code>GeoDataFrame</code> following the naming convention <code>cc_{centrality}_{distance}</code>. Inspect the columns and summary statistics to understand the distribution of values.</a></li>
+  <li><a href="#visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." id="toc-visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." class="nav-link" data-scroll-target="#visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m.">Visualising centralityVisualise the results using the <code>geopandas</code> <code>.plot()</code> method. The first plot shows Hillier closeness at 500m and the second shows betweenness at 1000m.</a></li>
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." id="toc-conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility.">ConclusionThis notebook demonstrated how to compute metric distance centralities for a network loaded directly from OpenStreetMap, using a buffered point to define the area of interest. The cleaned and simplified OSM network was converted to a dual graph, and closeness and betweenness centralities were computed and visualised at 500m and 1000m thresholds.<strong>Next steps:</strong> To add public transport data, see GTFS Centrality. For accessibility metrics, see Accessibility.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -279,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Calculate metric distance centralities for OSM data.</p>
+<p>This notebook demonstrates how to calculate metric (shortest-path) distance centralities for a network loaded from OpenStreetMap (OSM) data. We will create a network from a buffered point, convert it into a dual graph, compute centrality measures, and visualise the results.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
@@ -560,7 +580,9 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="5">
+<section id="exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values.">Exploring the resultsThe centrality function adds new columns to the <code>GeoDataFrame</code> following the naming convention <code>cc_{centrality}_{distance}</code>. Inspect the columns and summary statistics to understand the distribution of values.</h2>
+<div id="cell-10" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
@@ -574,7 +596,7 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_hillier_500"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>count    2847.000000
@@ -588,7 +610,10 @@ max         1.070101
 Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="7">
+</section>
+<section id="visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." class="level2">
+<h2 class="anchored" data-anchor-id="visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m.">Visualising centralityVisualise the results using the <code>geopandas</code> <code>.plot()</code> method. The first plot shows Hillier closeness at 500m and the second shows betweenness at 1000m.</h2>
+<div id="cell-13" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_hillier_500"</span>,</span>
@@ -611,7 +636,7 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>,</span>
@@ -634,8 +659,13 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+<p>Betweenness highlights the streets that carry the most through-traffic potential. Notice how major roads and bridges tend to score highest, as they serve as critical links in the network.</p>
+</section>
+<section id="conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." class="level2">
+<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility.">ConclusionThis notebook demonstrated how to compute metric distance centralities for a network loaded directly from OpenStreetMap, using a buffered point to define the area of interest. The cleaned and simplified OSM network was converted to a dual graph, and closeness and betweenness centralities were computed and visualised at 500m and 1000m thresholds.<strong>Next steps:</strong> To add public transport data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>. For accessibility metrics, see <a href="../../recipes/accessibility/index.html">Accessibility</a>.</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

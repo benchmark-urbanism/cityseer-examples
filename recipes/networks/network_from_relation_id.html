@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -152,7 +152,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -254,8 +266,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." id="toc-conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see Streets Dataset.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -280,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Use an OSM relation id to create a <code>networkx</code> graph from OSM.</p>
-<p>Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retireve the relation id as a <code>GeoDataFrame</code>.</p>
+<p>Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retrieve the relation id as a <code>GeoDataFrame</code>.</p>
 <div id="cell-2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -465,8 +483,11 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 </div>
+<section id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="level2">
+<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see <a href="../../recipes/networks/network_from_streets.html">Streets Dataset</a>.</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

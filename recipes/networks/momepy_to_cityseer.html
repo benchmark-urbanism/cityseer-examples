@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ac44ee806ea4177c11a719131c6a7997.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -152,7 +152,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Cityseer Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python 101</span></a>
+ <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuity</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -254,8 +266,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." id="toc-conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to Network Centrality to compute metrics.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -366,8 +384,11 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 </div>
+<section id="conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="level2">
+<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to <a href="../../recipes/centrality/index.html">Network Centrality</a> to compute metrics.</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
