@@ -4,7 +4,7 @@ editor:
   render-on-save: true
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/class/1_notebooks.ipynb)
+[Download notebook](1_notebooks.ipynb){download="1_notebooks.ipynb"}
 
 ::: {.callout-note}
 

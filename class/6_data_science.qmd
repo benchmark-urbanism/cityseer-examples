@@ -8,7 +8,7 @@ execute:
   freeze: auto
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/class/6_data_science.ipynb)
+[Download notebook](6_data_science.ipynb){download="6_data_science.ipynb"}
 
 ::: {.callout-note}
 

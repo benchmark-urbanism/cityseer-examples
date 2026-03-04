@@ -53,5 +53,4 @@ format:
     css: ./custom-style.css
 resources:
   - google4ac81bf20ef3a5dc.html
-  - class/*.ipynb
   - recipes/**/*.ipynb
