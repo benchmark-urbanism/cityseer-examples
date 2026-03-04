@@ -8,7 +8,7 @@ execute:
   freeze: auto
 ---
 
-[Download notebook](4_geopandas.ipynb){download="4_geopandas.ipynb"}
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/class/4_geopandas.ipynb)
 
 ::: {.callout-note}
 
