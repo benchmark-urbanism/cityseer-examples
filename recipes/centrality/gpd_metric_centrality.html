@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-cf0932fa233d06d34edd3a9e4a7c3e3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -714,7 +714,7 @@ INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</cod
 <h2 class="anchored" data-anchor-id="adaptive-centrality-for-larger-distances">Adaptive centrality for larger distances</h2>
 <p>For larger distance thresholds, the computational cost increases substantially. The <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest-adaptive"><code>node_centrality_shortest_adaptive</code></a> function uses an adaptive sampling strategy to compute centralities more efficiently at larger scales while maintaining statistical accuracy.</p>
 <p>The <code>target_rho</code> parameter controls the correlation target between the sampled and full computations. A value of 0.95 means the function aims for at least 95% correlation with the exact computation. The function automatically determines which distances require sampling versus full computation, and reports the expected correlation for each distance.</p>
-<div id="cell-24" class="cell" data-execution_count="15">
+<div id="cell-25" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest_adaptive(</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
@@ -766,7 +766,7 @@ INFO:cityseer.metrics.networks:Adaptive centrality complete.</code></pre>
 </div>
 </div>
 <p>The adaptive function reports the sampling plan during execution, showing which distances use full computation versus sampling. For shorter distances where the number of reachable nodes is small, full computation is used. For larger distances, the function applies sampling to achieve the target correlation efficiently.</p>
-<div id="cell-26" class="cell" data-execution_count="16">
+<div id="cell-27" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_10000"</span>,</span>

@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-cf0932fa233d06d34edd3a9e4a7c3e3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="option-1---automatic-simplification" class="level3">
 <h3 class="anchored" data-anchor-id="option-1---automatic-simplification">Option 1 - Automatic simplification</h3>
 <p>Simplification is automatic when using the <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly"><code>osm_graph_from_poly</code></a> function.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>G_auto <span class="op">=</span> io.osm_graph_from_poly(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    poly_wgs,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    simplify<span class="op">=</span><span class="va">True</span>,</span>
@@ -495,7 +495,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <p>Footways and service roads intersecting green spaces are removed by default. This can be changed by setting <code>green_footways</code> and <code>green_service_roads</code> to <code>True</code>.</p>
 <p><code>cycleways</code> is set to <code>True</code> by default because they sometimes provide important links within networks.</p>
 <p>The below example uses more aggressive cleaning while not discarding green footways.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-10" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>G_params <span class="op">=</span> io.osm_graph_from_poly(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    poly_wgs,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    simplify<span class="op">=</span><span class="va">True</span>,</span>
@@ -688,7 +688,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <h3 class="anchored" data-anchor-id="option-3---custom-osm-requests">Option 3 - Custom OSM requests</h3>
 <p>You may want more control over the data request that is sent internally to the OSM Overpass API. This is possible by providing the <code>custom_request</code> argument. The <a href="https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL">Overpass API</a> is useful for figuring out which tags you may want to include or exclude in your request.</p>
 <p>Note that the custom request must include a <code>{geom_osm}</code> placeholder, which will be replaced internally with the geometry of the area you are requesting data for.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div id="cell-13" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>req <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">    [out:json];</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">    (way["highway"]</span></span>
@@ -876,7 +876,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <h3 class="anchored" data-anchor-id="option-4---manual-simplification">Option 4 - Manual simplification</h3>
 <p>If you need full control over the simplification process, you can use the following as a template for further configuring your cleaning recipe. This offers a large degree of control, but he precise combination of tags and distances involves a degree of experimentation and some inevitable trade-offs for a given area of interest.</p>
 <p>For this approach, start with an unsimplified network, which will perform only rudimentary preparation.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
+<div id="cell-16" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>G_raw <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, simplify<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_raw)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
@@ -919,7 +919,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 <p>Then manipulate the network depending on your needs. See the <a href="https://cityseer.benchmarkurbanism.com/tools/graphs"><code>graphs</code></a> module for further information what the various functions do.</p>
-<div id="cell-14" class="cell" data-execution_count="10">
+<div id="cell-18" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove disconnected components</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> graphs.nx_remove_dangling_nodes(G_raw, despine<span class="op">=</span><span class="dv">0</span>, remove_disconnected<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize tag cache for performance</span></span>
@@ -1202,7 +1202,7 @@ INFO:cityseer.tools.graphs:Removing filler nodes.
 100%|██████████| 1806/1806 [00:00&lt;00:00, 316069.14it/s]</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="11">
+<div id="cell-19" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    G,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    plot_geoms<span class="op">=</span><span class="va">True</span>,</span>

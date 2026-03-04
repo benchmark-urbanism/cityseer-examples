@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-cf0932fa233d06d34edd3a9e4a7c3e3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-load-a-custom-boundary-file-e.g.-geopackage-or-shapefile-with-geopandas-prepare-the-geometry-through-union-simplification-and-buffering-and-then-use-it-to-download-and-create-an-osm-street-network-graph.-buffering-the-boundary-by-the-analysis-distance-is-recommended-to-prevent-edge-roll-off-effects-in-subsequent-centrality-or-accessibility-calculations.next-steps-to-use-an-osm-relation-id-instead-see-relation-id." id="toc-conclusionthis-notebook-demonstrated-how-to-load-a-custom-boundary-file-e.g.-geopackage-or-shapefile-with-geopandas-prepare-the-geometry-through-union-simplification-and-buffering-and-then-use-it-to-download-and-create-an-osm-street-network-graph.-buffering-the-boundary-by-the-analysis-distance-is-recommended-to-prevent-edge-roll-off-effects-in-subsequent-centrality-or-accessibility-calculations.next-steps-to-use-an-osm-relation-id-instead-see-relation-id." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-load-a-custom-boundary-file-e.g.-geopackage-or-shapefile-with-geopandas-prepare-the-geometry-through-union-simplification-and-buffering-and-then-use-it-to-download-and-create-an-osm-street-network-graph.-buffering-the-boundary-by-the-analysis-distance-is-recommended-to-prevent-edge-roll-off-effects-in-subsequent-centrality-or-accessibility-calculations.next-steps-to-use-an-osm-relation-id-instead-see-relation-id.">ConclusionThis notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.<strong>Next steps:</strong> To use an OSM relation ID instead, see Relation ID.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link active" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -305,15 +305,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Use a custom boundary file to create a <code>networkx</code> graph from OSM.</p>
 <p>If you have a boundary file in a GeoPackage, shapefile, or similar format, then you can load this file and use it as the boundary for creating a network from OSM.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Use <code>geopandas</code> to load the boundary file. Check that your file path is correct!</p>
-<div id="cell-4" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_bounds/madrid_bounds.gpkg"</span>)</span>
+<div id="cell-4" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_nbhds/madrid_nbhds.gpkg"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bounds_gpd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -349,16 +349,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1</td>
 <td>PALACIO</td>
 <td>1-1</td>
-<td>POLYGON ((441182.611 4463570.002, 441178.708 4...</td>
+<td>MULTIPOLYGON (((440112.785 4474645.921, 440078...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>Centro</td>
+<td>012</td>
+<td>Embajadores</td>
+<td>0.0</td>
+<td>01</td>
+<td>EMBAJADORES</td>
+<td>12</td>
+<td>2</td>
+<td>EMBAJADORES</td>
+<td>1-2</td>
+<td>MULTIPOLYGON (((440277.382 4473980.839, 440368...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>Centro</td>
+<td>013</td>
+<td>Cortes</td>
+<td>0.0</td>
+<td>01</td>
+<td>CORTES</td>
+<td>13</td>
+<td>3</td>
+<td>CORTES</td>
+<td>1-3</td>
+<td>MULTIPOLYGON (((440780.52 4474528.375, 440907....</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1</td>
+<td>Centro</td>
+<td>014</td>
+<td>Justicia</td>
+<td>0.0</td>
+<td>01</td>
+<td>JUSTICIA</td>
+<td>14</td>
+<td>4</td>
+<td>JUSTICIA</td>
+<td>1-4</td>
+<td>MULTIPOLYGON (((440991.949 4474492.423, 440907...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1</td>
+<td>Centro</td>
+<td>015</td>
+<td>Universidad</td>
+<td>0.0</td>
+<td>01</td>
+<td>UNIVERSIDAD</td>
+<td>15</td>
+<td>5</td>
+<td>UNIVERSIDAD</td>
+<td>1-5</td>
+<td>MULTIPOLYGON (((440517.952 4474758.368, 440476...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">126</th>
+<td>21</td>
+<td>Barajas</td>
+<td>211</td>
+<td>Alameda de Osuna</td>
+<td>0.0</td>
+<td>21</td>
+<td>ALAMEDA DE OSUNA</td>
+<td>211</td>
+<td>1</td>
+<td>ALAMEDA DE OSUNA</td>
+<td>21-1</td>
+<td>MULTIPOLYGON (((450614.387 4479399.407, 450752...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">127</th>
+<td>21</td>
+<td>Barajas</td>
+<td>212</td>
+<td>Aeropuerto</td>
+<td>0.0</td>
+<td>21</td>
+<td>AEROPUERTO</td>
+<td>212</td>
+<td>2</td>
+<td>AEROPUERTO</td>
+<td>21-2</td>
+<td>MULTIPOLYGON (((452408.138 4484644.7, 452415.1...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">128</th>
+<td>21</td>
+<td>Barajas</td>
+<td>213</td>
+<td>Casco Histórico de Barajas</td>
+<td>0.0</td>
+<td>21</td>
+<td>CASCO HISTORICO DE BARAJAS</td>
+<td>213</td>
+<td>3</td>
+<td>CASCO HISTÓRICO DE BARAJAS</td>
+<td>21-3</td>
+<td>MULTIPOLYGON (((451288.265 4480266.282, 451233...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">129</th>
+<td>21</td>
+<td>Barajas</td>
+<td>214</td>
+<td>Timón</td>
+<td>0.0</td>
+<td>21</td>
+<td>TIMON</td>
+<td>214</td>
+<td>4</td>
+<td>TIMÓN</td>
+<td>21-4</td>
+<td>MULTIPOLYGON (((450698.531 4479953.328, 450639...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">130</th>
+<td>21</td>
+<td>Barajas</td>
+<td>215</td>
+<td>Corralejos</td>
+<td>0.0</td>
+<td>21</td>
+<td>CORRALEJOS</td>
+<td>215</td>
+<td>5</td>
+<td>CORRALEJOS</td>
+<td>21-5</td>
+<td>MULTIPOLYGON (((448664.865 4478188.825, 448663...</td>
 </tr>
 </tbody>
 </table>
 
+<p>131 rows × 12 columns</p>
 </div>
 </div>
 </div>
 <p>Extract the EPSG code from the boundary file.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>epsg_code <span class="op">=</span> bounds_gpd.crs.to_epsg()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bounds_gpd.crs.is_projected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -369,7 +520,7 @@ True</code></pre>
 </div>
 <p>If the geometry is not in a projected coordinate system, reproject it to a locally projected coordinate system before doing buffering or simplification. This can be done with the built-in <code>to_crs</code> method in <code>geopandas</code>. The EPSG code for the UTM zone can be found at <a href="https://epsg.io/">epsg.io</a>. For example, if your boundary is in the UTM zone 30N, you can use code 32630.</p>
 <p>For the currently opened file, the boundary is already in a projected coordinate system, so we can skip this step. When working with a file that does need to reprojected, then you can use the following code to project your CRS to a given EPSG code.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shown as example - unnecessary step for current dataset</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bounds_gpd <span class="op">=</span> bounds_gpd.to_crs(epsg<span class="op">=</span><span class="dv">25830</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
@@ -380,10 +531,11 @@ True</code></pre>
 </div>
 </div>
 <p>Convert the <code>GeoDataFrame</code> into a Polygon using the <code>geopandas</code> <code>union_all</code> method. This will create a single unified <code>shapely</code> geometry.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_gpd.union_all()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="cell-10" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>centro_gpd <span class="op">=</span> bounds_gpd[bounds_gpd[<span class="st">"NOMDIS"</span>] <span class="op">==</span> <span class="st">"Centro"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> centro_gpd.union_all()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 <figure class="figure">
 <p><img src="network_from_bounds_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
@@ -391,23 +543,132 @@ True</code></pre>
 </div>
 </div>
 </div>
-<p>If the geometries are complex, then the OSM data request may fail due to URL length limitations (because each coordinate has to be passed in the URL). To avoid this, you can use the <code>convex_hull</code> or else the <code>simplify</code> method to reduce the number of points in the geometry.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl <span class="op">=</span> bounds_geom.convex_hull</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="cell-11" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>centro_gpd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
-<figure class="figure">
-<p><img src="network_from_bounds_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">CODDIS</th>
+<th data-quarto-table-cell-role="th">NOMDIS</th>
+<th data-quarto-table-cell-role="th">COD_BAR</th>
+<th data-quarto-table-cell-role="th">NOMBRE</th>
+<th data-quarto-table-cell-role="th">Shape_Leng</th>
+<th data-quarto-table-cell-role="th">COD_DIS_TX</th>
+<th data-quarto-table-cell-role="th">BARRIO_MAY</th>
+<th data-quarto-table-cell-role="th">COD_DISBAR</th>
+<th data-quarto-table-cell-role="th">NUM_BAR</th>
+<th data-quarto-table-cell-role="th">BARRIO_MT</th>
+<th data-quarto-table-cell-role="th">COD_DISB</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Centro</td>
+<td>011</td>
+<td>Palacio</td>
+<td>0.0</td>
+<td>01</td>
+<td>PALACIO</td>
+<td>11</td>
+<td>1</td>
+<td>PALACIO</td>
+<td>1-1</td>
+<td>MULTIPOLYGON (((440112.785 4474645.921, 440078...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>Centro</td>
+<td>012</td>
+<td>Embajadores</td>
+<td>0.0</td>
+<td>01</td>
+<td>EMBAJADORES</td>
+<td>12</td>
+<td>2</td>
+<td>EMBAJADORES</td>
+<td>1-2</td>
+<td>MULTIPOLYGON (((440277.382 4473980.839, 440368...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>Centro</td>
+<td>013</td>
+<td>Cortes</td>
+<td>0.0</td>
+<td>01</td>
+<td>CORTES</td>
+<td>13</td>
+<td>3</td>
+<td>CORTES</td>
+<td>1-3</td>
+<td>MULTIPOLYGON (((440780.52 4474528.375, 440907....</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1</td>
+<td>Centro</td>
+<td>014</td>
+<td>Justicia</td>
+<td>0.0</td>
+<td>01</td>
+<td>JUSTICIA</td>
+<td>14</td>
+<td>4</td>
+<td>JUSTICIA</td>
+<td>1-4</td>
+<td>MULTIPOLYGON (((440991.949 4474492.423, 440907...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1</td>
+<td>Centro</td>
+<td>015</td>
+<td>Universidad</td>
+<td>0.0</td>
+<td>01</td>
+<td>UNIVERSIDAD</td>
+<td>15</td>
+<td>5</td>
+<td>UNIVERSIDAD</td>
+<td>1-5</td>
+<td>MULTIPOLYGON (((440517.952 4474758.368, 440476...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>1</td>
+<td>Centro</td>
+<td>016</td>
+<td>Sol</td>
+<td>0.0</td>
+<td>01</td>
+<td>SOL</td>
+<td>16</td>
+<td>8</td>
+<td>SOL</td>
+<td>1-6</td>
+<td>MULTIPOLYGON (((440205.444 4474642.19, 440480....</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>
-<p>It is best practise to buffer the geometry by an amount matching the farthest distance used for centrality or accessibility calculations, which prevents edge roll-off effects.</p>
-<div id="cell-14" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff <span class="op">=</span> bounds_geom_simpl.<span class="bu">buffer</span>(<span class="dv">100</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<p>If the geometries are complex, then the OSM data request may fail due to URL length limitations (because each coordinate has to be passed in the URL). To avoid this, you can use the <code>convex_hull</code> or else the <code>simplify</code> method to reduce the number of points in the geometry.</p>
+<div id="cell-13" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl <span class="op">=</span> bounds_geom.convex_hull</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 <figure class="figure">
 <p><img src="network_from_bounds_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
@@ -415,62 +676,130 @@ True</code></pre>
 </div>
 </div>
 </div>
-<p>The <code>shapely</code> Polygon can now be used as before to download and prepare an OSM graph.</p>
-<div id="cell-16" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simplification turned off for this example</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    bounds_geom_buff,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    poly_crs_code<span class="op">=</span>epsg_code,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    simplify<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12288331228 into 256149889 due to identical x, y coords.
-WARNING:cityseer.tools.io:Merging node 12119257161 into 12119257160 due to identical x, y coords.
-WARNING:cityseer.tools.io:Merging node 12290337809 into 2334349237 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: t
-WARNING:cityseer.tools.io:Unable to parse level info: t
-WARNING:cityseer.tools.io:Unable to parse level info: t
-WARNING:cityseer.tools.io:Unable to parse level info: t
-WARNING:cityseer.tools.io:Unable to parse level info: t
-WARNING:cityseer.tools.io:Unable to parse level info: 1-2
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-100%|██████████| 771636/771636 [00:15&lt;00:00, 49490.12it/s]
-INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
-INFO:cityseer.tools.io:Processing node x, y coordinates.
-100%|██████████| 692056/692056 [00:00&lt;00:00, 1122310.89it/s]
-INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-100%|██████████| 771636/771636 [00:40&lt;00:00, 18932.66it/s]
-INFO:cityseer.tools.graphs:Removing filler nodes.
-100%|██████████| 692056/692056 [00:32&lt;00:00, 21315.84it/s]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 217449 nodes and 297029 edges</code></pre>
-</div>
-</div>
-<p>Setting the <code>x_lim</code> and <code>y_lim</code> extents will effectively zoom-in so that the results of the query can be seen more clearly.</p>
-<div id="cell-18" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    G,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    plot_geoms<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    x_lim<span class="op">=</span>(<span class="dv">439500</span>, <span class="dv">439500</span> <span class="op">+</span> <span class="dv">2000</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    y_lim<span class="op">=</span>(<span class="dv">4473500</span>, <span class="dv">4473500</span> <span class="op">+</span> <span class="dv">2000</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
-INFO:cityseer.tools.plot:Preparing graph edges
-100%|██████████| 297029/297029 [00:05&lt;00:00, 53590.98it/s]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
+<p>It is best practise to buffer the geometry by an amount matching the farthest distance used for centrality or accessibility calculations, which prevents edge roll-off effects.</p>
+<div id="cell-15" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff <span class="op">=</span> bounds_geom_simpl.<span class="bu">buffer</span>(<span class="dv">800</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 <figure class="figure">
-<p><img src="network_from_bounds_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="network_from_bounds_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="conclusionthis-notebook-demonstrated-how-to-load-a-custom-boundary-file-e.g.-geopackage-or-shapefile-with-geopandas-prepare-the-geometry-through-union-simplification-and-buffering-and-then-use-it-to-download-and-create-an-osm-street-network-graph.-buffering-the-boundary-by-the-analysis-distance-is-recommended-to-prevent-edge-roll-off-effects-in-subsequent-centrality-or-accessibility-calculations.next-steps-to-use-an-osm-relation-id-instead-see-relation-id." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-load-a-custom-boundary-file-e.g.-geopackage-or-shapefile-with-geopandas-prepare-the-geometry-through-union-simplification-and-buffering-and-then-use-it-to-download-and-create-an-osm-street-network-graph.-buffering-the-boundary-by-the-analysis-distance-is-recommended-to-prevent-edge-roll-off-effects-in-subsequent-centrality-or-accessibility-calculations.next-steps-to-use-an-osm-relation-id-instead-see-relation-id.">ConclusionThis notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.<strong>Next steps:</strong> To use an OSM relation ID instead, see <a href="../../recipes/networks/network_from_relation_id.html">Relation ID</a>.</h2>
+<p>The <code>shapely</code> Polygon can now be used as before to download and prepare an OSM graph.</p>
+<div id="cell-17" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simplification turned off for this example</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    bounds_geom_buff,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    poly_crs_code<span class="op">=</span>epsg_code,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    simplify<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
+WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
+WARNING:cityseer.tools.io:Merging node 13423404199 into 10604931740 due to identical x, y coords.
+INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
+INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
+INFO:cityseer.tools.io:Processing node x, y coordinates.
+INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Snapping gapped endings.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
+INFO:cityseer.tools.graphs:Ironing edges.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MultiGraph with 2914 nodes and 4667 edges</code></pre>
+</div>
+</div>
+<p>Setting the <code>x_lim</code> and <code>y_lim</code> extents will effectively zoom-in so that the results of the query can be seen more clearly.</p>
+<div id="cell-19" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    G,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    plot_geoms<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    x_lim<span class="op">=</span>(<span class="dv">439500</span>, <span class="dv">439500</span> <span class="op">+</span> <span class="dv">2000</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    y_lim<span class="op">=</span>(<span class="dv">4473500</span>, <span class="dv">4473500</span> <span class="op">+</span> <span class="dv">2000</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
+INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="network_from_bounds_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.<strong>Next steps:</strong> To use an OSM relation ID instead, see <a href="../../recipes/networks/network_from_relation_id.html">Relation ID</a>.</p>
 
 
 </section>
