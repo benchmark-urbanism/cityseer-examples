@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../recipes/centrality/index.html" rel="next">
-<link href="../../recipes/index.html" rel="prev">
+<link href="../../recipes/quickstart.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -189,6 +189,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../recipes/quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started with Cityseer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../recipes/networks/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Network Preparation</span></a>
   </div>
@@ -271,6 +277,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The following examples illustrate how to create <code>cityseer</code> compatible <code>networkx</code> graphs from various data sources, including OpenStreetMap (OSM) data and <code>geopandas</code> <code>GeoDataFrames</code>. These workflows automatically prepare the network for you and should be sufficient for the great majority of cases.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>New to <code>geopandas</code> or coordinate reference systems? See the <a href="../../class/4_geopandas.html">GeoPandas chapter</a> of the Python 101 section for background. For definitions of terms like “primal graph” and “dual graph”, see the <a href="../../glossary.html">Glossary</a>.</p>
+</div>
+</div>
 <p>If you wish to prepare the network manually, note the following requirements:</p>
 <ul>
 <li>The network must be a <code>networkx</code> <code>MultiGraph</code> object. This is the default for <code>cityseer</code>, but if you are using another package such as <code>osmnx</code>, you may need to convert the graph to a <code>MultiGraph</code> first.</li>
@@ -745,8 +764,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recipes/index.html" class="pagination-link" aria-label="Cityseer Recipes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cityseer Recipes</span>
+      <a href="../../recipes/quickstart.html" class="pagination-link" aria-label="Getting Started with Cityseer">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Getting Started with Cityseer</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>OSM network from a relation id – Cityseer Guide</title>
+<title>Getting Started with Cityseer – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,24 +58,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../recipes/networks/index.html" rel="next">
+<link href="../recipes/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0c23244d19d086670d6797cd5ae1fcb3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44a95d9a01e88bad65c04a71544b2662.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,12 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../../custom-style.css">
+<link rel="stylesheet" href="../custom-style.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -117,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Cityseer Guide</span>
     </a>
   </div>
@@ -131,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">OSM network from a relation id</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../recipes/index.html">Cityseer Recipes</a></li><li class="breadcrumb-item"><a href="../recipes/quickstart.html">Getting Started with Cityseer</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -142,34 +141,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../.././assets/round_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src=".././assets/round_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src=".././assets/round_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cityseer Guide</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../glossary.html" class="sidebar-item-text sidebar-link">
+  <a href="../glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../data/datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../data/datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../class/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../class/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python 101</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -178,37 +177,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/1_notebooks.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/1_notebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/2_basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/2_basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/3_spatial.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/3_spatial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial (Shapely)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/4_geopandas.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/4_geopandas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GeoPandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/5_urban.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/5_urban.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Urban Analytics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../class/6_data_science.html" class="sidebar-item-text sidebar-link">
+  <a href="../class/6_data_science.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Science</span></a>
   </div>
 </li>
@@ -216,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../recipes/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../recipes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cityseer Recipes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -225,43 +224,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/quickstart.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/quickstart.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Getting Started with Cityseer</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/networks/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/networks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Network Preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/centrality/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/centrality/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Network Centrality</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/accessibility/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/accessibility/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Accessibilities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/stats/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/stats/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/visibility/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/visibility/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visibility</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../recipes/continuity/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuity</span></a>
   </div>
 </li>
@@ -277,16 +276,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." id="toc-conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see Streets Dataset.</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#the-cityseer-workflow" id="toc-the-cityseer-workflow" class="nav-link" data-scroll-target="#the-cityseer-workflow">The cityseer workflow</a></li>
+  <li><a href="#primal-vs.-dual-graphs" id="toc-primal-vs.-dual-graphs" class="nav-link" data-scroll-target="#primal-vs.-dual-graphs">Primal vs.&nbsp;dual graphs</a></li>
+  <li><a href="#networkstructure" id="toc-networkstructure" class="nav-link" data-scroll-target="#networkstructure">NetworkStructure</a></li>
+  <li><a href="#distance-thresholds" id="toc-distance-thresholds" class="nav-link" data-scroll-target="#distance-thresholds">Distance thresholds</a></li>
+  <li><a href="#reading-output-columns" id="toc-reading-output-columns" class="nav-link" data-scroll-target="#reading-output-columns">Reading output columns</a></li>
+  </ul></li>
+  <li><a href="#a-minimal-example" id="toc-a-minimal-example" class="nav-link" data-scroll-target="#a-minimal-example">A minimal example</a></li>
+  <li><a href="#choosing-a-coordinate-reference-system" id="toc-choosing-a-coordinate-reference-system" class="nav-link" data-scroll-target="#choosing-a-coordinate-reference-system">Choosing a coordinate reference system</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls">Common pitfalls</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../recipes/index.html">Cityseer Recipes</a></li><li class="breadcrumb-item"><a href="../recipes/quickstart.html">Getting Started with Cityseer</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">OSM network from a relation id</h1>
+<h1 class="title">Getting Started with Cityseer</h1>
 </div>
 
 
@@ -303,194 +313,177 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Use an OSM relation id to create a <code>networkx</code> graph from OSM.</p>
-<p>Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retrieve the relation id as a <code>GeoDataFrame</code>.</p>
-<div id="cell-2" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This page bridges the Python fundamentals from <a href="../class/index.html">Python 101</a> with the practical <a href="../recipes/index.html">Cityseer Recipes</a>. It introduces the core concepts and walks through a minimal end-to-end workflow.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>In this case, we’ll retrieve the London <a href="https://www.openstreetmap.org/relation/17710512">Soho</a> boundary relation <code>17710512</code>. For this, we can use the <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.geocoder.geocode_to_gdf"><code>geocode_to_gdf</code></a> function with the <code>by_osmid</code> parameter set to <code>True</code>. Note the preceding <code>R</code> prepended to the id as per the API documentation.</p>
-<div id="cell-4" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds_gdf <span class="op">=</span> ox.geocode_to_gdf(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R17710512"</span>,  <span class="co"># OSM relation ID</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    by_osmid<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>bounds_gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are already familiar with <code>cityseer</code> and want to jump into specific analyses, head directly to the <a href="../recipes/index.html">Recipes</a>.</p>
+</div>
+</div>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<section id="the-cityseer-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-cityseer-workflow">The cityseer workflow</h3>
+<p>Every <code>cityseer</code> analysis follows the same pattern:</p>
+<ol type="1">
+<li><strong>Get a street network</strong> as a <code>networkx</code> <code>MultiGraph</code> (from OSM, a file, or another library).</li>
+<li><strong>Convert to a <code>NetworkStructure</code></strong> — a high-performance Rust data structure that <code>cityseer</code> uses internally for computation.</li>
+<li><strong>Compute metrics</strong> — centrality, accessibility, statistics, or visibility.</li>
+<li><strong>Explore results</strong> — the outputs are added as columns to a <code>GeoDataFrame</code>, ready for plotting, export, or further analysis.</li>
+</ol>
+</section>
+<section id="primal-vs.-dual-graphs" class="level3">
+<h3 class="anchored" data-anchor-id="primal-vs.-dual-graphs">Primal vs.&nbsp;dual graphs</h3>
+<p>By default, a street network is a <strong>primal graph</strong>: intersections are nodes and streets are edges. This is the representation you get from most data sources.</p>
+<p><code>cityseer</code> can convert a primal graph into a <strong>dual graph</strong>, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more meaningful for urban analysis.</p>
+<pre><code>Primal graph                    Dual graph
+(intersections = nodes)         (streets = nodes)
 
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+    A ——— B                     AB ——— BC
+    |     |          →          |      |
+    C ——— D                     AC ——— CD
+                                 \   /
+                                  BD</code></pre>
+<p>Working with the dual representation is recommended for centrality analysis. See <a href="https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual"><code>nx_to_dual</code></a> in the API docs.</p>
+</section>
+<section id="networkstructure" class="level3">
+<h3 class="anchored" data-anchor-id="networkstructure">NetworkStructure</h3>
+<p>The <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> function converts a <code>networkx</code> graph into three objects:</p>
+<ul>
+<li>A <strong>nodes</strong> <code>GeoDataFrame</code> — stores node coordinates and, after computation, the metric results.</li>
+<li>An <strong>edges</strong> <code>GeoDataFrame</code> — stores edge geometries and properties.</li>
+<li>A <strong><code>NetworkStructure</code></strong> — the internal Rust data structure used by all metric functions.</li>
+</ul>
+<p>The <code>NetworkStructure</code> can be reused across multiple metric computations as long as the network does not change.</p>
+</section>
+<section id="distance-thresholds" class="level3">
+<h3 class="anchored" data-anchor-id="distance-thresholds">Distance thresholds</h3>
+<p>Most <code>cityseer</code> functions accept a <code>distances</code> parameter specifying network distance thresholds (in metres). You can compute multiple thresholds at once. See the <a href="../recipes/index.html#distance-thresholds">distance thresholds table</a> for common choices and their real-world meaning.</p>
+<p>Alternatively, use the <code>minutes</code> parameter to specify walking time thresholds (converted internally to metres at a default walking speed of ~80m/min).</p>
+</section>
+<section id="reading-output-columns" class="level3">
+<h3 class="anchored" data-anchor-id="reading-output-columns">Reading output columns</h3>
+<p><code>cityseer</code> adds result columns to the nodes <code>GeoDataFrame</code> using a naming convention:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 23%">
+<col style="width: 48%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">geometry</th>
-<th data-quarto-table-cell-role="th">bbox_west</th>
-<th data-quarto-table-cell-role="th">bbox_south</th>
-<th data-quarto-table-cell-role="th">bbox_east</th>
-<th data-quarto-table-cell-role="th">bbox_north</th>
-<th data-quarto-table-cell-role="th">place_id</th>
-<th data-quarto-table-cell-role="th">osm_type</th>
-<th data-quarto-table-cell-role="th">osm_id</th>
-<th data-quarto-table-cell-role="th">lat</th>
-<th data-quarto-table-cell-role="th">lon</th>
-<th data-quarto-table-cell-role="th">class</th>
-<th data-quarto-table-cell-role="th">type</th>
-<th data-quarto-table-cell-role="th">place_rank</th>
-<th data-quarto-table-cell-role="th">importance</th>
-<th data-quarto-table-cell-role="th">addresstype</th>
-<th data-quarto-table-cell-role="th">name</th>
-<th data-quarto-table-cell-role="th">display_name</th>
+<th>Pattern</th>
+<th>Example</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>POLYGON ((-0.14183 51.5151, -0.14162 51.51449,...</td>
-<td>-0.141829</td>
-<td>51.509966</td>
-<td>-0.129378</td>
-<td>51.516365</td>
-<td>259863049</td>
-<td>relation</td>
-<td>17710512</td>
-<td>51.514065</td>
-<td>-0.135049</td>
-<td>place</td>
-<td>suburb</td>
-<td>19</td>
-<td>0.552695</td>
-<td>neighbourhood</td>
-<td>Soho</td>
-<td>Soho, City of Westminster, Greater London, Eng...</td>
+<td><code>cc_{metric}_{distance}</code></td>
+<td><code>cc_betweenness_800</code></td>
+<td>Metric centrality: betweenness at 800m</td>
+</tr>
+<tr class="even">
+<td><code>cc_{metric}_{distance}_ang</code></td>
+<td><code>cc_harmonic_500_ang</code></td>
+<td>Angular centrality: harmonic closeness at 500m</td>
+</tr>
+<tr class="odd">
+<td><code>cc_{landuse}_{distance}_nw</code></td>
+<td><code>cc_restaurant_400_nw</code></td>
+<td>Accessibility: unweighted count of restaurants within 400m</td>
+</tr>
+<tr class="even">
+<td><code>cc_{landuse}_{distance}_wt</code></td>
+<td><code>cc_restaurant_400_wt</code></td>
+<td>Accessibility: distance-weighted count (nearer = higher weight)</td>
+</tr>
+<tr class="odd">
+<td><code>cc_{landuse}_nearest_max_{distance}</code></td>
+<td><code>cc_restaurant_nearest_max_800</code></td>
+<td>Accessibility: distance to nearest restaurant (max search 800m)</td>
+</tr>
+<tr class="even">
+<td><code>cc_{stat}_{column}_{distance}</code></td>
+<td><code>cc_mean_height_400</code></td>
+<td>Statistics: mean of <code>height</code> column within 400m</td>
 </tr>
 </tbody>
 </table>
-
+<p>The <code>cc_</code> prefix stands for “cityseer computed.” For centrality, the <code>_ang</code> suffix indicates angular (simplest-path) analysis; its absence indicates metric (shortest-path) analysis. For accessibility, <code>_nw</code> is the raw count and <code>_wt</code> applies a distance decay so that nearer features contribute more.</p>
+</section>
+</section>
+<section id="a-minimal-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-minimal-example">A minimal example</h2>
+<p>Here is a complete <code>cityseer</code> workflow in under 20 lines. It downloads a street network, computes betweenness centrality, and plots the result.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define area of interest and download network</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(<span class="op">-</span><span class="fl">3.7038</span>, <span class="fl">40.4168</span>, <span class="dv">1000</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, to_crs_code<span class="op">=</span>epsg_code)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Convert to dual graph (recommended) and prepare data structures</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Compute centrality at 500m and 1000m</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>[<span class="dv">500</span>, <span class="dv">1000</span>],</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Plot betweenness centrality at 1000m</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>, cmap<span class="op">=</span><span class="st">"magma"</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</div>
-<p>Convert the <code>GeoDataFrame</code> into a unified Polygon using the <code>geopandas</code> <code>union_all</code> method.</p>
-<div id="cell-6" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a geoDataFrame - union for the geom</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_gdf.union_all()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-<figure class="figure">
-<p><img src="network_from_relation_id_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
+<div class="callout-body-container callout-body">
+<p>The <code>osm_graph_from_poly</code> function produces log messages showing the network cleaning steps. These are normal and can be safely ignored. To suppress them, add <code>import logging; logging.getLogger("cityseer").setLevel(logging.WARNING)</code> before calling the function.</p>
 </div>
 </div>
-</div>
-<p>If the geometry is complex, then the subsequent OSM API request (which happens behind the scenes) can fail due to a long URL request. In this case, you can take the geometrically simpler <code>convex_hull</code> instead. Alternatively, you can simplify the geometry, but remember to use spatial units matching the CRS of the geometry.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_geom.convex_hull</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
-<figure class="figure">
-<p><img src="network_from_relation_id_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The <code>shapely</code> geometry can then be passed to the <code>cityseer</code> <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function, as per other examples.</p>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(bounds_geom)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
-INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
-INFO:cityseer.tools.io:Processing node x, y coordinates.
-INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.graphs:Removing dangling nodes.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Snapping gapped endings.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing dangling nodes.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating edges STR tree.
-INFO:cityseer.tools.graphs:Splitting opposing edges.
-INFO:cityseer.tools.graphs:Squashing opposing nodes
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.util:Creating nodes STR tree
-INFO:cityseer.tools.graphs:Consolidating nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
-INFO:cityseer.tools.graphs:Removing filler nodes.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
-INFO:cityseer.tools.graphs:Ironing edges.
-INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
-INFO:cityseer.tools.graphs:Removing dangling nodes.
-INFO:cityseer.tools.graphs:Removing filler nodes.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 144 nodes and 210 edges</code></pre>
-</div>
-</div>
-<div id="cell-11" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
-INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="network_from_relation_id_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see <a href="../../recipes/networks/network_from_streets.html">Streets Dataset</a>.</h2>
+</section>
+<section id="choosing-a-coordinate-reference-system" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-a-coordinate-reference-system">Choosing a coordinate reference system</h2>
+<p><code>cityseer</code> requires a <strong>projected</strong> coordinate reference system (CRS) with metre units for accurate distance calculations. A geographic CRS like WGS 84 (EPSG:4326) uses degrees and will produce incorrect results.</p>
+<p>How to choose the right CRS for your study area:</p>
+<ul>
+<li><strong>Let cityseer choose for you:</strong> When using <code>io.buffered_point_poly</code> or <code>io.osm_graph_from_poly</code> with default settings, <code>cityseer</code> automatically selects an appropriate UTM zone based on the input coordinates. This is usually sufficient.</li>
+<li><strong>Specify explicitly:</strong> If you need a specific CRS, use the <code>to_crs_code</code> parameter. Common choices include UTM zones (search your city at <a href="https://epsg.io">epsg.io</a>) or regional projections like EPSG:3035 (Europe), EPSG:27700 (Great Britain), or EPSG:2154 (France).</li>
+<li><strong>From existing data:</strong> If loading a network from a file, ensure it is already in a projected CRS, or reproject it with <code>gdf.to_crs(epsg=...)</code> before passing it to <code>cityseer</code>.</li>
+</ul>
+</section>
+<section id="common-pitfalls" class="level2">
+<h2 class="anchored" data-anchor-id="common-pitfalls">Common pitfalls</h2>
+<p><strong>Forgetting to use a projected CRS.</strong> If distances or areas seem wildly wrong, check that your data is not in EPSG:4326 (WGS 84). Reproject to a projected CRS with metre units.</p>
+<p><strong>Edge rolloff near boundaries.</strong> If metric values drop sharply at the edges of your study area, you need a network buffer. Download a network larger than your study area, then set boundary nodes to <code>live=False</code> so that metrics are only computed for nodes inside the study area. See the <a href="../recipes/index.html#edge-rolloff">Edge Rolloff</a> section and the <a href="../recipes/live_nodes.html">live nodes example</a>.</p>
+<p><strong>Confusing <code>_nw</code> and <code>_wt</code> accessibility columns.</strong> The <code>_nw</code> (non-weighted) columns give a raw count of reachable features. The <code>_wt</code> (weighted) columns apply distance decay, so nearer features contribute more. Use <code>_wt</code> when proximity matters (e.g., walkability studies); use <code>_nw</code> when presence alone matters (e.g., counting all parks within reach).</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<p>With these concepts in hand, you are ready to explore the recipes:</p>
+<ul>
+<li><a href="../recipes/networks/index.html">Network Preparation</a> — create networks from various data sources.</li>
+<li><a href="../recipes/centrality/index.html">Network Centrality</a> — metric and angular centrality.</li>
+<li><a href="../recipes/accessibility/index.html">Accessibility</a> — landuse accessibility and mixed-use metrics.</li>
+<li><a href="../recipes/stats/index.html">Statistics</a> — aggregate numeric properties over the network.</li>
+<li><a href="../recipes/visibility/index.html">Visibility</a> — street enclosure and openness.</li>
+<li><a href="../recipes/continuity/index.html">Continuity</a> — street name and route continuity.</li>
+</ul>
 
 
 </section>
@@ -896,6 +889,18 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../recipes/index.html" class="pagination-link" aria-label="Cityseer Recipes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cityseer Recipes</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../recipes/networks/index.html" class="pagination-link" aria-label="Network Preparation">
+        <span class="nav-page-text">Network Preparation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

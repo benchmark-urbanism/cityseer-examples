@@ -188,6 +188,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../recipes/quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started with Cityseer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../recipes/networks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Network Preparation</span></a>
   </div>
@@ -263,6 +269,19 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Street continuity metrics assess how consistently named routes, road classifications, or route numbers extend through the network. These metrics are useful for understanding the legibility and navigability of street networks, and for identifying major through-routes versus fragmented local streets.</p>
 <p><code>cityseer</code> computes continuity by tracing connected edges that share the same street name, route number, or highway classification. The results can be expressed by count (number of connected segments) or by length (total metres of the continuous route).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These examples assume a prepared network. See <a href="../../recipes/networks/index.html">Network Preparation</a> for setup.</p>
+</div>
+</div>
 <section id="continuity-from-osm-data" class="level2">
 <h2 class="anchored" data-anchor-id="continuity-from-osm-data">Continuity from OSM data</h2>
 <p>Calculate street name, route, highway, and hybrid continuity metrics from OpenStreetMap data.</p>
