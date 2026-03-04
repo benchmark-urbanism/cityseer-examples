@@ -4,6 +4,8 @@ editor:
   render-on-save: true
 ---
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/class/2_basics.ipynb)
+
 ::: {.callout-note}
 
 ## Learning Objectives

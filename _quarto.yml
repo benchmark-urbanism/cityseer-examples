@@ -42,6 +42,7 @@ website:
 execute:
   freeze: auto
   cache: true
+  keep-ipynb: true
 format:
   html:
     theme: simplex
