@@ -34,6 +34,7 @@ __pypackages__/
 build/
 
 # Jupyter notebooks
+class/*.ipynb
 .ipynb_checkpoints
 **/.ipynb_checkpoints/*
 .jupyter_cache/

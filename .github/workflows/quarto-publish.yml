@@ -34,13 +34,23 @@ jobs:
         run: uv sync --all-extras --dev
       # See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md
       # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
-      - name: Publish to GitHub Pages (and render)
+      - name: Render
+        uses: quarto-dev/quarto-actions/render@v2
+        env:
+          QUARTO_PYTHON: .venv/bin/python
+          CITYSEER_QUIET_MODE: 1
+      - name: Convert class QMD notebooks to ipynb for Colab
+        run: |
+          for f in class/*.qmd; do
+            filename=$(basename "$f")
+            if [ "$filename" != "index.qmd" ]; then
+              quarto convert "$f" --output "output/class/$(basename "${f%.qmd}.ipynb")"
+            fi
+          done
+      - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
-          # this secret is always available for github actions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # helps quarto find the right python env
-          QUARTO_PYTHON: .venv/bin/python
-          CITYSEER_QUIET_MODE: 1
