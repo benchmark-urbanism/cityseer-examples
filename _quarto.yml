@@ -39,13 +39,16 @@ website:
           - href: recipes/stats/index.qmd
           - href: recipes/visibility/index.qmd
           - href: recipes/continuity/index.qmd
+execute:
+  freeze: auto
+  cache: true
 format:
   html:
     theme: simplex
     toc: true
     mermaid:
-      theme: dark
-    highlight-style: breezedark
+      theme: neutral
+    highlight-style: github
     css: ./custom-style.css
 resources:
   - google4ac81bf20ef3a5dc.html

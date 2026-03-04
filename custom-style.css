@@ -9,10 +9,18 @@ div.cell-output {
 
 code {
   font-size: 0.8rem;
+  background-color: #f5f5f5;
+  color: #000;
+  font-weight: medium;
 }
 
 div.sourceCode {
   font-size: 0.9rem;
+  background-color: #f5f5f5 !important;
+}
+
+div.sourceCode code {
+  background-color: transparent;
 }
 
 .sidebar-header {

@@ -10,6 +10,11 @@
 .quarto/
 _freeze/
 *.quarto_ipynb
+*.quarto.ipynb
+*_files/
+_site/
+_book/
+_manuscript/
 
 # code profiling
 .prof
@@ -124,7 +129,5 @@ bin/
 include/
 man/
 
-
 /.quarto/
-
 **/*.quarto_ipynb
