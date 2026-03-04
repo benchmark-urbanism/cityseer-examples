@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Adding GTFS transport data to accessibility – Cityseer Guide</title>
+<title>accessibility_metro – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Adding GTFS transport data to accessibility</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,33 +277,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#compare-results" id="toc-compare-results" class="nav-link active" data-scroll-target="#compare-results">Compare results</a></li>
+  <li><a href="#adding-gtfs-transport-data-to-accessibility" id="toc-adding-gtfs-transport-data-to-accessibility" class="nav-link active" data-scroll-target="#adding-gtfs-transport-data-to-accessibility">Adding GTFS transport data to accessibility</a>
+  <ul class="collapse">
+  <li><a href="#compare-results" id="toc-compare-results" class="nav-link" data-scroll-target="#compare-results">Compare results</a></li>
   <li><a href="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality." id="toc-conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare retail accessibility with and without transit connectivity. The before-and-after comparison reveals how the metro extends the effective catchment area for retail access, particularly around metro stop locations.<strong>Next steps:</strong> For centrality with GTFS data, see GTFS Centrality.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Adding GTFS transport data to accessibility</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/accessibility/accessibility_metro.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="adding-gtfs-transport-data-to-accessibility" class="level1">
+<h1>Adding GTFS transport data to accessibility</h1>
 <p>This notebook demonstrates how GTFS (General Transit Feed Specification) public transport data can be integrated into the street network before computing landuse accessibility metrics. By adding metro stops and segment travel times, the accessibility calculations can account for the extended reach provided by public transport.</p>
 <p>Accessibility to retail premises is computed twice: once on the street network alone, and again after adding the Madrid Metro. The difference reveals how the metro network extends the catchment area for retail access.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
@@ -848,6 +843,7 @@ INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.<
 <h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare retail accessibility with and without transit connectivity. The before-and-after comparison reveals how the metro extends the effective catchment area for retail access, particularly around metro stop locations.<strong>Next steps:</strong> For centrality with GTFS data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

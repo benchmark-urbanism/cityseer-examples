@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Angular distance network centrality – Cityseer Guide</title>
+<title>gpd_angular_centrality – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Angular distance network centrality</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,33 +277,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#adaptive-centrality-for-larger-distances" id="toc-adaptive-centrality-for-larger-distances" class="nav-link active" data-scroll-target="#adaptive-centrality-for-larger-distances">Adaptive centrality for larger distances</a></li>
+  <li><a href="#angular-distance-network-centrality" id="toc-angular-distance-network-centrality" class="nav-link active" data-scroll-target="#angular-distance-network-centrality">Angular distance network centrality</a>
+  <ul class="collapse">
+  <li><a href="#adaptive-centrality-for-larger-distances" id="toc-adaptive-centrality-for-larger-distances" class="nav-link" data-scroll-target="#adaptive-centrality-for-larger-distances">Adaptive centrality for larger distances</a></li>
   <li><a href="#summarythis-notebook-demonstrated-how-to-calculate-angular-simplest-path-centralities-from-a-geopandas-geodataframe.-angular-analysis-weights-paths-by-cumulative-turning-angle-rather-than-distance-capturing-route-directness-and-identifying-streets-that-form-part-of-straighter-more-navigable-corridors.-it-also-showed-how-to-use-the-adaptive-sampling-function-for-efficient-computation-at-larger-distance-thresholds.next-steps--to-calculate-metric-shortest-path-centralities-instead-see-metric-centrality.--to-calculate-centralities-directly-from-openstreetmap-data-see-osm-centrality.--to-compute-accessibility-or-mixed-use-metrics-over-the-same-network-see-the-accessibility-recipes." id="toc-summarythis-notebook-demonstrated-how-to-calculate-angular-simplest-path-centralities-from-a-geopandas-geodataframe.-angular-analysis-weights-paths-by-cumulative-turning-angle-rather-than-distance-capturing-route-directness-and-identifying-streets-that-form-part-of-straighter-more-navigable-corridors.-it-also-showed-how-to-use-the-adaptive-sampling-function-for-efficient-computation-at-larger-distance-thresholds.next-steps--to-calculate-metric-shortest-path-centralities-instead-see-metric-centrality.--to-calculate-centralities-directly-from-openstreetmap-data-see-osm-centrality.--to-compute-accessibility-or-mixed-use-metrics-over-the-same-network-see-the-accessibility-recipes." class="nav-link" data-scroll-target="#summarythis-notebook-demonstrated-how-to-calculate-angular-simplest-path-centralities-from-a-geopandas-geodataframe.-angular-analysis-weights-paths-by-cumulative-turning-angle-rather-than-distance-capturing-route-directness-and-identifying-streets-that-form-part-of-straighter-more-navigable-corridors.-it-also-showed-how-to-use-the-adaptive-sampling-function-for-efficient-computation-at-larger-distance-thresholds.next-steps--to-calculate-metric-shortest-path-centralities-instead-see-metric-centrality.--to-calculate-centralities-directly-from-openstreetmap-data-see-osm-centrality.--to-compute-accessibility-or-mixed-use-metrics-over-the-same-network-see-the-accessibility-recipes.">SummaryThis notebook demonstrated how to calculate <strong>angular (simplest-path) centralities</strong> from a <code>geopandas</code> <code>GeoDataFrame</code>. Angular analysis weights paths by cumulative turning angle rather than distance, capturing route directness and identifying streets that form part of straighter, more navigable corridors. It also showed how to use the adaptive sampling function for efficient computation at larger distance thresholds.<strong>Next steps:</strong>- To calculate metric (shortest-path) centralities instead, see Metric Centrality.- To calculate centralities directly from OpenStreetMap data, see OSM Centrality.- To compute accessibility or mixed-use metrics over the same network, see the Accessibility recipes.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Angular distance network centrality</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/centrality/gpd_angular_centrality.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="angular-distance-network-centrality" class="level1">
+<h1>Angular distance network centrality</h1>
 <p>Calculate angular (geometric or “simplest”) distance centralities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -722,6 +717,7 @@ INFO:cityseer.metrics.networks:Adaptive centrality complete.</code></pre>
 <h2 class="anchored" data-anchor-id="summarythis-notebook-demonstrated-how-to-calculate-angular-simplest-path-centralities-from-a-geopandas-geodataframe.-angular-analysis-weights-paths-by-cumulative-turning-angle-rather-than-distance-capturing-route-directness-and-identifying-streets-that-form-part-of-straighter-more-navigable-corridors.-it-also-showed-how-to-use-the-adaptive-sampling-function-for-efficient-computation-at-larger-distance-thresholds.next-steps--to-calculate-metric-shortest-path-centralities-instead-see-metric-centrality.--to-calculate-centralities-directly-from-openstreetmap-data-see-osm-centrality.--to-compute-accessibility-or-mixed-use-metrics-over-the-same-network-see-the-accessibility-recipes.">SummaryThis notebook demonstrated how to calculate <strong>angular (simplest-path) centralities</strong> from a <code>geopandas</code> <code>GeoDataFrame</code>. Angular analysis weights paths by cumulative turning angle rather than distance, capturing route directness and identifying streets that form part of straighter, more navigable corridors. It also showed how to use the adaptive sampling function for efficient computation at larger distance thresholds.<strong>Next steps:</strong>- To calculate metric (shortest-path) centralities instead, see <a href="../../recipes/centrality/gpd_metric_centrality.html">Metric Centrality</a>.- To calculate centralities directly from OpenStreetMap data, see <a href="../../recipes/centrality/osm_centrality.html">OSM Centrality</a>.- To compute accessibility or mixed-use metrics over the same network, see the <a href="../../recipes/accessibility/index.html">Accessibility</a> recipes.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

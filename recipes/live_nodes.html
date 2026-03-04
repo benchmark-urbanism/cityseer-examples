@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setting live or non-live nodes – Cityseer Guide</title>
+<title>live_nodes – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Setting live or non-live nodes</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,34 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network." id="toc-summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network." class="nav-link active" data-scroll-target="#summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network.">SummaryThis notebook demonstrated how to set <code>live=True</code> or <code>live=False</code> on network nodes based on whether they fall within the original (unbuffered) study area boundary. This prevents edge rolloff effects: the algorithms can route through the buffer zone, but metrics are only computed for live nodes within the study area.<strong>Next steps:</strong>- See Network Preparation for different ways to create a network.- See Metric Centrality or Angular Centrality for centrality analysis on the prepared network.</a></li>
+  <li><a href="#setting-live-or-non-live-nodesset-a-nodes-status-to-livetrue-or-livefalse-based-on-whether-it-intersects-the-original-boundary.this-is-used-for-demarcating-nodes-that-fall-within-the-original-unbuffered-boundary-when-calculating-measures.-this-allows-for-the-original-boundary-to-be-delineated-from-the-buffered-surrounding-extents-which-is-normally-included-for-purposes-of-avoiding-edge-rolloff.-the-algorithms-will-continue-to-consider-parts-of-the-network-where-nodes-are-not-live-therefore-preventing-edge-rolloff-but-will-not-compute-metrics-for-these-nodes-reducing-unnecessary-computation." id="toc-setting-live-or-non-live-nodesset-a-nodes-status-to-livetrue-or-livefalse-based-on-whether-it-intersects-the-original-boundary.this-is-used-for-demarcating-nodes-that-fall-within-the-original-unbuffered-boundary-when-calculating-measures.-this-allows-for-the-original-boundary-to-be-delineated-from-the-buffered-surrounding-extents-which-is-normally-included-for-purposes-of-avoiding-edge-rolloff.-the-algorithms-will-continue-to-consider-parts-of-the-network-where-nodes-are-not-live-therefore-preventing-edge-rolloff-but-will-not-compute-metrics-for-these-nodes-reducing-unnecessary-computation." class="nav-link active" data-scroll-target="#setting-live-or-non-live-nodesset-a-nodes-status-to-livetrue-or-livefalse-based-on-whether-it-intersects-the-original-boundary.this-is-used-for-demarcating-nodes-that-fall-within-the-original-unbuffered-boundary-when-calculating-measures.-this-allows-for-the-original-boundary-to-be-delineated-from-the-buffered-surrounding-extents-which-is-normally-included-for-purposes-of-avoiding-edge-rolloff.-the-algorithms-will-continue-to-consider-parts-of-the-network-where-nodes-are-not-live-therefore-preventing-edge-rolloff-but-will-not-compute-metrics-for-these-nodes-reducing-unnecessary-computation.">Setting live or non-live nodesSet a node’s status to <code>live=True</code> or <code>live=False</code> based on whether it intersects the original boundary.This is used for demarcating nodes that fall within the original unbuffered boundary when calculating measures. This allows for the original boundary to be delineated from the buffered surrounding extents, which is normally included for purposes of avoiding edge rolloff. The algorithms will continue to consider parts of the network where nodes are not live (therefore preventing edge rolloff), but will not compute metrics for these nodes (reducing unnecessary computation).</a>
+  <ul class="collapse">
+  <li><a href="#summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network." id="toc-summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network." class="nav-link" data-scroll-target="#summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network.">SummaryThis notebook demonstrated how to set <code>live=True</code> or <code>live=False</code> on network nodes based on whether they fall within the original (unbuffered) study area boundary. This prevents edge rolloff effects: the algorithms can route through the buffer zone, but metrics are only computed for live nodes within the study area.<strong>Next steps:</strong>- See Network Preparation for different ways to create a network.- See Metric Centrality or Angular Centrality for centrality analysis on the prepared network.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Setting live or non-live nodes</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/live_nodes.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Set a node’s status to <code>live=True</code> or <code>live=False</code> based on whether it intersects the original boundary.</p>
-<p>This is used for demarcating nodes that fall within the original unbuffered boundary when calculating measures. This allows for the original boundary to be delineated from the buffered surrounding extents, which is normally included for purposes of avoiding edge rolloff. The algorithms will continue to consider parts of the network where nodes are not live (therefore preventing edge rolloff), but will not compute metrics for these nodes (reducing unnecessary computation).</p>
+<section id="setting-live-or-non-live-nodesset-a-nodes-status-to-livetrue-or-livefalse-based-on-whether-it-intersects-the-original-boundary.this-is-used-for-demarcating-nodes-that-fall-within-the-original-unbuffered-boundary-when-calculating-measures.-this-allows-for-the-original-boundary-to-be-delineated-from-the-buffered-surrounding-extents-which-is-normally-included-for-purposes-of-avoiding-edge-rolloff.-the-algorithms-will-continue-to-consider-parts-of-the-network-where-nodes-are-not-live-therefore-preventing-edge-rolloff-but-will-not-compute-metrics-for-these-nodes-reducing-unnecessary-computation." class="level1">
+<h1>Setting live or non-live nodesSet a node’s status to <code>live=True</code> or <code>live=False</code> based on whether it intersects the original boundary.This is used for demarcating nodes that fall within the original unbuffered boundary when calculating measures. This allows for the original boundary to be delineated from the buffered surrounding extents, which is normally included for purposes of avoiding edge rolloff. The algorithms will continue to consider parts of the network where nodes are not live (therefore preventing edge rolloff), but will not compute metrics for these nodes (reducing unnecessary computation).</h1>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
@@ -706,6 +699,7 @@ INFO:cityseer.config:Distance: 400m, Beta: 0.01, Walking Time: 5.0 minutes.</cod
 <h2 class="anchored" data-anchor-id="summarythis-notebook-demonstrated-how-to-set-livetrue-or-livefalse-on-network-nodes-based-on-whether-they-fall-within-the-original-unbuffered-study-area-boundary.-this-prevents-edge-rolloff-effects-the-algorithms-can-route-through-the-buffer-zone-but-metrics-are-only-computed-for-live-nodes-within-the-study-area.next-steps--see-network-preparation-for-different-ways-to-create-a-network.--see-metric-centrality-or-angular-centrality-for-centrality-analysis-on-the-prepared-network.">SummaryThis notebook demonstrated how to set <code>live=True</code> or <code>live=False</code> on network nodes based on whether they fall within the original (unbuffered) study area boundary. This prevents edge rolloff effects: the algorithms can route through the buffer zone, but metrics are only computed for live nodes within the study area.<strong>Next steps:</strong>- See <a href="../recipes/networks/index.html">Network Preparation</a> for different ways to create a network.- See <a href="../recipes/centrality/gpd_metric_centrality.html">Metric Centrality</a> or <a href="../recipes/centrality/gpd_angular_centrality.html">Angular Centrality</a> for centrality analysis on the prepared network.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

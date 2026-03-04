@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>OSM network from a boundary file – Cityseer Guide</title>
+<title>network_from_bounds – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">OSM network from a boundary file</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,32 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link active" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#osm-network-from-a-boundary-file" id="toc-osm-network-from-a-boundary-file" class="nav-link active" data-scroll-target="#osm-network-from-a-boundary-file">OSM network from a boundary file</a>
+  <ul class="collapse">
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">OSM network from a boundary file</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/networks/network_from_bounds.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="osm-network-from-a-boundary-file" class="level1">
+<h1>OSM network from a boundary file</h1>
 <p>Use a custom boundary file to create a <code>networkx</code> graph from OSM.</p>
 <p>If you have a boundary file in a GeoPackage, shapefile, or similar format, then you can load this file and use it as the boundary for creating a network from OSM.</p>
 <div id="cell-2" class="cell" data-execution_count="16">
@@ -802,6 +797,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <p>This notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.<strong>Next steps:</strong> To use an OSM relation ID instead, see <a href="../../recipes/networks/network_from_relation_id.html">Relation ID</a>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

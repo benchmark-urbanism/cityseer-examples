@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visibility from GeoPandas data – Cityseer Guide</title>
+<title>vis_gpd – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Visibility from GeoPandas data</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,32 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." id="toc-conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster.">ConclusionThis notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.<strong>Next steps:</strong> To incorporate terrain elevation data, see Visibility from Raster.</a></li>
+  <li><a href="#visibility-from-geopandas-data" id="toc-visibility-from-geopandas-data" class="nav-link active" data-scroll-target="#visibility-from-geopandas-data">Visibility from GeoPandas data</a>
+  <ul class="collapse">
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." id="toc-conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster.">ConclusionThis notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.<strong>Next steps:</strong> To incorporate terrain elevation data, see Visibility from Raster.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Visibility from GeoPandas data</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/visibility/vis_gpd.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="visibility-from-geopandas-data" class="level1">
+<h1>Visibility from GeoPandas data</h1>
 <p>Generate a visibility analysis from GeoPandas data (or a file opened with GeoPandas).</p>
 <div id="a46c909a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
@@ -473,6 +468,7 @@ INFO:cityseer.metrics.visibility:Running visibility.
 <h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster.">ConclusionThis notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.<strong>Next steps:</strong> To incorporate terrain elevation data, see <a href="../../recipes/visibility/vis_raster.html">Visibility from Raster</a>.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

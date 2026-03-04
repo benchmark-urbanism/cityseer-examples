@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Last update</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 4, 2026</p>
+      <p class="date-modified">last-modified</p>
     </div>
   </div>
     
@@ -313,6 +313,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/continuity/continuity_os_open.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
+</div>
 <section id="data-source" class="level2">
 <h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
 <p>The following example uses the <a href="https://osdatahub.os.uk/downloads/open/OpenRoads">OS Open Roads</a> dataset, which is available under the <a href="http://os.uk/opendata/licence">Open Government License</a>.</p>
@@ -325,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>That the notebook is being run from a cloned <code>cityseer-api</code> repository.</li>
 <li>That the above dataset has been downloaded to <code>temp/os_open_roads/oproad_gb.gpkg</code> as a relative path. If running this notebook directly from within a clone of the <code>cityseer-api</code> repo, then this equates to the <code>cityseer-api/temp/os_open_roads/oproad_gb.gpkg</code> path. Please edit the paths and path setup in this cell if you are using different directories.</li>
 </ul>
-<div id="cell-5" class="cell" data-execution_count="1">
+<div id="cell-6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> annotations</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -349,7 +355,7 @@ path exists: True</code></pre>
 <section id="extents" class="level3">
 <h3 class="anchored" data-anchor-id="extents">Extents</h3>
 <p>Instead of loading the entire dataset, we’ll use a bounding box to only load an area of interest.</p>
-<div id="cell-8" class="cell" data-execution_count="2">
+<div id="cell-9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -377,7 +383,7 @@ path exists: True</code></pre>
 <section id="load" class="level3">
 <h3 class="anchored" data-anchor-id="load">Load</h3>
 <p>We can now load the OS Open Roads dataset</p>
-<div id="cell-11" class="cell" data-execution_count="3">
+<div id="cell-12" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load OS Open Roads data from downloaded geopackage</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>G_open <span class="op">=</span> io.nx_from_open_roads(open_roads_path, target_bbox<span class="op">=</span>target_bbox)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -396,7 +402,7 @@ INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 10.
 <section id="observe-continuity-metrics" class="level2">
 <h2 class="anchored" data-anchor-id="observe-continuity-metrics">Observe continuity metrics</h2>
 <p>This step runs the continuity analysis using the specified heuristic.</p>
-<div id="cell-14" class="cell" data-execution_count="4">
+<div id="cell-15" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span>
@@ -500,7 +506,7 @@ INFO:cityseer.metrics.observe:Length: 10.98km - a3220
 INFO:cityseer.metrics.observe:Length: 9.46km - a10</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="5">
+<div id="cell-16" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> method, shape_exp, descriptor, cmap, inverse, col_by_categ <span class="kw">in</span> <span class="bu">zip</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"names"</span>, <span class="st">"routes"</span>, <span class="st">"highways"</span>, <span class="st">"hybrid"</span>],  <span class="co">#</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="fl">0.75</span>, <span class="fl">0.5</span>, <span class="dv">1</span>],  <span class="co">#</span></span>

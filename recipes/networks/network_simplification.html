@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Custom network simplification – Cityseer Guide</title>
+<title>network_simplification – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Custom network simplification</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -274,36 +274,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#option-1---automatic-simplification" id="toc-option-1---automatic-simplification" class="nav-link active" data-scroll-target="#option-1---automatic-simplification">Option 1 - Automatic simplification</a></li>
+  <li><a href="#custom-network-simplification" id="toc-custom-network-simplification" class="nav-link active" data-scroll-target="#custom-network-simplification">Custom network simplification</a>
+  <ul class="collapse">
+  <li><a href="#option-1---automatic-simplification" id="toc-option-1---automatic-simplification" class="nav-link" data-scroll-target="#option-1---automatic-simplification">Option 1 - Automatic simplification</a></li>
   <li><a href="#option-2---automatic-simplification-with-custom-parameters" id="toc-option-2---automatic-simplification-with-custom-parameters" class="nav-link" data-scroll-target="#option-2---automatic-simplification-with-custom-parameters">Option 2 - Automatic simplification with custom parameters</a></li>
   <li><a href="#option-3---custom-osm-requests" id="toc-option-3---custom-osm-requests" class="nav-link" data-scroll-target="#option-3---custom-osm-requests">Option 3 - Custom OSM requests</a></li>
   <li><a href="#option-4---manual-simplification" id="toc-option-4---manual-simplification" class="nav-link" data-scroll-target="#option-4---manual-simplification">Option 4 - Manual simplification</a></li>
   <li><a href="#conclusionthis-notebook-demonstrated-several-approaches-to-network-simplification-ranging-from-automatic-simplification-via-osm_graph_from_poly-with-default-or-custom-parameters-to-fully-manual-control-using-individual-functions-from-the-graphs-module.-simplification-helps-prevent-distortions-in-centrality-measures-by-consolidating-complex-intersections-removing-danglers-and-merging-parallel-edges-while-preserving-accurate-street-geometries.next-steps-once-simplified-proceed-to-compute-network-centrality-or-other-metrics." id="toc-conclusionthis-notebook-demonstrated-several-approaches-to-network-simplification-ranging-from-automatic-simplification-via-osm_graph_from_poly-with-default-or-custom-parameters-to-fully-manual-control-using-individual-functions-from-the-graphs-module.-simplification-helps-prevent-distortions-in-centrality-measures-by-consolidating-complex-intersections-removing-danglers-and-merging-parallel-edges-while-preserving-accurate-street-geometries.next-steps-once-simplified-proceed-to-compute-network-centrality-or-other-metrics." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-several-approaches-to-network-simplification-ranging-from-automatic-simplification-via-osm_graph_from_poly-with-default-or-custom-parameters-to-fully-manual-control-using-individual-functions-from-the-graphs-module.-simplification-helps-prevent-distortions-in-centrality-measures-by-consolidating-complex-intersections-removing-danglers-and-merging-parallel-edges-while-preserving-accurate-street-geometries.next-steps-once-simplified-proceed-to-compute-network-centrality-or-other-metrics.">ConclusionThis notebook demonstrated several approaches to network simplification, ranging from automatic simplification via <code>osm_graph_from_poly</code> with default or custom parameters, to fully manual control using individual functions from the <code>graphs</code> module. Simplification helps prevent distortions in centrality measures by consolidating complex intersections, removing danglers, and merging parallel edges while preserving accurate street geometries.<strong>Next steps:</strong> Once simplified, proceed to compute Network Centrality or other metrics.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Custom network simplification</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/networks/network_simplification.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="custom-network-simplification" class="level1">
+<h1>Custom network simplification</h1>
 <p>Manually configure network simplification steps and parameters.</p>
 <p>Network simplification helps to prevent distortions in centrality measures and can also be preferable for visualisation.</p>
 <p>While cleaning and simplifying the network, <code>cityseer</code> keeps track of intersection coordinates and street geometries and updates these in place, checking that the street alignments remain as accurate as possible. This is a complex undertaking that involves finding an approach intended to work for most situations. Manual inspection and cleaning is recommended as a final step for best results.</p>
@@ -1228,6 +1223,7 @@ INFO:cityseer.tools.plot:Preparing graph edges
 <h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-several-approaches-to-network-simplification-ranging-from-automatic-simplification-via-osm_graph_from_poly-with-default-or-custom-parameters-to-fully-manual-control-using-individual-functions-from-the-graphs-module.-simplification-helps-prevent-distortions-in-centrality-measures-by-consolidating-complex-intersections-removing-danglers-and-merging-parallel-edges-while-preserving-accurate-street-geometries.next-steps-once-simplified-proceed-to-compute-network-centrality-or-other-metrics.">ConclusionThis notebook demonstrated several approaches to network simplification, ranging from automatic simplification via <code>osm_graph_from_poly</code> with default or custom parameters, to fully manual control using individual functions from the <code>graphs</code> module. Simplification helps prevent distortions in centrality measures by consolidating complex intersections, removing danglers, and merging parallel edges while preserving accurate street geometries.<strong>Next steps:</strong> Once simplified, proceed to compute <a href="../../recipes/centrality/index.html">Network Centrality</a> or other metrics.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

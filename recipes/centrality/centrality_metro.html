@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Adding GTFS transport data to centrality – Cityseer Guide</title>
+<title>centrality_metro – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Adding GTFS transport data to centrality</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,36 +277,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#calculate-centralities" id="toc-calculate-centralities" class="nav-link active" data-scroll-target="#calculate-centralities">Calculate centralities</a></li>
+  <li><a href="#adding-gtfs-transport-data-to-centralitythis-notebook-demonstrates-how-to-integrate-gtfs-general-transit-feed-specification-public-transport-data-into-the-street-network-before-computing-centrality-metrics.-by-adding-metro-stops-and-segment-travel-times-to-the-network-centrality-calculations-can-account-for-the-connectivity-boost-provided-by-public-transport.the-approach-computes-centralities-twice-once-without-and-once-with-the-gtfs-data-so-that-the-effect-of-the-metro-network-on-centrality-can-be-compared." id="toc-adding-gtfs-transport-data-to-centralitythis-notebook-demonstrates-how-to-integrate-gtfs-general-transit-feed-specification-public-transport-data-into-the-street-network-before-computing-centrality-metrics.-by-adding-metro-stops-and-segment-travel-times-to-the-network-centrality-calculations-can-account-for-the-connectivity-boost-provided-by-public-transport.the-approach-computes-centralities-twice-once-without-and-once-with-the-gtfs-data-so-that-the-effect-of-the-metro-network-on-centrality-can-be-compared." class="nav-link active" data-scroll-target="#adding-gtfs-transport-data-to-centralitythis-notebook-demonstrates-how-to-integrate-gtfs-general-transit-feed-specification-public-transport-data-into-the-street-network-before-computing-centrality-metrics.-by-adding-metro-stops-and-segment-travel-times-to-the-network-centrality-calculations-can-account-for-the-connectivity-boost-provided-by-public-transport.the-approach-computes-centralities-twice-once-without-and-once-with-the-gtfs-data-so-that-the-effect-of-the-metro-network-on-centrality-can-be-compared.">Adding GTFS transport data to centralityThis notebook demonstrates how to integrate GTFS (General Transit Feed Specification) public transport data into the street network before computing centrality metrics. By adding metro stops and segment travel times to the network, centrality calculations can account for the connectivity boost provided by public transport.The approach computes centralities twice: once without and once with the GTFS data, so that the effect of the metro network on centrality can be compared.</a>
+  <ul class="collapse">
+  <li><a href="#calculate-centralities" id="toc-calculate-centralities" class="nav-link" data-scroll-target="#calculate-centralities">Calculate centralities</a></li>
   <li><a href="#compare-resultscompute-the-difference-between-the-metro-integrated-and-baseline-centralities.-the-three-panel-plot-below-shows-harmonic-closeness-centrality-without-the-metro-with-the-metro-and-the-difference.-metro-stop-locations-are-overlaid-in-red." id="toc-compare-resultscompute-the-difference-between-the-metro-integrated-and-baseline-centralities.-the-three-panel-plot-below-shows-harmonic-closeness-centrality-without-the-metro-with-the-metro-and-the-difference.-metro-stop-locations-are-overlaid-in-red." class="nav-link" data-scroll-target="#compare-resultscompute-the-difference-between-the-metro-integrated-and-baseline-centralities.-the-three-panel-plot-below-shows-harmonic-closeness-centrality-without-the-metro-with-the-metro-and-the-difference.-metro-stop-locations-are-overlaid-in-red.">Compare resultsCompute the difference between the metro-integrated and baseline centralities. The three-panel plot below shows harmonic closeness centrality without the metro, with the metro, and the difference. Metro stop locations are overlaid in red.</a></li>
   <li><a href="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-centrality-metrics-with-and-without-transit-connectivity.-by-adding-metro-stops-and-segment-travel-times-the-shortest-path-algorithms-can-route-through-the-transit-network-revealing-how-public-transport-reshapes-the-pattern-of-closeness-centrality-across-the-city.next-steps-for-gtfs-with-accessibility-metrics-see-gtfs-accessibility." id="toc-conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-centrality-metrics-with-and-without-transit-connectivity.-by-adding-metro-stops-and-segment-travel-times-the-shortest-path-algorithms-can-route-through-the-transit-network-revealing-how-public-transport-reshapes-the-pattern-of-closeness-centrality-across-the-city.next-steps-for-gtfs-with-accessibility-metrics-see-gtfs-accessibility." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-centrality-metrics-with-and-without-transit-connectivity.-by-adding-metro-stops-and-segment-travel-times-the-shortest-path-algorithms-can-route-through-the-transit-network-revealing-how-public-transport-reshapes-the-pattern-of-closeness-centrality-across-the-city.next-steps-for-gtfs-with-accessibility-metrics-see-gtfs-accessibility.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare centrality metrics with and without transit connectivity. By adding metro stops and segment travel times, the shortest-path algorithms can route through the transit network, revealing how public transport reshapes the pattern of closeness centrality across the city.<strong>Next steps:</strong> For GTFS with accessibility metrics, see GTFS Accessibility.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Adding GTFS transport data to centrality</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/centrality/centrality_metro.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>This notebook demonstrates how to integrate GTFS (General Transit Feed Specification) public transport data into the street network before computing centrality metrics. By adding metro stops and segment travel times to the network, centrality calculations can account for the connectivity boost provided by public transport.</p>
-<p>The approach computes centralities twice: once without and once with the GTFS data, so that the effect of the metro network on centrality can be compared.</p>
+<section id="adding-gtfs-transport-data-to-centralitythis-notebook-demonstrates-how-to-integrate-gtfs-general-transit-feed-specification-public-transport-data-into-the-street-network-before-computing-centrality-metrics.-by-adding-metro-stops-and-segment-travel-times-to-the-network-centrality-calculations-can-account-for-the-connectivity-boost-provided-by-public-transport.the-approach-computes-centralities-twice-once-without-and-once-with-the-gtfs-data-so-that-the-effect-of-the-metro-network-on-centrality-can-be-compared." class="level1">
+<h1>Adding GTFS transport data to centralityThis notebook demonstrates how to integrate GTFS (General Transit Feed Specification) public transport data into the street network before computing centrality metrics. By adding metro stops and segment travel times to the network, centrality calculations can account for the connectivity boost provided by public transport.The approach computes centralities twice: once without and once with the GTFS data, so that the effect of the metro network on centrality can be compared.</h1>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1015,6 +1008,7 @@ INFO:cityseer.config:Distance: 5000m, Beta: 0.0008, Walking Time: 62.5 minutes.<
 <h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-centrality-metrics-with-and-without-transit-connectivity.-by-adding-metro-stops-and-segment-travel-times-the-shortest-path-algorithms-can-route-through-the-transit-network-revealing-how-public-transport-reshapes-the-pattern-of-closeness-centrality-across-the-city.next-steps-for-gtfs-with-accessibility-metrics-see-gtfs-accessibility.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare centrality metrics with and without transit connectivity. By adding metro stops and segment travel times, the shortest-path algorithms can route through the transit network, revealing how public transport reshapes the pattern of closeness centrality across the city.<strong>Next steps:</strong> For GTFS with accessibility metrics, see <a href="../../recipes/accessibility/accessibility_metro.html">GTFS Accessibility</a>.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Convert a network from momepy – Cityseer Guide</title>
+<title>momepy_to_cityseer – Cityseer Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Convert a network from momepy</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -277,32 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." id="toc-conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="nav-link active" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to Network Centrality to compute metrics.</a></li>
+  <li><a href="#convert-a-network-from-momepy" id="toc-convert-a-network-from-momepy" class="nav-link active" data-scroll-target="#convert-a-network-from-momepy">Convert a network from momepy</a>
+  <ul class="collapse">
+  <li><a href="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." id="toc-conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to Network Centrality to compute metrics.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Convert a network from momepy</h1>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.google.com/github/benchmark-urbanism/cityseer-examples/blob/gh-pages/recipes/networks/momepy_to_cityseer.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<figcaption>Open In Colab</figcaption>
+</figure>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="convert-a-network-from-momepy" class="level1">
+<h1>Convert a network from momepy</h1>
 <p>Convert a network from <code>momepy</code> to a <code>cityseer</code> compatible <code>networkx</code> graph.</p>
 <p>The process is for converting <code>momepy</code> networks is similar to that for opening street network datasets via <code>geopandas</code>.</p>
 <div id="cell-2" class="cell" data-execution_count="2">
@@ -394,6 +389,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 <h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to <a href="../../recipes/centrality/index.html">Network Centrality</a> to compute metrics.</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
