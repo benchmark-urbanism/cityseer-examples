@@ -173,6 +173,12 @@ ax.axis("off")
 
 Many other functions are available in `momepy` for calculating various morphological metrics. For a comprehensive list, please refer to the [momepy documentation](https://docs.momepy.org/en/stable/api.html).
 
+### Exercises
+
+- Use `osmnx` to download a different feature type (e.g., parks with `tags={"leisure": "park"}`) for the same area. Plot the result.
+- Explore the `momepy` documentation and calculate a different morphological metric (e.g., `momepy.elongation` or `momepy.circular_compactness`) on the building footprints. What do the values tell you about building shapes?
+- Download building footprints for a location of your choice (a different city or neighbourhood). Compare building orientations between the two areas.
+
 ## Summary
 
 This has been a brief exploration of the broader Python geospatial ecosystem, focusing on `osmnx` for downloading urban data from OpenStreetMap and `momepy` for conducting urban morphology analysis. This is just a small sample of what these and other tools can achieve.
@@ -182,11 +188,5 @@ Remember that with GeoPandas, you can export your data. So, after downloading da
 ```python
 gdf_buildings_proj.to_file("nicosia_buildings_metrics.gpkg", driver="GPKG")
 ```
-
-### Exercises
-
-- Use `osmnx` to download a different feature type (e.g., parks with `tags={"leisure": "park"}`) for the same area. Plot the result.
-- Explore the `momepy` documentation and calculate a different morphological metric (e.g., `momepy.elongation` or `momepy.circular_compactness`) on the building footprints. What do the values tell you about building shapes?
-- Download building footprints for a location of your choice (a different city or neighbourhood). Compare building orientations between the two areas.
 
 Next: [Data Science](6_data_science.qmd) introduces dimensionality reduction and prediction with `scikit-learn`. The `osmnx` skills from this chapter are used in many of the [Cityseer Recipes](../recipes/index.qmd), particularly the [Network Preparation](../recipes/networks/index.qmd) examples.

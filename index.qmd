@@ -25,9 +25,13 @@ This guide provides tutorials and worked examples to help you get started. If yo
 
 New to Python or computational notebooks? Start with the [Python 101](class/index.qmd) section, which covers the basics of Python, spatial data with Shapely and GeoPandas, and an introduction to urban analytics with `osmnx` and `momepy`.
 
+### Quickstart
+
+Ready to use `cityseer`? The [Getting Started](recipes/quickstart.qmd) page introduces core concepts (primal/dual graphs, NetworkStructure, distance thresholds) and walks through a minimal end-to-end analysis.
+
 ### Recipes
 
-If you already have some experience with Python and `geopandas`, head to the [recipes](recipes/index.qmd) section for practical, worked examples covering network preparation, centrality, accessibility, statistics, and visibility analysis.
+For practical, worked examples covering network preparation, centrality, accessibility, statistics, and visibility analysis, head to the [recipes](recipes/index.qmd) section.
 
 ::: {.callout-tip}
 The recipes assume familiarity with Python, `geopandas`, and projected coordinate reference systems. If any of these are new to you, start with [Python 101](class/index.qmd) first.

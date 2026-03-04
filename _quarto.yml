@@ -32,6 +32,7 @@ website:
       - text: Cityseer Recipes
         href: recipes/index.qmd
         contents:
+          - href: recipes/quickstart.qmd
           - href: recipes/networks/index.qmd
           - href: recipes/centrality/index.qmd
           - href: recipes/accessibility/index.qmd

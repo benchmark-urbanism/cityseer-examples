@@ -38,15 +38,17 @@ from cityseer.metrics import layers, networks
 from cityseer.tools import graphs, io, plot
 ```
 
+::: {.callout-note}
+The code below uses `cityseer` to prepare a street network and compute centrality metrics. For a full explanation of the `cityseer` workflow, see [Getting Started with Cityseer](../recipes/quickstart.qmd).
+:::
+
 First, we define the geographical area of interest (Nicosia, Cyprus) using longitude and latitude coordinates, and a buffer radius. Then, we use `cityseer` to:
 
 1. Create a buffered polygon area around the center point.
 2. Download and simplify the street network within this polygon from OpenStreetMap.
-3. Convert the primal graph (intersections and streets) to its dual representation (streets as nodes, intersections as edges) so that calculations can be expressed relative to streets.
+3. Convert the primal graph to its dual representation so that calculations are expressed per street segment (see [primal vs. dual](../recipes/quickstart.qmd#primal-vs.-dual-graphs)).
 4. Extract the network structure (nodes and edges) into GeoDataFrames.
-5. Calculate various node centrality measures (network density, harmonic closeness, betweenness) at different distances (500m, 1000m, 2000m, 5000m) using angular analysis (considering turning angles). These measures help quantify the importance or connectivity of each node within the network.
-
-To learn more about these methods, look at the [Cityseer Recipes](../recipes/index.qmd) section.
+5. Calculate centrality measures (density, harmonic closeness, betweenness) at multiple distance thresholds using angular analysis.
 
 ```{python}
 lng, lat = 33.36402, 35.17526

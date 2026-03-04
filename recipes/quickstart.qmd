@@ -1,0 +1,132 @@
+---
+title: Getting Started with Cityseer
+editor:
+  render-on-save: true
+---
+
+This page bridges the Python fundamentals from [Python 101](../class/index.qmd) with the practical [Cityseer Recipes](index.qmd). It introduces the core concepts and walks through a minimal end-to-end workflow.
+
+::: {.callout-tip}
+If you are already familiar with `cityseer` and want to jump into specific analyses, head directly to the [Recipes](index.qmd).
+:::
+
+## Core Concepts
+
+### The cityseer workflow
+
+Every `cityseer` analysis follows the same pattern:
+
+1. **Get a street network** as a `networkx` `MultiGraph` (from OSM, a file, or another library).
+2. **Convert to a `NetworkStructure`** — a high-performance Rust data structure that `cityseer` uses internally for computation.
+3. **Compute metrics** — centrality, accessibility, statistics, or visibility.
+4. **Explore results** — the outputs are added as columns to a `GeoDataFrame`, ready for plotting, export, or further analysis.
+
+### Primal vs. dual graphs
+
+By default, a street network is a **primal graph**: intersections are nodes and streets are edges. This is the representation you get from most data sources.
+
+`cityseer` can convert a primal graph into a **dual graph**, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more meaningful for urban analysis.
+
+```
+Primal graph                    Dual graph
+(intersections = nodes)         (streets = nodes)
+
+    A ——— B                     AB ——— BC
+    |     |          →          |      |
+    C ——— D                     AC ——— CD
+                                 \   /
+                                  BD
+```
+
+Working with the dual representation is recommended for centrality analysis. See [`nx_to_dual`](https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual) in the API docs.
+
+### NetworkStructure
+
+The [`network_structure_from_nx`](https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx) function converts a `networkx` graph into three objects:
+
+- A **nodes** `GeoDataFrame` — stores node coordinates and, after computation, the metric results.
+- An **edges** `GeoDataFrame` — stores edge geometries and properties.
+- A **`NetworkStructure`** — the internal Rust data structure used by all metric functions.
+
+The `NetworkStructure` can be reused across multiple metric computations as long as the network does not change.
+
+### Distance thresholds
+
+Most `cityseer` functions accept a `distances` parameter specifying network distance thresholds (in metres). You can compute multiple thresholds at once. See the [distance thresholds table](index.qmd#distance-thresholds) for common choices and their real-world meaning.
+
+Alternatively, use the `minutes` parameter to specify walking time thresholds (converted internally to metres at a default walking speed of ~80m/min).
+
+### Reading output columns
+
+`cityseer` adds result columns to the nodes `GeoDataFrame` using a naming convention:
+
+| Pattern                               | Example                         | Meaning                                                         |
+| ------------------------------------- | ------------------------------- | --------------------------------------------------------------- |
+| `cc_{metric}_{distance}`              | `cc_betweenness_800`            | Metric centrality: betweenness at 800m                          |
+| `cc_{metric}_{distance}_ang`          | `cc_harmonic_500_ang`           | Angular centrality: harmonic closeness at 500m                  |
+| `cc_{landuse}_{distance}_nw`          | `cc_restaurant_400_nw`          | Accessibility: unweighted count of restaurants within 400m      |
+| `cc_{landuse}_{distance}_wt`          | `cc_restaurant_400_wt`          | Accessibility: distance-weighted count (nearer = higher weight) |
+| `cc_{landuse}_nearest_max_{distance}` | `cc_restaurant_nearest_max_800` | Accessibility: distance to nearest restaurant (max search 800m) |
+| `cc_{stat}_{column}_{distance}`       | `cc_mean_height_400`            | Statistics: mean of `height` column within 400m                 |
+
+The `cc_` prefix stands for "cityseer computed." For centrality, the `_ang` suffix indicates angular (simplest-path) analysis; its absence indicates metric (shortest-path) analysis. For accessibility, `_nw` is the raw count and `_wt` applies a distance decay so that nearer features contribute more.
+
+## A minimal example
+
+Here is a complete `cityseer` workflow in under 20 lines. It downloads a street network, computes betweenness centrality, and plots the result.
+
+```python
+from cityseer.metrics import networks
+from cityseer.tools import graphs, io
+
+# 1. Define area of interest and download network
+poly_wgs, epsg_code = io.buffered_point_poly(-3.7038, 40.4168, 1000)
+G = io.osm_graph_from_poly(poly_wgs, to_crs_code=epsg_code)
+
+# 2. Convert to dual graph (recommended) and prepare data structures
+G_dual = graphs.nx_to_dual(G)
+nodes_gdf, edges_gdf, network_structure = io.network_structure_from_nx(G_dual)
+
+# 3. Compute centrality at 500m and 1000m
+nodes_gdf = networks.node_centrality_shortest(
+    network_structure=network_structure,
+    nodes_gdf=nodes_gdf,
+    distances=[500, 1000],
+)
+
+# 4. Plot betweenness centrality at 1000m
+nodes_gdf.plot(column="cc_betweenness_1000", cmap="magma", figsize=(8, 8))
+```
+
+::: {.callout-note}
+The `osm_graph_from_poly` function produces log messages showing the network cleaning steps. These are normal and can be safely ignored. To suppress them, add `import logging; logging.getLogger("cityseer").setLevel(logging.WARNING)` before calling the function.
+:::
+
+## Choosing a coordinate reference system
+
+`cityseer` requires a **projected** coordinate reference system (CRS) with metre units for accurate distance calculations. A geographic CRS like WGS 84 (EPSG:4326) uses degrees and will produce incorrect results.
+
+How to choose the right CRS for your study area:
+
+- **Let cityseer choose for you:** When using `io.buffered_point_poly` or `io.osm_graph_from_poly` with default settings, `cityseer` automatically selects an appropriate UTM zone based on the input coordinates. This is usually sufficient.
+- **Specify explicitly:** If you need a specific CRS, use the `to_crs_code` parameter. Common choices include UTM zones (search your city at [epsg.io](https://epsg.io)) or regional projections like EPSG:3035 (Europe), EPSG:27700 (Great Britain), or EPSG:2154 (France).
+- **From existing data:** If loading a network from a file, ensure it is already in a projected CRS, or reproject it with `gdf.to_crs(epsg=...)` before passing it to `cityseer`.
+
+## Common pitfalls
+
+**Forgetting to use a projected CRS.** If distances or areas seem wildly wrong, check that your data is not in EPSG:4326 (WGS 84). Reproject to a projected CRS with metre units.
+
+**Edge rolloff near boundaries.** If metric values drop sharply at the edges of your study area, you need a network buffer. Download a network larger than your study area, then set boundary nodes to `live=False` so that metrics are only computed for nodes inside the study area. See the [Edge Rolloff](index.qmd#edge-rolloff) section and the [live nodes example](live_nodes.ipynb).
+
+**Confusing `_nw` and `_wt` accessibility columns.** The `_nw` (non-weighted) columns give a raw count of reachable features. The `_wt` (weighted) columns apply distance decay, so nearer features contribute more. Use `_wt` when proximity matters (e.g., walkability studies); use `_nw` when presence alone matters (e.g., counting all parks within reach).
+
+## Next steps
+
+With these concepts in hand, you are ready to explore the recipes:
+
+- [Network Preparation](networks/index.qmd) — create networks from various data sources.
+- [Network Centrality](centrality/index.qmd) — metric and angular centrality.
+- [Accessibility](accessibility/index.qmd) — landuse accessibility and mixed-use metrics.
+- [Statistics](stats/index.qmd) — aggregate numeric properties over the network.
+- [Visibility](visibility/index.qmd) — street enclosure and openness.
+- [Continuity](continuity/index.qmd) — street name and route continuity.

@@ -166,7 +166,16 @@ gdf_cities.plot()
 
 ### Coordinate Transformations
 
-GeoPandas makes CRS transformation very easy with the `to_crs()` method. Ensure you use a projected coordinate reference system when performing detailed spatial analysis. Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
+::: {.callout-note}
+
+#### Geographic vs. projected CRS
+
+A **geographic CRS** (e.g., WGS 84 / EPSG:4326) stores coordinates as longitude and latitude in **degrees** on the Earth's curved surface. A **projected CRS** (e.g., EPSG:3035, UTM zones) projects coordinates onto a flat surface in **metres**.
+
+You generally want to use a projected CRS for the type of work we're doing in this notebook. To find an appropriate projected CRS for your study area, search for your city or country at [epsg.io](https://epsg.io). Common choices include UTM zones (accurate for local areas), EPSG:3035 (Europe-wide), and national projections like EPSG:27700 (Great Britain).
+:::
+
+GeoPandas makes CRS transformation very easy with the `to_crs()` method. Let's convert our cities GeoDataFrame to EPSG:3035, a projected equal-area CRS suitable for Europe (ETRS89-LAEA).
 
 ```{python}
 gdf_cities_proj = gdf_cities.to_crs(3035)

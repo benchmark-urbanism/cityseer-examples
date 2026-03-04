@@ -366,6 +366,11 @@ print(set1.intersection(set2)) # Items in both: {3}
 print(set1.difference(set2))   # Items in set1 but not set2: {1, 2}
 ```
 
+### Collection Exercises
+
+- Create a dictionary representing a building with keys for `name`, `height`, and `year_built`. Print the building's height.
+- Create a list of five city names. Use a loop to print each city name in uppercase (hint: `"text".upper()`).
+
 ## Control Flow
 
 Control flow structures are fundamental to programming. They allow your code to make decisions (using `if`/`elif`/`else`) and repeat actions (using `for`/`while` loops).
@@ -540,6 +545,10 @@ print(f"Density 2: {density2:.2f} people per square kilometres")
 ```
 
 While functions don't always have to return a value (e.g., a function that just prints something), they often do.
+
+### Function Exercise
+
+Write a function called `classify_building` that takes a `height` parameter and returns `"low-rise"` if height < 10, `"mid-rise"` if 10–25, and `"high-rise"` if > 25. Test it with three different heights.
 
 ## Importing Modules
 

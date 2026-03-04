@@ -6,6 +6,10 @@ editor:
 
 The following examples illustrate how to create `cityseer` compatible `networkx` graphs from various data sources, including OpenStreetMap (OSM) data and `geopandas` `GeoDataFrames`. These workflows automatically prepare the network for you and should be sufficient for the great majority of cases.
 
+::: {.callout-tip}
+New to `geopandas` or coordinate reference systems? See the [GeoPandas chapter](../../class/4_geopandas.qmd) of the Python 101 section for background. For definitions of terms like "primal graph" and "dual graph", see the [Glossary](../../glossary.qmd).
+:::
+
 If you wish to prepare the network manually, note the following requirements:
 
 - The network must be a `networkx` `MultiGraph` object. This is the default for `cityseer`, but if you are using another package such as `osmnx`, you may need to convert the graph to a `MultiGraph` first.
