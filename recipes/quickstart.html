@@ -436,7 +436,7 @@ Important
 <section id="a-minimal-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-minimal-example">A minimal example</h2>
 <p>Here is a complete <code>cityseer</code> workflow in under 20 lines. It downloads a street network, computes betweenness centrality, and plots the result.</p>
-<div id="2f631254" class="cell" data-execution_count="1">
+<div id="47a914f8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Set quiet mode (optional — reduces logging output)</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -444,7 +444,7 @@ Important
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"CITYSEER_QUIET_MODE"</span>] <span class="op">=</span> <span class="st">"1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="afd785e8" class="cell" data-execution_count="2">
+<div id="255f7e1e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>

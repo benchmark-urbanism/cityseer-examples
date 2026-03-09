@@ -244,6 +244,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#metric-distance-network-centrality" id="toc-metric-distance-network-centrality" class="nav-link active" data-scroll-target="#metric-distance-network-centrality">Metric distance network centrality</a></li>
   <li><a href="#angular-distance-network-centrality" id="toc-angular-distance-network-centrality" class="nav-link" data-scroll-target="#angular-distance-network-centrality">Angular distance network centrality</a></li>
   <li><a href="#network-centrality-from-osm-data" id="toc-network-centrality-from-osm-data" class="nav-link" data-scroll-target="#network-centrality-from-osm-data">Network centrality from OSM data</a></li>
+  <li><a href="#elevation-effects-on-centrality" id="toc-elevation-effects-on-centrality" class="nav-link" data-scroll-target="#elevation-effects-on-centrality">Elevation effects on centrality</a></li>
   <li><a href="#adding-gtfs-transport-data" id="toc-adding-gtfs-transport-data" class="nav-link" data-scroll-target="#adding-gtfs-transport-data">Adding GTFS transport data</a></li>
   </ul>
 </nav>
@@ -312,6 +313,24 @@ Important
 <h2 class="anchored" data-anchor-id="network-centrality-from-osm-data">Network centrality from OSM data</h2>
 <p>Calculate metric distance centralities directly from OpenStreetMap data.</p>
 <p><a href="../../recipes/centrality/osm_centrality.html">Notebook</a></p>
+</section>
+<section id="elevation-effects-on-centrality" class="level2">
+<h2 class="anchored" data-anchor-id="elevation-effects-on-centrality">Elevation effects on centrality</h2>
+<p>Compare centrality results with and without Z coordinates (elevation). When nodes have 3D geometries, cityseer applies Tobler’s hiking function during pathfinding, reshaping centrality patterns in hilly terrain.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>3D elevation support requires cityseer <strong>v4.24.0</strong> or later.</p>
+</div>
+</div>
+<p><a href="../../recipes/centrality/3d_elevation.html">Notebook</a></p>
 </section>
 <section id="adding-gtfs-transport-data" class="level2">
 <h2 class="anchored" data-anchor-id="adding-gtfs-transport-data">Adding GTFS transport data</h2>
