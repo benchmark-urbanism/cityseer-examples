@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Landuse accessibility from OSM data</h1>
 <p>Calculate landuse accessibilities from OSM data.</p>
 <p>This examples calculates landuse accessibility to pubs and restaurants for London using OpenStreetMap data.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:07.793450Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:07.793021Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:09.705901Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:09.705425Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -315,12 +315,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -392,12 +390,12 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 6904 items.</code></pre>
 </div>
 </div>
 <p>Prepare the amenities GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>amenity</code> type of either <code>pub</code> or <code>restaurant</code>. You can use the same idea to extract other features or land use types.</p>
 <p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:26.068567Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:26.068473Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:26.195427Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:26.194977Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    poly_wgs, tags<span class="op">=</span>{<span class="st">"amenity"</span>: [<span class="st">"pub"</span>, <span class="st">"restaurant"</span>]}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -736,7 +734,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 </div>
 </div>
 <p>Some preparatory data cleaning is typically necessary. This example extracts the particular rows and columns of interest for the subsequent steps of analysis.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:26.197004Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:26.196902Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:26.202149Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:26.201512Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract nodes</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.loc[<span class="st">"node"</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
@@ -789,7 +787,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 </div>
 </div>
 <p>Once the land use and network data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:26.203543Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:26.203436Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:26.338063Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:26.337605Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
@@ -804,9 +802,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: pub, restaurant
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 701 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Collected 1173 potential node assignments from data entries.
-INFO:cityseer.data:Finished assigning data. 1173 assignments added to 704 nodes.
-INFO:cityseer.graph:Barriers unset and R-tree cleared.
+INFO:cityseer.data:Finished assigning data. 1150 assignments added to 693 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
@@ -816,10 +812,10 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 <p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
 <p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:26.339413Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:26.339326Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:26.341588Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:26.341259Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node', 'cc_pub_100_nw', 'cc_pub_100_wt', 'cc_pub_200_nw',
        'cc_pub_200_wt', 'cc_pub_400_nw', 'cc_pub_400_wt', 'cc_pub_800_nw',
@@ -847,10 +843,10 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+<pre><code>(np.float64(697035.885372041),
+ np.float64(700647.6893696086),
+ np.float64(5709134.052703109),
+ np.float64(5712638.692504489))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -860,7 +856,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:26.488633Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:26.488552Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:26.602679Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:26.602179Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_pub_nearest_max_800"</span>,</span>
@@ -877,10 +873,10 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709196.42405734),
- np.float64(5712635.724144622))</code></pre>
+<pre><code>(np.float64(697035.885372041),
+ np.float64(700647.6893696086),
+ np.float64(5709191.704085951),
+ np.float64(5712635.947200544))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

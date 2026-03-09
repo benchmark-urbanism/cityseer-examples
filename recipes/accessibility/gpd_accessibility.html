@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#landuse-accessibility-from-geopandas-data" id="toc-landuse-accessibility-from-geopandas-data" class="nav-link active" data-scroll-target="#landuse-accessibility-from-geopandas-data">Landuse accessibility from GeoPandas data</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-compute-landuse-accessibility-metrics-from-a-geodataframe-of-premises-data-calculating-weighted-and-unweighted-counts-as-well-as-nearest-distance-measures-for-food-and-beverage-creative-entertainment-and-retail-categories-at-multiple-distance-thresholds.-the-results-map-the-spatial-distribution-and-intensity-of-different-land-uses-across-the-madrid-street-network.next-steps-to-compute-accessibility-from-osm-data-instead-see-osm-accessibility." id="toc-conclusionthis-notebook-demonstrated-how-to-compute-landuse-accessibility-metrics-from-a-geodataframe-of-premises-data-calculating-weighted-and-unweighted-counts-as-well-as-nearest-distance-measures-for-food-and-beverage-creative-entertainment-and-retail-categories-at-multiple-distance-thresholds.-the-results-map-the-spatial-distribution-and-intensity-of-different-land-uses-across-the-madrid-street-network.next-steps-to-compute-accessibility-from-osm-data-instead-see-osm-accessibility." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-compute-landuse-accessibility-metrics-from-a-geodataframe-of-premises-data-calculating-weighted-and-unweighted-counts-as-well-as-nearest-distance-measures-for-food-and-beverage-creative-entertainment-and-retail-categories-at-multiple-distance-thresholds.-the-results-map-the-spatial-distribution-and-intensity-of-different-land-uses-across-the-madrid-street-network.next-steps-to-compute-accessibility-from-osm-data-instead-see-osm-accessibility.">ConclusionThis notebook demonstrated how to compute landuse accessibility metrics from a GeoDataFrame of premises data, calculating weighted and unweighted counts as well as nearest-distance measures for food and beverage, creative entertainment, and retail categories at multiple distance thresholds. The results map the spatial distribution and intensity of different land uses across the Madrid street network.<strong>Next steps:</strong> To compute accessibility from OSM data instead, see OSM Accessibility.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,14 +299,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="landuse-accessibility-from-geopandas-data" class="level1">
 <h1>Landuse accessibility from GeoPandas data</h1>
 <p>Calculate landuse accessibilities from a <code>geopandas</code> <code>GeoDataFrame</code>.</p>
-<div id="1d3b0e0e" class="cell" data-execution_count="1">
+<div id="1d3b0e0e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:43:08.489028Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:43:08.488701Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:43:10.352732Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:43:10.352270Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To start, follow the same approach as shown in the network examples to create the network.</p>
-<div id="39e56178" class="cell" data-execution_count="2">
+<div id="39e56178" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:43:10.354140Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:43:10.353974Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:46:15.121552Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:46:15.118355Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(reset_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
@@ -318,11 +318,11 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 452252 items.</code></pre>
 </div>
 </div>
 <p>Read-in the dataset from the source Geopackage or Shapefile Geopandas.</p>
-<div id="bcbfd458" class="cell" data-execution_count="3">
+<div id="bcbfd458" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:46:15.210676Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:46:15.209905Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:46:17.239638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:46:17.239130Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prems_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_premises/madrid_premises.gpkg"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>prems_gpd.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -466,7 +466,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 </div>
 </div>
 <p>Identify or prepare any columns and land uses of interest, for which you want to compute accessibilities.</p>
-<div id="b26f8882" class="cell" data-execution_count="4">
+<div id="b26f8882" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:46:17.241439Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:46:17.241334Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:46:17.259898Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:46:17.259440Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prems_gpd.division_desc.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>array(['food_bev', 'creat_entert', 'retail', 'services', 'education',
@@ -536,7 +536,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 </div>
 </div>
 <p>Once the land use and network data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities to land uses. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame.</p>
-<div id="9709eafe" class="cell" data-execution_count="5">
+<div id="9709eafe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:46:17.261784Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:46:17.261633Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:48:23.727587Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:48:23.726925Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute accessibility</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, prems_gpd <span class="op">=</span> layers.compute_accessibilities(</span>
@@ -551,9 +551,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: food_bev, creat_entert, retail
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 117358 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Collected 198773 potential node assignments from data entries.
-INFO:cityseer.data:Finished assigning data. 198773 assignments added to 24576 nodes.
-INFO:cityseer.graph:Barriers unset and R-tree cleared.
+INFO:cityseer.data:Finished assigning data. 199450 assignments added to 26679 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
@@ -563,10 +561,10 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 <p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
 <p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
-<div id="b9f98c13" class="cell" data-execution_count="6">
+<div id="b9f98c13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:48:23.729814Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:48:23.729662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:48:23.733265Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:48:23.732449Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node', 'cc_food_bev_100_nw', 'cc_food_bev_100_wt',
        'cc_food_bev_200_nw', 'cc_food_bev_200_wt', 'cc_food_bev_400_nw',
@@ -582,7 +580,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="814c118c" class="cell" data-execution_count="7">
+<div id="814c118c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:48:23.734695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:48:23.734601Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:48:28.523073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:48:28.522001Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_retail_400_wt"</span>,</span>
@@ -614,7 +612,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 </div>
 </div>
-<div id="62ba9ad3" class="cell" data-execution_count="8">
+<div id="62ba9ad3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:48:28.525896Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:48:28.525756Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:48:32.709963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:48:32.709498Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_food_bev_200_wt"</span>,</span>
@@ -646,7 +644,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 </div>
 </div>
-<div id="94308cac" class="cell" data-execution_count="9">
+<div id="94308cac" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:48:32.712313Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:48:32.712221Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:48:38.286404Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:48:38.285819Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_creat_entert_nearest_max_800"</span>].fillna(<span class="dv">800</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
@@ -667,7 +665,7 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">4473000</span>, <span class="dv">4473000</span> <span class="op">+</span> <span class="dv">2500</span>)</span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/9_/5x31j5x55819zxycf85n4cp40000gq/T/ipykernel_40677/3453596325.py:1: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+<pre><code>/var/folders/9_/5x31j5x55819zxycf85n4cp40000gq/T/ipykernel_77388/3453596325.py:1: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
 For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
@@ -690,8 +688,10 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 </div>
 <p>Brighter areas indicate higher accessibility — more land uses of that type are reachable within the specified network distance. Distance-weighted counts give more importance to nearer locations.</p>
-<section id="conclusionthis-notebook-demonstrated-how-to-compute-landuse-accessibility-metrics-from-a-geodataframe-of-premises-data-calculating-weighted-and-unweighted-counts-as-well-as-nearest-distance-measures-for-food-and-beverage-creative-entertainment-and-retail-categories-at-multiple-distance-thresholds.-the-results-map-the-spatial-distribution-and-intensity-of-different-land-uses-across-the-madrid-street-network.next-steps-to-compute-accessibility-from-osm-data-instead-see-osm-accessibility." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-compute-landuse-accessibility-metrics-from-a-geodataframe-of-premises-data-calculating-weighted-and-unweighted-counts-as-well-as-nearest-distance-measures-for-food-and-beverage-creative-entertainment-and-retail-categories-at-multiple-distance-thresholds.-the-results-map-the-spatial-distribution-and-intensity-of-different-land-uses-across-the-madrid-street-network.next-steps-to-compute-accessibility-from-osm-data-instead-see-osm-accessibility.">ConclusionThis notebook demonstrated how to compute landuse accessibility metrics from a GeoDataFrame of premises data, calculating weighted and unweighted counts as well as nearest-distance measures for food and beverage, creative entertainment, and retail categories at multiple distance thresholds. The results map the spatial distribution and intensity of different land uses across the Madrid street network.<strong>Next steps:</strong> To compute accessibility from OSM data instead, see <a href="../../recipes/accessibility/osm_accessibility.html">OSM Accessibility</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to compute landuse accessibility metrics from a GeoDataFrame of premises data, calculating weighted and unweighted counts as well as nearest-distance measures for food and beverage, creative entertainment, and retail categories at multiple distance thresholds. The results map the spatial distribution and intensity of different land uses across the Madrid street network.</p>
+<p><strong>Next steps:</strong> To compute accessibility from OSM data instead, see <a href="../../recipes/accessibility/osm_accessibility.html">OSM Accessibility</a>.</p>
 
 
 </section>

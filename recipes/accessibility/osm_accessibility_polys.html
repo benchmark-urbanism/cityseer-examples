@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Park accessibility from OSM data</h1>
 <p>Calculate park accessibilities from OSM data.</p>
 <p>This examples calculates park accessibility for London using OpenStreetMap Polygon data.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:39.871811Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:39.871704Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:41.188043Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:41.187625Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -315,12 +315,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -392,12 +390,12 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 6904 items.</code></pre>
 </div>
 </div>
 <p>Prepare the parks GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as a <code>leisure</code> type of <code>park</code>. You can use the same idea to extract other features or land use types.</p>
 <p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:57.066916Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:57.066825Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:57.124988Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:57.124604Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"leisure"</span>: [<span class="st">"park"</span>]})</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(nodes_gdf.crs)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset index</span></span>
@@ -1452,7 +1450,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 </div>
 </div>
 <p>Once the data has been prepared, use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-accessibilities"><code>layers.compute_accessibilities</code></a> method to compute accessibilities. The <code>landuse_column_label</code> and the target accessibility keys should correspond to the data in the input GeoDataFrame. Use the <code>max_netw_assign_dist</code> parameter to configurethe distance for network assignment.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:57.126218Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:57.126127Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:57.250791Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:57.250256Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute pub accessibility</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, data_gdf <span class="op">=</span> layers.compute_accessibilities(</span>
@@ -1467,9 +1465,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: park
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 41 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Collected 325 potential node assignments from data entries.
-INFO:cityseer.data:Finished assigning data. 325 assignments added to 306 nodes.
-INFO:cityseer.graph:Barriers unset and R-tree cleared.
+INFO:cityseer.data:Finished assigning data. 325 assignments added to 311 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.
@@ -1479,10 +1475,10 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 </div>
 <p>The output columns are named <code>cc_{key}_{distance}_{type}</code>. Where the keys will correspond to the input accessibility keys and the distances will correspond to the input distances. The types will correspond to either non-weighted <code>nw</code> or distance weighted <code>wt</code> count, or else the distance to the nearest instance of a given landuse.</p>
 <p>Standard GeoPandas functionality can be used to explore, visualise, or save the results.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:54:57.252303Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:54:57.252199Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:54:57.254941Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:54:57.254438Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node', 'cc_park_100_nw', 'cc_park_100_wt', 'cc_park_200_nw',
        'cc_park_200_wt', 'cc_park_400_nw', 'cc_park_400_wt', 'cc_park_800_nw',
@@ -1507,8 +1503,8 @@ INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.</c
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
+<pre><code>(np.float64(697035.885372041),
+ np.float64(700647.6893696086),
  np.float64(5709138.304744158),
  np.float64(5712549.39964246))</code></pre>
 </div>

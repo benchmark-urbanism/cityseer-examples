@@ -277,9 +277,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#osm-network-from-a-relation-iduse-an-osm-relation-id-to-create-a-networkx-graph-from-osm.use-openstreetmap-to-identify-a-boundary-relations-id.-then-use-osmnx-to-retrieve-the-relation-id-as-a-geodataframe." id="toc-osm-network-from-a-relation-iduse-an-osm-relation-id-to-create-a-networkx-graph-from-osm.use-openstreetmap-to-identify-a-boundary-relations-id.-then-use-osmnx-to-retrieve-the-relation-id-as-a-geodataframe." class="nav-link active" data-scroll-target="#osm-network-from-a-relation-iduse-an-osm-relation-id-to-create-a-networkx-graph-from-osm.use-openstreetmap-to-identify-a-boundary-relations-id.-then-use-osmnx-to-retrieve-the-relation-id-as-a-geodataframe.">OSM network from a relation idUse an OSM relation id to create a <code>networkx</code> graph from OSM.Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retrieve the relation id as a <code>GeoDataFrame</code>.</a>
+  <li><a href="#osm-network-from-a-relation-id" id="toc-osm-network-from-a-relation-id" class="nav-link active" data-scroll-target="#osm-network-from-a-relation-id">OSM network from a relation id</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." id="toc-conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see Streets Dataset.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,21 +296,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Open In Colab</figcaption>
 </figure>
 </div>
-<section id="osm-network-from-a-relation-iduse-an-osm-relation-id-to-create-a-networkx-graph-from-osm.use-openstreetmap-to-identify-a-boundary-relations-id.-then-use-osmnx-to-retrieve-the-relation-id-as-a-geodataframe." class="level1">
-<h1>OSM network from a relation idUse an OSM relation id to create a <code>networkx</code> graph from OSM.Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retrieve the relation id as a <code>GeoDataFrame</code>.</h1>
-<div id="cell-2" class="cell" data-execution_count="2">
+<section id="osm-network-from-a-relation-id" class="level1">
+<h1>OSM network from a relation id</h1>
+<p>Use an OSM relation id to create a <code>networkx</code> graph from OSM.</p>
+<p>Use OpenStreetMap to identify a boundary relations id. Then, use <code>osmnx</code> to retrieve the relation id as a <code>GeoDataFrame</code>.</p>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:38.498047Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:38.497742Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:40.064738Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:40.064270Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> osmnx <span class="im">as</span> ox</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this case, we’ll retrieve the London <a href="https://www.openstreetmap.org/relation/17710512">Soho</a> boundary relation <code>17710512</code>. For this, we can use the <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.geocoder.geocode_to_gdf"><code>geocode_to_gdf</code></a> function with the <code>by_osmid</code> parameter set to <code>True</code>. Note the preceding <code>R</code> prepended to the id as per the API documentation.</p>
-<div id="cell-4" class="cell" data-execution_count="3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:40.066168Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:40.065992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:41.242894Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:41.242320Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds_gdf <span class="op">=</span> ox.geocode_to_gdf(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R17710512"</span>,  <span class="co"># OSM relation ID</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    by_osmid<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>bounds_gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -345,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>51.509966</td>
 <td>-0.129378</td>
 <td>51.516365</td>
-<td>259863049</td>
+<td>258744666</td>
 <td>relation</td>
 <td>17710512</td>
 <td>51.514065</td>
@@ -353,8 +355,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>place</td>
 <td>suburb</td>
 <td>19</td>
-<td>0.552695</td>
-<td>neighbourhood</td>
+<td>0.55752</td>
+<td>suburb</td>
 <td>Soho</td>
 <td>Soho, City of Westminster, Greater London, Eng...</td>
 </tr>
@@ -365,11 +367,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Convert the <code>GeoDataFrame</code> into a unified Polygon using the <code>geopandas</code> <code>union_all</code> method.</p>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:41.244136Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:41.244027Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:41.246625Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:41.246216Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a geoDataFrame - union for the geom</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_gdf.union_all()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <figure class="figure">
 <p><img src="network_from_relation_id_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
@@ -378,10 +380,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If the geometry is complex, then the subsequent OSM API request (which happens behind the scenes) can fail due to a long URL request. In this case, you can take the geometrically simpler <code>convex_hull</code> instead. Alternatively, you can simplify the geometry, but remember to use spatial units matching the CRS of the geometry.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:41.247793Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:41.247699Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:41.250056Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:41.249634Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> bounds_geom.convex_hull</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <figure class="figure">
 <p><img src="network_from_relation_id_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
@@ -390,12 +392,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>shapely</code> geometry can then be passed to the <code>cityseer</code> <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function, as per other examples.</p>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:41.251220Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:41.251133Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:49.158185Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:49.157725Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(bounds_geom)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -465,10 +469,10 @@ INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 144 nodes and 210 edges</code></pre>
+<pre><code>MultiGraph with 153 nodes and 224 edges</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="7">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:49.159470Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:49.159381Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:49.204882Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:49.204359Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
@@ -482,8 +486,10 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 </div>
-<section id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-retrieve-an-administrative-or-neighbourhood-boundary-from-openstreetmap-using-an-osm-relation-id-via-osmnx-and-then-use-that-boundary-to-create-a-cityseer-compatible-street-network-graph.-this-approach-is-convenient-when-a-well-defined-boundary-already-exists-in-osm-avoiding-the-need-to-supply-a-custom-boundary-file.next-steps-to-create-a-network-from-a-custom-streets-dataset-see-streets-dataset.">ConclusionThis notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.<strong>Next steps:</strong> To create a network from a custom streets dataset, see <a href="../../recipes/networks/network_from_streets.html">Streets Dataset</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to retrieve an administrative or neighbourhood boundary from OpenStreetMap using an OSM relation ID via <code>osmnx</code>, and then use that boundary to create a <code>cityseer</code>-compatible street network graph. This approach is convenient when a well-defined boundary already exists in OSM, avoiding the need to supply a custom boundary file.</p>
+<p><strong>Next steps:</strong> To create a network from a custom streets dataset, see <a href="../../recipes/networks/network_from_streets.html">Streets Dataset</a>.</p>
 
 
 </section>

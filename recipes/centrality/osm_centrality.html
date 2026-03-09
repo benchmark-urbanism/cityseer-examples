@@ -277,11 +277,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#network-centrality-from-osm-datathis-notebook-demonstrates-how-to-calculate-metric-shortest-path-distance-centralities-for-a-network-loaded-from-openstreetmap-osm-data.-we-will-create-a-network-from-a-buffered-point-convert-it-into-a-dual-graph-compute-centrality-measures-and-visualise-the-results." id="toc-network-centrality-from-osm-datathis-notebook-demonstrates-how-to-calculate-metric-shortest-path-distance-centralities-for-a-network-loaded-from-openstreetmap-osm-data.-we-will-create-a-network-from-a-buffered-point-convert-it-into-a-dual-graph-compute-centrality-measures-and-visualise-the-results." class="nav-link active" data-scroll-target="#network-centrality-from-osm-datathis-notebook-demonstrates-how-to-calculate-metric-shortest-path-distance-centralities-for-a-network-loaded-from-openstreetmap-osm-data.-we-will-create-a-network-from-a-buffered-point-convert-it-into-a-dual-graph-compute-centrality-measures-and-visualise-the-results.">Network centrality from OSM dataThis notebook demonstrates how to calculate metric (shortest-path) distance centralities for a network loaded from OpenStreetMap (OSM) data. We will create a network from a buffered point, convert it into a dual graph, compute centrality measures, and visualise the results.</a>
+  <li><a href="#network-centrality-from-osm-data" id="toc-network-centrality-from-osm-data" class="nav-link active" data-scroll-target="#network-centrality-from-osm-data">Network centrality from OSM data</a>
   <ul class="collapse">
-  <li><a href="#exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." id="toc-exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." class="nav-link" data-scroll-target="#exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values.">Exploring the resultsThe centrality function adds new columns to the <code>GeoDataFrame</code> following the naming convention <code>cc_{centrality}_{distance}</code>. Inspect the columns and summary statistics to understand the distribution of values.</a></li>
-  <li><a href="#visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." id="toc-visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." class="nav-link" data-scroll-target="#visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m.">Visualising centralityVisualise the results using the <code>geopandas</code> <code>.plot()</code> method. The first plot shows Hillier closeness at 500m and the second shows betweenness at 1000m.</a></li>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." id="toc-conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility.">ConclusionThis notebook demonstrated how to compute metric distance centralities for a network loaded directly from OpenStreetMap, using a buffered point to define the area of interest. The cleaned and simplified OSM network was converted to a dual graph, and closeness and betweenness centralities were computed and visualised at 500m and 1000m thresholds.<strong>Next steps:</strong> To add public transport data, see GTFS Centrality. For accessibility metrics, see Accessibility.</a></li>
+  <li><a href="#exploring-the-results" id="toc-exploring-the-results" class="nav-link" data-scroll-target="#exploring-the-results">Exploring the results</a></li>
+  <li><a href="#visualising-centrality" id="toc-visualising-centrality" class="nav-link" data-scroll-target="#visualising-centrality">Visualising centrality</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -298,28 +298,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Open In Colab</figcaption>
 </figure>
 </div>
-<section id="network-centrality-from-osm-datathis-notebook-demonstrates-how-to-calculate-metric-shortest-path-distance-centralities-for-a-network-loaded-from-openstreetmap-osm-data.-we-will-create-a-network-from-a-buffered-point-convert-it-into-a-dual-graph-compute-centrality-measures-and-visualise-the-results." class="level1">
-<h1>Network centrality from OSM dataThis notebook demonstrates how to calculate metric (shortest-path) distance centralities for a network loaded from OpenStreetMap (OSM) data. We will create a network from a buffered point, convert it into a dual graph, compute centrality measures, and visualise the results.</h1>
-<div id="cell-2" class="cell" data-execution_count="1">
+<section id="network-centrality-from-osm-data" class="level1">
+<h1>Network centrality from OSM data</h1>
+<p>This notebook demonstrates how to calculate metric (shortest-path) distance centralities for a network loaded from OpenStreetMap (OSM) data. We will create a network from a buffered point, convert it into a dual graph, compute centrality measures, and visualise the results.</p>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:27:54.563052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:27:54.562929Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:27:56.644448Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:27:56.643999Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Prepare the network as shown in OSM examples. For example, from a relation id, bounding box, buffered point, or for extents defined from a loaded file. This example uses a buffered point.</p>
 <p>Using a simplified representation is recommended, otherwise centrality measures will be distorted for “messier” portions of the network.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:27:56.645955Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:27:56.645784Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:12.671345Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:12.670756Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -393,21 +392,21 @@ INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</c
 </div>
 </div>
 <p>Use <a href="https://cityseer.benchmarkurbanism.com/tools/io#network-structure-from-nx"><code>network_structure_from_nx</code></a> from the <code>cityseer</code> package’s <code>io</code> module to prepare the <code>GeoDataFrames</code> and <code>NetworkStructure</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:12.673404Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:12.673257Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.350880Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.350308Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare the data structures</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    G_dual,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 6904 items.</code></pre>
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/networks#node-centrality-shortest"><code>node_centrality_shortest</code></a> function from the <code>cityseer</code> package’s <code>networks</code> module to calculate shortest metric distance centralities.</p>
 <blockquote class="blockquote">
 <p>Use angular centralities with caution on automatically cleaned OSM networks, preferably only after visual inspection and manual cleaning.</p>
 </blockquote>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:13.352203Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:13.352094Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.673951Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.673386Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">1000</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
@@ -416,10 +415,8 @@ INFO:cityseer.graph:Edge R-tree built successfully with 6706 items.</code></pre>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.networks:Computing shortest path node centrality.
-INFO:cityseer.config:Metrics computed for:
-INFO:cityseer.config:Distance: 500m, Beta: 0.008, Walking Time: 6.25 minutes.
-INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</code></pre>
+<pre><code>INFO:cityseer.metrics.networks:Computing node centrality (shortest).
+INFO:cityseer.metrics.networks:  Full: 500m, 1000m</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -432,13 +429,13 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
 <th data-quarto-table-cell-role="th">ns_node_idx</th>
 <th data-quarto-table-cell-role="th">x</th>
 <th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">z</th>
 <th data-quarto-table-cell-role="th">live</th>
 <th data-quarto-table-cell-role="th">weight</th>
 <th data-quarto-table-cell-role="th">primal_edge</th>
 <th data-quarto-table-cell-role="th">primal_edge_node_a</th>
 <th data-quarto-table-cell-role="th">primal_edge_node_b</th>
 <th data-quarto-table-cell-role="th">primal_edge_idx</th>
-<th data-quarto-table-cell-role="th">dual_node</th>
 <th data-quarto-table-cell-role="th">...</th>
 <th data-quarto-table-cell-role="th">cc_farness_500</th>
 <th data-quarto-table-cell-role="th">cc_farness_1000</th>
@@ -454,138 +451,139 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">108285_108286_k0</th>
+<th data-quarto-table-cell-role="th">108285_1784656260±108286±1270370717_k0</th>
 <td>0</td>
-<td>698450.790070</td>
-<td>5.709384e+06</td>
+<td>698453.215258</td>
+<td>5.709392e+06</td>
+<td>None</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (698442.587 5709352.756, 698457.019...</td>
+<td>LINESTRING (698465.562 5709434.93, 698457.019 ...</td>
 <td>108285</td>
-<td>108286</td>
+<td>1784656260±108286±1270370717</td>
 <td>0</td>
-<td>POINT (698450.79007 5709383.911839)</td>
 <td>...</td>
-<td>5902.179688</td>
-<td>58297.644531</td>
-<td>0.205285</td>
-<td>0.283637</td>
-<td>0.142490</td>
-<td>0.145186</td>
+<td>6843.542690</td>
+<td>68733.177822</td>
+<td>0.172185</td>
+<td>0.263754</td>
+<td>0.131511</td>
+<td>0.157362</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.000000</td>
 <td>0.000000</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">108286_6226833739_k0</th>
+<th data-quarto-table-cell-role="th">25507068_9070391933_k0</th>
 <td>1</td>
-<td>698445.179340</td>
-<td>5.709425e+06</td>
+<td>698652.179886</td>
+<td>5.709371e+06</td>
+<td>None</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (698434.184 5709439.895, 698435.241...</td>
-<td>108286</td>
-<td>6226833739</td>
+<td>LINESTRING (698573.197 5709355.747, 698575.609...</td>
+<td>25507068</td>
+<td>9070391933</td>
 <td>0</td>
-<td>POINT (698445.17934 5709425.495934)</td>
 <td>...</td>
-<td>5099.849121</td>
-<td>59582.296875</td>
-<td>0.272599</td>
-<td>0.355433</td>
-<td>0.164907</td>
-<td>0.151471</td>
-<td>10.0</td>
-<td>10.0</td>
-<td>2.265440</td>
-<td>4.563673</td>
+<td>4451.295670</td>
+<td>38904.140366</td>
+<td>0.036087</td>
+<td>0.097163</td>
+<td>0.032350</td>
+<td>0.083513</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">108286_1270370717±1784656260_k0</th>
+<th data-quarto-table-cell-role="th">293294662_9070391933_k0</th>
 <td>2</td>
-<td>698462.371609</td>
-<td>5.709425e+06</td>
+<td>698664.679549</td>
+<td>5.709341e+06</td>
+<td>None</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (698465.562 5709434.93, 698459.182 ...</td>
-<td>108286</td>
-<td>1270370717±1784656260</td>
+<td>LINESTRING (698577.062 5709346.311, 698581.514...</td>
+<td>293294662</td>
+<td>9070391933</td>
 <td>0</td>
-<td>POINT (698462.371609 5709424.972768)</td>
 <td>...</td>
-<td>5873.369141</td>
-<td>66387.937500</td>
-<td>0.310040</td>
-<td>0.401042</td>
-<td>0.163620</td>
-<td>0.162921</td>
-<td>32.0</td>
-<td>161.0</td>
-<td>8.085369</td>
-<td>20.560766</td>
+<td>3214.202286</td>
+<td>36307.465134</td>
+<td>0.027877</td>
+<td>0.088749</td>
+<td>0.025201</td>
+<td>0.077367</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1936005006_610896454±61089|05006_k0</th>
+<th data-quarto-table-cell-role="th">108277_610896454_k0</th>
 <td>3</td>
-<td>698508.474675</td>
-<td>5.709425e+06</td>
+<td>698484.602772</td>
+<td>5.709476e+06</td>
+<td>None</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (698494.235 5709445.995, 698518.821...</td>
-<td>1936005006</td>
-<td>610896454±61089|05006</td>
+<td>LINESTRING (698494.235 5709445.995, 698487.237...</td>
+<td>610896454</td>
+<td>108277</td>
 <td>0</td>
-<td>POINT (698508.474675 5709425.429823)</td>
 <td>...</td>
-<td>6557.249023</td>
-<td>66452.132812</td>
-<td>0.213808</td>
-<td>0.303199</td>
-<td>0.146555</td>
-<td>0.159649</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.000000</td>
-<td>0.000000</td>
+<td>8397.181805</td>
+<td>85174.398663</td>
+<td>0.262360</td>
+<td>0.377833</td>
+<td>0.163031</td>
+<td>0.198416</td>
+<td>27.0</td>
+<td>112.0</td>
+<td>5.644948</td>
+<td>14.987977</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">1784656176_6226833739_k0</th>
+<th data-quarto-table-cell-role="th">1784656260±108286±1270370717_610896454_k0</th>
 <td>4</td>
-<td>698421.101261</td>
-<td>5.709460e+06</td>
+<td>698477.371039</td>
+<td>5.709448e+06</td>
+<td>None</td>
 <td>True</td>
 <td>1</td>
-<td>LINESTRING (698434.184 5709439.895, 698432.763...</td>
-<td>6226833739</td>
-<td>1784656176</td>
+<td>LINESTRING (698465.562 5709434.93, 698471.303 ...</td>
+<td>610896454</td>
+<td>1784656260±108286±1270370717</td>
 <td>0</td>
-<td>POINT (698421.101261 5709459.670573)</td>
 <td>...</td>
-<td>5744.818359</td>
-<td>61325.531250</td>
-<td>0.265900</td>
-<td>0.349195</td>
-<td>0.167281</td>
-<td>0.156607</td>
-<td>63.0</td>
-<td>63.0</td>
-<td>14.625960</td>
-<td>29.263128</td>
+<td>7138.453680</td>
+<td>78391.095129</td>
+<td>0.265948</td>
+<td>0.370422</td>
+<td>0.152554</td>
+<td>0.177622</td>
+<td>29.0</td>
+<td>29.0</td>
+<td>7.648991</td>
+<td>14.300224</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 26 columns</p>
+<p>5 rows × 27 columns</p>
 </div>
 </div>
 </div>
-<section id="exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values." class="level2">
-<h2 class="anchored" data-anchor-id="exploring-the-resultsthe-centrality-function-adds-new-columns-to-the-geodataframe-following-the-naming-convention-cc_centrality_distance.-inspect-the-columns-and-summary-statistics-to-understand-the-distribution-of-values.">Exploring the resultsThe centrality function adds new columns to the <code>GeoDataFrame</code> following the naming convention <code>cc_{centrality}_{distance}</code>. Inspect the columns and summary statistics to understand the distribution of values.</h2>
-<div id="cell-10" class="cell" data-execution_count="5">
+<section id="exploring-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-results">Exploring the results</h2>
+<p>The centrality function adds new columns to the <code>GeoDataFrame</code> following the naming convention <code>cc_{centrality}_{distance}</code>. Inspect the columns and summary statistics to understand the distribution of values.</p>
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:13.675254Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:13.675128Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.677764Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.677269Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node', 'cc_beta_500', 'cc_beta_1000', 'cc_cycles_500',
        'cc_cycles_1000', 'cc_density_500', 'cc_density_1000', 'cc_farness_500',
@@ -596,24 +594,25 @@ INFO:cityseer.config:Distance: 1000m, Beta: 0.004, Walking Time: 12.5 minutes.</
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:13.679018Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:13.678910Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.683897Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.683353Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_hillier_500"</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>count    2847.000000
-mean        0.567491
-std         0.212634
-min         0.028749
-25%         0.424058
-50%         0.553027
-75%         0.710088
-max         1.070101
+<pre><code>count    2945.000000
+mean        0.583945
+std         0.215045
+min         0.015309
+25%         0.445660
+50%         0.569375
+75%         0.727350
+max         1.132366
 Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m." class="level2">
-<h2 class="anchored" data-anchor-id="visualising-centralityvisualise-the-results-using-the-geopandas-.plot-method.-the-first-plot-shows-hillier-closeness-at-500m-and-the-second-shows-betweenness-at-1000m.">Visualising centralityVisualise the results using the <code>geopandas</code> <code>.plot()</code> method. The first plot shows Hillier closeness at 500m and the second shows betweenness at 1000m.</h2>
-<div id="cell-13" class="cell" data-execution_count="7">
+<section id="visualising-centrality" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-centrality">Visualising centrality</h2>
+<p>Visualise the results using the <code>geopandas</code> <code>.plot()</code> method. The first plot shows Hillier closeness at 500m and the second shows betweenness at 1000m.</p>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:13.685248Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:13.685150Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.822060Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.821493Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_hillier_500"</span>,</span>
@@ -623,10 +622,10 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+<pre><code>(np.float64(697035.885372041),
+ np.float64(700647.6893696086),
+ np.float64(5709134.052703109),
+ np.float64(5712638.692504489))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -636,7 +635,7 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:28:13.823752Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:28:13.823641Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:28:13.933560Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:28:13.932990Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>,</span>
@@ -646,10 +645,10 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(np.float64(697035.8123208123),
- np.float64(700647.6928482385),
- np.float64(5709134.052621752),
- np.float64(5712638.694212982))</code></pre>
+<pre><code>(np.float64(697035.885372041),
+ np.float64(700647.6893696086),
+ np.float64(5709134.052703109),
+ np.float64(5712638.692504489))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -661,8 +660,10 @@ Name: cc_hillier_500, dtype: float64</code></pre>
 </div>
 <p>Betweenness highlights the streets that carry the most through-traffic potential. Notice how major roads and bridges tend to score highest, as they serve as critical links in the network.</p>
 </section>
-<section id="conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-compute-metric-distance-centralities-for-a-network-loaded-directly-from-openstreetmap-using-a-buffered-point-to-define-the-area-of-interest.-the-cleaned-and-simplified-osm-network-was-converted-to-a-dual-graph-and-closeness-and-betweenness-centralities-were-computed-and-visualised-at-500m-and-1000m-thresholds.next-steps-to-add-public-transport-data-see-gtfs-centrality.-for-accessibility-metrics-see-accessibility.">ConclusionThis notebook demonstrated how to compute metric distance centralities for a network loaded directly from OpenStreetMap, using a buffered point to define the area of interest. The cleaned and simplified OSM network was converted to a dual graph, and closeness and betweenness centralities were computed and visualised at 500m and 1000m thresholds.<strong>Next steps:</strong> To add public transport data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>. For accessibility metrics, see <a href="../../recipes/accessibility/index.html">Accessibility</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to compute metric distance centralities for a network loaded directly from OpenStreetMap, using a buffered point to define the area of interest. The cleaned and simplified OSM network was converted to a dual graph, and closeness and betweenness centralities were computed and visualised at 500m and 1000m thresholds.</p>
+<p><strong>Next steps:</strong> To add public transport data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>. For accessibility metrics, see <a href="../../recipes/accessibility/index.html">Accessibility</a>.</p>
 
 
 </section>

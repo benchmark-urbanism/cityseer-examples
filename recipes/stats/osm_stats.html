@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="statistics-from-osm-data" class="level1">
 <h1>Statistics from OSM data</h1>
 <p>Calculate building statistics from <code>osmnx</code> data.</p>
-<div id="1d3b0e0e" class="cell" data-execution_count="1">
+<div id="1d3b0e0e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:29.258162Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:29.258043Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:31.380640Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:31.380076Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -314,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>To start, follow the same approach as shown in the network examples to create the network.</p>
-<div id="39e56178" class="cell" data-execution_count="2">
+<div id="39e56178" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:31.382156Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:31.381977Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:48.921495Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:48.920967Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">1500</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
@@ -323,12 +323,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>nodes_gdf, _edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-WARNING:cityseer.tools.io:Unable to parse level info: -`;-4
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -401,12 +399,12 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 9061 items.</code></pre>
 </div>
 </div>
 <p>Prepare the buildings GeoDataFrame by downloading the data from OpenStreetMap. The <code>osmnx</code> <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_polygon"><code>features_from_polygon</code></a> works well for this purpose. In this instance, we are specifically targeting features that are labelled as an <code>building</code>.</p>
 <p>It is important to convert the derivative GeoDataFrame to the same CRS as the network.</p>
-<div id="bcbfd458" class="cell" data-execution_count="3">
+<div id="bcbfd458" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:48.922888Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:48.922785Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:49.912656Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:49.912158Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> features.features_from_polygon(poly_wgs, tags<span class="op">=</span>{<span class="st">"building"</span>: <span class="va">True</span>})</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_gdf <span class="op">=</span> data_gdf.to_crs(G.graph[<span class="st">"crs"</span>])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data_gdf.tail()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -597,7 +595,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
 </div>
 </div>
 <p>Some preparatory data cleaning is typically necessary. This example extracts the particular rows and columns of interest for the subsequent steps of analysis.</p>
-<div id="ea9a0d91" class="cell" data-execution_count="4">
+<div id="ea9a0d91" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:49.913830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:49.913752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:49.945779Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:49.945350Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> data_gdf.loc[<span class="st">"way"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bldg_way <span class="op">=</span> bldg_way[[<span class="st">"geometry"</span>]]</span>
@@ -640,7 +638,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
 </div>
 </div>
 </div>
-<div id="8c06b751" class="cell" data-execution_count="5">
+<div id="8c06b751" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:49.946982Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:49.946896Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:49.951082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:49.950701Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> data_gdf.loc[<span class="st">"relation"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel.reset_index(level<span class="op">=</span><span class="dv">0</span>, drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bldg_rel <span class="op">=</span> bldg_rel[[<span class="st">"geometry"</span>]]</span>
@@ -683,7 +681,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
 </div>
 </div>
 </div>
-<div id="35bfdbe2" class="cell" data-execution_count="6">
+<div id="35bfdbe2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:49.952113Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:49.952034Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:49.959998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:49.959540Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> pd.concat([bldg_way, bldg_rel], axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.explode(ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd <span class="op">=</span> bldgs_gpd.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
@@ -726,21 +724,21 @@ INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
 </div>
 </div>
 </div>
-<div id="daf40e17" class="cell" data-execution_count="7">
+<div id="daf40e17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:49.961117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:49.961037Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:50.139010Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:50.138569Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"area"</span>] <span class="op">=</span> bldgs_gpd.geometry.area</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"perimeter"</span>] <span class="op">=</span> bldgs_gpd.geometry.length</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"compactness"</span>] <span class="op">=</span> momepy.circular_compactness(bldgs_gpd.geometry)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"orientation"</span>] <span class="op">=</span> momepy.orientation(bldgs_gpd.geometry)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>bldgs_gpd[<span class="st">"shape_index"</span>] <span class="op">=</span> momepy.shape_index(bldgs_gpd.geometry)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="f945491c" class="cell" data-execution_count="8">
+<div id="f945491c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:50.140590Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:50.140493Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:50.143577Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:50.143143Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bldgs_gpd.geometry.<span class="bu">type</span>.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>array(['Polygon'], dtype=object)</code></pre>
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/metrics/layers#compute-stats"><code>layers.compute_stats</code></a> method to compute statistics for numeric columns in the <code>GeoDataFrame</code>. These are specified with the <code>stats_column_labels</code> argument. These statistics are computed over the network using network distances. In the case of weighted variances, the contribution of any particular point is weighted by the distance from the point of measure.</p>
-<div id="9709eafe" class="cell" data-execution_count="9">
+<div id="9709eafe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:50.144632Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:50.144557Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:51.017942Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:51.017517Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf, bldgs_gpd <span class="op">=</span> layers.compute_stats(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    bldgs_gpd,</span>
@@ -759,32 +757,29 @@ INFO:cityseer.graph:Edge R-tree built successfully with 8875 items.</code></pre>
 <pre><code>INFO:cityseer.metrics.layers:Computing statistics.
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 9768 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Collected 89624 potential node assignments from data entries.
-INFO:cityseer.data:Finished assigning data. 89624 assignments added to 4849 nodes.
-INFO:cityseer.graph:Barriers unset and R-tree cleared.
+INFO:cityseer.data:Finished assigning data. 90508 assignments added to 4910 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 100m, Beta: 0.04, Walking Time: 1.25 minutes.
 INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.</code></pre>
 </div>
 </div>
 <p>This will generate a set of columns containing <code>count</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, and <code>var</code>, in unweighted <code>nw</code> and weighted <code>wt</code> versions (where applicable) for each of the input distance thresholds.</p>
-<div id="b9f98c13" class="cell" data-execution_count="10">
+<div id="b9f98c13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:51.019362Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:51.019267Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:51.021523Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:51.021196Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
-       'dual_node',
        ...
-       'cc_shape_index_sum_200_nw', 'cc_shape_index_sum_200_wt',
-       'cc_shape_index_mean_200_nw', 'cc_shape_index_mean_200_wt',
        'cc_shape_index_count_200_nw', 'cc_shape_index_count_200_wt',
+       'cc_shape_index_median_200_nw', 'cc_shape_index_median_200_wt',
        'cc_shape_index_var_200_nw', 'cc_shape_index_var_200_wt',
+       'cc_shape_index_mad_200_nw', 'cc_shape_index_mad_200_wt',
        'cc_shape_index_max_200', 'cc_shape_index_min_200'],
-      dtype='object', length=110)</code></pre>
+      dtype='object', length=151)</code></pre>
 </div>
 </div>
 <p>The result in columns can be explored with conventional Python ecosystem tools such as <code>seaborn</code> and <code>matplotlib</code>.</p>
-<div id="e302a9be" class="cell" data-execution_count="11">
+<div id="e302a9be" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:51.022780Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:51.022700Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:51.111465Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:51.110950Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>nodes_gdf,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"cc_area_mean_100_wt"</span>,</span>
@@ -798,7 +793,7 @@ INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.</cod
 </div>
 </div>
 </div>
-<div id="90a20dfe" class="cell" data-execution_count="12">
+<div id="90a20dfe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:39:51.112719Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:39:51.112620Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:39:51.888336Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:39:51.887923Z&quot;}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_area_mean_100_wt"</span>,</span>
@@ -821,10 +816,10 @@ INFO:cityseer.config:Distance: 200m, Beta: 0.02, Walking Time: 2.5 minutes.</cod
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>(np.float64(697102.5282020274),
- np.float64(700585.1041845226),
- np.float64(5709114.861675241),
- np.float64(5712536.396237949))</code></pre>
+<pre><code>(np.float64(697101.1960980732),
+ np.float64(700585.1676180443),
+ np.float64(5709114.861721147),
+ np.float64(5712536.395273919))</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

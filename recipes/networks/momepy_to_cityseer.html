@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#convert-a-network-from-momepy" id="toc-convert-a-network-from-momepy" class="nav-link active" data-scroll-target="#convert-a-network-from-momepy">Convert a network from momepy</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." id="toc-conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to Network Centrality to compute metrics.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -300,23 +300,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Convert a network from momepy</h1>
 <p>Convert a network from <code>momepy</code> to a <code>cityseer</code> compatible <code>networkx</code> graph.</p>
 <p>The process is for converting <code>momepy</code> networks is similar to that for opening street network datasets via <code>geopandas</code>.</p>
-<div id="cell-2" class="cell" data-execution_count="2">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:34:52.552838Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:34:52.552555Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:34:54.609179Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:34:54.608693Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> momepy</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/gareth/dev/cityseer-examples/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<pre><code>/Users/gareth/dev/benchmark-urbanism/cityseer-examples/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm</code></pre>
 </div>
 </div>
 <p>Prepare a <code>momepy</code> street network. Here we will use the <code>momepy</code> example dataset <code>streets</code> which is a <code>GeoDataFrame</code> of street segments.</p>
-<div id="cell-4" class="cell">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:34:54.610701Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:34:54.610519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:34:54.758928Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:34:54.758453Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    momepy.datasets.get_path(<span class="st">"bubenec"</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    layer<span class="op">=</span><span class="st">"streets"</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>streets_gpd.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="4">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:34:54.760143Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:34:54.759971Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:34:54.820700Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:34:54.820194Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>streets_gpd.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -365,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#nx-from-generic-geopandas"><code>nx_from_generic_geopandas</code></a> function to convert the <code>geopandas</code> LineStrings dataset to a <code>networkx</code> graph. This function will automatically create nodes and edges from the LineStrings in the dataset.</p>
-<div id="cell-7" class="cell" data-execution_count="5">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:34:54.822083Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:34:54.821973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:34:54.863934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:34:54.863446Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -385,8 +385,10 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 </div>
-<section id="conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-convert-a-momepy-street-network-stored-as-a-geopandas-geodataframe-of-linestrings-into-a-cityseer-compatible-networkx-graph-using-nx_from_generic_geopandas.-the-same-approach-applies-to-any-linestring-based-street-dataset-loaded-through-geopandas.next-steps-once-your-network-is-ready-proceed-to-network-centrality-to-compute-metrics.">ConclusionThis notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.<strong>Next steps:</strong> Once your network is ready, proceed to <a href="../../recipes/centrality/index.html">Network Centrality</a> to compute metrics.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to convert a <code>momepy</code> street network (stored as a <code>geopandas</code> GeoDataFrame of LineStrings) into a <code>cityseer</code>-compatible <code>networkx</code> graph using <code>nx_from_generic_geopandas</code>. The same approach applies to any LineString-based street dataset loaded through <code>geopandas</code>.</p>
+<p><strong>Next steps:</strong> Once your network is ready, proceed to <a href="../../recipes/centrality/index.html">Network Centrality</a> to compute metrics.</p>
 
 
 </section>

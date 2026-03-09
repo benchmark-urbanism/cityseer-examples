@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#visibility-from-geopandas-data" id="toc-visibility-from-geopandas-data" class="nav-link active" data-scroll-target="#visibility-from-geopandas-data">Visibility from GeoPandas data</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." id="toc-conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster.">ConclusionThis notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.<strong>Next steps:</strong> To incorporate terrain elevation data, see Visibility from Raster.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,12 +299,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visibility-from-geopandas-data" class="level1">
 <h1>Visibility from GeoPandas data</h1>
 <p>Generate a visibility analysis from GeoPandas data (or a file opened with GeoPandas).</p>
-<div id="a46c909a" class="cell" data-execution_count="1">
+<div id="a46c909a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:40:05.377962Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:40:05.377874Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:40:07.018073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:40:07.017557Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> visibility</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Open a GeoPandas dataset.</p>
-<div id="e519f84d" class="cell" data-execution_count="2">
+<div id="e519f84d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:40:07.019695Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:40:07.019485Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:40:07.729067Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:40:07.728556Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bldgs_gdf <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_buildings/madrid_bldgs.gpkg"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bldgs_gdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -411,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="1bdfa7fc" class="cell" data-execution_count="3">
+<div id="1bdfa7fc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:40:07.730262Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:40:07.730112Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:40:07.734161Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:40:07.733792Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bldgs_gdf.crs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>&lt;Projected CRS: EPSG:25830&gt;
@@ -440,7 +440,7 @@ Datum: European Terrestrial Reference System 1989 ensemble
 <li>The <code>view_distance</code> and <code>resolution</code> parameters, which control the analysis granularity.</li>
 </ul>
 <p>There is a performance trade-off for the bounds, view_distance, and resolution. A larger view_distance or higher resolution will result in a more detailed graph but may take longer to compute and require more memory.</p>
-<div id="08d04c8d" class="cell" data-execution_count="4">
+<div id="08d04c8d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:40:07.735338Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:40:07.735264Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:42:39.211012Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:42:39.210059Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>visibility.visibility_from_gpd(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    bldgs_gdf,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>(<span class="dv">439658</span>, <span class="dv">4473632</span>, <span class="dv">440914</span>, <span class="dv">4474972</span>),</span>
@@ -452,8 +452,7 @@ Datum: European Terrestrial Reference System 1989 ensemble
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.visibility:Preparing buildings raster.
-INFO:cityseer.metrics.visibility:Running visibility.
-100%|██████████| 420760/420760 [01:40&lt;00:00, 4178.07it/s]</code></pre>
+INFO:cityseer.metrics.visibility:Running visibility.</code></pre>
 </div>
 </div>
 <p>The output will generate three files:</p>
@@ -464,8 +463,10 @@ INFO:cityseer.metrics.visibility:Running visibility.
 </ul>
 <p>Visualised as <code>farness</code> with values clipped to de-accentuate rooftops while recovering detail in relation to the ground.</p>
 <p><img src="images/madrid_farness_150_1.png" style="width:100%;"></p>
-<section id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-a-geopandas-geodataframe-of-building-footprints-using-visibility_from_gpd.-by-specifying-bounds-crs-view-distance-and-resolution-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-capture-the-spatial-pattern-of-visual-openness-and-enclosure-across-the-madrid-study-area.next-steps-to-incorporate-terrain-elevation-data-see-visibility-from-raster.">ConclusionThis notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.<strong>Next steps:</strong> To incorporate terrain elevation data, see <a href="../../recipes/visibility/vis_raster.html">Visibility from Raster</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to generate a visibility analysis from a GeoPandas GeoDataFrame of building footprints using <code>visibility_from_gpd</code>. By specifying bounds, CRS, view distance, and resolution, the method produces density, farness, and harmonic closeness rasters that capture the spatial pattern of visual openness and enclosure across the Madrid study area.</p>
+<p><strong>Next steps:</strong> To incorporate terrain elevation data, see <a href="../../recipes/visibility/vis_raster.html">Visibility from Raster</a>.</p>
 
 
 </section>

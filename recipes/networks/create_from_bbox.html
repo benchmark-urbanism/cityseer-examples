@@ -296,13 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="osm-network-from-a-bounding-box" class="level1">
 <h1>OSM network from a bounding box</h1>
 <p>Use a bounding box to create a <code>networkx</code> graph from OpenStreetMap data.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:31.739397Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:31.739142Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:33.342526Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:33.342043Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> geometry</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Use a shapely Polygon in WGS84 coordinates to define a boundary for the graph.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:33.344132Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:33.343974Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:33.347871Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:33.347524Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>poly_wgs <span class="op">=</span> geometry.box(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.14115725966109327</span>, <span class="fl">51.509220662095714</span>, <span class="op">-</span><span class="fl">0.12676440185383622</span>, <span class="fl">51.51820111033659</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -317,13 +317,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Use the <a href="https://cityseer.benchmarkurbanism.com/tools/io#osm-graph-from-poly">osm_graph_from_poly</a> function available from the <code>cityseer</code> package’s <code>io</code> module.</p>
 <p>The function expects a <code>shapely</code> polygon and returns a <code>networkx</code> graph. <code>cityseer</code> will automatically extract the graph topology while also creating accurate street geometries represented as <code>shapely</code> LineString geometries, which are linked to the graph’s edges through the <code>geom</code> edge attribute.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:33.349041Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:33.348962Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:36.423964Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:36.423538Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -393,11 +394,11 @@ INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 382 nodes and 591 edges</code></pre>
+<pre><code>MultiGraph with 382 nodes and 587 edges</code></pre>
 </div>
 </div>
 <p>The <a href="https://cityseer.benchmarkurbanism.com/tools/plot#plot-nx"><code>plot_nx</code></a> function can be used to visualize the graph. It accepts a <code>cityseer</code> prepared <code>networkx</code> graph and will plot street geometries when the <code>plot_geoms</code> parameter is set to <code>True</code>.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:36.425298Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:36.425213Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:36.477896Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:36.477453Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
@@ -412,14 +413,16 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 <p>If using a different CRS, then specify this using the <code>poly_crs_code</code> parameter. For example, if you are using UTM zone 30N, then set this to the corresponding EPSG code, in this case <a href="https://epsg.io/32630">32630</a>.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:36.479190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:36.479097Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:40.209524Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:40.209064Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>poly_utm <span class="op">=</span> geometry.box(<span class="dv">698361</span>, <span class="dv">5710348</span>, <span class="dv">699361</span>, <span class="dv">5711348</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>G_utm <span class="op">=</span> io.osm_graph_from_poly(poly_utm, poly_crs_code<span class="op">=</span><span class="dv">32630</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_utm)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G_utm, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -491,7 +494,7 @@ INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 381 nodes and 595 edges</code></pre>
+<pre><code>MultiGraph with 382 nodes and 593 edges</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -502,14 +505,15 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 <p><code>cityseer</code> will set node and edge geometry coordinates to the local projected UTM coordinate reference system. If you want to create the resulting graph in a specific CRS, then specify this using the <code>to_crs_code</code> parameter. For example, in the UK you might want to use the British National Grid, which has the EPSG code <a href="https://epsg.io/27700">27700</a>.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:40.210885Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:40.210777Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:43.657000Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:43.656521Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>G_bng <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, to_crs_code<span class="op">=</span><span class="dv">27700</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_bng)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G_bng, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 27700.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -581,7 +585,7 @@ INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 380 nodes and 589 edges</code></pre>
+<pre><code>MultiGraph with 379 nodes and 582 edges</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -592,14 +596,15 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 <p><code>cityseer</code> will automatically attempt to clean-up the graph by removing unnecessary nodes and simplifying the graph. If you only want basic cleaning without simplification, then set the <code>simplify</code> parameter to <code>False</code>. Note that in this case the graph has significantly more nodes and edges because simplification has not been applied.</p>
-<div id="cell-14" class="cell" data-execution_count="7">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:43.658330Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:43.658229Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:45.731439Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:45.731105Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>G_raw <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, simplify<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_raw)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G_raw, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Merging node 12450391665 into 25544116 due to identical x, y coords.
-INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -607,7 +612,7 @@ INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 1913 nodes and 2211 edges</code></pre>
+<pre><code>MultiGraph with 2101 nodes and 2368 edges</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

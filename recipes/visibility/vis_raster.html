@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#visibility-from-raster-data" id="toc-visibility-from-raster-data" class="nav-link active" data-scroll-target="#visibility-from-raster-data">Visibility from raster data</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-raster-data-using-visibility_from_raster-which-can-incorporate-building-heights-and-digital-elevation-model-dem-data-to-account-for-terrain.-the-observer-height-parameter-allows-simulating-pedestrian-level-views-and-the-output-rasters-density-farness-harmonic-capture-visibility-patterns-influenced-by-both-buildings-and-topography.next-steps-for-street-continuity-analysis-see-continuity." id="toc-conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-raster-data-using-visibility_from_raster-which-can-incorporate-building-heights-and-digital-elevation-model-dem-data-to-account-for-terrain.-the-observer-height-parameter-allows-simulating-pedestrian-level-views-and-the-output-rasters-density-farness-harmonic-capture-visibility-patterns-influenced-by-both-buildings-and-topography.next-steps-for-street-continuity-analysis-see-continuity." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-raster-data-using-visibility_from_raster-which-can-incorporate-building-heights-and-digital-elevation-model-dem-data-to-account-for-terrain.-the-observer-height-parameter-allows-simulating-pedestrian-level-views-and-the-output-rasters-density-farness-harmonic-capture-visibility-patterns-influenced-by-both-buildings-and-topography.next-steps-for-street-continuity-analysis-see-continuity.">ConclusionThis notebook demonstrated how to generate a visibility analysis from raster data using <code>visibility_from_raster</code>, which can incorporate building heights and Digital Elevation Model (DEM) data to account for terrain. The observer height parameter allows simulating pedestrian-level views, and the output rasters (density, farness, harmonic) capture visibility patterns influenced by both buildings and topography.<strong>Next steps:</strong> For street continuity analysis, see Continuity.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visibility-from-raster-data" class="level1">
 <h1>Visibility from raster data</h1>
 <p>Generate a visibility analysis from raster data. This approach allows for blending building footprints with Digital Elevation Model (DEM) data to take elevation into account.</p>
-<div id="c8b87d07" class="cell" data-execution_count="1">
+<div id="c8b87d07" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:44:28.614786Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:44:28.614678Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:44:30.267914Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:44:30.267352Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> visibility</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Use the visibility module to create a visibility analysis from raster data. The visibility will be generated based on the raster data provided to the <code>visibility_from_raster</code> method.</p>
@@ -306,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <code>out_path</code> parameter, which specifies where to save the output files. The filepath must exist. The extension of the output file will be <code>.tif</code> and the file will be saved in GeoTIFF format, which can be opened in QGIS.</li>
 </ul>
 <p>There is a performance trade-off for the view_distance and input file resolution. A larger view_distance or higher resolution will result in a more detailed graph but may take longer to compute and require more memory.</p>
-<div id="f833696b" class="cell" data-execution_count="6">
+<div id="f833696b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:44:30.269508Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:44:30.269305Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:45:27.441060Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:45:27.440349Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>visibility.visibility_from_raster(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recipes/visibility/images/madrid_rast_ht.tif"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recipes/visibility/images/madrid_vis_from_rast"</span>,</span>
@@ -314,15 +314,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    observer_height<span class="op">=</span><span class="fl">1.5</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># defaults to local UTM</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.metrics.visibility:Running visibility graph from raster file: /Users/gareth/dev/cityseer-examples/recipes/visibility/images/madrid_rast_ht.tif.
-INFO:cityseer.metrics.visibility:Raster resolution: 2.0 meters per pixel
-100%|██████████| 638775/638775 [00:40&lt;00:00, 15663.54it/s]</code></pre>
+<pre><code>INFO:cityseer.metrics.visibility:Running visibility graph from raster file: /Users/gareth/dev/benchmark-urbanism/cityseer-examples/recipes/visibility/images/madrid_rast_ht.tif.
+INFO:cityseer.metrics.visibility:Raster resolution: 2.0 meters per pixel</code></pre>
 </div>
 </div>
 <p>Visualised as <code>harmonic</code> on a dataset of building rasters including building rooftop heights. (No DEM data used in this example.)</p>
 <p><img src="images/madrid_harmonic_100_2.png" style="width:100%;"></p>
-<section id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-raster-data-using-visibility_from_raster-which-can-incorporate-building-heights-and-digital-elevation-model-dem-data-to-account-for-terrain.-the-observer-height-parameter-allows-simulating-pedestrian-level-views-and-the-output-rasters-density-farness-harmonic-capture-visibility-patterns-influenced-by-both-buildings-and-topography.next-steps-for-street-continuity-analysis-see-continuity." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-from-raster-data-using-visibility_from_raster-which-can-incorporate-building-heights-and-digital-elevation-model-dem-data-to-account-for-terrain.-the-observer-height-parameter-allows-simulating-pedestrian-level-views-and-the-output-rasters-density-farness-harmonic-capture-visibility-patterns-influenced-by-both-buildings-and-topography.next-steps-for-street-continuity-analysis-see-continuity.">ConclusionThis notebook demonstrated how to generate a visibility analysis from raster data using <code>visibility_from_raster</code>, which can incorporate building heights and Digital Elevation Model (DEM) data to account for terrain. The observer height parameter allows simulating pedestrian-level views, and the output rasters (density, farness, harmonic) capture visibility patterns influenced by both buildings and topography.<strong>Next steps:</strong> For street continuity analysis, see <a href="../../recipes/continuity/index.html">Continuity</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to generate a visibility analysis from raster data using <code>visibility_from_raster</code>, which can incorporate building heights and Digital Elevation Model (DEM) data to account for terrain. The observer height parameter allows simulating pedestrian-level views, and the output rasters (density, farness, harmonic) capture visibility patterns influenced by both buildings and topography.</p>
+<p><strong>Next steps:</strong> For street continuity analysis, see <a href="../../recipes/continuity/index.html">Continuity</a>.</p>
 
 
 </section>

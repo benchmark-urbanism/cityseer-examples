@@ -342,16 +342,29 @@ Tip
 <section id="primal-vs.-dual-graphs" class="level3">
 <h3 class="anchored" data-anchor-id="primal-vs.-dual-graphs">Primal vs.&nbsp;dual graphs</h3>
 <p>By default, a street network is a <strong>primal graph</strong>: intersections are nodes and streets are edges. This is the representation you get from most data sources.</p>
-<p><code>cityseer</code> can convert a primal graph into a <strong>dual graph</strong>, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more meaningful for urban analysis.</p>
+<p><code>cityseer</code> can convert a primal graph into a <strong>dual graph</strong>, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more intuitive for urban analysis because the outputs can be visualised on street segment geometries. It also corresponds more naturally with the idea of simplest path centralities using angular distances from street to street.</p>
 <pre><code>Primal graph                    Dual graph
 (intersections = nodes)         (streets = nodes)
 
-    A ——— B                     AB ——— BC
-    |     |          →          |      |
-    C ——— D                     AC ——— CD
-                                 \   /
-                                  BD</code></pre>
+    A ——— B                        AB
+    |     |          →            /  \
+    C ——— D                     AC    BD
+                                  \  /
+                                   CD</code></pre>
 <p>Working with the dual representation is recommended for centrality analysis. See <a href="https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual"><code>nx_to_dual</code></a> in the API docs.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From the latest version, <strong>angular centrality measures require the dual graph</strong>. Use <code>graphs.nx_to_dual</code> to convert your primal graph before computing angular centralities.</p>
+</div>
+</div>
 </section>
 <section id="networkstructure" class="level3">
 <h3 class="anchored" data-anchor-id="networkstructure">NetworkStructure</h3>
@@ -423,26 +436,138 @@ Tip
 <section id="a-minimal-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-minimal-example">A minimal example</h2>
 <p>Here is a complete <code>cityseer</code> workflow in under 20 lines. It downloads a street network, computes betweenness centrality, and plots the result.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define area of interest and download network</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(<span class="op">-</span><span class="fl">3.7038</span>, <span class="fl">40.4168</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs, to_crs_code<span class="op">=</span>epsg_code)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Convert to dual graph (recommended) and prepare data structures</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Compute centrality at 500m and 1000m</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>[<span class="dv">500</span>, <span class="dv">1000</span>],</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Plot betweenness centrality at 1000m</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>, cmap<span class="op">=</span><span class="st">"magma"</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2f631254" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Set quiet mode (optional — reduces logging output)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"CITYSEER_QUIET_MODE"</span>] <span class="op">=</span> <span class="st">"1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="afd785e8" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> networks</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define area of interest and download network</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>poly_wgs, _ <span class="op">=</span> io.buffered_point_poly(<span class="op">-</span><span class="fl">3.7038</span>, <span class="fl">40.4168</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(poly_wgs)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Convert to dual graph (recommended) and prepare data structures</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>nodes_gdf, edges_gdf, network_structure <span class="op">=</span> io.network_structure_from_nx(G_dual)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Compute centrality at 500m, 1000m, and 2000m</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>nodes_gdf <span class="op">=</span> networks.node_centrality_shortest(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    network_structure<span class="op">=</span>network_structure,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    nodes_gdf<span class="op">=</span>nodes_gdf,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    distances<span class="op">=</span>[<span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">2000</span>],</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Plot betweenness centrality at 2000m</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_betweenness_1000"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"magma"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
+INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
+INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
+INFO:cityseer.tools.io:Processing node x, y coordinates.
+INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Snapping gapped endings.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating edges STR tree.
+INFO:cityseer.tools.graphs:Splitting opposing edges.
+INFO:cityseer.tools.graphs:Squashing opposing nodes
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.util:Creating nodes STR tree
+INFO:cityseer.tools.graphs:Consolidating nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 25.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 50.
+INFO:cityseer.tools.graphs:Ironing edges.
+INFO:cityseer.tools.graphs:Merging parallel edges within buffer of 1.
+INFO:cityseer.tools.graphs:Removing dangling nodes.
+INFO:cityseer.tools.graphs:Removing filler nodes.
+INFO:cityseer.tools.graphs:Converting graph to dual.
+INFO:cityseer.tools.graphs:Preparing dual nodes
+INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
+INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
+INFO:cityseer.graph:Edge R-tree built successfully with 3354 items.
+INFO:cityseer.metrics.networks:Computing node centrality (shortest).
+INFO:cityseer.metrics.networks:  Full: 500m, 1000m, 2000m</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>(np.float64(439069.9073235071),
+ np.float64(441447.3570016397),
+ np.float64(4472987.0367495585),
+ np.float64(4475752.01592385))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="quickstart_files/figure-html/cell-3-output-3.png" width="401" height="463" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

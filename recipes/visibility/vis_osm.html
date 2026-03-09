@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#visibility-from-osm-data" id="toc-visibility-from-osm-data" class="nav-link active" data-scroll-target="#visibility-from-osm-data">Visibility from OSM data</a>
   <ul class="collapse">
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-directly-from-openstreetmap-building-footprints-using-visibility_from_osm.-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-quantify-visual-openness-and-enclosure-across-the-urban-area-output-as-geotiff-files-for-use-in-qgis-or-further-analysis.next-steps-to-use-building-data-from-files-see-visibility-from-geopandas." id="toc-conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-directly-from-openstreetmap-building-footprints-using-visibility_from_osm.-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-quantify-visual-openness-and-enclosure-across-the-urban-area-output-as-geotiff-files-for-use-in-qgis-or-further-analysis.next-steps-to-use-building-data-from-files-see-visibility-from-geopandas." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-directly-from-openstreetmap-building-footprints-using-visibility_from_osm.-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-quantify-visual-openness-and-enclosure-across-the-urban-area-output-as-geotiff-files-for-use-in-qgis-or-further-analysis.next-steps-to-use-building-data-from-files-see-visibility-from-geopandas.">ConclusionThis notebook demonstrated how to generate a visibility analysis directly from OpenStreetMap building footprints using <code>visibility_from_osm</code>. The method produces density, farness, and harmonic closeness rasters that quantify visual openness and enclosure across the urban area, output as GeoTIFF files for use in QGIS or further analysis.<strong>Next steps:</strong> To use building data from files, see Visibility from GeoPandas.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visibility-from-osm-data" class="level1">
 <h1>Visibility from OSM data</h1>
 <p>Generate a visibility analysis from OpenStreetMap (OSM) data.</p>
-<div id="a46c909a" class="cell" data-execution_count="5">
+<div id="a46c909a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:42:52.651124Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:42:52.650791Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:42:54.302455Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:42:54.302016Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> visibility</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Use the visibility module to create a visibility analysis from OSM data. The visibility will be generated based on the OSM data provided to the <code>visibility_from_osm</code> method.</p>
@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <code>view_distance</code> and <code>resolution</code> parameters, which control the analysis granularity.</li>
 </ul>
 <p>There is a performance trade-off for the bounds, view_distance, and resolution. A larger view_distance or higher resolution will result in a more detailed graph but may take longer to compute and require more memory.</p>
-<div id="08d04c8d" class="cell" data-execution_count="6">
+<div id="08d04c8d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:42:54.304105Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:42:54.303941Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:44:15.372723Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:44:15.372069Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>visibility.visibility_from_osm(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    bounds_wgs<span class="op">=</span>(<span class="fl">18.41077</span>, <span class="op">-</span><span class="fl">33.93154</span>, <span class="fl">18.42755</span>, <span class="op">-</span><span class="fl">33.91626</span>),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    out_path<span class="op">=</span><span class="st">"recipes/visibility/images/ct_vis"</span>,</span>
@@ -318,8 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.metrics.visibility:Preparing buildings raster.
-INFO:cityseer.metrics.visibility:Running visibility.
-100%|██████████| 690999/690999 [00:50&lt;00:00, 13580.39it/s]</code></pre>
+INFO:cityseer.metrics.visibility:Running visibility.</code></pre>
 </div>
 </div>
 <p>The output will generate three files:</p>
@@ -331,8 +330,10 @@ INFO:cityseer.metrics.visibility:Running visibility.
 <p>Visualised as <code>farness</code> (building rooftops included).</p>
 <p><img src="images/ct_farness_100_2.png" style="width:100%;"></p>
 <p>Higher visibility density values indicate more open street environments with fewer obstructions, while lower values indicate more enclosed streets surrounded by buildings.</p>
-<section id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-directly-from-openstreetmap-building-footprints-using-visibility_from_osm.-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-quantify-visual-openness-and-enclosure-across-the-urban-area-output-as-geotiff-files-for-use-in-qgis-or-further-analysis.next-steps-to-use-building-data-from-files-see-visibility-from-geopandas." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-generate-a-visibility-analysis-directly-from-openstreetmap-building-footprints-using-visibility_from_osm.-the-method-produces-density-farness-and-harmonic-closeness-rasters-that-quantify-visual-openness-and-enclosure-across-the-urban-area-output-as-geotiff-files-for-use-in-qgis-or-further-analysis.next-steps-to-use-building-data-from-files-see-visibility-from-geopandas.">ConclusionThis notebook demonstrated how to generate a visibility analysis directly from OpenStreetMap building footprints using <code>visibility_from_osm</code>. The method produces density, farness, and harmonic closeness rasters that quantify visual openness and enclosure across the urban area, output as GeoTIFF files for use in QGIS or further analysis.<strong>Next steps:</strong> To use building data from files, see <a href="../../recipes/visibility/vis_gpd.html">Visibility from GeoPandas</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to generate a visibility analysis directly from OpenStreetMap building footprints using <code>visibility_from_osm</code>. The method produces density, farness, and harmonic closeness rasters that quantify visual openness and enclosure across the urban area, output as GeoTIFF files for use in QGIS or further analysis.</p>
+<p><strong>Next steps:</strong> To use building data from files, see <a href="../../recipes/visibility/vis_gpd.html">Visibility from GeoPandas</a>.</p>
 
 
 </section>

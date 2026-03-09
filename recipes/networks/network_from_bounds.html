@@ -300,15 +300,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>OSM network from a boundary file</h1>
 <p>Use a custom boundary file to create a <code>networkx</code> graph from OSM.</p>
 <p>If you have a boundary file in a GeoPackage, shapefile, or similar format, then you can load this file and use it as the boundary for creating a network from OSM.</p>
-<div id="cell-2" class="cell" data-execution_count="16">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:08.285939Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:08.285636Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.859009Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.858481Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Use <code>geopandas</code> to load the boundary file. Check that your file path is correct!</p>
-<div id="cell-4" class="cell" data-execution_count="17">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.860422Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.860254Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.925880Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.925409Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bounds_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_nbhds/madrid_nbhds.gpkg"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bounds_gpd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Extract the EPSG code from the boundary file.</p>
-<div id="cell-6" class="cell" data-execution_count="18">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.927096Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.926932Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.929722Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.929315Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>epsg_code <span class="op">=</span> bounds_gpd.crs.to_epsg()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bounds_gpd.crs.is_projected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -515,7 +515,7 @@ True</code></pre>
 </div>
 <p>If the geometry is not in a projected coordinate system, reproject it to a locally projected coordinate system before doing buffering or simplification. This can be done with the built-in <code>to_crs</code> method in <code>geopandas</code>. The EPSG code for the UTM zone can be found at <a href="https://epsg.io/">epsg.io</a>. For example, if your boundary is in the UTM zone 30N, you can use code 32630.</p>
 <p>For the currently opened file, the boundary is already in a projected coordinate system, so we can skip this step. When working with a file that does need to reprojected, then you can use the following code to project your CRS to a given EPSG code.</p>
-<div id="cell-8" class="cell" data-execution_count="19">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.930922Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.930820Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.933225Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.932794Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shown as example - unnecessary step for current dataset</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bounds_gpd <span class="op">=</span> bounds_gpd.to_crs(epsg<span class="op">=</span><span class="dv">25830</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(epsg_code)</span>
@@ -526,11 +526,11 @@ True</code></pre>
 </div>
 </div>
 <p>Convert the <code>GeoDataFrame</code> into a Polygon using the <code>geopandas</code> <code>union_all</code> method. This will create a single unified <code>shapely</code> geometry.</p>
-<div id="cell-10" class="cell" data-execution_count="20">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.934381Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.934290Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.937699Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.937365Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>centro_gpd <span class="op">=</span> bounds_gpd[bounds_gpd[<span class="st">"NOMDIS"</span>] <span class="op">==</span> <span class="st">"Centro"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bounds_geom <span class="op">=</span> centro_gpd.union_all()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bounds_geom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 <figure class="figure">
 <p><img src="network_from_bounds_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
@@ -538,9 +538,9 @@ True</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="21">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.939052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.938970Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.943688Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.943282Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>centro_gpd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -660,10 +660,10 @@ True</code></pre>
 </div>
 </div>
 <p>If the geometries are complex, then the OSM data request may fail due to URL length limitations (because each coordinate has to be passed in the URL). To avoid this, you can use the <code>convex_hull</code> or else the <code>simplify</code> method to reduce the number of points in the geometry.</p>
-<div id="cell-13" class="cell" data-execution_count="22">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.944939Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.944854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.947369Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.946919Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl <span class="op">=</span> bounds_geom.convex_hull</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_simpl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <figure class="figure">
 <p><img src="network_from_bounds_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
@@ -672,10 +672,10 @@ True</code></pre>
 </div>
 </div>
 <p>It is best practise to buffer the geometry by an amount matching the farthest distance used for centrality or accessibility calculations, which prevents edge roll-off effects.</p>
-<div id="cell-15" class="cell" data-execution_count="24">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.948451Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.948370Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:09.950741Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:09.950397Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff <span class="op">=</span> bounds_geom_simpl.<span class="bu">buffer</span>(<span class="dv">800</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>bounds_geom_buff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <figure class="figure">
 <p><img src="network_from_bounds_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
@@ -684,7 +684,7 @@ True</code></pre>
 </div>
 </div>
 <p>The <code>shapely</code> Polygon can now be used as before to download and prepare an OSM graph.</p>
-<div id="cell-17" class="cell" data-execution_count="25">
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:09.952010Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:09.951932Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:24.955231Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:24.954768Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simplification turned off for this example</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.osm_graph_from_poly(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    bounds_geom_buff,</span>
@@ -693,9 +693,7 @@ True</code></pre>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
-WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
-WARNING:cityseer.tools.io:Merging node 13423404199 into 10604931740 due to identical x, y coords.
+<pre><code>WARNING:cityseer.tools.io:Merging node 13423404199 into 10604931740 due to identical x, y coords.
 INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
 WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
@@ -769,11 +767,11 @@ INFO:cityseer.tools.graphs:Removing dangling nodes.
 INFO:cityseer.tools.graphs:Removing filler nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 2914 nodes and 4667 edges</code></pre>
+<pre><code>MultiGraph with 2916 nodes and 4664 edges</code></pre>
 </div>
 </div>
 <p>Setting the <code>x_lim</code> and <code>y_lim</code> extents will effectively zoom-in so that the results of the query can be seen more clearly.</p>
-<div id="cell-19" class="cell" data-execution_count="26">
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:35:24.956589Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:35:24.956497Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:35:25.060459Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:35:25.060039Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    G,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    plot_geoms<span class="op">=</span><span class="va">True</span>,</span>
@@ -794,7 +792,8 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.<strong>Next steps:</strong> To use an OSM relation ID instead, see <a href="../../recipes/networks/network_from_relation_id.html">Relation ID</a>.</p>
+<p>This notebook demonstrated how to load a custom boundary file (e.g.&nbsp;GeoPackage or shapefile) with <code>geopandas</code>, prepare the geometry through union, simplification, and buffering, and then use it to download and create an OSM street network graph. Buffering the boundary by the analysis distance is recommended to prevent edge roll-off effects in subsequent centrality or accessibility calculations.</p>
+<p><strong>Next steps:</strong> To use an OSM relation ID instead, see <a href="../../recipes/networks/network_from_relation_id.html">Relation ID</a>.</p>
 
 
 </section>

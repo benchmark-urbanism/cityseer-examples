@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-gtfs-transport-data-to-accessibility" id="toc-adding-gtfs-transport-data-to-accessibility" class="nav-link active" data-scroll-target="#adding-gtfs-transport-data-to-accessibility">Adding GTFS transport data to accessibility</a>
   <ul class="collapse">
   <li><a href="#compare-results" id="toc-compare-results" class="nav-link" data-scroll-target="#compare-results">Compare results</a></li>
-  <li><a href="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality." id="toc-conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality." class="nav-link" data-scroll-target="#conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare retail accessibility with and without transit connectivity. The before-and-after comparison reveals how the metro extends the effective catchment area for retail access, particularly around metro stop locations.<strong>Next steps:</strong> For centrality with GTFS data, see GTFS Centrality.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -301,13 +301,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Adding GTFS transport data to accessibility</h1>
 <p>This notebook demonstrates how GTFS (General Transit Feed Specification) public transport data can be integrated into the street network before computing landuse accessibility metrics. By adding metro stops and segment travel times, the accessibility calculations can account for the extended reach provided by public transport.</p>
 <p>Accessibility to retail premises is computed twice: once on the street network alone, and again after adding the Madrid Metro. The difference reveals how the metro network extends the catchment area for retail access.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:32:42.757740Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:32:42.757504Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:32:44.434863Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:32:44.434359Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.metrics <span class="im">import</span> layers</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:32:44.436488Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:32:44.436325Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:35:24.074098Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:35:24.073467Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_streets/street_network.gpkg"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>streets_gpd <span class="op">=</span> streets_gpd.explode(reset_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> io.nx_from_generic_geopandas(streets_gpd)</span>
@@ -319,10 +319,10 @@ INFO:cityseer.tools.graphs:Converting graph to dual.
 INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)
 INFO:cityseer.tools.io:Preparing node and edge arrays from networkX graph.
-INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 452252 items.</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:35:24.076629Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:35:24.076241Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:35:24.953546Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:35:24.953065Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prems_gpd <span class="op">=</span> gpd.read_file(<span class="st">"data/madrid_premises/madrid_premises.gpkg"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>prems_gpd.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -466,7 +466,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 </div>
 </div>
 <p>Compute baseline retail accessibility (without GTFS data). The <code>_not</code> suffix columns preserve the baseline values for later comparison.</p>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:35:24.954747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:35:24.954653Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:37:53.875582Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:37:53.875069Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute accessibility</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> [<span class="dv">800</span>, <span class="dv">1600</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nodes_gdf, prems_gpd <span class="op">=</span> layers.compute_accessibilities(</span>
@@ -485,14 +485,14 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: retail
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 117358 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Finished assigning data. 198773 assignments added to 24576 nodes.
+INFO:cityseer.data:Finished assigning data. 199450 assignments added to 26679 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.
 INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.</code></pre>
 </div>
 </div>
 <p>Load the Madrid Metro GTFS data into the <code>NetworkStructure</code> using <a href="https://cityseer.benchmarkurbanism.com/tools/io#add-transport-gtfs"><code>add_transport_gtfs</code></a>. This adds metro stops as nodes and segment travel times as edges.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:37:53.877710Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:37:53.877581Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:37:54.639566Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:37:54.639049Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>network_structure, stops, avg_stop_pairs <span class="op">=</span> io.add_transport_gtfs(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/madrid_gtfs/madrid_metro"</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    network_structure,</span>
@@ -504,10 +504,10 @@ INFO:cityseer.tools.io:Loaded 1272 stops and 2360 stop times
 INFO:cityseer.tools.io:Adding GTFS stops to network nodes (with street linking logic).
 INFO:cityseer.tools.io:Generating segment durations between stops.
 INFO:cityseer.tools.io:Adding GTFS segments to network edges.
-INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pre>
+INFO:cityseer.graph:Edge R-tree built successfully with 452252 items.</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="6">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:37:54.640838Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:37:54.640754Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:37:54.653340Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:37:54.652909Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert stops to geopandas</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>stops_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    stops,</span>
@@ -736,7 +736,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 </div>
 </div>
 <p>Recompute retail accessibility, now with the metro network included. The shortest-path algorithms can now route through metro segments, extending the effective catchment area.</p>
-<div id="cell-11" class="cell" data-execution_count="7">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:37:54.654747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:37:54.654640Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:42:33.752996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:42:33.752385Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf, prems_gpd <span class="op">=</span> layers.compute_accessibilities(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    prems_gpd,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    landuse_column_label<span class="op">=</span><span class="st">"division_desc"</span>,</span>
@@ -749,7 +749,7 @@ INFO:cityseer.graph:Edge R-tree built successfully with 104026 items.</code></pr
 <pre><code>INFO:cityseer.metrics.layers:Computing land-use accessibility for: retail
 INFO:cityseer.metrics.layers:Assigning data to network.
 INFO:cityseer.data:Assigning 117358 data entries to network nodes (max_dist: 100).
-INFO:cityseer.data:Finished assigning data. 198773 assignments added to 24576 nodes.
+INFO:cityseer.data:Finished assigning data. 199450 assignments added to 26679 nodes.
 INFO:cityseer.config:Metrics computed for:
 INFO:cityseer.config:Distance: 800m, Beta: 0.005, Walking Time: 10.0 minutes.
 INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.</code></pre>
@@ -758,10 +758,10 @@ INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.<
 <section id="compare-results" class="level2">
 <h2 class="anchored" data-anchor-id="compare-results">Compare results</h2>
 <p>Compute the difference between the metro-integrated and baseline retail accessibility. The three-panel plot below shows weighted retail accessibility within 800m without the metro, with the metro, and the difference. Retail premises are shown in white and metro stops in red.</p>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:42:33.756866Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:42:33.756560Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:42:33.765252Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:42:33.764812Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>Index(['ns_node_idx', 'x', 'y', 'live', 'weight', 'primal_edge',
+<pre><code>Index(['ns_node_idx', 'x', 'y', 'z', 'live', 'weight', 'primal_edge',
        'primal_edge_node_a', 'primal_edge_node_b', 'primal_edge_idx',
        'dual_node', 'cc_retail_800_nw', 'cc_retail_800_wt',
        'cc_retail_1600_nw', 'cc_retail_1600_wt', 'cc_retail_nearest_max_1600',
@@ -770,12 +770,12 @@ INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.<
       dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="9">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:42:33.766475Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:42:33.766384Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:42:33.770186Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:42:33.769819Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nodes_gdf[<span class="st">"cc_retail_800_wt_diff"</span>] <span class="op">=</span> (</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    nodes_gdf[<span class="st">"cc_retail_800_wt"</span>] <span class="op">-</span> nodes_gdf[<span class="st">"cc_retail_800_wt_not"</span>]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="11">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T07:42:33.771623Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T07:42:33.771541Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T07:42:54.969260Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T07:42:54.968763Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">20</span>), facecolor<span class="op">=</span><span class="st">"#1d1d1d"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nodes_gdf.plot(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span><span class="st">"cc_retail_800_wt_not"</span>,</span>
@@ -839,8 +839,10 @@ INFO:cityseer.config:Distance: 1600m, Beta: 0.0025, Walking Time: 20.0 minutes.<
 </div>
 </div>
 </section>
-<section id="conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality." class="level2">
-<h2 class="anchored" data-anchor-id="conclusionthis-notebook-demonstrated-how-to-integrate-gtfs-public-transport-data-madrid-metro-into-the-street-network-and-compare-retail-accessibility-with-and-without-transit-connectivity.-the-before-and-after-comparison-reveals-how-the-metro-extends-the-effective-catchment-area-for-retail-access-particularly-around-metro-stop-locations.next-steps-for-centrality-with-gtfs-data-see-gtfs-centrality.">ConclusionThis notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare retail accessibility with and without transit connectivity. The before-and-after comparison reveals how the metro extends the effective catchment area for retail access, particularly around metro stop locations.<strong>Next steps:</strong> For centrality with GTFS data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>.</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This notebook demonstrated how to integrate GTFS public transport data (Madrid Metro) into the street network and compare retail accessibility with and without transit connectivity. The before-and-after comparison reveals how the metro extends the effective catchment area for retail access, particularly around metro stop locations.</p>
+<p><strong>Next steps:</strong> For centrality with GTFS data, see <a href="../../recipes/centrality/centrality_metro.html">GTFS Centrality</a>.</p>
 
 
 </section>

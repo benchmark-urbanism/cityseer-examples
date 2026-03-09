@@ -297,11 +297,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Create a Dual Graph</h1>
 <p>Create a dual graph representation from a primal graph.</p>
 <p>For purposes of visualisation and intuition, it is preferable to work with the network in its dual representation. This way, metrics such as centrality and accessibility are calculated relative to streets instead of intersections. The advantage is that you can then visualise the results on the street network itself. Additionally, angular distances (typically used for Space Syntax) are more intuitive to calculate on the dual graph. That said, nothing stops you from working with the primal graph if you prefer.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:03.390688Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:03.390371Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:05.073404Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:05.072892Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cityseer.tools <span class="im">import</span> graphs, io, plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>First, create a primal graph as before.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:05.074967Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:05.074784Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:18.143971Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:18.143596Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lng, lat <span class="op">=</span> <span class="op">-</span><span class="fl">0.13396079424572427</span>, <span class="fl">51.51371088849723</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">buffer</span> <span class="op">=</span> <span class="dv">500</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>poly_wgs, epsg_code <span class="op">=</span> io.buffered_point_poly(lng, lat, <span class="bu">buffer</span>)</span>
@@ -309,8 +309,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+<pre><code>WARNING:cityseer.tools.io:Unsuccessful OSM API request response, trying again...
+INFO:cityseer.tools.graphs:Generating interpolated edge geometries.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Converting networkX graph to CRS code 32630.
+WARNING:cityseer.tools.util:The to_crs_code parameter 4326 is not a projected CRS
 INFO:cityseer.tools.io:Processing node x, y coordinates.
 INFO:cityseer.tools.io:Processing edge geom coordinates, if present.
 INFO:cityseer.tools.graphs:Removing filler nodes.
@@ -382,7 +385,7 @@ INFO:cityseer.tools.plot:Preparing graph nodes
 INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 320 nodes and 487 edges</code></pre>
+<pre><code>MultiGraph with 316 nodes and 477 edges</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -393,7 +396,7 @@ INFO:cityseer.tools.plot:Preparing graph edges</code></pre>
 </div>
 </div>
 <p>A dual graph representation can then be created using the <a href="https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual"><code>nx_to_dual</code></a> function available from the <code>cityseer</code> package’s <code>graphs</code> module.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:18.145347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:18.145258Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:18.431669Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:18.431165Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G_dual <span class="op">=</span> graphs.nx_to_dual(G)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(G_dual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -402,11 +405,11 @@ INFO:cityseer.tools.graphs:Preparing dual nodes
 INFO:cityseer.tools.graphs:Preparing dual edges (splitting and welding geoms)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MultiGraph with 487 nodes and 1151 edges</code></pre>
+<pre><code>MultiGraph with 477 nodes and 1119 edges</code></pre>
 </div>
 </div>
 <p>Notice that the dual graph will have the same number of nodes as the primal graph’s number of edges, since the edges have been converted to nodes. The new edges are created by splitting the original edges at their midpoints, and then welding corresponding segments together across intersections. True representations of street geometries are therefore preserved in the dual graph, allowing for accurate calculations of metric distances and angular deviation.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-09T08:33:18.432776Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-09T08:33:18.432696Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-09T08:33:18.472911Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-09T08:33:18.472563Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot.plot_nx(G_dual, plot_geoms<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO:cityseer.tools.plot:Preparing graph nodes
