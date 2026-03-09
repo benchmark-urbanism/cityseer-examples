@@ -34,6 +34,16 @@ Calculate metric distance centralities directly from OpenStreetMap data.
 
 [Notebook](osm_centrality.ipynb)
 
+## Elevation effects on centrality
+
+Compare centrality results with and without Z coordinates (elevation). When nodes have 3D geometries, cityseer applies Tobler's hiking function during pathfinding, reshaping centrality patterns in hilly terrain.
+
+::: {.callout-important}
+3D elevation support requires cityseer **v4.24.0** or later.
+:::
+
+[Notebook](3d_elevation.ipynb)
+
 ## Adding GTFS transport data
 
 > GTFS transport data support is still experimental.
