@@ -25,20 +25,24 @@ Every `cityseer` analysis follows the same pattern:
 
 By default, a street network is a **primal graph**: intersections are nodes and streets are edges. This is the representation you get from most data sources.
 
-`cityseer` can convert a primal graph into a **dual graph**, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more meaningful for urban analysis.
+`cityseer` can convert a primal graph into a **dual graph**, where the representation is inverted: streets become nodes and intersections become edges. This means metrics are expressed per street segment rather than per intersection, which is usually more intuitive for urban analysis because the outputs can be visualised on street segment geometries. It also corresponds more naturally with the idea of simplest path centralities using angular distances from street to street.
 
 ```
 Primal graph                    Dual graph
 (intersections = nodes)         (streets = nodes)
 
-    A ——— B                     AB ——— BC
-    |     |          →          |      |
-    C ——— D                     AC ——— CD
-                                 \   /
-                                  BD
+    A ——— B                        AB
+    |     |          →            /  \
+    C ——— D                     AC    BD
+                                  \  /
+                                   CD
 ```
 
 Working with the dual representation is recommended for centrality analysis. See [`nx_to_dual`](https://cityseer.benchmarkurbanism.com/tools/graphs#nx-to-dual) in the API docs.
+
+::: {.callout-important}
+From the latest version, **angular centrality measures require the dual graph**. Use `graphs.nx_to_dual` to convert your primal graph before computing angular centralities.
+:::
 
 ### NetworkStructure
 
@@ -75,27 +79,43 @@ The `cc_` prefix stands for "cityseer computed." For centrality, the `_ang` suff
 
 Here is a complete `cityseer` workflow in under 20 lines. It downloads a street network, computes betweenness centrality, and plots the result.
 
-```python
+```{python}
+#| code-fold: true
+#| code-summary: "Set quiet mode (optional — reduces logging output)"
+import os
+
+os.environ["CITYSEER_QUIET_MODE"] = "1"
+```
+
+```{python}
+import matplotlib.pyplot as plt
 from cityseer.metrics import networks
 from cityseer.tools import graphs, io
 
 # 1. Define area of interest and download network
-poly_wgs, epsg_code = io.buffered_point_poly(-3.7038, 40.4168, 1000)
-G = io.osm_graph_from_poly(poly_wgs, to_crs_code=epsg_code)
+poly_wgs, _ = io.buffered_point_poly(-3.7038, 40.4168, 1000)
+G = io.osm_graph_from_poly(poly_wgs)
 
 # 2. Convert to dual graph (recommended) and prepare data structures
 G_dual = graphs.nx_to_dual(G)
 nodes_gdf, edges_gdf, network_structure = io.network_structure_from_nx(G_dual)
 
-# 3. Compute centrality at 500m and 1000m
+# 3. Compute centrality at 500m, 1000m, and 2000m
 nodes_gdf = networks.node_centrality_shortest(
     network_structure=network_structure,
     nodes_gdf=nodes_gdf,
-    distances=[500, 1000],
+    distances=[500, 1000, 2000],
 )
 
-# 4. Plot betweenness centrality at 1000m
-nodes_gdf.plot(column="cc_betweenness_1000", cmap="magma", figsize=(8, 8))
+# 4. Plot betweenness centrality at 2000m
+fig, ax = plt.subplots(1, 1, figsize=(8, 6), facecolor="#1d1d1d")
+nodes_gdf.plot(
+    ax=ax,
+    column="cc_betweenness_1000",
+    cmap="magma",
+    linewidth=1,
+)
+ax.axis(False)
 ```
 
 ::: {.callout-note}

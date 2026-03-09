@@ -20,6 +20,10 @@ Calculate metric distance centralities (density, harmonic closeness, betweenness
 
 ## Angular distance network centrality
 
+::: {.callout-important}
+From the latest version, angular centrality measures require the **dual graph**. Convert your primal graph with `graphs.nx_to_dual` before computing angular centralities.
+:::
+
 Calculate angular (simplest-path) centralities from a `geopandas` `GeoDataFrame`. Angular analysis weights paths by cumulative turning angle rather than distance, capturing route directness.
 
 [Notebook](gpd_angular_centrality.ipynb)

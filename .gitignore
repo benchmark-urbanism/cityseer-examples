@@ -5,6 +5,10 @@
 *.aux.xml
 *.pgw
 
+# Generated visibility rasters
+recipes/visibility/images/*.tif
+!recipes/visibility/images/madrid_rast_ht.tif
+
 # Quarto
 /output/
 .quarto/

@@ -31,6 +31,12 @@ Preview the site locally:
 quarto preview
 ```
 
+Re-execute all recipe notebooks (runs from project root with a delay between each to avoid API rate limits):
+
+```bash
+CITYSEER_QUIET_MODE=1 uv run python run_notebooks.py
+```
+
 The VS Code [Quarto extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) is recommended for editing `.qmd` files.
 
 ## License
