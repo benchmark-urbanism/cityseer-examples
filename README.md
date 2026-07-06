@@ -1,5 +1,7 @@
 # Cityseer Guide
 
+> **Deprecated.** This repository and its published site are no longer maintained. The examples now live in the main [`cityseer-api`](https://github.com/benchmark-urbanism/cityseer-api) repository and are published with the main documentation at [cityseer.benchmarkurbanism.com/examples](https://cityseer.benchmarkurbanism.com/examples).
+
 Published to: [Cityseer Guide](https://benchmark-urbanism.github.io/cityseer-examples/)
 
 Tutorials and worked examples for [`cityseer`](https://github.com/benchmark-urbanism/cityseer-api), a Python package for pedestrian-scale network analysis and urban morphology.
